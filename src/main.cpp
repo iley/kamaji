@@ -1,5 +1,5 @@
 #include "Arduino.h"
-#include "pitches.h"
+#include "pitches.h"  // Taken from https://www.arduino.cc/en/Tutorial/ToneMelody
 
 const int kButtonCount = 3;
 const int kButtonPins[] = {2, 3, 4};
