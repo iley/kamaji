@@ -14,9 +14,11 @@ void loop() {
   lcd.clear();
   lcd.home();
   lcd.print("Hello world!");
-  lcd.setCursor(0, 1);
-  for (int i = 0; i < 16; ++i) {
-    lcd.print('.');
-    delay(500/*ms*/);
+  for (int i = 0; i < 256; ++i) {
+    lcd.setCursor(/*col=*/0, /*row=*/1);
+    lcd.print(i);
+    lcd.setCursor(/*col=*/4, /*row=*/1);
+    lcd.print((char)i);
+    delay(500);
   }
 }
