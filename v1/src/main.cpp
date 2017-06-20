@@ -63,29 +63,29 @@ void loop() {
     }
     return;
   }
-  if (!gotWinner && startButtonState == LOW) {
-    started = true;
-    time = millis();
-  }
-  if (started && !gotWinner) {
-    lcd.home();
-    lcd.print((millis()-time)/1000);
-  }
-  if (gotWinner)
-    return;
-  for (int i = 0; i < kButtonCount; ++i) {
-    int buttonState = digitalRead(kButtonPins[i]);
-    if (buttonState == LOW) {
-      digitalWrite(kLedPins[i], HIGH);
-      tone(kSpeakerPin, NOTE_G4);
-      delay(100/*ms*/);
-      noTone(kSpeakerPin);
-      gotWinner = true;
-      lcd.clear();
+  if (!gotWinner) {
+    if (startButtonState == LOW) {
+      started = true;
+      time = millis();
+    }
+    if (started) {
       lcd.home();
-      lcd.print("winner: ");
-      lcd.print(i+1);
-      break;
+      lcd.print((millis()-time)/1000);
+    }
+    for (int i = 0; i < kButtonCount; ++i) {
+      int buttonState = digitalRead(kButtonPins[i]);
+      if (buttonState == LOW) {
+        digitalWrite(kLedPins[i], HIGH);
+        tone(kSpeakerPin, NOTE_G4);
+        delay(100/*ms*/);
+        noTone(kSpeakerPin);
+        gotWinner = true;
+        lcd.clear();
+        lcd.home();
+        lcd.print("winner: ");
+        lcd.print(i+1);
+        break;
+      }
     }
   }
 }
