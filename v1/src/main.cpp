@@ -1,33 +1,66 @@
 #include <Arduino.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
-#include "pitches.h"  // Taken from https://www.arduino.cc/en/Tutorial/ToneMelody
 
-#define ARRAY_SIZE(a) (sizeof(a)/sizeof(a[0]))
+#include "pitches.h"
 
-LiquidCrystal_I2C lcd(0x3f,2,1,0,4,5,6,7);
+// Forward declarations.
+void jeopardySetup();
+void jeopardyLoop();
 
-const uint8_t kCharBitmap[][8] = {
-   { 0xc, 0x12, 0x12, 0xc, 0, 0, 0, 0 },
-   { 0x6, 0x9, 0x9, 0x6, 0, 0, 0, 0 },
-   { 0x0, 0x6, 0x9, 0x9, 0x6, 0, 0, 0x0 },
-   { 0x0, 0xc, 0x12, 0x12, 0xc, 0, 0, 0x0 },
-   { 0x0, 0x0, 0xc, 0x12, 0x12, 0xc, 0, 0x0 },
-   { 0x0, 0x0, 0x6, 0x9, 0x9, 0x6, 0, 0x0 },
-   { 0x0, 0x0, 0x0, 0x6, 0x9, 0x9, 0x6, 0x0 },
-   { 0x0, 0x0, 0x0, 0xc, 0x12, 0x12, 0xc, 0x0 },
+// Supported game modes.
+enum {
+  MODE_JEOPARDY,
+  MODE_BRAINRING,  // not implemented
+  MODE_HAMSA,  // not implemented
 };
 
-const int kButtonCount = 4;
-const int kButtonPins[] = {8, 6, 4, 2};
-const int kLedPins[] = {9, 7, 5, 3};
-const int kResetButtonPin = 15;
-const int kStartButtonPin = 16;
+enum {
+  BUTTON_PLAYER_1,
+  BUTTON_PLAYER_2,
+  BUTTON_PLAYER_3,
+  BUTTON_PLAYER_4,
+
+  BUTTON_START,
+  BUTTON_RESET,
+
+  BUTTON_COUNT = BUTTON_RESET + 1,
+
+  FIRST_PLAYER_BUTTON = BUTTON_PLAYER_1,
+  LAST_PLAYER_BUTTON = BUTTON_PLAYER_4,
+};
+
+// Pin numbers for each button, indexed by the enum values above.
+const int kButtonPins[] = {
+  2, 4, 6, 8, // players
+  16,  // start
+  15,  // reset
+};
+
+// Pin numbers for each player's LED, indexed by the buttons enum.
+// E.g. kLedPins[BUTTON_PLAYER_1] is the first player's LED.
+const int kLedPins[] = {3, 5, 7, 9};
+
 const int kSpeakerPin = 11;
 
-bool gotWinner = false;
-unsigned long time = 0;
-bool started = false;
+// Button debounce delay in milliseconds.
+const unsigned long kDebounceMs = 100;
+
+// GLOBAL STATE
+
+// An I2C-connected 16x2 character LCD screen.
+LiquidCrystal_I2C lcd(0x3f, 2, 1, 0, 4, 5, 6, 7);
+
+// Selected game mode.
+int mode = MODE_JEOPARDY;
+
+// Button state, true means pressed.
+bool buttons[BUTTON_COUNT] = { false };
+
+// For each button, when it was last time pressed in milliseconds since device
+// start.
+unsigned long lastPressedMs[BUTTON_COUNT] = {0};
+
 
 void setup() {
   for (const int buttonPin : kButtonPins) {
@@ -35,55 +68,94 @@ void setup() {
   }
   for (const int ledPin : kLedPins) {
     pinMode(ledPin, OUTPUT);
+    digitalWrite(ledPin, LOW);
   }
-  pinMode(kResetButtonPin, INPUT_PULLUP);
-  pinMode(kStartButtonPin, INPUT_PULLUP);
   pinMode(kSpeakerPin, OUTPUT);
 
+  // Initialize the screen.
   lcd.begin(/*cols=*/16, /*rows=*/2);
-  for (unsigned int i = 0; i < ARRAY_SIZE(kCharBitmap); ++i) {
-    lcd.createChar(i, (uint8_t*)kCharBitmap[i]);
-  }
   lcd.setBacklightPin(3, POSITIVE);
   lcd.setBacklight(HIGH);
+
+  // Serial is for debugging.
+  Serial.begin(9600);
+
+// TODO: Select mode.
+  jeopardySetup();
 }
 
 void loop() {
-  int resetButtonState = digitalRead(kResetButtonPin);
-  int startButtonState = digitalRead(kStartButtonPin);
-  if (resetButtonState == LOW) {
+  unsigned long now = millis();
+  // Read all buttons and save their state in a global array.
+  for (int i = FIRST_PLAYER_BUTTON; i < BUTTON_COUNT; ++i) {
+    // Ignore the button state changes if it was pressed less than kDebounceMs
+    // milliseconds ago to account for contact bouncing.
+    if (now - lastPressedMs[i] < kDebounceMs) {
+      continue;
+    }
+    // The buttons pins are active LOW.
+    buttons[i] = (digitalRead(kButtonPins[i]) == LOW);
+  }
+  // TODO: Dispatch based on current mode.
+  jeopardyLoop();
+}
+
+void jeopardySetup() {
+  lcd.clear();
+  lcd.print("Mode: Jeopardy");
+  Serial.println("start. mode: jeopardy");
+}
+
+void jeopardyLoop() {
+  static bool gotWinner = false;
+  static bool started = false;
+  static unsigned long time = 0;
+
+  if (buttons[BUTTON_RESET]) {
+    Serial.println("reset");
     gotWinner = false;
     started = false;
     lcd.clear();
     for (int ledPin : kLedPins) {
       digitalWrite(ledPin, LOW);
       tone(kSpeakerPin, NOTE_D4);
+      // TODO: Get rid of the delay by introducing a rudimentary scheduling
+      // mechanism. Put a timestamp and a callback into a global array and run
+      // the callback from the main loop when millis() > timestamp.
       delay(100/*ms*/);
       noTone(kSpeakerPin);
     }
     return;
   }
-  if (!gotWinner) {
-    if (startButtonState == LOW) {
-      started = true;
-      time = millis();
-    }
-    if (started) {
-      lcd.home();
-      lcd.print((millis()-time)/1000);
-    }
-    for (int i = 0; i < kButtonCount; ++i) {
-      int buttonState = digitalRead(kButtonPins[i]);
-      if (buttonState == LOW) {
+
+  if (gotWinner) {
+    return;
+  }
+
+  if (buttons[BUTTON_START]) {
+    Serial.println("start");
+    started = true;
+    time = millis();
+  }
+
+  if (started) {
+    lcd.home();
+    lcd.print((millis() - time) / 1000);
+
+    for (int i = FIRST_PLAYER_BUTTON; i <= LAST_PLAYER_BUTTON; ++i) {
+      if (buttons[i]) {
+        Serial.print("player ");
+        Serial.println(i + 1);
+
         digitalWrite(kLedPins[i], HIGH);
         tone(kSpeakerPin, NOTE_G4);
-        delay(100/*ms*/);
+        delay(100/*ms*/);  // TODO: Get rid of the delay.
         noTone(kSpeakerPin);
         gotWinner = true;
         lcd.clear();
         lcd.home();
-        lcd.print("winner: ");
-        lcd.print(i+1);
+        lcd.print("Player ");
+        lcd.print(i + 1);
         break;
       }
     }
