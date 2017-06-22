@@ -56,6 +56,8 @@ int mode = MODE_JEOPARDY;
 
 // Button state, true means pressed.
 bool buttons[BUTTON_COUNT] = { false };
+// Button state before the latest update.
+bool buttonsBefore[BUTTON_COUNT] = { false };
 
 // For each button, when it was last time pressed in milliseconds since device
 // start.
@@ -80,7 +82,7 @@ void setup() {
   // Serial is for debugging.
   Serial.begin(9600);
 
-// TODO: Select mode.
+  // TODO: Select mode.
   jeopardySetup();
 }
 
@@ -88,13 +90,13 @@ void loop() {
   unsigned long now = millis();
   // Read all buttons and save their state in a global array.
   for (int i = FIRST_PLAYER_BUTTON; i < BUTTON_COUNT; ++i) {
+    buttonsBefore[i] = buttons[i];
     // Ignore the button state changes if it was pressed less than kDebounceMs
     // milliseconds ago to account for contact bouncing.
-    if (now - lastPressedMs[i] < kDebounceMs) {
-      continue;
+    if (now - lastPressedMs[i] > kDebounceMs) {
+      // The buttons pins are active LOW.
+      buttons[i] = (digitalRead(kButtonPins[i]) == LOW);
     }
-    // The buttons pins are active LOW.
-    buttons[i] = (digitalRead(kButtonPins[i]) == LOW);
   }
   // TODO: Dispatch based on current mode.
   jeopardyLoop();
@@ -111,7 +113,7 @@ void jeopardyLoop() {
   static bool started = false;
   static unsigned long time = 0;
 
-  if (buttons[BUTTON_RESET]) {
+  if (buttons[BUTTON_RESET] && !buttonsBefore[BUTTON_RESET]) {
     Serial.println("reset");
     gotWinner = false;
     started = false;
@@ -132,7 +134,7 @@ void jeopardyLoop() {
     return;
   }
 
-  if (buttons[BUTTON_START]) {
+  if (buttons[BUTTON_START] && !buttonsBefore[BUTTON_START]) {
     Serial.println("start");
     started = true;
     time = millis();
