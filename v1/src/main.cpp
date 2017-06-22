@@ -15,16 +15,21 @@ enum {
   MODE_HAMSA,  // not implemented
 };
 
+// All available buttons.
 enum {
   BUTTON_PLAYER_1,
   BUTTON_PLAYER_2,
   BUTTON_PLAYER_3,
   BUTTON_PLAYER_4,
 
-  BUTTON_START,
-  BUTTON_RESET,
+  BUTTON_CONTROL_1,
+  BUTTON_CONTROL_2,
+  BUTTON_CONTROL_3,
 
-  BUTTON_COUNT = BUTTON_RESET + 1,
+  BUTTON_COUNT = BUTTON_CONTROL_3 + 1,
+
+  BUTTON_START = BUTTON_CONTROL_1,
+  BUTTON_RESET = BUTTON_CONTROL_3,
 
   FIRST_PLAYER_BUTTON = BUTTON_PLAYER_1,
   LAST_PLAYER_BUTTON = BUTTON_PLAYER_4,
@@ -33,8 +38,7 @@ enum {
 // Pin numbers for each button, indexed by the enum values above.
 const int kButtonPins[] = {
   2, 4, 6, 8, // players
-  16,  // start
-  15,  // reset
+  15, 16, 17, // control
 };
 
 // Pin numbers for each player's LED, indexed by the buttons enum.
@@ -89,7 +93,7 @@ void setup() {
 void loop() {
   unsigned long now = millis();
   // Read all buttons and save their state in a global array.
-  for (int i = FIRST_PLAYER_BUTTON; i < BUTTON_COUNT; ++i) {
+  for (int i = 0; i < BUTTON_COUNT; ++i) {
     buttonsBefore[i] = buttons[i];
     // Ignore the button state changes if it was pressed less than kDebounceMs
     // milliseconds ago to account for contact bouncing.
@@ -105,7 +109,7 @@ void loop() {
 void jeopardySetup() {
   lcd.clear();
   lcd.print("Mode: Jeopardy");
-  Serial.println("start. mode: jeopardy");
+  Serial.println("mode: jeopardy");
 }
 
 void jeopardyLoop() {
@@ -136,6 +140,7 @@ void jeopardyLoop() {
 
   if (buttons[BUTTON_START] && !buttonsBefore[BUTTON_START]) {
     Serial.println("start");
+    lcd.clear();
     started = true;
     time = millis();
   }
