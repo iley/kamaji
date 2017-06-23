@@ -124,12 +124,7 @@ void jeopardyLoop() {
     lcd.clear();
     for (int ledPin : kLedPins) {
       digitalWrite(ledPin, LOW);
-      tone(kSpeakerPin, NOTE_D4);
-      // TODO: Get rid of the delay by introducing a rudimentary scheduling
-      // mechanism. Put a timestamp and a callback into a global array and run
-      // the callback from the main loop when millis() > timestamp.
-      delay(100/*ms*/);
-      noTone(kSpeakerPin);
+      tone(kSpeakerPin, NOTE_D4, 100/*ms*/);
     }
     return;
   }
@@ -155,9 +150,7 @@ void jeopardyLoop() {
         Serial.println(i + 1);
 
         digitalWrite(kLedPins[i], HIGH);
-        tone(kSpeakerPin, NOTE_G4);
-        delay(100/*ms*/);  // TODO: Get rid of the delay.
-        noTone(kSpeakerPin);
+        tone(kSpeakerPin, NOTE_G4, 100/*ms*/);
         gotWinner = true;
         lcd.clear();
         lcd.home();
