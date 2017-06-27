@@ -15,7 +15,8 @@ containing `platformio.ini`. Run `pio run -t size` if you need to compile only.
 ## Hardware
 
 We use an [Arduino Nano](https://store.arduino.cc/arduino-nano) clone based on
-ATmega328 and CH341 usb-to-serial chip. The CH341 requires a third-party driver
+ATmega328 and CH341 usb-to-serial chip. The CH341 requires a [third-party
+driver](https://blog.sengotta.net/signed-mac-os-driver-for-winchiphead-ch340-serial-bridge/)
 on Mac (and probably Windows), but Linux supports it natively. The screen is a
 16x2 HD44780-compatible character LCD connected via
 [I2C](https://en.wikipedia.org/wiki/I%C2%B2C).
