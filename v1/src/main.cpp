@@ -144,7 +144,7 @@ void jeopardyLoop() {
   }
 
   for (int i = FIRST_PLAYER_BUTTON; i <= LAST_PLAYER_BUTTON; ++i) {
-    if (buttons[i]) {
+    if (buttons[i] && !buttonsBefore[i]) {
       digitalWrite(kLedPins[i], HIGH);
       tone(kSpeakerPin, NOTE_G4, 100/*ms*/);
       gotWinner = true;
