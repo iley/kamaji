@@ -38,13 +38,13 @@ enum {
 
 // Pin numbers for each button, indexed by the enum values above.
 const int kButtonPins[] = {
-  2, 4, 6, 8, // players
+  8, 6, 4, 2, // players
   15, 16, 17, // control
 };
 
 // Pin numbers for each player's LED, indexed by the buttons enum.
 // E.g. kLedPins[BUTTON_PLAYER_1] is the first player's LED.
-const int kLedPins[] = {3, 5, 7, 9};
+const int kLedPins[] = {9, 7, 5, 3};
 
 const int kSpeakerPin = 11;
 
