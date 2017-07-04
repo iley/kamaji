@@ -7,6 +7,7 @@
 // Forward declarations.
 void jeopardySetup();
 void jeopardyLoop();
+void clearScreen();
 
 // Supported game modes.
 enum {
@@ -107,9 +108,8 @@ void loop() {
 }
 
 void jeopardySetup() {
-  lcd.clear();
+  clearScreen();
   lcd.print("Mode: Jeopardy");
-  Serial.println("mode: jeopardy");
 }
 
 void jeopardyLoop() {
@@ -118,10 +118,9 @@ void jeopardyLoop() {
   static unsigned long time = 0;
 
   if (buttons[BUTTON_RESET] && !buttonsBefore[BUTTON_RESET]) {
-    Serial.println("reset");
     gotWinner = false;
     started = false;
-    lcd.clear();
+    jeopardySetup();
     for (int ledPin : kLedPins) {
       digitalWrite(ledPin, LOW);
       tone(kSpeakerPin, NOTE_D4, 100/*ms*/);
@@ -134,8 +133,7 @@ void jeopardyLoop() {
   }
 
   if (buttons[BUTTON_START] && !buttonsBefore[BUTTON_START]) {
-    Serial.println("start");
-    lcd.clear();
+    clearScreen();
     started = true;
     time = millis();
   }
@@ -143,21 +141,25 @@ void jeopardyLoop() {
   if (started) {
     lcd.home();
     lcd.print((millis() - time) / 1000);
+  }
 
-    for (int i = FIRST_PLAYER_BUTTON; i <= LAST_PLAYER_BUTTON; ++i) {
-      if (buttons[i]) {
-        Serial.print("player ");
-        Serial.println(i + 1);
-
-        digitalWrite(kLedPins[i], HIGH);
-        tone(kSpeakerPin, NOTE_G4, 100/*ms*/);
-        gotWinner = true;
-        lcd.clear();
-        lcd.home();
-        lcd.print("Player ");
-        lcd.print(i + 1);
-        break;
-      }
+  for (int i = FIRST_PLAYER_BUTTON; i <= LAST_PLAYER_BUTTON; ++i) {
+    if (buttons[i]) {
+      digitalWrite(kLedPins[i], HIGH);
+      tone(kSpeakerPin, NOTE_G4, 100/*ms*/);
+      gotWinner = true;
+      clearScreen();
+      lcd.print("Player ");
+      lcd.print(i + 1);
+      break;
     }
   }
+}
+
+void clearScreen() {
+  lcd.clear();
+  lcd.setCursor(/*row=*/0, /*col=*/1);
+  // Print button functions on the lower line of the screen.
+  lcd.print("Start      Reset");
+  lcd.home();
 }
