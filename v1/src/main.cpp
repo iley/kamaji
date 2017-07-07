@@ -198,11 +198,15 @@ int fastestPlayer() {
     return -1;
   }
   int winnerIndex = random(buttonsPressed);
-  int player = FIRST_PLAYER_BUTTON;
-  for (int i = 0; i < winnerIndex + 1; ++i) {
-    while (!buttons[player] || buttonsBefore[player]) {
-      ++player;
+  int winner = -1;
+  for (int i = FIRST_PLAYER_BUTTON; i <= LAST_PLAYER_BUTTON; ++i) {
+    if (buttons[i] && !buttonsBefore[i]) {
+      if (winnerIndex == 0) {
+        winner = i;
+        break;
+      }
+      --winnerIndex;
     }
   }
-  return player;
+  return winner;
 }
