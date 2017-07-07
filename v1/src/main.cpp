@@ -194,18 +194,19 @@ int fastestPlayer() {
       ++buttonsPressed;
     }
   }
-  if (buttonsPressed == 0) {
-    return -1;
-  }
-  int winnerIndex = random(buttonsPressed);
   int winner = -1;
-  for (int i = FIRST_PLAYER_BUTTON; i <= LAST_PLAYER_BUTTON; ++i) {
-    if (buttons[i] && !buttonsBefore[i]) {
-      if (winnerIndex == 0) {
-        winner = i;
-        break;
+  if (buttonsPressed > 0) {
+    // Pick a random winner.
+    int winnerIndex = random(buttonsPressed);
+    // Scan the buttons again and count donw until we get to the winner.
+    for (int i = FIRST_PLAYER_BUTTON; i <= LAST_PLAYER_BUTTON; ++i) {
+      if (buttons[i] && !buttonsBefore[i]) {
+        if (winnerIndex == 0) {
+          winner = i;
+          break;
+        }
+        --winnerIndex;
       }
-      --winnerIndex;
     }
   }
   return winner;
