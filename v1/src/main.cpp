@@ -1,3 +1,5 @@
+#include <string.h>
+
 #include <Arduino.h>
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
@@ -48,6 +50,8 @@ const int kLedPins[] = {9, 7, 5, 3};
 
 const int kSpeakerPin = 11;
 
+const int kScreenWidth = 16;
+
 // Button debounce delay in milliseconds.
 const unsigned long kDebounceMs = 100;
 
@@ -68,6 +72,9 @@ bool buttonsBefore[BUTTON_COUNT] = { false };
 // start.
 unsigned long lastPressedMs[BUTTON_COUNT] = {0};
 
+// Button labels are printed on the lower line of the screen.
+const char* leftButtonLabel = "Start";
+const char* rightButtonLabel = "Reset";
 
 void setup() {
   for (const int buttonPin : kButtonPins) {
@@ -108,6 +115,8 @@ void loop() {
 }
 
 void jeopardySetup() {
+  leftButtonLabel = "Start";
+  rightButtonLabel = "Reset";
   clearScreen();
   lcd.print("Mode: Jeopardy");
 }
@@ -148,6 +157,8 @@ void jeopardyLoop() {
       digitalWrite(kLedPins[i], HIGH);
       tone(kSpeakerPin, NOTE_G4, 100/*ms*/);
       gotWinner = true;
+      leftButtonLabel = "Continue";
+      rightButtonLabel = "Reset";
       clearScreen();
       lcd.print("Player ");
       lcd.print(i + 1);
@@ -160,6 +171,12 @@ void clearScreen() {
   lcd.clear();
   lcd.setCursor(/*row=*/0, /*col=*/1);
   // Print button functions on the lower line of the screen.
-  lcd.print("Start      Reset");
+  lcd.print(leftButtonLabel);
+  const int spaces = kScreenWidth - strlen(leftButtonLabel) -
+      strlen(rightButtonLabel);
+  for (int i = 0; i < spaces; ++i) {
+    lcd.print(' ');
+  }
+  lcd.print(rightButtonLabel);
   lcd.home();
 }
