@@ -10,6 +10,7 @@
 void jeopardySetup();
 void jeopardyLoop();
 void clearScreen();
+int fastestPlayer();
 
 // Supported game modes.
 enum {
@@ -77,6 +78,11 @@ const char* leftButtonLabel = "Start";
 const char* rightButtonLabel = "Reset";
 
 void setup() {
+  // Analog input 0 is not connected, use noise from it for pseudo-random
+  // generator seeding.
+  randomSeed(analogRead(0));
+
+  // Setup input and output pins.
   for (const int buttonPin : kButtonPins) {
     pinMode(buttonPin, INPUT_PULLUP);
   }
@@ -152,18 +158,16 @@ void jeopardyLoop() {
     lcd.print((millis() - time) / 1000);
   }
 
-  for (int i = FIRST_PLAYER_BUTTON; i <= LAST_PLAYER_BUTTON; ++i) {
-    if (buttons[i] && !buttonsBefore[i]) {
-      digitalWrite(kLedPins[i], HIGH);
-      tone(kSpeakerPin, NOTE_G4, 100/*ms*/);
-      gotWinner = true;
-      leftButtonLabel = "Continue";
-      rightButtonLabel = "Reset";
-      clearScreen();
-      lcd.print("Player ");
-      lcd.print(i + 1);
-      break;
-    }
+  const int winner = fastestPlayer();
+  if (winner != -1) {
+    digitalWrite(kLedPins[winner], HIGH);
+    tone(kSpeakerPin, NOTE_G4, 100/*ms*/);
+    gotWinner = true;
+    leftButtonLabel = "Continue";
+    rightButtonLabel = "Reset";
+    clearScreen();
+    lcd.print("Player ");
+    lcd.print(winner + 1);
   }
 }
 
@@ -179,4 +183,26 @@ void clearScreen() {
   }
   lcd.print(rightButtonLabel);
   lcd.home();
+}
+
+// Returns index of the player who pressed their button first or -1 for nobody.
+int fastestPlayer() {
+  // First, count how many players have pressed a button.
+  int buttonsPressed = 0;
+  for (int i = FIRST_PLAYER_BUTTON; i <= LAST_PLAYER_BUTTON; ++i) {
+    if (buttons[i] && !buttonsBefore[i]) {
+      ++buttonsPressed;
+    }
+  }
+  if (buttonsPressed == 0) {
+    return -1;
+  }
+  int winnerIndex = random(buttonsPressed);
+  int player = FIRST_PLAYER_BUTTON;
+  for (int i = 0; i < winnerIndex + 1; ++i) {
+    while (!buttons[player] || buttonsBefore[player]) {
+      ++player;
+    }
+  }
+  return player;
 }
