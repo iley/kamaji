@@ -1,6 +1,6 @@
 # Kamaji quiz game system
 
-The main source code is in `v1`, `*_demo` are code samples, `design` is for
+The main source code is in `v1`, `demo` has code samples, `design` is for
 schematics, sketches etc.
 
 ## SDK
