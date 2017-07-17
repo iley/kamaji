@@ -38,6 +38,6 @@ for (dx = [shift, a-shift])
     for (dy = [shift, b-shift]) {
         translate([dx, dy, 0]) {
             cylinder(h=c, r=leg_r, $fn=40);
-        };
+        }
     }
 
