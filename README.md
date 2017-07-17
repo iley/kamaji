@@ -1,7 +1,11 @@
 # Kamaji quiz game system
 
-The main source code is in `v1`, `demo` has code samples, `design` is for
-schematics, sketches etc.
+Directories:
+ * `v1`: main source code;
+ * `demo`: code samples;
+ * `3d`: [OpenSCAD](http://www.openscad.org/) models for the enclosure;
+ * `pcb`: schematic and printed circuit board layout in [KiCAD](http://kicad-pcb.org/) format;
+ * `misc`: the rest.
 
 ## SDK
 
