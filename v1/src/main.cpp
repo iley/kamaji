@@ -5,38 +5,10 @@
 #include <LiquidCrystal_I2C.h>
 
 #include "pitches.h"
+#include "mode.h"
+#include "main.h"
 
-// Forward declarations.
-void jeopardySetup();
-void jeopardyLoop();
-void clearScreen();
-
-// Supported game modes.
-enum {
-  MODE_JEOPARDY,
-  MODE_BRAINRING,  // not implemented
-  MODE_HAMSA,  // not implemented
-};
-
-// All available buttons.
-enum {
-  BUTTON_PLAYER_1,
-  BUTTON_PLAYER_2,
-  BUTTON_PLAYER_3,
-  BUTTON_PLAYER_4,
-
-  BUTTON_CONTROL_1,
-  BUTTON_CONTROL_2,
-  BUTTON_CONTROL_3,
-
-  BUTTON_COUNT = BUTTON_CONTROL_3 + 1,
-
-  BUTTON_START = BUTTON_CONTROL_1,
-  BUTTON_RESET = BUTTON_CONTROL_3,
-
-  FIRST_PLAYER_BUTTON = BUTTON_PLAYER_1,
-  LAST_PLAYER_BUTTON = BUTTON_PLAYER_4,
-};
+const int RESET_DELAY = 2000;
 
 // Pin numbers for each button, indexed by the enum values above.
 const int kButtonPins[] = {
@@ -61,7 +33,7 @@ const unsigned long kDebounceMs = 100;
 LiquidCrystal_I2C lcd(0x3f, 2, 1, 0, 4, 5, 6, 7);
 
 // Selected game mode.
-int mode = MODE_JEOPARDY;
+Mode *mode = new SelectMode();
 
 // Button state, true means pressed.
 bool buttons[BUTTON_COUNT] = { false };
@@ -72,9 +44,12 @@ bool buttonsBefore[BUTTON_COUNT] = { false };
 // start.
 unsigned long lastPressedMs[BUTTON_COUNT] = {0};
 
-// Button labels are printed on the lower line of the screen.
-const char* leftButtonLabel = "Start";
-const char* rightButtonLabel = "Reset";
+char lastLeft[17];
+char lastRight[17];
+char lastCaption[17];
+bool lastLeds[4];
+bool resetStarted;
+unsigned long resetStartTime;
 
 void setup() {
   for (const int buttonPin : kButtonPins) {
@@ -94,8 +69,31 @@ void setup() {
   // Serial is for debugging.
   Serial.begin(9600);
 
-  // TODO: Select mode.
-  jeopardySetup();
+  mode->init();
+}
+
+void updateScreenAndLeds() {
+  const char* caption = mode->getCaption();
+  const char* left = mode->getLabel(BUTTON_RESET);
+  const char* right = mode->getLabel(BUTTON_START);
+  if (strcmp(lastCaption, caption) != 0 || strcmp(lastLeft, left) != 0 || strcmp(lastRight, right) != 0) {
+    lcd.clear();
+    lcd.print(mode->getCaption());
+    lcd.setCursor(/*row=*/0, /*col=*/1);
+    // Print button functions on the lower line of the screen.
+    lcd.print(left);
+    const int spaces = kScreenWidth - strlen(left) - strlen(right);
+    for (int i = 0; i < spaces; ++i) {
+      lcd.print(' ');
+    }
+    lcd.print(right);
+    strcpy(lastLeft, left);
+    strcpy(lastRight, right);
+    strcpy(lastCaption, caption);
+  }
+  for (int i = BUTTON_PLAYER_1; i <= BUTTON_PLAYER_4; i++) {
+    digitalWrite(kLedPins[i], mode->getLedState(i) ? HIGH : LOW);
+  }
 }
 
 void loop() {
@@ -110,73 +108,51 @@ void loop() {
       buttons[i] = (digitalRead(kButtonPins[i]) == LOW);
     }
   }
+  if (digitalRead(kButtonPins[BUTTON_RESET]) == LOW && digitalRead(kButtonPins[BUTTON_START]) == LOW) {
+    if (resetStarted && millis() - resetStartTime > RESET_DELAY) {
+      mode = new SelectMode();
+      mode->init();
+      return;
+    }
+    if (!resetStarted) {
+      resetStarted = true;
+      resetStartTime = millis();
+    }
+  }
   // TODO: Dispatch based on current mode.
-  jeopardyLoop();
+  mode->update();
+  updateScreenAndLeds();
 }
 
-void jeopardySetup() {
-  leftButtonLabel = "Start";
-  rightButtonLabel = "Reset";
-  clearScreen();
-  lcd.print("Mode: Jeopardy");
+bool isPlayerPressed(int playerId) {
+  return buttons[playerId] && !buttonsBefore[playerId];
 }
 
-void jeopardyLoop() {
-  static bool gotWinner = false;
-  static bool started = false;
-  static unsigned long time = 0;
-
-  if (buttons[BUTTON_RESET] && !buttonsBefore[BUTTON_RESET]) {
-    gotWinner = false;
-    started = false;
-    jeopardySetup();
-    for (int ledPin : kLedPins) {
-      digitalWrite(ledPin, LOW);
-      tone(kSpeakerPin, NOTE_D4, 100/*ms*/);
-    }
-    return;
-  }
-
-  if (gotWinner) {
-    return;
-  }
-
-  if (buttons[BUTTON_START] && !buttonsBefore[BUTTON_START]) {
-    clearScreen();
-    started = true;
-    time = millis();
-  }
-
-  if (started) {
-    lcd.home();
-    lcd.print((millis() - time) / 1000);
-  }
-
-  for (int i = FIRST_PLAYER_BUTTON; i <= LAST_PLAYER_BUTTON; ++i) {
-    if (buttons[i] && !buttonsBefore[i]) {
-      digitalWrite(kLedPins[i], HIGH);
-      tone(kSpeakerPin, NOTE_G4, 100/*ms*/);
-      gotWinner = true;
-      leftButtonLabel = "Continue";
-      rightButtonLabel = "Reset";
-      clearScreen();
-      lcd.print("Player ");
-      lcd.print(i + 1);
-      break;
-    }
-  }
+bool isControlPressed(int buttonId) {
+  return buttons[buttonId] && !buttonsBefore[buttonId];
 }
 
-void clearScreen() {
-  lcd.clear();
-  lcd.setCursor(/*row=*/0, /*col=*/1);
-  // Print button functions on the lower line of the screen.
-  lcd.print(leftButtonLabel);
-  const int spaces = kScreenWidth - strlen(leftButtonLabel) -
-      strlen(rightButtonLabel);
-  for (int i = 0; i < spaces; ++i) {
-    lcd.print(' ');
-  }
-  lcd.print(rightButtonLabel);
-  lcd.home();
+void playResetSound() {
+  tone(kSpeakerPin, NOTE_D4, 100/*ms*/);
+}
+
+void playPlayerSound() {
+  tone(kSpeakerPin, NOTE_G4, 100/*ms*/);  
+}
+
+void playCorrectSound() {
+  tone(kSpeakerPin, NOTE_F4, 100/*ms*/);  
+}
+
+void playFalseStartSound() {
+  tone(kSpeakerPin, NOTE_F7, 100/*ms*/);  
+}
+
+void playTimeSound() {
+  tone(kSpeakerPin, NOTE_F2, 100/*ms*/);  
+}
+
+void setMode(Mode *newMode) {
+  mode = newMode;
+  mode->init();
 }
