@@ -1,6 +1,8 @@
 #ifndef PAKET_MAIN_H
 #define PAKET_MAIN_H
 
+const int DISPLAY_SIZE = 16;
+
 // All available buttons.
 enum {
   BUTTON_PLAYER_1,

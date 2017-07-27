@@ -18,7 +18,7 @@ enum State {
     FALSE_START
 };
 
-char caption[17] = {0};
+char caption[DISPLAY_SIZE + 1] = {0};
 const char *resetLabel = "Reset";
 const char *startLabel = "Time";
 const char *yesLabel = "Yes";
@@ -57,20 +57,20 @@ bool BrainMode::getLedState(int playerId) {
 const char* BrainMode::getCaption() {
     switch (state) {
         case QUESTION:
-            sprintf(caption, "Read question");
+            snprintf(caption, sizeof(caption), "Read question");
             break;
         case MAIN:
-            sprintf(caption, "%d s remaining", TIME - timeInSeconds());
+            snprintf(caption, sizeof(caption), "%d s remaining", TIME - timeInSeconds());
             break;
         case SUPPLEMENT:
-            sprintf(caption, "%d s remaining", TIME_SUPPLEMENT - timeInSeconds());
+            snprintf(caption, sizeof(caption), "%d s remaining", TIME_SUPPLEMENT - timeInSeconds());
             break;
         case ANSWER_MAIN:
         case ANSWER_SUPPLEMENT:
-            sprintf(caption, "Team %d (%d s)", currentPlayer + 1, timeInSeconds());
+            snprintf(caption, sizeof(caption), "Team %d (%d s)", currentPlayer + 1, timeInSeconds());
             break;
         case FALSE_START:
-            sprintf(caption, "Team %d too early", currentPlayer + 1);
+            snprintf(caption, sizeof(caption), "Team %d too early", currentPlayer + 1);
             break;
     }
     return caption;

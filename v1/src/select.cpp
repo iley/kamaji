@@ -5,7 +5,7 @@
 #include "main.h"
 
 namespace PaketSelect {
-char caption[17];
+char caption[DISPLAY_SIZE + 1];
 const char *left = "Next";
 const char *right = "Select";
 const int MODE_COUNT = 3;
@@ -25,7 +25,7 @@ bool SelectMode::getLedState(int playerId) {
 }
 
 const char* SelectMode::getCaption() {
-    sprintf(caption, "Mode: %s", ids[selectedMode]);
+    snprintf(caption, sizeof(caption), "Mode: %s", ids[selectedMode]);
     return caption;
 }
 

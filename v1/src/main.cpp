@@ -32,8 +32,10 @@ const unsigned long kDebounceMs = 100;
 // An I2C-connected 16x2 character LCD screen.
 LiquidCrystal_I2C lcd(0x3f, 2, 1, 0, 4, 5, 6, 7);
 
+Mode *selectMode = new SelectMode();
+
 // Selected game mode.
-Mode *mode = new SelectMode();
+Mode *mode = selectMode;
 
 // Button state, true means pressed.
 bool buttons[BUTTON_COUNT] = { false };
@@ -110,7 +112,7 @@ void loop() {
   }
   if (digitalRead(kButtonPins[BUTTON_RESET]) == LOW && digitalRead(kButtonPins[BUTTON_START]) == LOW) {
     if (resetStarted && millis() - resetStartTime > RESET_DELAY) {
-      mode = new SelectMode();
+      mode = selectMode;
       mode->init();
       return;
     }
