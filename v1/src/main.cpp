@@ -25,7 +25,7 @@ const int kSpeakerPin = 11;
 const int kScreenWidth = 16;
 
 // Button debounce delay in milliseconds.
-const unsigned long kDebounceMs = 100;
+const unsigned long kDebounceMs = 300;
 
 // GLOBAL STATE
 

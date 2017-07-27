@@ -7,6 +7,7 @@
 namespace PaketHamsa {
 const int TIME = 7;
 const int NUM_PLAYERS = PLAYER_COUNT;
+const int DELAY = 3;
 
 enum State {
     QUESTION,
@@ -53,7 +54,8 @@ void HamsaMode::init() {
 }
 
 bool HamsaMode::getLedState(int playerId) {
-    if (state != ANSWER_TIME_NOT_STARTED && state != ANSWER_TIME_STARTED) {
+    return (state == ANSWER_TIME_NOT_STARTED || state == ANSWER_TIME_STARTED) && currentPlayer == playerId;
+    /* if (state != ANSWER_TIME_NOT_STARTED && state != ANSWER_TIME_STARTED) {
         return false;
     }
     for (int i = start; i < size; i++) {
@@ -61,7 +63,7 @@ bool HamsaMode::getLedState(int playerId) {
             return true;
         }
     }
-    return false;
+    return false;*/
 }
 
 const char* HamsaMode::getCaption() {
@@ -104,20 +106,22 @@ const char* HamsaMode::getLabel(int buttonId) {
 }
 
 void HamsaMode::update() {
-    for (int i = 0; i < NUM_PLAYERS; i++) {
-        if (isPlayerPressed(i) && !blocked[i]) {
-            blocked[i] = true;
-            queue[size++] = i;
-            if (state == QUESTION) {
-                state = ANSWER_TIME_NOT_STARTED;
-                currentPlayer = queue[start];
-                stateEnterd = millis();
-            } else if (state == COUNTDOWN) {
-                state = ANSWER_TIME_STARTED;
-                currentPlayer = queue[start];
-                stateEnterd = millis();
+    if (state != QUESTION || timeInSeconds() >= DELAY) {
+        for (int i = 0; i < NUM_PLAYERS; i++) {
+            if (isPlayerPressed(i) && !blocked[i]) {
+                blocked[i] = true;
+                queue[size++] = i;
+                if (state == QUESTION) {
+                    state = ANSWER_TIME_NOT_STARTED;
+                    currentPlayer = queue[start];
+                    stateEnterd = millis();
+                } else if (state == COUNTDOWN) {
+                    state = ANSWER_TIME_STARTED;
+                    currentPlayer = queue[start];
+                    stateEnterd = millis();
+                }
+                playPlayerSound();
             }
-            playPlayerSound();
         }
     }
     if (state == ANSWER_TIME_STARTED || state == ANSWER_TIME_NOT_STARTED) {

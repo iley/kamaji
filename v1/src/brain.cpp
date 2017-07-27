@@ -8,6 +8,7 @@ namespace PaketBrain {
 const int TIME = 60;
 const int TIME_SUPPLEMENT = 20;
 const int NUM_PLAYERS = 2;
+const int DELAY = 3;
 
 enum State {
     QUESTION,
@@ -124,22 +125,24 @@ void BrainMode::update() {
         }
         return;
     } else {
-        for (int i = 0; i < NUM_PLAYERS; i++) {
-            if (isPlayerPressed(i) && !blocked[i] && state != FALSE_START) {
-                blocked[i] = true;
-                currentPlayer = i;
-                if (state == MAIN) {
-                    state = ANSWER_MAIN;
-                    playPlayerSound();
-                } else if (state == SUPPLEMENT) {
-                    state = ANSWER_SUPPLEMENT;
-                    playPlayerSound();
-                } else {
-                    state = FALSE_START;
-                    playFalseStartSound();
+        if (state != QUESTION || timeInSeconds() >= DELAY) {
+            for (int i = 0; i < NUM_PLAYERS; i++) {
+                if (isPlayerPressed(i) && !blocked[i] && state != FALSE_START) {
+                    blocked[i] = true;
+                    currentPlayer = i;
+                    if (state == MAIN) {
+                        state = ANSWER_MAIN;
+                        playPlayerSound();
+                    } else if (state == SUPPLEMENT) {
+                        state = ANSWER_SUPPLEMENT;
+                        playPlayerSound();
+                    } else {
+                        state = FALSE_START;
+                        playFalseStartSound();
+                    }
+                    stateEnterd = millis();
+                    return;
                 }
-                stateEnterd = millis();
-                return;
             }
         }
         if (timeInSeconds() == 0) {

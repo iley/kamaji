@@ -6,6 +6,7 @@
 
 namespace PaketJeopardy {
 const int TIME = 7;
+const int DELAY = 3;
 const int NUM_PLAYERS = PLAYER_COUNT;
 
 enum State {
@@ -120,18 +121,20 @@ void JeopardyMode::update() {
         }
         return;
     } else {
-        for (int i = 0; i < NUM_PLAYERS; i++) {
-            if (isPlayerPressed(i) && !blocked[i]) {
-                blocked[i] = true;
-                currentPlayer = i;
-                if (state == QUESTION) {
-                    state = ANSWER_TIME_NOT_STARTED;
-                } else {
-                    state = ANSWER_TIME_STARTED;
+        if (state != QUESTION || timeInSeconds() >= DELAY) {
+            for (int i = 0; i < NUM_PLAYERS; i++) {
+                if (isPlayerPressed(i) && !blocked[i]) {
+                    blocked[i] = true;
+                    currentPlayer = i;
+                    if (state == QUESTION) {
+                        state = ANSWER_TIME_NOT_STARTED;
+                    } else {
+                        state = ANSWER_TIME_STARTED;
+                    }
+                    stateEnterd = millis();
+                    playPlayerSound();
+                    return;
                 }
-                stateEnterd = millis();
-                playPlayerSound();
-                return;
             }
         }
         if (timeInSeconds() == 0) {
