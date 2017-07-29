@@ -317,13 +317,13 @@ F 3 "" H 4225 3400 50  0001 C CNN
 $EndComp
 Text GLabel 4325 3000 2    60   Input ~ 0
 RST
-Text GLabel 3275 3150 2    60   Input ~ 0
-PBTN1
 Text GLabel 3675 3250 2    60   Input ~ 0
+PBTN1
+Text GLabel 3275 3150 2    60   Input ~ 0
 PLED1
-Text GLabel 3275 3350 2    60   Input ~ 0
-PBTN2
 Text GLabel 3675 3450 2    60   Input ~ 0
+PBTN2
+Text GLabel 3275 3350 2    60   Input ~ 0
 PLED2
 Text GLabel 3275 3550 2    60   Input ~ 0
 PBTN3
@@ -350,7 +350,7 @@ F 3 "" H 4475 4850 50  0001 C CNN
 $EndComp
 Text GLabel 4175 1700 2    60   Input ~ 0
 CBTN2
-Text GLabel 3250 1750 2    60   Input ~ 0
+Text GLabel 3275 2400 2    60   Input ~ 0
 CBTN1
 $Comp
 L GND #PWR011
@@ -625,7 +625,7 @@ Text GLabel 6825 2750 3    60   Input ~ 0
 LCD_D1
 Text GLabel 6725 3150 3    60   Input ~ 0
 LCD_D0
-Text GLabel 3275 2400 2    60   Input ~ 0
+Text GLabel 3250 1750 2    60   Input ~ 0
 LCD_RS
 Text GLabel 3675 2500 2    60   Input ~ 0
 LCD_EN
