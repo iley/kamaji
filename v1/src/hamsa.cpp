@@ -161,11 +161,12 @@ void HamsaMode::update() {
         }
         return;
     } else {
-        if (timeInSeconds() == 0) {
-            return;
-        }
         if (isControlPressed(BUTTON_RESET)) {
             reset();
+            playResetSound();
+            return;
+        }
+        if (timeInSeconds() == 0) {
             return;
         }
         if (isControlPressed(BUTTON_START) && state == QUESTION) {

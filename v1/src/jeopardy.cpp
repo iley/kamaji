@@ -27,6 +27,7 @@ int currentPlayer = -1;
 State state = QUESTION;
 unsigned long stateEnterd = millis();
 bool blocked[NUM_PLAYERS];
+bool firstTime = true;
 
 int timeInSeconds() {
     return (millis() - stateEnterd) / 1000;
@@ -39,6 +40,7 @@ void reset() {
     for (int i = 0; i < NUM_PLAYERS; i++) {
         blocked[i] = false;
     }
+    firstTime = true;
 }
 }
 
@@ -121,9 +123,10 @@ void JeopardyMode::update() {
         }
         return;
     } else {
-        if (state != QUESTION || timeInSeconds() >= DELAY) {
+        if (state != QUESTION || timeInSeconds() >= DELAY || !firstTime) {
             for (int i = 0; i < NUM_PLAYERS; i++) {
                 if (isPlayerPressed(i) && !blocked[i]) {
+                    firstTime = false;
                     blocked[i] = true;
                     currentPlayer = i;
                     if (state == QUESTION) {
@@ -137,11 +140,12 @@ void JeopardyMode::update() {
                 }
             }
         }
-        if (timeInSeconds() == 0) {
-            return;
-        }
         if (isControlPressed(BUTTON_RESET)) {
             reset();
+            playResetSound();
+            return;
+        }
+        if (timeInSeconds() == 0) {
             return;
         }
         if (isControlPressed(BUTTON_START) && state == QUESTION) {

@@ -52,7 +52,7 @@ void BrainMode::init() {
 }
 
 bool BrainMode::getLedState(int playerId) {
-    return (state == ANSWER_MAIN || state == ANSWER_SUPPLEMENT) && currentPlayer == playerId;
+    return (state == ANSWER_MAIN || state == ANSWER_SUPPLEMENT || state == FALSE_START) && currentPlayer == playerId;
 }
 
 const char* BrainMode::getCaption() {
