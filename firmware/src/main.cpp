@@ -13,7 +13,7 @@
 #include "mode.h"
 #include "main.h"
 
-const int RESET_DELAY = 2000;
+const int kResetDelay = 2000;
 
 // Pin numbers for each button, indexed by the enum values above.
 const int kButtonPins[] = {
@@ -88,7 +88,8 @@ void updateScreenAndLeds() {
   const char* caption = mode->getCaption();
   const char* left = mode->getLabel(BUTTON_RESET);
   const char* right = mode->getLabel(BUTTON_START);
-  if (strcmp(lastCaption, caption) != 0 || strcmp(lastLeft, left) != 0 || strcmp(lastRight, right) != 0) {
+  if (strcmp(lastCaption, caption) != 0 || strcmp(lastLeft, left) != 0 ||
+      strcmp(lastRight, right) != 0) {
     lcd.clear();
     lcd.print(mode->getCaption());
     lcd.setCursor(/*row=*/0, /*col=*/1);
@@ -120,8 +121,9 @@ void loop() {
       buttons[i] = (digitalRead(kButtonPins[i]) == LOW);
     }
   }
-  if (digitalRead(kButtonPins[BUTTON_RESET]) == LOW && digitalRead(kButtonPins[BUTTON_START]) == LOW) {
-    if (resetStarted && millis() - resetStartTime > RESET_DELAY) {
+  if (digitalRead(kButtonPins[BUTTON_RESET]) == LOW &&
+      digitalRead(kButtonPins[BUTTON_START]) == LOW) {
+    if (resetStarted && millis() - resetStartTime > kResetDelay) {
       mode = selectMode;
       mode->init();
       return;
@@ -131,7 +133,6 @@ void loop() {
       resetStartTime = millis();
     }
   }
-  // TODO: Dispatch based on current mode.
   mode->update();
   updateScreenAndLeds();
 }
@@ -149,19 +150,19 @@ void playResetSound() {
 }
 
 void playPlayerSound() {
-  tone(kSpeakerPin, NOTE_G4, 300/*ms*/);  
+  tone(kSpeakerPin, NOTE_G4, 300/*ms*/);
 }
 
 void playCorrectSound() {
-  tone(kSpeakerPin, NOTE_F4, 300/*ms*/);  
+  tone(kSpeakerPin, NOTE_F4, 300/*ms*/);
 }
 
 void playFalseStartSound() {
-  tone(kSpeakerPin, NOTE_F7, 1000/*ms*/);  
+  tone(kSpeakerPin, NOTE_F7, 1000/*ms*/);
 }
 
 void playTimeSound() {
-  tone(kSpeakerPin, NOTE_F2, 1000/*ms*/);  
+  tone(kSpeakerPin, NOTE_F2, 1000/*ms*/);
 }
 
 void setMode(Mode *newMode) {
