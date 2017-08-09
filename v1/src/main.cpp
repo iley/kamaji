@@ -1,8 +1,13 @@
 #include <string.h>
 
 #include <Arduino.h>
+
+#ifdef USE_I2C_LCD
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
+#else
+#include <LiquidCrystal.h>
+#endif  // USE_I2C_LCD
 
 #include "pitches.h"
 #include "mode.h"
@@ -29,8 +34,13 @@ const unsigned long kDebounceMs = 300;
 
 // GLOBAL STATE
 
+#ifdef USE_I2C_LCD
 // An I2C-connected 16x2 character LCD screen.
 LiquidCrystal_I2C lcd(0x3f, 2, 1, 0, 4, 5, 6, 7);
+#else
+LiquidCrystal lcd(/*rs=*/14, /*en=*/15, /*d4=*/16, /*d5=*/17, /*d6=*/18,
+                  /*d7=*/19);
+#endif
 
 Mode *selectMode = new SelectMode();
 
