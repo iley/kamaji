@@ -42,7 +42,7 @@ void reset() {
     }
     firstTime = true;
 }
-}
+} // namespace PaketJeopardy
 
 using namespace PaketJeopardy;
 

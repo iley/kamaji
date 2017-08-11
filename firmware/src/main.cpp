@@ -15,17 +15,11 @@
 
 const int kResetDelay = 2000;
 
-// Pin numbers for each button, indexed by the enum values above.
-const int kButtonPins[] = {
-  8, 6, 4, 2, // players
-  15, 16, 17, // control
-};
-
-// Pin numbers for each player's LED, indexed by the buttons enum.
-// E.g. kLedPins[BUTTON_PLAYER_1] is the first player's LED.
-const int kLedPins[] = {9, 7, 5, 3};
-
-const int kSpeakerPin = 11;
+// Pin numbers for buttons and LEDs are defined in the corresponding config:
+// config_v[01].h
+DECLARE_KBUTTON_PINS();
+DECLARE_KLED_PINS();
+DECLARE_KSPEAKER_PIN();
 
 const int kScreenWidth = 16;
 
@@ -38,8 +32,8 @@ const unsigned long kDebounceMs = 300;
 // An I2C-connected 16x2 character LCD screen.
 LiquidCrystal_I2C lcd(0x3f, 2, 1, 0, 4, 5, 6, 7);
 #else
-LiquidCrystal lcd(/*rs=*/14, /*en=*/15, /*d4=*/16, /*d5=*/17, /*d6=*/18,
-                  /*d7=*/19);
+LiquidCrystal lcd(/*rs=*/14, /*en=*/15, /*d0=*/16, /*d1=*/17, /*d2=*/18,
+                  /*d3=*/19);
 #endif
 
 Mode *selectMode = new SelectMode();
@@ -75,11 +69,10 @@ void setup() {
 
   // Initialize the screen.
   lcd.begin(/*cols=*/16, /*rows=*/2);
+#ifdef USE_I2C_LCD
   lcd.setBacklightPin(3, POSITIVE);
   lcd.setBacklight(HIGH);
-
-  // Serial is for debugging.
-  Serial.begin(9600);
+#endif
 
   mode->init();
 }
@@ -104,7 +97,7 @@ void updateScreenAndLeds() {
     strcpy(lastRight, right);
     strcpy(lastCaption, caption);
   }
-  for (int i = BUTTON_PLAYER_1; i <= BUTTON_PLAYER_4; i++) {
+  for (int i = BUTTON_PLAYER_1; i <= LAST_PLAYER_BUTTON; i++) {
     digitalWrite(kLedPins[i], mode->getLedState(i) ? HIGH : LOW);
   }
 }
