@@ -28,7 +28,7 @@ enum {
 // PBTN1: PD0 - pin 0
 // PBTN2: PD2 - pin 2
 // PBTN3: PD4 - pin 4
-// PBTN4: PB7 - pin ?
+// PBTN4: PB7 - pin 51
 // PBTN5: PD6 - pin 6
 // Controls:
 // CBTN1: PB2 - pin 10
@@ -36,7 +36,7 @@ enum {
 // CBTN3: PB4 - pin 12
 #define DECLARE_KBUTTON_PINS()    \
   const int kButtonPins[] = {     \
-    0, 2, 4, 4, 6, /* players */ \
+    0, 2, 4, 51, 6, /* players */ \
     10, 11, 12,     /* control */ \
   }
 
@@ -45,11 +45,11 @@ enum {
 // Player LEDs:
 // PLED1: PD1 - pin 1
 // PLED2: PD3 - pin 3
-// PLED3: PB6 - pin ?
+// PLED3: PB6 - pin 50
 // PLED4: PD5 - pin 5
 // PLED5: PD7 - pin 7
 #define DECLARE_KLED_PINS() \
-  const int kLedPins[] = {1, 3, 5, 5, 7}
+  const int kLedPins[] = {1, 3, 50, 5, 7}
 
 #define DECLARE_KSPEAKER_PIN()  \
   const int kSpeakerPin = 9
