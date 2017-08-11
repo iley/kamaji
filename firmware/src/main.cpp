@@ -195,7 +195,7 @@ void xPinMode(uint8_t pin, uint8_t mode) {
   if (pin == kPinPB6) {
     mask = _BV(PORTB6);
   } else if (pin == kPinPB7) {
-    mask = _BV(PORTB6);
+    mask = _BV(PORTB7);
   } else {
     pinMode(pin, mode);
     return;
