@@ -59,13 +59,13 @@ unsigned long resetStartTime;
 
 void setup() {
   for (const int buttonPin : kButtonPins) {
-    pinMode(buttonPin, INPUT_PULLUP);
+    xPinMode(buttonPin, INPUT_PULLUP);
   }
   for (const int ledPin : kLedPins) {
-    pinMode(ledPin, OUTPUT);
-    digitalWrite(ledPin, LOW);
+    xPinMode(ledPin, OUTPUT);
+    xDigitalWrite(ledPin, LOW);
   }
-  pinMode(kSpeakerPin, OUTPUT);
+  xPinMode(kSpeakerPin, OUTPUT);
 
   // Initialize the screen.
   lcd.begin(/*cols=*/16, /*rows=*/2);
@@ -98,7 +98,7 @@ void updateScreenAndLeds() {
     strcpy(lastCaption, caption);
   }
   for (int i = BUTTON_PLAYER_1; i <= LAST_PLAYER_BUTTON; i++) {
-    digitalWrite(kLedPins[i], mode->getLedState(i) ? HIGH : LOW);
+    xDigitalWrite(kLedPins[i], mode->getLedState(i) ? HIGH : LOW);
   }
 }
 
@@ -111,11 +111,11 @@ void loop() {
     // milliseconds ago to account for contact bouncing.
     if (now - lastPressedMs[i] > kDebounceMs) {
       // The buttons pins are active LOW.
-      buttons[i] = (digitalRead(kButtonPins[i]) == LOW);
+      buttons[i] = (xDigitalRead(kButtonPins[i]) == LOW);
     }
   }
-  if (digitalRead(kButtonPins[BUTTON_RESET]) == LOW &&
-      digitalRead(kButtonPins[BUTTON_START]) == LOW) {
+  if (xDigitalRead(kButtonPins[BUTTON_RESET]) == LOW &&
+      xDigitalRead(kButtonPins[BUTTON_START]) == LOW) {
     if (resetStarted && millis() - resetStartTime > kResetDelay) {
       mode = selectMode;
       mode->init();

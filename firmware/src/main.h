@@ -6,7 +6,7 @@ const int DISPLAY_SIZE = 16;
 const int kPinPB6 = 50;
 const int kPinPB7 = 51;
 
-// Wrappers for Arduino's digitalRead, digitalRead and pinMode with support for
+// Wrappers for Arduino's digitalRead, digitalWrite and pinMode with support for
 // PB6 (XTAL1) and PB7 (XTAL2).
 int xDigitalRead(uint8_t pin);
 void xDigitalWrite(uint8_t pin, uint8_t val);
