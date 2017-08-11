@@ -162,3 +162,36 @@ void setMode(Mode *newMode) {
   mode = newMode;
   mode->init();
 }
+
+int xDigitalRead(uint8_t pin) {
+  if (pin == kPinPB6) {
+    return (PINB & _BV(PINB6)) ? HIGH : LOW;
+  } else if (pin == kPinPB7) {
+    return (PINB & _BV(PINB7)) ? HIGH : LOW;
+  } else {
+    return digitalRead(pin);
+  }
+}
+
+void xDigitalWrite(uint8_t pin, uint8_t val) {
+  if (pin == kPinPB6) {
+    if (val == HIGH) {
+      PORTB |= _BV(PORTB6);
+    } else {
+      PORTB &= ~_BV(PORTB6);
+    }
+  } else if (pin == kPinPB7) {
+    if (val == HIGH) {
+      PORTB |= _BV(PORTB7);
+    } else {
+      PORTB &= ~_BV(PORTB7);
+    }
+  } else {
+    digitalWrite(pin, val);
+  }
+}
+
+void xPinMode(uint8_t pin, uint8_t mode) {
+  // TODO
+  pinMode(pin, mode);
+}
