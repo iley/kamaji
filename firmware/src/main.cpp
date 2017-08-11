@@ -192,6 +192,22 @@ void xDigitalWrite(uint8_t pin, uint8_t val) {
 }
 
 void xPinMode(uint8_t pin, uint8_t mode) {
-  // TODO
-  pinMode(pin, mode);
+  uint8_t mask;
+  if (pin == kPinPB6) {
+    mask = _BV(PORTB6);
+  } else if (pin == kPinPB7) {
+    mask = _BV(PORTB6);
+  } else {
+    pinMode(pin, mode);
+    return;
+  }
+  if (mode == INPUT) {
+    DDRB &= ~mask;
+    PORTB &= ~mask;
+  } else if (mode == INPUT_PULLUP) {
+    DDRB &= ~mask;
+    PORTB |= mask;
+  } else {
+    DDRB |= mask;
+  }
 }
