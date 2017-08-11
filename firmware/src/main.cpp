@@ -174,20 +174,19 @@ int xDigitalRead(uint8_t pin) {
 }
 
 void xDigitalWrite(uint8_t pin, uint8_t val) {
+  uint8_t mask;
   if (pin == kPinPB6) {
-    if (val == HIGH) {
-      PORTB |= _BV(PORTB6);
-    } else {
-      PORTB &= ~_BV(PORTB6);
-    }
+    mask = _BV(PORTB6);
   } else if (pin == kPinPB7) {
-    if (val == HIGH) {
-      PORTB |= _BV(PORTB7);
-    } else {
-      PORTB &= ~_BV(PORTB7);
-    }
+    mask = _BV(PORTB7);
   } else {
     digitalWrite(pin, val);
+    return;
+  }
+  if (val == HIGH) {
+    PORTB |= mask;
+  } else {
+    PORTB &= ~mask;
   }
 }
 
