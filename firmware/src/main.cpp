@@ -158,6 +158,14 @@ void playTimeSound() {
   tone(kSpeakerPin, NOTE_F2, 1000/*ms*/);
 }
 
+void playStartSound() {
+  tone(kSpeakerPin, NOTE_F2, 300/*ms*/);    
+}
+
+void playAttentionSound() {
+  tone(kSpeakerPin, NOTE_A7, 300/*ms*/);
+}
+
 void setMode(Mode *newMode) {
   mode = newMode;
   mode->init();

@@ -8,6 +8,7 @@ namespace PaketJeopardy {
 const int TIME = 7;
 const int DELAY = 3;
 const int NUM_PLAYERS = PLAYER_COUNT;
+const int ATTENTION_DELAY = 5;
 
 enum State {
     QUESTION,
@@ -28,6 +29,7 @@ State state = QUESTION;
 unsigned long stateEnterd = millis();
 bool blocked[NUM_PLAYERS];
 bool firstTime = true;
+int lastAttentionSoundPlayed = 3;
 
 int timeInSeconds() {
     return (millis() - stateEnterd) / 1000;
@@ -41,6 +43,7 @@ void reset() {
         blocked[i] = false;
     }
     firstTime = true;
+    lastAttentionSoundPlayed = 3;
 }
 } // namespace PaketJeopardy
 
@@ -98,6 +101,10 @@ void JeopardyMode::update() {
         if (timeInSeconds() == 0) {
             return;
         }
+        if (timeInSeconds() - lastAttentionSoundPlayed >= ATTENTION_DELAY) {
+            playAttentionSound();
+            lastAttentionSoundPlayed = timeInSeconds();
+        }
         if (isControlPressed(BUTTON_RESET)) {
             reset();
             playCorrectSound();
@@ -151,6 +158,7 @@ void JeopardyMode::update() {
         if (isControlPressed(BUTTON_START) && state == QUESTION) {
             state = COUNTDOWN;
             stateEnterd = millis();
+            playStartSound();
             return;
         }
         if (state == COUNTDOWN && timeInSeconds() >= TIME) {
