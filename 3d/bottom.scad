@@ -6,7 +6,7 @@ bolt_d = 3.6;
 shift_bolt = 5;
 
 // box thickness
-th = 1;
+th = 3;
 
 shift_x = th + 1;
 shift_y = th + 1;
@@ -17,7 +17,7 @@ box_y = pcb_y + 2*th + 1;
 pcb_width = 2;
 pcb_up = 9;
 
-box_z = th + pcb_up + pcb_width;
+box_z = th + pcb_up + pcb_width - 1;
 
 //socket_h = 15;
 socket_w = 10;
@@ -43,12 +43,15 @@ micro_y = 21.1;
 micro_start_x = shift_x + 4.75;
 micro_start_y = shift_y + pcb_y - 23.3 - micro_y;
 
-contrast_start_x = shift_x + 37.4;
-contrast_start_y = shift_y + 26.7;
+contrast_start_x = shift_x + 38.4;
+contrast_start_y = shift_y + 25.7;
 volume_start_x = shift_x + pcb_x - 39.2;
 volume_start_y = contrast_start_y;
 pot_d = 7;
-under_pcb = 6;
+under_pcb = 8;
+fn = 10;
+gaika_d = 6.25;
+gaika_h = 2.5;
 
 
 
@@ -74,7 +77,9 @@ difference() {
   for (dx = [shift_x+shift_bolt, shift_x+pcb_x-shift_bolt]) {
     for (dy = [shift_y+shift_bolt, shift_y+pcb_y-shift_bolt]) {
       translate([dx,dy,-eps]) {
-        cylinder($fn=20, r=bolt_d/2, h=th+pcb_up+2*eps);
+        cylinder($fn=fn, r=bolt_d/2, h=th+pcb_up+2*eps);
+        // gaika
+        cylinder($fn=6, r=gaika_d/2, h=gaika_h);
       }
     }
   }
@@ -102,13 +107,13 @@ difference() {
 
     // contrast
     translate([contrast_start_x, contrast_start_y, -eps]) {
-      cylinder($fn=20, r=pot_d/2, h=th+2*eps);
+      cylinder($fn=fn, r=pot_d/2, h=th+2*eps);
     }
 
     // volume
-    translate([volume_start_x, volume_start_y, -eps]) {
-      cylinder($fn=20, r=pot_d/2, h=th+2*eps);
-    }
+//    translate([volume_start_x, volume_start_y, -eps]) {
+//      cylinder($fn=20, r=pot_d/2, h=th+2*eps);
+//    }
 };
 
 //// bolts
