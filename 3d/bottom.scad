@@ -50,8 +50,8 @@ volume_start_y = contrast_start_y;
 pot_d = 7;
 under_pcb = 12.5;
 fn = 10;
-gaika_d = 6.25;
 gaika_h = 6;
+gaika_w = 5.5;
 
 
 
@@ -79,7 +79,7 @@ difference() {
       translate([dx,dy,-eps]) {
         cylinder($fn=fn, r=bolt_d/2, h=th+pcb_up+2*eps);
         // gaika
-        cylinder($fn=6, r=gaika_d/2, h=gaika_h);
+        cylinder($fn=6, r=gaika_w / 2 / cos(30) + 0.05, h=gaika_h);
       }
     }
   }
