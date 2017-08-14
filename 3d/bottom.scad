@@ -48,10 +48,10 @@ contrast_start_y = shift_y + 25.7;
 volume_start_x = shift_x + pcb_x - 39.2;
 volume_start_y = contrast_start_y;
 pot_d = 7;
-under_pcb = 8;
+under_pcb = 12.5;
 fn = 10;
 gaika_d = 6.25;
-gaika_h = 2.5;
+gaika_h = 6;
 
 
 
