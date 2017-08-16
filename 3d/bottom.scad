@@ -19,7 +19,7 @@ pcb_up = 9;
 
 box_z = th + pcb_up + pcb_width - 1;
 
-//socket_h = 15;
+socket_h = 15;
 socket_w = 10;
 socket_n = 5;
 socket_int = 20;
@@ -28,14 +28,15 @@ start_socket_z = th + pcb_z + tol;
 eps = 1e-1;
 
 usb_type_b_w = 15.2;
-//usb_type_b_h = 3;
+usb_type_b_h = 11;
 start_type_b_y = shift_y + pcb_y - 30.1;
-start_type_b_z = th + pcb_z + tol;
+//start_type_b_z = th + pcb_z + tol;
 
 usb_type_a_w = 17.3;
+usb_type_a_h = 7;
 //usb_type_a_h = 0.5;
 start_type_a_y = shift_y + 44.7;
-start_type_a_z = th + pcb_z + tol;
+//start_type_a_z = th + pcb_z + tol;
 
 // programmator
 micro_x = 10;
@@ -51,9 +52,10 @@ pot_d = 7;
 under_pcb = 12.5;
 fn = 10;
 gaika_h = 6;
-gaika_w = 5.5;
+gaika_w = 5.6;
 
 
+translate([0,0,-50]) {
 
 difference() {
   union() {
@@ -114,7 +116,88 @@ difference() {
 //    translate([volume_start_x, volume_start_y, -eps]) {
 //      cylinder($fn=20, r=pot_d/2, h=th+2*eps);
 //    }
-};
+}
+}
+
+top_box_z = 17 + th;
+stoiki_r = bolt_d/2 + 2;
+pcb_room = 0.5;
+screen_start_x = shift_x + 28;
+screen_start_y = shift_y + 40;
+screen_length_x = 72;
+screen_length_y = 24;
+screen_hold_x = 40;
+screen_hold_y = 4;
+screen_hold_start_z = 14;
+screen_hold_y_shift = -2;
+
+// TODO
+master_button_y = shift_y + 10;
+master_button_x = shift_x + 43;
+master_button_int = 21.8;
+master_button_r = 3;
+// TODO
+top_bolt_h = 2;
+top_bolt_r = gaika_w / 2 / cos(30) + 0.05;
+
+difference() {
+  union() {
+    difference() {
+      cube([box_x,box_y,top_box_z], false);
+      translate([th, th, -eps]) {
+        cube([box_x-2*th+eps, box_y-2*th+eps, top_box_z-th+eps], false);
+      }
+    }
+    // stoiki
+    for (dx = [shift_x+shift_bolt, shift_x+pcb_x-shift_bolt]) {
+      for (dy = [shift_y+shift_bolt, shift_y+pcb_y-shift_bolt]) {
+        translate([dx,dy,pcb_room]) {
+	  cylinder($fn=fn, r=stoiki_r, h=top_box_z-th+eps);
+        }
+      }
+    }
+    // screen_hold
+    translate([screen_start_x + (screen_length_x - screen_hold_x)/2, screen_start_y + screen_hold_y_shift - screen_hold_y, screen_hold_start_z]) {
+	cube([screen_hold_x, screen_hold_y, top_box_z - screen_hold_start_z - th + eps]);
+    }
+  }
+  // bolts
+  for (dx = [shift_x+shift_bolt, shift_x+pcb_x-shift_bolt]) {
+    for (dy = [shift_y+shift_bolt, shift_y+pcb_y-shift_bolt]) {
+      translate([dx,dy,-eps]) {
+        cylinder($fn=fn, r=bolt_d/2, h=top_box_z+2*eps);
+      }
+      translate([dx, dy, top_box_z - top_bolt_h]) {
+        cylinder($fn=fn, r=top_bolt_r, h=top_bolt_h + eps);
+      }
+    }
+  }
+
+  // screen
+  translate([screen_start_x-tol, screen_start_y-tol, top_box_z - th - eps]) {
+      cube([screen_length_x + 2*tol, screen_length_y + 2*tol, th + 2*eps]);
+  }
+  // sockets
+  for (i = [0:1:socket_n-1]) {
+      translate([start_socket_x+i*socket_int-tol, box_y-th-eps, -eps]) {
+	  cube(size=[socket_w+2*tol, th+2*eps, socket_h+tol]);
+      }
+  }
+  // type_b
+  translate([box_x - th - eps, start_type_b_y - tol, -tol]) {
+      cube([th + 2*eps, usb_type_b_w + 2*tol, usb_type_b_h + 2*tol]);
+  }
+  // type_a
+  translate([-eps, start_type_a_y - tol, -tol]) {
+      cube([th + 2*eps, usb_type_a_w + 2*tol, usb_type_a_h + 2*tol]);
+  }
+  // master buttons
+  for (dx = [master_button_x, master_button_x + master_button_int*2])
+      translate([dx, master_button_y, top_box_z - th - eps]) {
+	  cylinder($fn=fn, r=master_button_r+tol, h=th+2*eps);
+      }
+}
+
 
 //// bolts
 //for (dx = [shift_x+shift_bolt, shift_x+pcb_x-shift_bolt]) {
