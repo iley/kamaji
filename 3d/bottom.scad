@@ -6,7 +6,7 @@ bolt_d = 3.6;
 shift_bolt = 5;
 
 // box thickness
-th = 3;
+th = 2;
 
 shift_x = th + 1;
 shift_y = th + 1;
@@ -121,6 +121,7 @@ difference() {
 
 top_box_z = 17 + th;
 stoiki_r = bolt_d/2 + 2;
+stoiki_h = top_box_z - th;
 pcb_room = 0.5;
 screen_start_x = shift_x + 28;
 screen_start_y = shift_y + 40;
@@ -137,6 +138,9 @@ master_button_int = 21.8;
 master_button_r = 3;
 top_bolt_h = 2.5;
 top_bolt_r = 3.5;
+speaker_shift = 18;
+speaker_r = 15;
+speaker_h = 15;
 
 difference() {
   union() {
@@ -149,8 +153,9 @@ difference() {
     // stoiki
     for (dx = [shift_x+shift_bolt, shift_x+pcb_x-shift_bolt]) {
       for (dy = [shift_y+shift_bolt, shift_y+pcb_y-shift_bolt]) {
-        translate([dx,dy,pcb_room]) {
-	  cylinder($fn=fn, r=stoiki_r, h=top_box_z-th+eps);
+        translate([dx,dy,pcb_room+stoiki_h/2]) {
+	       //cylinder($fn=fn, r=stoiki_r, h=top_box_z-th+eps);
+           cube(size=[under_pcb, under_pcb, stoiki_h + eps], center=true);
         }
       }
     }
@@ -158,6 +163,10 @@ difference() {
     translate([screen_start_x + (screen_length_x - screen_hold_x)/2, screen_start_y + screen_hold_y_shift - screen_hold_y, screen_hold_start_z]) {
 	cube([screen_hold_x, screen_hold_y, top_box_z - screen_hold_start_z - th + eps]);
     }
+  }
+  // - speaker
+  translate([shift_x + pcb_x - 18, shift_y + 18, 0]) {
+    cylinder(r=speaker_r, h = 15, $fn=20);
   }
   // bolts
   for (dx = [shift_x+shift_bolt, shift_x+pcb_x-shift_bolt]) {
