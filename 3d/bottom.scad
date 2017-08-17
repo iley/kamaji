@@ -28,12 +28,12 @@ start_socket_z = th + pcb_z + tol;
 eps = 1e-1;
 
 usb_type_b_w = 15.2;
-usb_type_b_h = 11;
+usb_type_b_h = 11.5;
 start_type_b_y = shift_y + pcb_y - 30.1;
 //start_type_b_z = th + pcb_z + tol;
 
 usb_type_a_w = 17.3;
-usb_type_a_h = 7;
+usb_type_a_h = 8;
 //usb_type_a_h = 0.5;
 start_type_a_y = shift_y + 44.7;
 //start_type_a_z = th + pcb_z + tol;
@@ -131,14 +131,12 @@ screen_hold_y = 4;
 screen_hold_start_z = 14;
 screen_hold_y_shift = -2;
 
-// TODO
 master_button_y = shift_y + 10;
 master_button_x = shift_x + 43;
 master_button_int = 21.8;
 master_button_r = 3;
-// TODO
-top_bolt_h = 2;
-top_bolt_r = gaika_w / 2 / cos(30) + 0.05;
+top_bolt_h = 2.5;
+top_bolt_r = 3.5;
 
 difference() {
   union() {
