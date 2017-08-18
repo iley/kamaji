@@ -8,11 +8,9 @@ shift_bolt = 5;
 // box thickness
 th = 2;
 
-//TODO
 shift_x = 4;
 shift_y = th + 1;
 
-//TODO
 box_x = pcb_x + shift_x + 4;
 box_y = pcb_y + shift_y + th;
 
@@ -29,16 +27,14 @@ start_socket_x = 20 + shift_x;
 start_socket_z = th + pcb_z + tol;
 eps = 1e-1;
 
-// TODO
-usb_type_b_w = 15.2;
-usb_type_b_h = 11.5;
-start_type_b_y = shift_y + pcb_y - 30.1;
+usb_type_b_w = 12;
+usb_type_b_h = 11;
+start_type_b_y = shift_y + 81.5;
 //start_type_b_z = th + pcb_z + tol;
 
-// TODO
-usb_type_a_w = 17.3;
-usb_type_a_h = 8;
-start_type_a_y = shift_y + 44.7;
+usb_type_a_w = 13.4;
+usb_type_a_h = 7.3;
+start_type_a_y = shift_y + 47;
 //start_type_a_z = th + pcb_z + tol;
 
 // programmator
@@ -148,6 +144,10 @@ top_bolt_r = 3.5;
 speaker_shift = 18;
 speaker_r = 15;
 speaker_h = 15;
+speaker_hole_d = 10;
+speaker_hole_int = 3;
+speaker_hole_w = 1.5;
+speaker_shift = 18;
 
 !difference() {
   union() {
@@ -175,6 +175,15 @@ speaker_h = 15;
   translate([shift_x + pcb_x - 18, shift_y + 18, 0]) {
     cylinder(r=speaker_r, h = 15, $fn=20);
   }
+  // speaker_hole
+  for (dy = [shift_y + speaker_shift - speaker_hole_int - speaker_hole_w*3/2, 
+             shift_y + speaker_shift - speaker_hole_w/2, 
+             shift_y + speaker_shift + speaker_hole_int + speaker_hole_w/2]) { 
+    translate([shift_x + pcb_x - 18-speaker_hole_d/2, dy, top_box_z-th-eps]) {
+      cube(size=[speaker_hole_d, speaker_hole_w, th + 2*eps]);
+    }
+  }
+  
   // bolts
   for (dx = [shift_x+shift_bolt, shift_x+pcb_x-shift_bolt]) {
     for (dy = [shift_y+shift_bolt, shift_y+pcb_y-shift_bolt]) {
@@ -202,8 +211,8 @@ speaker_h = 15;
       cube([th + 2*eps, usb_type_b_w + 2*tol, usb_type_b_h + 2*tol]);
   }
   // type_a
-  translate([-eps, start_type_a_y - tol, -tol]) {
-      cube([th + 2*eps, usb_type_a_w + 2*tol, usb_type_a_h + 2*tol]);
+  translate([-eps, start_type_a_y, -eps]) {
+      cube([th + 2*eps, usb_type_a_w+eps, usb_type_a_h+2*eps]);
   }
   // master buttons
   for (dx = [master_button_x, master_button_x + master_button_int*2])
