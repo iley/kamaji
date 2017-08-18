@@ -54,4 +54,10 @@ enum {
 #define DECLARE_KSPEAKER_PIN()  \
   const int kSpeakerPin = 9
 
+// Lamp: PB0 - pin 8
+#define DECLARE_KLAMP_PIN()  \
+  const int kLampPin = 8
+
+#define USE_LAMP 1
+
 #endif  // CONFIG_V1_H

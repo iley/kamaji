@@ -36,6 +36,10 @@ LiquidCrystal lcd(/*rs=*/14, /*en=*/15, /*d0=*/16, /*d1=*/17, /*d2=*/18,
                   /*d3=*/19);
 #endif
 
+#ifdef USE_LAMP
+DECLARE_KLAMP_PIN();
+#endif
+
 Mode *selectMode = new SelectMode();
 
 // Selected game mode.
