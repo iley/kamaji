@@ -8,11 +8,13 @@ shift_bolt = 5;
 // box thickness
 th = 2;
 
-shift_x = th + 1;
+//TODO
+shift_x = 4;
 shift_y = th + 1;
 
-box_x = pcb_x + shift_x + th + 1;
-box_y = pcb_y + 2*th + 1;
+//TODO
+box_x = pcb_x + shift_x + 4;
+box_y = pcb_y + shift_y + th;
 
 pcb_width = 2;
 pcb_up = 9;
@@ -27,14 +29,15 @@ start_socket_x = 20 + shift_x;
 start_socket_z = th + pcb_z + tol;
 eps = 1e-1;
 
+// TODO
 usb_type_b_w = 15.2;
 usb_type_b_h = 11.5;
 start_type_b_y = shift_y + pcb_y - 30.1;
 //start_type_b_z = th + pcb_z + tol;
 
+// TODO
 usb_type_a_w = 17.3;
 usb_type_a_h = 8;
-//usb_type_a_h = 0.5;
 start_type_a_y = shift_y + 44.7;
 //start_type_a_z = th + pcb_z + tol;
 
@@ -49,10 +52,12 @@ contrast_start_y = shift_y + 25.7;
 volume_start_x = shift_x + pcb_x - 39.2;
 volume_start_y = contrast_start_y;
 pot_d = 7;
-under_pcb = 12.5;
+under_pcb = 13;
 fn = 10;
 gaika_h = 6;
 gaika_w = 5.6;
+stoiki_r = 4;
+
 
 
 translate([0,0,-50]) {
@@ -65,11 +70,14 @@ difference() {
         cube([box_x-2*th+eps, box_y-2*th+eps, box_z-th+eps], false);
       }
     }
-    // under_pcb
+    // under_pcb, stoiki
     for (dx = [shift_x+shift_bolt, shift_x+pcb_x-shift_bolt]) {
       for (dy = [shift_y+shift_bolt, shift_y+pcb_y-shift_bolt]) {
-        translate([dx,dy,pcb_up/2+th-eps]) {
-          cube(size=[under_pcb,under_pcb,pcb_up], center=true);
+//        translate([dx,dy,pcb_up/2+th-eps]) {
+//          cube(size=[under_pcb,under_pcb,pcb_up], center=true);
+//        }
+        translate([dx,dy,th-eps+pcb_up/2]) {
+          cylinder(r=stoiki_r, h=pcb_up, center=true);
         }
       }
     }
@@ -120,7 +128,6 @@ difference() {
 }
 
 top_box_z = 17 + th;
-stoiki_r = bolt_d/2 + 2;
 stoiki_h = top_box_z - th;
 pcb_room = 0.5;
 screen_start_x = shift_x + 28;
@@ -142,7 +149,7 @@ speaker_shift = 18;
 speaker_r = 15;
 speaker_h = 15;
 
-difference() {
+!difference() {
   union() {
     difference() {
       cube([box_x,box_y,top_box_z], false);
@@ -153,9 +160,9 @@ difference() {
     // stoiki
     for (dx = [shift_x+shift_bolt, shift_x+pcb_x-shift_bolt]) {
       for (dy = [shift_y+shift_bolt, shift_y+pcb_y-shift_bolt]) {
-        translate([dx,dy,pcb_room+stoiki_h/2]) {
-	       //cylinder($fn=fn, r=stoiki_r, h=top_box_z-th+eps);
-           cube(size=[under_pcb, under_pcb, stoiki_h + eps], center=true);
+        translate([dx,dy,pcb_room]) {
+	       cylinder($fn=6, r=stoiki_r, h=top_box_z-th+eps);
+          //cube(size=[under_pcb, under_pcb, stoiki_h + eps], center=true);
         }
       }
     }
@@ -175,7 +182,7 @@ difference() {
         cylinder($fn=fn, r=bolt_d/2, h=top_box_z+2*eps);
       }
       translate([dx, dy, top_box_z - top_bolt_h]) {
-        cylinder($fn=fn, r=top_bolt_r, h=top_bolt_h + eps);
+        cylinder($fn=6, r=top_bolt_r, h=top_bolt_h + eps);
       }
     }
   }
