@@ -5,6 +5,7 @@ class Mode {
 public:
     virtual void init() = 0;
     virtual bool getLedState(int playerId) = 0;
+    virtual bool getLampState() { return false; }
     virtual const char* getCaption() = 0;
     virtual const char* getLabel(int buttonId) = 0;
 
@@ -25,6 +26,7 @@ class BrainMode : public Mode {
 public:
     virtual void init() override;
     virtual bool getLedState(int playerId) override;
+    virtual bool getLampState() override;
     virtual const char* getCaption() override;
     virtual const char* getLabel(int buttonId) override;
 

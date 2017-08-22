@@ -41,4 +41,6 @@ enum {
 #define DECLARE_KSPEAKER_PIN()  \
   const int kSpeakerPin = 11;
 
+#define USE_LAMP 0
+
 #endif  // CONFIG_V0_H

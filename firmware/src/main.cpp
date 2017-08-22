@@ -24,7 +24,7 @@ DECLARE_KSPEAKER_PIN();
 const int kScreenWidth = 16;
 
 // Button debounce delay in milliseconds.
-const unsigned long kDebounceMs = 300;
+const unsigned long kDebounceMs = 100;
 
 // GLOBAL STATE
 
@@ -36,7 +36,7 @@ LiquidCrystal lcd(/*rs=*/14, /*en=*/15, /*d0=*/16, /*d1=*/17, /*d2=*/18,
                   /*d3=*/19);
 #endif
 
-#ifdef USE_LAMP
+#if USE_LAMP
 DECLARE_KLAMP_PIN();
 #endif
 
@@ -71,6 +71,10 @@ void setup() {
   }
   xPinMode(kSpeakerPin, OUTPUT);
 
+#if USE_LAMP
+  xPinMode(kLampPin, OUTPUT);
+#endif
+
   // Initialize the screen.
   lcd.begin(/*cols=*/16, /*rows=*/2);
 #ifdef USE_I2C_LCD
@@ -104,6 +108,9 @@ void updateScreenAndLeds() {
   for (int i = BUTTON_PLAYER_1; i <= LAST_PLAYER_BUTTON; i++) {
     xDigitalWrite(kLedPins[i], mode->getLedState(i) ? HIGH : LOW);
   }
+#if USE_LAMP
+  xDigitalWrite(kLampPin, mode->getLampState() ? HIGH : LOW);
+#endif
 }
 
 void loop() {

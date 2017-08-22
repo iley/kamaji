@@ -55,6 +55,10 @@ bool BrainMode::getLedState(int playerId) {
     return (state == ANSWER_MAIN || state == ANSWER_SUPPLEMENT || state == FALSE_START) && currentPlayer == playerId;
 }
 
+bool BrainMode::getLampState() {
+  return state == ANSWER_MAIN || state == ANSWER_SUPPLEMENT || state == FALSE_START;
+}
+
 const char* BrainMode::getCaption() {
     switch (state) {
         case QUESTION:
