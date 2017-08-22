@@ -89,8 +89,9 @@ const char* JeopardyMode::getLabel(int buttonId) {
             case ANSWER_TIME_NOT_STARTED:
             case ANSWER_TIME_STARTED:
                 return noLabel;
-        }            
+        }
     }
+  return noLabel;
 }
 
 void JeopardyMode::update() {

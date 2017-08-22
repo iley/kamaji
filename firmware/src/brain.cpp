@@ -104,8 +104,9 @@ const char* BrainMode::getLabel(int buttonId) {
             case ANSWER_MAIN:
             case ANSWER_SUPPLEMENT:
                 return noLabel;
-        }            
+        }
     }
+    return noLabel;
 }
 
 void BrainMode::update() {

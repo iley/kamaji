@@ -10,7 +10,7 @@ const char *left = "Next";
 const char *right = "Select";
 const int MODE_COUNT = 3;
 Mode* modes[] = {new JeopardyMode(), new BrainMode(), new HamsaMode()};
-char* ids[] = {"Jeopardy", "Brain", "Hamsa"};
+const char* ids[] = {"Jeopardy", "Brain", "Hamsa"};
 int selectedMode;
 }
 
@@ -35,6 +35,7 @@ const char* SelectMode::getLabel(int buttonId) {
     } else if (buttonId == BUTTON_START)  {
         return right;
     }
+    return "";
 }
 
 void SelectMode::update() {
