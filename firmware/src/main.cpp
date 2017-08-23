@@ -40,10 +40,10 @@ LiquidCrystal lcd(/*rs=*/14, /*en=*/15, /*d0=*/16, /*d1=*/17, /*d2=*/18,
 DECLARE_KLAMP_PIN();
 #endif
 
-Mode *selectMode = new SelectMode();
+SelectMode selectMode;
 
 // Selected game mode.
-Mode *mode = selectMode;
+Mode *mode = &selectMode;
 
 // Button state, true means pressed.
 bool buttons[BUTTON_COUNT] = { false };
@@ -130,7 +130,7 @@ void loop() {
   if (xDigitalRead(kButtonPins[BUTTON_RESET]) == LOW &&
       xDigitalRead(kButtonPins[BUTTON_START]) == LOW) {
     if (resetStarted && millis() - resetStartTime > kResetDelay) {
-      mode = selectMode;
+      mode = &selectMode;
       mode->init();
       return;
     }

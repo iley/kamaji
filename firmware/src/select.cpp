@@ -6,10 +6,14 @@
 
 namespace {
 
+JeopardyMode jeopardyMode;
+BrainMode brainMode;
+HamsaMode hamsaMode;
+
 const char *left = "Next";
 const char *right = "Select";
 const int MODE_COUNT = 3;
-Mode* modes[] = {new JeopardyMode(), new BrainMode(), new HamsaMode()};
+Mode* modes[] = {&jeopardyMode, &brainMode, &hamsaMode};
 const char* ids[] = {"Jeopardy", "Brain", "Hamsa"};
 int selectedMode;
 
