@@ -1,6 +1,8 @@
 #ifndef CONFIG_V1_H
 #define CONFIG_V1_H
 
+#define USE_I2C_LCD 0
+
 // All available buttons.
 enum {
   BUTTON_PLAYER_1,

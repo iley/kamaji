@@ -2,7 +2,7 @@
 
 #include <Arduino.h>
 
-#ifdef USE_I2C_LCD
+#if USE_I2C_LCD
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #else
@@ -28,7 +28,7 @@ const unsigned long kDebounceMs = 100;
 
 // GLOBAL STATE
 
-#ifdef USE_I2C_LCD
+#if USE_I2C_LCD
 // An I2C-connected 16x2 character LCD screen.
 LiquidCrystal_I2C lcd(0x3f, 2, 1, 0, 4, 5, 6, 7);
 #else
@@ -78,7 +78,7 @@ void setup() {
 
   // Initialize the screen.
   lcd.begin(/*cols=*/16, /*rows=*/2);
-#ifdef USE_I2C_LCD
+#if USE_I2C_LCD
   lcd.setBacklightPin(3, POSITIVE);  // TODO: Use a constant.
   lcd.setBacklight(HIGH);
 #endif
