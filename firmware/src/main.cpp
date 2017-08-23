@@ -57,7 +57,7 @@ char lastLeft[DISPLAY_SIZE + 1];
 char lastRight[DISPLAY_SIZE + 1];
 char lastCaption[DISPLAY_SIZE + 1];
 bool lastLeds[PLAYER_COUNT];
-bool resetStarted;
+bool resetStarted = false;
 unsigned long resetStartTime;
 
 void setup() {
