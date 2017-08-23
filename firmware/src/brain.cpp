@@ -4,7 +4,8 @@
 #include "mode.h"
 #include "main.h"
 
-namespace PaketBrain {
+namespace {
+
 const int TIME = 60;
 const int TIME_SUPPLEMENT = 20;
 const int NUM_PLAYERS = 2;
@@ -43,9 +44,8 @@ void reset() {
         blocked[i] = false;
     }
 }
-}
 
-using namespace PaketBrain;
+}  // namespace
 
 void BrainMode::init() {
     reset();

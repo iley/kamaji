@@ -4,7 +4,8 @@
 #include "mode.h"
 #include "main.h"
 
-namespace PaketJeopardy {
+namespace {
+
 const int TIME = 7;
 const int DELAY = 3;
 const int NUM_PLAYERS = PLAYER_COUNT;
@@ -42,9 +43,8 @@ void reset() {
     }
     firstTime = true;
 }
-} // namespace PaketJeopardy
 
-using namespace PaketJeopardy;
+} // namespace
 
 void JeopardyMode::init() {
     reset();

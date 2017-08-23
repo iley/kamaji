@@ -4,7 +4,8 @@
 #include "mode.h"
 #include "main.h"
 
-namespace PaketHamsa {
+namespace {
+
 const int TIME = 7;
 const int NUM_PLAYERS = PLAYER_COUNT;
 const int DELAY = 3;
@@ -45,9 +46,8 @@ void reset() {
     start = 0;
     size = 0;
 }
-}
 
-using namespace PaketHamsa;
+}  // namespace
 
 void HamsaMode::init() {
     reset();

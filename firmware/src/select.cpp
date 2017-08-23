@@ -4,7 +4,8 @@
 #include "mode.h"
 #include "main.h"
 
-namespace PaketSelect {
+namespace {
+
 char caption[DISPLAY_SIZE + 1];
 const char *left = "Next";
 const char *right = "Select";
@@ -12,9 +13,8 @@ const int MODE_COUNT = 3;
 Mode* modes[] = {new JeopardyMode(), new BrainMode(), new HamsaMode()};
 const char* ids[] = {"Jeopardy", "Brain", "Hamsa"};
 int selectedMode;
-}
 
-using namespace PaketSelect;
+}  // namespace
 
 void SelectMode::init() {
     selectedMode = 0;
