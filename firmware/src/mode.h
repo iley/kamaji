@@ -50,7 +50,16 @@ public:
     virtual const char* getCaption() override;
     virtual const char* getLabel(int buttonId) override;
 
-    virtual void update() override;    
+    virtual void update() override;
+};
+
+class DevMode : public Mode {
+public:
+  virtual void init() override;
+  virtual bool getLedState(int playerId) override;
+  virtual const char* getCaption() override;
+  virtual const char* getLabel(int buttonId) override;
+  virtual void update() override;
 };
 
 #endif
