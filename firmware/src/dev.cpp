@@ -12,9 +12,8 @@ bool DevMode::getLedState(int playerId) {
   return false;
 }
 
-const char* DevMode::getCaption() {
+void DevMode::getCaption(char* buffer, size_t bufferSize) {
   // TODO
-  return "";
 }
 
 const char* DevMode::getLabel(int buttonId) {

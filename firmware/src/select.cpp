@@ -6,7 +6,6 @@
 
 namespace {
 
-char caption[DISPLAY_SIZE + 1];
 const char *left = "Next";
 const char *right = "Select";
 const int MODE_COUNT = 3;
@@ -24,9 +23,8 @@ bool SelectMode::getLedState(int playerId) {
     return false;
 }
 
-const char* SelectMode::getCaption() {
-    snprintf(caption, sizeof(caption), "Mode: %s", ids[selectedMode]);
-    return caption;
+void SelectMode::getCaption(char* buffer, size_t bufferSize) {
+    snprintf(buffer, bufferSize, "Mode: %s", ids[selectedMode]);
 }
 
 const char* SelectMode::getLabel(int buttonId) {

@@ -54,10 +54,11 @@ bool buttonsBefore[BUTTON_COUNT] = { false };
 // start.
 unsigned long lastPressedMs[BUTTON_COUNT] = {0};
 
-char lastLeft[17];
-char lastRight[17];
-char lastCaption[17];
-bool lastLeds[4];
+char caption[DISPLAY_SIZE + 1];
+char lastLeft[DISPLAY_SIZE + 1];
+char lastRight[DISPLAY_SIZE + 1];
+char lastCaption[DISPLAY_SIZE + 1];
+bool lastLeds[PLAYER_COUNT];
 bool resetStarted;
 unsigned long resetStartTime;
 
@@ -78,7 +79,7 @@ void setup() {
   // Initialize the screen.
   lcd.begin(/*cols=*/16, /*rows=*/2);
 #ifdef USE_I2C_LCD
-  lcd.setBacklightPin(3, POSITIVE);
+  lcd.setBacklightPin(3, POSITIVE);  // TODO: Use a constant.
   lcd.setBacklight(HIGH);
 #endif
 
@@ -86,13 +87,14 @@ void setup() {
 }
 
 void updateScreenAndLeds() {
-  const char* caption = mode->getCaption();
+  caption[0] = '\0';
+  mode->getCaption(caption, sizeof(caption));
   const char* left = mode->getLabel(BUTTON_RESET);
   const char* right = mode->getLabel(BUTTON_START);
   if (strcmp(lastCaption, caption) != 0 || strcmp(lastLeft, left) != 0 ||
       strcmp(lastRight, right) != 0) {
     lcd.clear();
-    lcd.print(mode->getCaption());
+    lcd.print(caption);
     lcd.setCursor(/*row=*/0, /*col=*/1);
     // Print button functions on the lower line of the screen.
     lcd.print(left);

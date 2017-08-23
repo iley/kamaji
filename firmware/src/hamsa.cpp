@@ -17,7 +17,6 @@ enum State {
     ANSWER_TIME_STARTED
 };
 
-char caption[DISPLAY_SIZE + 1] = {0};
 const char *resetLabel = "Reset";
 const char *startLabel = "Start";
 const char *yesLabel = "Yes";
@@ -66,20 +65,19 @@ bool HamsaMode::getLedState(int playerId) {
     return false;*/
 }
 
-const char* HamsaMode::getCaption() {
+void HamsaMode::getCaption(char* buffer, size_t bufferSize) {
     switch (state) {
         case QUESTION:
-            snprintf(caption, sizeof(caption), "Read question");
+            snprintf(buffer, bufferSize, "Read question");
             break;
         case COUNTDOWN:
-            snprintf(caption, sizeof(caption), "%d s remaining", TIME - timeInSeconds());
+            snprintf(buffer, bufferSize, "%d s remaining", TIME - timeInSeconds());
             break;
         case ANSWER_TIME_NOT_STARTED:
         case ANSWER_TIME_STARTED:
-            snprintf(caption, sizeof(caption), "Player %d (%d s)", currentPlayer + 1, timeInSeconds());
+            snprintf(buffer, bufferSize, "Player %d (%d s)", currentPlayer + 1, timeInSeconds());
             break;
     }
-    return caption;
 }
 
 const char* HamsaMode::getLabel(int buttonId) {

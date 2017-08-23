@@ -20,7 +20,6 @@ enum State {
     FALSE_START
 };
 
-char caption[DISPLAY_SIZE + 1] = {0};
 const char *resetLabel = "Reset";
 const char *startLabel = "Time";
 const char *yesLabel = "Yes";
@@ -59,26 +58,25 @@ bool BrainMode::getLampState() {
   return state == ANSWER_MAIN || state == ANSWER_SUPPLEMENT || state == FALSE_START;
 }
 
-const char* BrainMode::getCaption() {
+void BrainMode::getCaption(char* buffer, size_t bufferSize) {
     switch (state) {
         case QUESTION:
-            snprintf(caption, sizeof(caption), "Read question");
+            snprintf(buffer, bufferSize, "Read question");
             break;
         case MAIN:
-            snprintf(caption, sizeof(caption), "%d s remaining", TIME - timeInSeconds());
+            snprintf(buffer, bufferSize, "%d s remaining", TIME - timeInSeconds());
             break;
         case SUPPLEMENT:
-            snprintf(caption, sizeof(caption), "%d s remaining", TIME_SUPPLEMENT - timeInSeconds());
+            snprintf(buffer, bufferSize, "%d s remaining", TIME_SUPPLEMENT - timeInSeconds());
             break;
         case ANSWER_MAIN:
         case ANSWER_SUPPLEMENT:
-            snprintf(caption, sizeof(caption), "Team %d (%d s)", currentPlayer + 1, timeInSeconds());
+            snprintf(buffer, bufferSize, "Team %d (%d s)", currentPlayer + 1, timeInSeconds());
             break;
         case FALSE_START:
-            snprintf(caption, sizeof(caption), "Team %d too early", currentPlayer + 1);
+            snprintf(buffer, bufferSize, "Team %d too early", currentPlayer + 1);
             break;
     }
-    return caption;
 }
 
 const char* BrainMode::getLabel(int buttonId) {
