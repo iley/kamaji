@@ -5,7 +5,7 @@ total_height = 23;
 th = 2; // enclosure thickness
 eps = 1e-1;
 
-cap_r = 7 / 2;
+cap_r = 6.5 / 2;
 cap_h = total_height - button_h + overlap;
 
 border_offset = 5.5 + th;
