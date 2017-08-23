@@ -21,8 +21,6 @@ DECLARE_KBUTTON_PINS();
 DECLARE_KLED_PINS();
 DECLARE_KSPEAKER_PIN();
 
-const int kScreenWidth = 16;
-
 // Button debounce delay in milliseconds.
 const unsigned long kDebounceMs = 100;
 
@@ -98,7 +96,7 @@ void updateScreenAndLeds() {
     lcd.setCursor(/*row=*/0, /*col=*/1);
     // Print button functions on the lower line of the screen.
     lcd.print(left);
-    const int spaces = kScreenWidth - strlen(left) - strlen(right);
+    const int spaces = DISPLAY_SIZE - strlen(left) - strlen(right);
     for (int i = 0; i < spaces; ++i) {
       lcd.print(' ');
     }
