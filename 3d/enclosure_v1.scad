@@ -68,8 +68,8 @@ difference() {
       }
     }
     // under_pcb, stoiki
-    for (dx = [shift_x+shift_bolt, shift_x+pcb_x-shift_bolt]) {
-      for (dy = [shift_y+shift_bolt, shift_y+pcb_y-shift_bolt]) {
+    for (dy = [shift_y+shift_bolt, shift_y+pcb_y-shift_bolt]) {
+      for (dx = [shift_x+shift_bolt, shift_x+pcb_x-shift_bolt]) {
 //        translate([dx,dy,pcb_up/2+th-eps]) {
 //          cube(size=[under_pcb,under_pcb,pcb_up], center=true);
 //        }
@@ -78,6 +78,9 @@ difference() {
           cylinder($fn=6, r=wide_stoiki_r, h=gaika_h);
         }
       }
+    }
+    translate([box_x/2, box_y/2, th-eps]) {
+      cylinder($fn=6, r=stoiki_r, h=pcb_up);
     }
   }
 
@@ -125,7 +128,7 @@ difference() {
 }
 }
 
-top_box_z = 17 + th;
+top_box_z = 15 + th;
 stoiki_h = top_box_z - th;
 wide_stoiki_h = 2;
 pcb_room = 0.5;
@@ -135,7 +138,7 @@ screen_length_x = 72;
 screen_length_y = 24;
 screen_hold_x = 40;
 screen_hold_y = 4;
-screen_hold_start_z = 14;
+screen_hold_start_z = 12;
 screen_hold_y_shift = 2;
 screen_hold_up_x = 25;
 screen_hold_up_x_shift = 5;
@@ -154,7 +157,7 @@ speaker_hole_int = 3;
 speaker_hole_w = 1.5;
 speaker_shift = 18;
 
-difference() {
+!difference() {
   union() {
     difference() {
       cube([box_x,box_y,top_box_z], false);
@@ -213,7 +216,7 @@ difference() {
   // sockets
   for (i = [0:1:socket_n-1]) {
       translate([start_socket_x+i*socket_int-tol, box_y-th-eps, -eps]) {
-	  cube(size=[socket_w+2*tol, th+2*eps, socket_h+tol]);
+	  cube(size=[socket_w+2*tol, th+2*eps, socket_h]);
       }
   }
   // type_b
@@ -225,10 +228,12 @@ difference() {
       cube([th + 2*eps, usb_type_a_w+eps, usb_type_a_h+2*eps]);
   }
   // master buttons
-  for (dx = [master_button_x, master_button_x + master_button_int*2])
-      translate([dx, master_button_y, top_box_z - th - eps]) {
-	  cylinder($fn=fn, r=master_button_r+tol, h=th+2*eps);
-      }
+  for (i = [0:1:2]) {
+    dx = master_button_x + master_button_int*i;
+    translate([dx, master_button_y, top_box_z - th - eps]) {
+      cylinder($fn=fn, r=master_button_r+tol, h=th+2*eps);
+    }
+  }
 }
 
 
