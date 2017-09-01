@@ -4,7 +4,7 @@ eps = 1e-3;
 // TODO: Proper dimensions.
 size_x = 80;
 size_y = 36;
-size_z = 11;
+size_z = 9.65;
 width = 4;
 
 pin_length = 3;
