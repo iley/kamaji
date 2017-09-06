@@ -1,5 +1,5 @@
 tol = 0.5;
-screen_tol = 1;
+screen_tol = 0.8;
 pcb_x = 130;
 pcb_y = 110;
 pcb_z = 4;
@@ -32,9 +32,9 @@ usb_type_b_h = 11;
 start_type_b_y = shift_y + 81.5;
 //start_type_b_z = th + pcb_z + tol;
 
-usb_type_a_w = 13.4;
-usb_type_a_h = 7.3;
-start_type_a_y = shift_y + 47;
+usb_type_a_w = 14.4;
+usb_type_a_h = 7.8;
+start_type_a_y = shift_y + 46;
 //start_type_a_z = th + pcb_z + tol;
 
 // programmator
@@ -51,7 +51,7 @@ pot_d = 7;
 under_pcb = 13;
 fn = 10;
 gaika_h = 4;
-gaika_w = 5.6;
+gaika_w = 5.5;
 stoiki_r = 4;
 wide_stoiki_r = stoiki_r + 2;
 
@@ -124,11 +124,11 @@ difference() {
 
 top_box_z = 15 + th;
 stoiki_h = top_box_z - th;
-wide_stoiki_h = 2;
-pcb_room = 0.5;
-screen_start_x = shift_x + 29.15;
-screen_start_y = shift_y + 39.1;
-screen_length_x = 72;
+wide_stoiki_h = 4;
+pcb_room = 1;
+screen_start_x = shift_x + 29;
+screen_start_y = shift_y + 38.9;
+screen_length_x = 71.2;
 screen_length_y = 24.2;
 screen_hold_x = 40;
 screen_hold_y = 4;
@@ -163,10 +163,10 @@ speaker_shift = 18;
     for (dx = [shift_x+shift_bolt, shift_x+pcb_x-shift_bolt]) {
       for (dy = [shift_y+shift_bolt, shift_y+pcb_y-shift_bolt]) {
         translate([dx,dy,pcb_room]) {
-	  cylinder($fn=6, r=stoiki_r, h=top_box_z-th+eps);
+          cylinder($fn=6, r=stoiki_r, h=top_box_z-th+eps);
         }
         translate([dx,dy,top_box_z-th-wide_stoiki_h+eps]) {
-	  cylinder($fn=6, r=wide_stoiki_r, h=wide_stoiki_h+th-2*eps);
+          cylinder($fn=6, r=wide_stoiki_r, h=wide_stoiki_h+th-2*eps);
         }
       }
     }
@@ -197,8 +197,9 @@ speaker_shift = 18;
       translate([dx,dy,-eps]) {
         cylinder($fn=fn, r=bolt_d/2, h=top_box_z+2*eps);
       }
-      translate([dx, dy, top_box_z - top_bolt_h]) {
-        cylinder($fn=6, r=top_bolt_r, h=top_bolt_h + eps);
+      translate([dx, dy, top_box_z - wide_stoiki_h]) {
+        cylinder($fn=6, r=gaika_w / 2 / cos(30) + 0.05, h=wide_stoiki_h+eps);
+        //cylinder($fn=6, r=top_bolt_r, h=top_bolt_h + eps);
       }
     }
   }
@@ -210,7 +211,7 @@ speaker_shift = 18;
   // sockets
   for (i = [0:1:socket_n-1]) {
       translate([start_socket_x+i*socket_int - tol, box_y-th-eps, -eps]) {
-	  cube(size=[socket_w + 2*tol, th+2*eps, socket_h]);
+        cube(size=[socket_w + 2*tol, th+2*eps, socket_h]);
       }
   }
   // type_b
