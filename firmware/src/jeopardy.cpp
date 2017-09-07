@@ -66,9 +66,9 @@ void JeopardyMode::getCaption(char* buffer, size_t bufferSize) {
                 }
             }
             if (playersBlocked == 0) {
-                snprintf(caption, sizeof(caption), "Read question");
+                snprintf(buffer, bufferSize, "Read question");
             } else {
-                snprintf(caption, sizeof(caption), "%d blocked", playersBlocked);
+                snprintf(buffer, bufferSize, "%d blocked", playersBlocked);
             }
             break;
         case COUNTDOWN:
