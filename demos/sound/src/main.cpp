@@ -1,20 +1,16 @@
 #include "Arduino.h"
 #include "pitches.h"  // Taken from https://www.arduino.cc/en/Tutorial/ToneMelody
 
-const int kSpeakerPin = 11;
-const int kMelody[] = {
-  NOTE_C4, NOTE_G3, NOTE_G3, NOTE_A3, NOTE_G3, 0, NOTE_B3, NOTE_C4
-};
+const int kSpeakerPin = 9;
+const int freqs[] = {100, 500, 1000, 1500, 2000, 2500, 3000};
 
 void setup() {
   pinMode(kSpeakerPin, OUTPUT);
 }
 
 void loop() {
-  for (auto freq : kMelody) {
-    tone(kSpeakerPin, freq);
-    delay(200);
-    noTone(kSpeakerPin);
+  for (const auto freq : freqs) {
+    tone(kSpeakerPin, freq, 500);
+    delay(1000);
   }
-  delay(1000);
 }

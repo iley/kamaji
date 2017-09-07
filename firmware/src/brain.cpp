@@ -4,7 +4,8 @@
 #include "mode.h"
 #include "main.h"
 
-namespace PaketBrain {
+namespace {
+
 const int TIME = 60;
 const int TIME_SUPPLEMENT = 20;
 const int NUM_PLAYERS = 2;
@@ -19,7 +20,6 @@ enum State {
     FALSE_START
 };
 
-char caption[DISPLAY_SIZE + 1] = {0};
 const char *resetLabel = "Reset";
 const char *startLabel = "Time";
 const char *yesLabel = "Yes";
@@ -43,9 +43,8 @@ void reset() {
         blocked[i] = false;
     }
 }
-}
 
-using namespace PaketBrain;
+}  // namespace
 
 void BrainMode::init() {
     reset();
@@ -55,26 +54,29 @@ bool BrainMode::getLedState(int playerId) {
     return (state == ANSWER_MAIN || state == ANSWER_SUPPLEMENT || state == FALSE_START) && currentPlayer == playerId;
 }
 
-const char* BrainMode::getCaption() {
+bool BrainMode::getLampState() {
+  return state == MAIN || state == SUPPLEMENT || state == FALSE_START;
+}
+
+void BrainMode::getCaption(char* buffer, size_t bufferSize) {
     switch (state) {
         case QUESTION:
-            snprintf(caption, sizeof(caption), "Read question");
+            snprintf(buffer, bufferSize, "Read question");
             break;
         case MAIN:
-            snprintf(caption, sizeof(caption), "%d s remaining", TIME - timeInSeconds());
+            snprintf(buffer, bufferSize, "%d s remaining", TIME - timeInSeconds());
             break;
         case SUPPLEMENT:
-            snprintf(caption, sizeof(caption), "%d s remaining", TIME_SUPPLEMENT - timeInSeconds());
+            snprintf(buffer, bufferSize, "%d s remaining", TIME_SUPPLEMENT - timeInSeconds());
             break;
         case ANSWER_MAIN:
         case ANSWER_SUPPLEMENT:
-            snprintf(caption, sizeof(caption), "Team %d (%d s)", currentPlayer + 1, timeInSeconds());
+            snprintf(buffer, bufferSize, "Team %d (%d s)", currentPlayer + 1, timeInSeconds());
             break;
         case FALSE_START:
-            snprintf(caption, sizeof(caption), "Team %d too early", currentPlayer + 1);
+            snprintf(buffer, bufferSize, "Team %d too early", currentPlayer + 1);
             break;
     }
-    return caption;
 }
 
 const char* BrainMode::getLabel(int buttonId) {
@@ -100,8 +102,9 @@ const char* BrainMode::getLabel(int buttonId) {
             case ANSWER_MAIN:
             case ANSWER_SUPPLEMENT:
                 return noLabel;
-        }            
+        }
     }
+    return noLabel;
 }
 
 void BrainMode::update() {

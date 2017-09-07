@@ -2,7 +2,7 @@
 
 #include <Arduino.h>
 
-#ifdef USE_I2C_LCD
+#if USE_I2C_LCD
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 #else
@@ -21,14 +21,12 @@ DECLARE_KBUTTON_PINS();
 DECLARE_KLED_PINS();
 DECLARE_KSPEAKER_PIN();
 
-const int kScreenWidth = 16;
-
 // Button debounce delay in milliseconds.
-const unsigned long kDebounceMs = 300;
+const unsigned long kDebounceMs = 100;
 
 // GLOBAL STATE
 
-#ifdef USE_I2C_LCD
+#if USE_I2C_LCD
 // An I2C-connected 16x2 character LCD screen.
 LiquidCrystal_I2C lcd(0x3f, 2, 1, 0, 4, 5, 6, 7);
 #else
@@ -36,10 +34,14 @@ LiquidCrystal lcd(/*rs=*/14, /*en=*/15, /*d0=*/16, /*d1=*/17, /*d2=*/18,
                   /*d3=*/19);
 #endif
 
-Mode *selectMode = new SelectMode();
+#if USE_LAMP
+DECLARE_KLAMP_PIN();
+#endif
+
+SelectMode selectMode;
 
 // Selected game mode.
-Mode *mode = selectMode;
+Mode *mode = &selectMode;
 
 // Button state, true means pressed.
 bool buttons[BUTTON_COUNT] = { false };
@@ -50,11 +52,12 @@ bool buttonsBefore[BUTTON_COUNT] = { false };
 // start.
 unsigned long lastPressedMs[BUTTON_COUNT] = {0};
 
-char lastLeft[17];
-char lastRight[17];
-char lastCaption[17];
-bool lastLeds[4];
-bool resetStarted;
+char caption[DISPLAY_SIZE + 1];
+char lastLeft[DISPLAY_SIZE + 1];
+char lastRight[DISPLAY_SIZE + 1];
+char lastCaption[DISPLAY_SIZE + 1];
+bool lastLeds[PLAYER_COUNT];
+bool resetStarted = false;
 unsigned long resetStartTime;
 
 void setup() {
@@ -67,10 +70,14 @@ void setup() {
   }
   xPinMode(kSpeakerPin, OUTPUT);
 
+#if USE_LAMP
+  xPinMode(kLampPin, OUTPUT);
+#endif
+
   // Initialize the screen.
   lcd.begin(/*cols=*/16, /*rows=*/2);
-#ifdef USE_I2C_LCD
-  lcd.setBacklightPin(3, POSITIVE);
+#if USE_I2C_LCD
+  lcd.setBacklightPin(3, POSITIVE);  // TODO: Use a constant.
   lcd.setBacklight(HIGH);
 #endif
 
@@ -78,17 +85,18 @@ void setup() {
 }
 
 void updateScreenAndLeds() {
-  const char* caption = mode->getCaption();
+  caption[0] = '\0';
+  mode->getCaption(caption, sizeof(caption));
   const char* left = mode->getLabel(BUTTON_RESET);
   const char* right = mode->getLabel(BUTTON_START);
   if (strcmp(lastCaption, caption) != 0 || strcmp(lastLeft, left) != 0 ||
       strcmp(lastRight, right) != 0) {
     lcd.clear();
-    lcd.print(mode->getCaption());
+    lcd.print(caption);
     lcd.setCursor(/*row=*/0, /*col=*/1);
     // Print button functions on the lower line of the screen.
     lcd.print(left);
-    const int spaces = kScreenWidth - strlen(left) - strlen(right);
+    const int spaces = DISPLAY_SIZE - strlen(left) - strlen(right);
     for (int i = 0; i < spaces; ++i) {
       lcd.print(' ');
     }
@@ -100,6 +108,9 @@ void updateScreenAndLeds() {
   for (int i = BUTTON_PLAYER_1; i <= LAST_PLAYER_BUTTON; i++) {
     xDigitalWrite(kLedPins[i], mode->getLedState(i) ? HIGH : LOW);
   }
+#if USE_LAMP
+  xDigitalWrite(kLampPin, mode->getLampState() ? HIGH : LOW);
+#endif
 }
 
 void loop() {
@@ -117,7 +128,7 @@ void loop() {
   if (xDigitalRead(kButtonPins[BUTTON_RESET]) == LOW &&
       xDigitalRead(kButtonPins[BUTTON_START]) == LOW) {
     if (resetStarted && millis() - resetStartTime > kResetDelay) {
-      mode = selectMode;
+      mode = &selectMode;
       mode->init();
       return;
     }
@@ -139,15 +150,15 @@ bool isControlPressed(int buttonId) {
 }
 
 void playResetSound() {
-  tone(kSpeakerPin, NOTE_D4, 300/*ms*/);
+  tone(kSpeakerPin, NOTE_D6, 300/*ms*/);
 }
 
 void playPlayerSound() {
-  tone(kSpeakerPin, NOTE_G4, 300/*ms*/);
+  tone(kSpeakerPin, NOTE_G6, 300/*ms*/);
 }
 
 void playCorrectSound() {
-  tone(kSpeakerPin, NOTE_F4, 300/*ms*/);
+  tone(kSpeakerPin, NOTE_F6, 300/*ms*/);
 }
 
 void playFalseStartSound() {
@@ -155,7 +166,7 @@ void playFalseStartSound() {
 }
 
 void playTimeSound() {
-  tone(kSpeakerPin, NOTE_F2, 1000/*ms*/);
+  tone(kSpeakerPin, NOTE_F6, 1000/*ms*/);
 }
 
 void playStartSound() {
