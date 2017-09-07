@@ -2,3 +2,4 @@
 .piolibdeps
 .vscode
 .ropeproject
+.vscode/c_cpp_properties.json

@@ -57,9 +57,19 @@ bool JeopardyMode::getLedState(int playerId) {
 }
 
 void JeopardyMode::getCaption(char* buffer, size_t bufferSize) {
+    int playersBlocked = 0;
     switch (state) {
         case QUESTION:
-            snprintf(buffer, bufferSize, "Read question");
+            for (int i = 0; i < PLAYER_COUNT; i++) {
+                if (blocked[i]) {
+                    playersBlocked++;
+                }
+            }
+            if (playersBlocked == 0) {
+                snprintf(caption, sizeof(caption), "Read question");
+            } else {
+                snprintf(caption, sizeof(caption), "%d blocked", playersBlocked);
+            }
             break;
         case COUNTDOWN:
             snprintf(buffer, bufferSize, "%d s remaining", TIME - timeInSeconds());
@@ -126,6 +136,7 @@ void JeopardyMode::update() {
             }
             currentPlayer = -1;
             stateEnterd = millis();
+            playStartSound();
         }
         return;
     } else {

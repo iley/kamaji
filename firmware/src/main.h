@@ -19,6 +19,8 @@ void playPlayerSound();
 void playCorrectSound();
 void playTimeSound();
 void playFalseStartSound();
+void playStartSound();
+void playAttentionSound();
 void setMode(Mode* newMode);
 
 #endif
