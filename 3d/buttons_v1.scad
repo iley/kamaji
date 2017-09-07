@@ -1,7 +1,7 @@
 $fn = 50;
 button_h = 13;
 overlap = 5;
-total_height = 23;
+total_height = 21;
 th = 2; // enclosure thickness
 eps = 1e-1;
 
