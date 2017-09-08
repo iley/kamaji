@@ -1,7 +1,7 @@
 $fn = 50;
 button_h = 13;
 overlap = 5;
-total_height = 21;
+total_height = 20;
 th = 2; // enclosure thickness
 eps = 1e-1;
 
@@ -10,7 +10,7 @@ cap_h = total_height - button_h + overlap;
 
 border_offset = 5.5 + th;
 border_h = 3;
-border_r = cap_r + 3;
+border_r = cap_r + 2;
 
 socket_r = 3.2 / 2;
 
