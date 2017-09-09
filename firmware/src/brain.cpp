@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 #include <Arduino.h>
 #include "mode.h"
@@ -17,7 +18,8 @@ enum State {
     SUPPLEMENT,
     ANSWER_MAIN,
     ANSWER_SUPPLEMENT,
-    FALSE_START
+    FALSE_START,
+    START_DELAY
 };
 
 const char *resetLabel = "Reset";
@@ -27,6 +29,7 @@ const char *noLabel = "No";
 const char *emptyLabel = "";
 
 int currentPlayer = -1;
+int startDelay;
 State state = QUESTION;
 unsigned long stateEnterd = millis();
 bool blocked[NUM_PLAYERS];
@@ -47,6 +50,7 @@ void reset() {
 }  // namespace
 
 void BrainMode::init() {
+    srand (millis());
     reset();
 }
 
@@ -76,6 +80,9 @@ void BrainMode::getCaption(char* buffer, size_t bufferSize) {
         case FALSE_START:
             snprintf(buffer, bufferSize, "Team %d too early", currentPlayer + 1);
             break;
+        case START_DELAY:
+            snprintf(buffer, bufferSize, "Pending", currentPlayer + 1);
+            break;
     }
 }
 
@@ -86,6 +93,7 @@ const char* BrainMode::getLabel(int buttonId) {
             case MAIN:
             case SUPPLEMENT:
             case FALSE_START:
+            case START_DELAY:
                 return resetLabel;
             case ANSWER_MAIN:
             case ANSWER_SUPPLEMENT:
@@ -98,6 +106,7 @@ const char* BrainMode::getLabel(int buttonId) {
                 return startLabel;
             case MAIN:
             case SUPPLEMENT:
+            case START_DELAY:
                 return emptyLabel;
             case ANSWER_MAIN:
             case ANSWER_SUPPLEMENT:
@@ -155,8 +164,15 @@ void BrainMode::update() {
             reset();
             return;
         }
+        if (state == START_DELAY) {
+            if (millis() - stateEnterd >= startDelay) {
+                state = MAIN;
+            }
+            return;
+        }
         if (isControlPressed(BUTTON_START) && state == QUESTION) {
-            state = MAIN;
+            state = START_DELAY;
+            startDelay = 500 + rand() % 500;
             stateEnterd = millis();
             playTimeSound();
             return;
