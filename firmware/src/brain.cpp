@@ -157,7 +157,7 @@ void BrainMode::update() {
                 }
             }
         }
-        if (timeInSeconds() == 0) {
+        if (timeInSeconds() == 0 && state != START_DELAY) {
             return;
         }
         if (isControlPressed(BUTTON_RESET)) {
