@@ -5,6 +5,9 @@ pcb_y = 110;
 pcb_z = 4;
 bolt_d = 3.6;
 shift_bolt = 5;
+board_w = 1;
+board_h = 1;
+
 
 // box thickness
 th = 2;
@@ -62,7 +65,12 @@ translate([0,0,-50]) {
 difference() {
   union() {
     difference() {
-      cube([box_x,box_y,box_z], false);
+      union() {
+        cube([box_x,box_y, box_z-board_h], false);
+        translate([th - board_w, th - board_w, 0]) {
+          cube([box_x - 2*(th - board_w), box_y - 2*(th -board_w), box_z], false);
+        }
+      }
       translate([th, th, th]) {
         cube([box_x-2*th+eps, box_y-2*th+eps, box_z-th+eps], false);
       }
@@ -151,8 +159,17 @@ speaker_hole_int = 3;
 speaker_hole_w = 1.5;
 speaker_shift = 18;
 
-!difference() {
+difference() {
   union() {
+    // board
+    translate([0, 0, -board_h + eps]) {
+	difference() {
+	    cube([box_x, box_y, board_h], false);
+	    translate([board_w, board_w, -eps]) {
+		cube([box_x - 2*board_w, box_y - 2*board_w, board_h + 2*eps], false);
+	    }
+	}
+    }
     difference() {
       cube([box_x,box_y,top_box_z], false);
       translate([th, th, -eps]) {
@@ -210,22 +227,21 @@ speaker_shift = 18;
   }
   // sockets
   for (i = [0:1:socket_n-1]) {
-      translate([start_socket_x+i*socket_int - tol, box_y-th-eps, -eps]) {
-        cube(size=[socket_w + 2*tol, th+2*eps, socket_h]);
+      translate([start_socket_x+i*socket_int - tol, box_y-th-eps, -eps - board_h]) {
+        cube(size=[socket_w + 2*tol, th+2*eps, socket_h + board_h]);
       }
   }
   // type_b
-  translate([box_x - th - eps, start_type_b_y - tol, -tol]) {
-      cube([th + 2*eps, usb_type_b_w + 2*tol, usb_type_b_h + 2*tol]);
+  translate([box_x - th - eps, start_type_b_y - tol, -tol - board_h]) {
+      cube([th + 2*eps, usb_type_b_w + 2*tol, usb_type_b_h + 2*tol + board_h]);
   }
   // type_a
-  translate([-eps, start_type_a_y - tol, -eps]) {
-      cube([th + 2*eps, usb_type_a_w + 2*tol, usb_type_a_h + 2*eps]);
+  translate([-eps, start_type_a_y - tol, -eps - board_h]) {
+      cube([th + 2*eps, usb_type_a_w + 2*tol, usb_type_a_h + 2*eps + board_h]);
   }
   // master buttons
   for (i = [0:1:2]) {
-    dx = master_button_x + master_button_int*i;
-    translate([dx, master_button_y, top_box_z - th - eps]) {
+    translate([master_button_x + master_button_int*i, master_button_y, top_box_z - th - eps]) {
       cylinder($fn=fn, r=master_button_r + tol, h=th+2*eps);
     }
   }
