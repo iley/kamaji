@@ -5,8 +5,8 @@ pcb_y = 110;
 pcb_z = 4;
 bolt_d = 3.6;
 shift_bolt = 5;
-board_w = 0.4;
-board_h = 5;
+board_w = 1;
+board_h = 1;
 
 
 // box thickness
@@ -66,10 +66,10 @@ translate([0,0,-50]) {
   union() {
     difference() {
       union() {
-	  cube([box_x,box_y, box_z-board_h], false);
-	  translate([th - board_w, th - board_w, 0]) {
-	      cube([box_x - 2*board_w, box_y - 2*board_w, box_z], false);
-	  }
+        cube([box_x,box_y, box_z-board_h], false);
+        translate([th - board_w, th - board_w, 0]) {
+          cube([box_x - 2*(th - board_w), box_y - 2*(th -board_w), box_z], false);
+        }
       }
       translate([th, th, th]) {
         cube([box_x-2*th+eps, box_y-2*th+eps, box_z-th+eps], false);
