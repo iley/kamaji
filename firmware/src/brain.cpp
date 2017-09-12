@@ -50,7 +50,8 @@ void reset() {
 }  // namespace
 
 void BrainMode::init() {
-    srand (millis());
+    // TODO: seed random based on an unconnected analog input
+    srand(millis());
     reset();
 }
 
@@ -59,7 +60,7 @@ bool BrainMode::getLedState(int playerId) {
 }
 
 bool BrainMode::getLampState() {
-  return state == MAIN || state == SUPPLEMENT || state == FALSE_START;
+    return state == MAIN || state == SUPPLEMENT || state == FALSE_START;
 }
 
 void BrainMode::getCaption(char* buffer, size_t bufferSize) {
@@ -167,6 +168,7 @@ void BrainMode::update() {
         if (state == START_DELAY) {
             if (millis() - stateEnterd >= startDelay) {
                 state = MAIN;
+                playTimeSound();
             }
             return;
         }
@@ -174,7 +176,6 @@ void BrainMode::update() {
             state = START_DELAY;
             startDelay = 500 + rand() % 500;
             stateEnterd = millis();
-            playTimeSound();
             return;
         }
         if (isControlPressed(BUTTON_START) && state == FALSE_START) {
