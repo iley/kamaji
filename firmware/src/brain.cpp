@@ -29,8 +29,8 @@ const char *noLabel = "No";
 const char *emptyLabel = "";
 
 int currentPlayer = -1;
-int startDelay;
 State state = QUESTION;
+unsigned long startDelay;
 unsigned long stateEnterd = millis();
 bool blocked[NUM_PLAYERS];
 
