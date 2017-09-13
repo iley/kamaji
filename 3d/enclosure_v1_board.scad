@@ -159,14 +159,14 @@ speaker_hole_int = 3;
 speaker_hole_w = 1.5;
 speaker_shift = 18;
 
-difference() {
+!difference() {
   union() {
     // board
-    translate([0, 0, -board_h + eps]) {
+    translate([0, 0, -board_h]) {
 	difference() {
-	    cube([box_x, box_y, board_h], false);
+	    cube([box_x, box_y, board_h + eps], false);
 	    translate([board_w, board_w, -eps]) {
-		cube([box_x - 2*board_w, box_y - 2*board_w, board_h + 2*eps], false);
+		cube([box_x - 2*board_w, box_y - 2*board_w, board_h + 3*eps], false);
 	    }
 	}
     }
