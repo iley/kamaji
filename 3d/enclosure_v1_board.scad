@@ -214,9 +214,9 @@ speaker_shift = 18;
       translate([dx,dy,-eps]) {
         cylinder($fn=fn, r=bolt_d/2, h=top_box_z+2*eps);
       }
-      translate([dx, dy, top_box_z - wide_stoiki_h]) {
-        cylinder($fn=6, r=gaika_w / 2 / cos(30) + 0.05, h=wide_stoiki_h+eps);
-        //cylinder($fn=6, r=top_bolt_r, h=top_bolt_h + eps);
+      translate([dx, dy, top_box_z - top_bolt_h]) {
+        //cylinder($fn=6, r=gaika_w / 2 / cos(30) + 0.05, h=wide_stoiki_h+eps);
+        cylinder($fn=6, r=top_bolt_r, h=top_bolt_h + eps);
       }
     }
   }
