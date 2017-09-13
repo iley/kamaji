@@ -82,7 +82,7 @@ void BrainMode::getCaption(char* buffer, size_t bufferSize) {
             snprintf(buffer, bufferSize, "Team %d too early", currentPlayer + 1);
             break;
         case START_DELAY:
-            snprintf(buffer, bufferSize, "Pending", currentPlayer + 1);
+            snprintf(buffer, bufferSize, "Pending %d", currentPlayer + 1);
             break;
     }
 }
