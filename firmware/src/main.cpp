@@ -55,6 +55,7 @@ unsigned long lastPressedMs[BUTTON_COUNT] = {0};
 char caption[DISPLAY_SIZE + 1];
 char lastLeft[DISPLAY_SIZE + 1];
 char lastRight[DISPLAY_SIZE + 1];
+char lastMiddle[DISPLAY_SIZE + 1];
 char lastCaption[DISPLAY_SIZE + 1];
 bool lastLeds[PLAYER_COUNT];
 bool resetStarted = false;
@@ -82,6 +83,11 @@ void setup() {
 #endif
 
   mode->init();
+/*  for (int i = 100; i <= 5000; i += 100) {
+    tone(kSpeakerPin, i, 300);
+    delay(500);
+  }*/
+    tone(kSpeakerPin, NOTE_A7, 300/*ms*/);
 }
 
 void updateScreenAndLeds() {
@@ -89,18 +95,36 @@ void updateScreenAndLeds() {
   mode->getCaption(caption, sizeof(caption));
   const char* left = mode->getLabel(BUTTON_RESET);
   const char* right = mode->getLabel(BUTTON_START);
+  const char* middle = 0;
+  if (VERSION != 0) {
+    middle = mode->getLabel(BUTTON_CONTROL_2);
+  }
   if (strcmp(lastCaption, caption) != 0 || strcmp(lastLeft, left) != 0 ||
-      strcmp(lastRight, right) != 0) {
+      strcmp(lastRight, right) != 0 || VERSION != 0 && strcmp(lastMiddle, middle) != 0) {
     lcd.clear();
     lcd.print(caption);
     lcd.setCursor(/*row=*/0, /*col=*/1);
     // Print button functions on the lower line of the screen.
-    lcd.print(left);
-    const int spaces = DISPLAY_SIZE - strlen(left) - strlen(right);
-    for (int i = 0; i < spaces; ++i) {
-      lcd.print(' ');
+    if (VERSION == 0) {
+      lcd.print(left);
+      const int spaces = DISPLAY_SIZE - strlen(left) - strlen(right);
+      for (int i = 0; i < spaces; ++i) {
+        lcd.print(' ');
+      }
+      lcd.print(right);
+    } else {
+      lcd.print(left);
+      const int spaces = DISPLAY_SIZE - strlen(left) - strlen(right) - strlen(middle);
+      for (int i = 0; i < spaces / 2; ++i) {
+        lcd.print(' ');
+      }
+      lcd.print(middle);
+      for (int i = 0; i < (spaces + 1) / 2; ++i) {
+        lcd.print(' ');
+      }
+      lcd.print(right);      
+      strcpy(lastMiddle, middle);
     }
-    lcd.print(right);
     strcpy(lastLeft, left);
     strcpy(lastRight, right);
     strcpy(lastCaption, caption);

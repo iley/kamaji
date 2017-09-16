@@ -60,7 +60,7 @@ bool BrainMode::getLedState(int playerId) {
 }
 
 bool BrainMode::getLampState() {
-    return state == MAIN || state == SUPPLEMENT || state == FALSE_START;
+    return (state == MAIN || state == SUPPLEMENT) && timeInSeconds() < 2 || state == FALSE_START;
 }
 
 void BrainMode::getCaption(char* buffer, size_t bufferSize) {
@@ -114,7 +114,7 @@ const char* BrainMode::getLabel(int buttonId) {
                 return noLabel;
         }
     }
-    return noLabel;
+    return "";
 }
 
 void BrainMode::update() {

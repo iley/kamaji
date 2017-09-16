@@ -101,7 +101,7 @@ const char* HamsaMode::getLabel(int buttonId) {
                 return noLabel;
         }
     }
-    return noLabel;
+    return "";
 }
 
 void HamsaMode::update() {
