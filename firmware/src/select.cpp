@@ -10,9 +10,9 @@ JeopardyMode jeopardyMode;
 BrainMode brainMode;
 HamsaMode hamsaMode;
 
-const char *left = VERSION == 0 ? "Next" : "<";
-const char *right = VERSION == 0 ? "Select" : ">";
-const char *middle = VERSION == 0 ? "" : "Select";
+const char *left = MIDDLE_BUTTON == 0 ? "Next" : "<";
+const char *right = MIDDLE_BUTTON == 0 ? "Select" : ">";
+const char *middle = MIDDLE_BUTTON == 0 ? "" : "Select";
 const int MODE_COUNT = 3;
 Mode* modes[] = {&jeopardyMode, &brainMode, &hamsaMode};
 const char* ids[] = {"Jeopardy", "Brain", "Hamsa"};
@@ -44,7 +44,7 @@ const char* SelectMode::getLabel(int buttonId) {
 }
 
 void SelectMode::update() {
-    if (VERSION == 0) {
+    if (MIDDLE_BUTTON == 0) {
         if (isControlPressed(BUTTON_RESET)) {
             selectedMode++;
             if (selectedMode == MODE_COUNT) {

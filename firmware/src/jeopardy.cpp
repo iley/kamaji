@@ -134,8 +134,10 @@ void JeopardyMode::getCaption(char* buffer, size_t bufferSize) {
             }
             if (playersBlocked == 0) {
                 printScores(buffer, bufferSize);
-            } else {
+            } else if (SHOW_SCORES == 1) {
                 snprintf(buffer, bufferSize, "%d blocked", playersBlocked);
+            } else {
+                snprintf(buffer, bufferSize, "Read question");
             }
             break;
         case COUNTDOWN:
@@ -172,7 +174,7 @@ const char* JeopardyMode::getLabel(int buttonId) {
             case FIX:
                 return increaseLabel;
         }
-    } else if (buttonId == BUTTON_CONTROL_2 && VERSION != 0) {
+    } else if (buttonId == BUTTON_CONTROL_2 && SHOW_SCORES != 0) {
         switch (state) {
             case ANSWER_TIME_NOT_STARTED:
             case ANSWER_TIME_STARTED:

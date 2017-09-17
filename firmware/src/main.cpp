@@ -96,16 +96,16 @@ void updateScreenAndLeds() {
   const char* left = mode->getLabel(BUTTON_RESET);
   const char* right = mode->getLabel(BUTTON_START);
   const char* middle = 0;
-  if (VERSION != 0) {
+  if (SHOW_SCORES != 0) {
     middle = mode->getLabel(BUTTON_CONTROL_2);
   }
   if (strcmp(lastCaption, caption) != 0 || strcmp(lastLeft, left) != 0 ||
-      strcmp(lastRight, right) != 0 || VERSION != 0 && strcmp(lastMiddle, middle) != 0) {
+      strcmp(lastRight, right) != 0 || SHOW_SCORES != 0 && strcmp(lastMiddle, middle) != 0) {
     lcd.clear();
     lcd.print(caption);
     lcd.setCursor(/*row=*/0, /*col=*/1);
     // Print button functions on the lower line of the screen.
-    if (VERSION == 0) {
+    if (SHOW_SCORES == 0) {
       lcd.print(left);
       const int spaces = DISPLAY_SIZE - strlen(left) - strlen(right);
       for (int i = 0; i < spaces; ++i) {
