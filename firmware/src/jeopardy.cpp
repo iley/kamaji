@@ -8,7 +8,11 @@ namespace {
 
 const int TIME = 7;
 const int DELAY = 3;
+#ifdef JEOPARDY_NUM_PLAYERS
+const int NUM_PLAYERS = JEOPARDY_NUM_PLAYERS;
+#else
 const int NUM_PLAYERS = PLAYER_COUNT;
+#endif
 const int ATTENTION_DELAY = 5;
 
 enum State {
@@ -42,7 +46,7 @@ void nextQuestion() {
     question++;
     if (question == 6) {
         question = 1;
-    }    
+    }
 }
 
 int timeInSeconds() {
