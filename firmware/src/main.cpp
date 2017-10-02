@@ -99,8 +99,10 @@ void updateScreenAndLeds() {
   if (SHOW_SCORES != 0) {
     middle = mode->getLabel(BUTTON_CONTROL_2);
   }
-  if (strcmp(lastCaption, caption) != 0 || strcmp(lastLeft, left) != 0 ||
-      strcmp(lastRight, right) != 0 || SHOW_SCORES != 0 && strcmp(lastMiddle, middle) != 0) {
+  if (strcmp(lastCaption, caption) != 0 ||
+      strcmp(lastLeft, left) != 0 ||
+      strcmp(lastRight, right) != 0 ||
+      (SHOW_SCORES != 0 && strcmp(lastMiddle, middle) != 0)) {
     lcd.clear();
     lcd.print(caption);
     lcd.setCursor(/*row=*/0, /*col=*/1);

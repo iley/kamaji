@@ -131,7 +131,7 @@ void JeopardyMode::getCaption(char* buffer, size_t bufferSize) {
     switch (state) {
         case QUESTION:
         case FIX:
-            for (int i = 0; i < PLAYER_COUNT; i++) {
+            for (int i = 0; i < NUM_PLAYERS; i++) {
                 if (blocked[i]) {
                     playersBlocked++;
                 }
