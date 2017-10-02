@@ -17,7 +17,8 @@ be trivial to compile the code with the official Arduino IDE.
 ## Compilation
 
 * Version 0 (the prototype): `pio run -e v0 -t upload`
-* Version 1: `pio run -e v1 -t program && ./set_fuses.sh`
+* Version 1: `pio run -e v1 -t program`
+* Version 1, 4 Jeopardy players: `pio run -e v1_4players -t program`
 
 ## Hardware
 
