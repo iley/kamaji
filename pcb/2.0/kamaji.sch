@@ -157,12 +157,12 @@ PBTN1
 $Comp
 L VCC #PWR31
 U 1 1 596B3963
-P 8400 4850
-F 0 "#PWR31" H 8400 4700 50  0001 C CNN
-F 1 "VCC" H 8400 5000 50  0000 C CNN
-F 2 "" H 8400 4850 50  0001 C CNN
-F 3 "" H 8400 4850 50  0001 C CNN
-	1    8400 4850
+P 8925 4850
+F 0 "#PWR31" H 8925 4700 50  0001 C CNN
+F 1 "VCC" H 8925 5000 50  0000 C CNN
+F 2 "" H 8925 4850 50  0001 C CNN
+F 3 "" H 8925 4850 50  0001 C CNN
+	1    8925 4850
 	0    1    1    0   
 $EndComp
 $Comp
@@ -1122,8 +1122,6 @@ Wire Wire Line
 Connection ~ 4300 1025
 Wire Wire Line
 	7950 4850 8025 4850
-Wire Wire Line
-	8325 4850 8400 4850
 Text GLabel 4750 2425 2    60   Output ~ 0
 PLED2
 Wire Wire Line
@@ -1232,4 +1230,21 @@ Wire Wire Line
 Wire Wire Line
 	1475 2475 1475 2550
 Connection ~ 1475 2550
+Text Notes 5425 1025 0    60   Italic 0
+TODO: I2C header for a\ndaughter board
+$Comp
+L Jumper_NC_Small JP?
+U 1 1 59DBDD2F
+P 8625 4850
+F 0 "JP?" H 8625 4930 50  0000 C CNN
+F 1 "Power" H 8635 4790 50  0000 C CNN
+F 2 "" H 8625 4850 50  0001 C CNN
+F 3 "" H 8625 4850 50  0001 C CNN
+	1    8625 4850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8325 4850 8525 4850
+Wire Wire Line
+	8725 4850 8925 4850
 $EndSCHEMATC
