@@ -765,26 +765,15 @@ $EndComp
 $Comp
 L R R10
 U 1 1 59994EA2
-P 1700 2475
-F 0 "R10" V 1780 2475 50  0000 C CNN
-F 1 "10K" V 1700 2475 50  0000 C CNN
-F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 1630 2475 50  0001 C CNN
-F 3 "" H 1700 2475 50  0001 C CNN
-	1    1700 2475
+P 1475 2325
+F 0 "R10" V 1555 2325 50  0000 C CNN
+F 1 "10K" V 1475 2325 50  0000 C CNN
+F 2 "Resistors_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 1405 2325 50  0001 C CNN
+F 3 "" H 1475 2325 50  0001 C CNN
+	1    1475 2325
 	1    0    0    -1  
 $EndComp
-$Comp
-L GND #PWR3
-U 1 1 5999504B
-P 1700 2625
-F 0 "#PWR3" H 1700 2375 50  0001 C CNN
-F 1 "GND" H 1700 2475 50  0000 C CNN
-F 2 "" H 1700 2625 50  0001 C CNN
-F 3 "" H 1700 2625 50  0001 C CNN
-	1    1700 2625
-	1    0    0    -1  
-$EndComp
-Text GLabel 1575 2325 0    60   Input ~ 0
+Text GLabel 1250 2550 0    60   Input ~ 0
 RST
 $Comp
 L USB_B USB_IN1
@@ -966,8 +955,6 @@ Text GLabel 4350 1225 2    60   Input ~ 0
 MISO
 Text GLabel 4300 825  1    60   Input ~ 0
 SCK
-Text Notes 625  2650 0    60   Italic 0
-TODO: Check whether\nreset is active HIGH
 $Comp
 L Fuse F?
 U 1 1 59D3D0BE
@@ -1065,9 +1052,6 @@ Wire Wire Line
 Connection ~ 1800 3825
 Connection ~ 1800 3725
 Connection ~ 1800 3625
-Wire Wire Line
-	1575 2325 1800 2325
-Connection ~ 1700 2325
 Wire Wire Line
 	7950 5050 8050 5025
 Wire Wire Line
@@ -1230,4 +1214,22 @@ F 3 "" H 1050 1175 50  0001 C CNN
 	1    1050 1175
 	1    0    0    -1  
 $EndComp
+$Comp
+L VCC #PWR?
+U 1 1 59DBCA86
+P 1475 2175
+F 0 "#PWR?" H 1475 2025 50  0001 C CNN
+F 1 "VCC" H 1475 2325 50  0000 C CNN
+F 2 "" H 1475 2175 50  0001 C CNN
+F 3 "" H 1475 2175 50  0001 C CNN
+	1    1475 2175
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1250 2550 1800 2550
+Wire Wire Line
+	1800 2550 1800 2325
+Wire Wire Line
+	1475 2475 1475 2550
+Connection ~ 1475 2550
 $EndSCHEMATC
