@@ -1,4 +1,5 @@
 EESchema Schematic File Version 2
+LIBS:kamaji-rescue
 LIBS:power
 LIBS:device
 LIBS:transistors
@@ -46,13 +47,11 @@ LIBS:elec-unifil
 LIBS:ESD_Protection
 LIBS:ftdi
 LIBS:gennum
-LIBS:graphic
 LIBS:hc11
 LIBS:intersil
 LIBS:ir
 LIBS:Lattice
 LIBS:leds
-LIBS:logo
 LIBS:maxim
 LIBS:mechanical
 LIBS:microchip_dspic33dsc
@@ -101,7 +100,7 @@ Sheet 1 1
 Title "Quiz Game System"
 Date ""
 Rev "1.0"
-Comp "Dead Man's Bluff Inc."
+Comp ""
 Comment1 "© Ilya Strukov <iley@iley.ru>"
 Comment2 ""
 Comment3 ""
@@ -416,7 +415,7 @@ F 3 "" H 5125 5250 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L LCD-016N002L DS1
+L LCD-016N002L-RESCUE-kamaji DS1
 U 1 1 596C4BC3
 P 6475 2050
 F 0 "DS1" H 5675 2450 50  0000 C CNN
@@ -1070,7 +1069,7 @@ F 3 "" H 9825 3000 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L IRF540N Q1
+L IRF540N-RESCUE-kamaji Q1
 U 1 1 5973C5BD
 P 9650 5450
 F 0 "Q1" H 9900 5525 50  0000 L CNN
