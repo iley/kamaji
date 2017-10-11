@@ -36,10 +36,11 @@
 
 // include the library code:
 #include "Arduino.h"
-#include <LiquidCrystalRus.h>
+#include <Wire.h>
+#include <LiquidCrystal.h>
 
 // initialize the library with the numbers of the interface pins
-LiquidCrystalRus lcd(16, 15, 14, 13, 12, 11, 10);
+LiquidCrystal lcd(12, 11, 10, 9, 8, 7, 6);
 
 void setup() {
   // set up the LCD's number of rows and columns: 
@@ -51,7 +52,18 @@ void setup() {
 void loop() {
   // set the cursor to column 0, line 1
   // (note: line 1 is the second row, since counting begins with 0):
-  lcd.setCursor(0, 1);
+  //lcd.setCursor(0, 1);
   // print the number of seconds since reset:
   lcd.print(millis()/1000);
+  for (int k = 0; k < 5; k++) {
+    for (int i = 0; i < 20; i++) {
+      for (int j = 0; j < 4; j++) {
+        if (k*80+j*20+i > 255)
+          break;
+        lcd.setCursor(i, j);
+        lcd.write((unsigned char)(k*80 + j*20 + i));
+      }
+    }
+    delay(2000);
+  }
 }
