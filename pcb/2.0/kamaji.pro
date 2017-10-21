@@ -1,4 +1,4 @@
-update=2017 October 21, Saturday 13:26:05
+update=2017 October 21, Saturday 15:13:48
 version=1
 last_client=kicad
 [pcbnew]
@@ -60,3 +60,13 @@ LibName28=contrib
 LibName29=valves
 LibName30=kamaji
 LibName31=switches
+[schematic_editor]
+version=1
+PageLayoutDescrFile=
+PlotDirectoryName=
+SubpartIdSeparator=0
+SubpartFirstId=65
+NetFmtName=
+SpiceForceRefPrefix=0
+SpiceUseNetNumbers=0
+LabSize=60

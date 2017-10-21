@@ -1023,7 +1023,7 @@ Text GLabel 4140 1780 2    60   Input ~ 0
 MISO
 Text GLabel 1420 1480 0    60   Input ~ 0
 RESET
-Text GLabel 4180 1580 2    60   Input ~ 0
+Text GLabel 4140 1580 2    60   Input ~ 0
 SCK
 $Comp
 L Jumper JP1
@@ -1355,8 +1355,6 @@ Wire Wire Line
 Wire Wire Line
 	1420 1480 1480 1480
 Wire Wire Line
-	3730 1580 4180 1580
-Wire Wire Line
 	3730 3980 4120 3980
 Wire Wire Line
 	3730 4180 4130 4180
@@ -1373,11 +1371,6 @@ Wire Wire Line
 Wire Wire Line
 	4160 2480 3730 2480
 Wire Wire Line
-	4140 1580 4140 1460
-Wire Wire Line
-	4140 1460 4250 1460
-Connection ~ 4140 1580
-Wire Wire Line
 	4150 3180 3730 3180
 Wire Wire Line
 	4150 3580 3730 3580
@@ -1392,4 +1385,11 @@ F 3 "" H 1480 2680 50  0001 C CNN
 	1    1480 2680
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	3730 1580 4140 1580
+Wire Wire Line
+	4250 1460 4070 1460
+Wire Wire Line
+	4070 1460 4070 1580
+Connection ~ 4070 1580
 $EndSCHEMATC
