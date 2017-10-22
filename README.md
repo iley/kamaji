@@ -12,7 +12,7 @@ Directories:
 
 We use [PlatformIO](http://platformio.org) with
 [Arduino](http://platformio.org/frameworks/arduino) framework. It should also
-be trivial to compile the code with the official Arduino IDE.
+be possible to compile the code with the official Arduino IDE.
 
 ## Compilation
 
@@ -32,8 +32,9 @@ on Mac (and probably Windows), but Linux supports it natively. The screen is a
 V1 uses an ATmega328p running at 8MHz without an external oscillator.
 [USBasp](http://www.fischl.de/usbasp/) can be used for programming.
 
+V2 is going to use ATmega32u4.
+
 
 ## Code style
 
-Let's stick to [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html)
-and use modern C++ features as much as the environment allows.
+Let's stick to [Google C++ Style Guide](https://google.github.io/styleguide/cppguide.html).
