@@ -22,7 +22,7 @@ be possible to compile the code with the official Arduino IDE.
 
 ## Hardware
 
-V0 users an [Arduino Nano](https://store.arduino.cc/arduino-nano) clone based on
+V0 uses an [Arduino Nano](https://store.arduino.cc/arduino-nano) clone based on
 ATmega328 and CH341 usb-to-serial chip. The CH341 requires a [third-party
 driver](https://blog.sengotta.net/signed-mac-os-driver-for-winchiphead-ch340-serial-bridge/)
 on Mac (and probably Windows), but Linux supports it natively. The screen is a
