@@ -1,0 +1,9 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP LCD12864B
+D 12864B Graphics Display 128x64px, parallel or serial, based on ST7920
+K LCD Graphics 128x64 ST7920 12864 12864B
+F https://www.exploreembedded.com/wiki/images/7/77/QC12864B.pdf
+$ENDCMP
+#
+#End Doc Library
