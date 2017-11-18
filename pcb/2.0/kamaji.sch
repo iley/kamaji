@@ -30,6 +30,7 @@ LIBS:contrib
 LIBS:valves
 LIBS:kamaji
 LIBS:switches
+LIBS:kamaji-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -260,96 +261,6 @@ F 3 "" H 9700 4030 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Speaker LS1
-U 1 1 59EB0736
-P 8480 1580
-F 0 "LS1" H 8540 1360 50  0000 R CNN
-F 1 "2W" H 8670 1270 50  0000 R CNN
-F 2 "" H 8480 1380 50  0001 C CNN
-F 3 "" H 8470 1530 50  0001 C CNN
-	1    8480 1580
-	1    0    0    -1  
-$EndComp
-$Comp
-L D D1
-U 1 1 59EB079D
-P 8030 1690
-F 0 "D1" V 8130 1620 50  0000 C CNN
-F 1 "D" V 7910 1630 50  0000 C CNN
-F 2 "" H 8030 1690 50  0001 C CNN
-F 3 "" H 8030 1690 50  0001 C CNN
-	1    8030 1690
-	0    1    1    0   
-$EndComp
-$Comp
-L VCC #PWR09
-U 1 1 59EB08CE
-P 8030 1410
-F 0 "#PWR09" H 8030 1260 50  0001 C CNN
-F 1 "VCC" H 8030 1560 50  0000 C CNN
-F 2 "" H 8030 1410 50  0001 C CNN
-F 3 "" H 8030 1410 50  0001 C CNN
-	1    8030 1410
-	1    0    0    -1  
-$EndComp
-$Comp
-L C C7
-U 1 1 59EB0A92
-P 7780 1690
-F 0 "C7" H 7805 1790 50  0000 L CNN
-F 1 "C" H 7805 1590 50  0000 L CNN
-F 2 "" H 7818 1540 50  0001 C CNN
-F 3 "" H 7780 1690 50  0001 C CNN
-	1    7780 1690
-	1    0    0    -1  
-$EndComp
-$Comp
-L IRLIZ44N Q1
-U 1 1 59EB0BD7
-P 7930 2140
-F 0 "Q1" H 8180 2215 50  0000 L CNN
-F 1 "IRL540N" H 8180 2140 50  0000 L CNN
-F 2 "TO_SOT_Packages_THT:TO-220-3_Horizontal" H 8180 2065 50  0001 L CIN
-F 3 "" H 7930 2140 50  0001 L CNN
-	1    7930 2140
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR010
-U 1 1 59EB0F4B
-P 8030 2340
-F 0 "#PWR010" H 8030 2090 50  0001 C CNN
-F 1 "GND" H 8030 2190 50  0000 C CNN
-F 2 "" H 8030 2340 50  0001 C CNN
-F 3 "" H 8030 2340 50  0001 C CNN
-	1    8030 2340
-	1    0    0    -1  
-$EndComp
-$Comp
-L R R10
-U 1 1 59EB0FF4
-P 7730 2290
-F 0 "R10" V 7810 2290 50  0000 C CNN
-F 1 "10K" V 7730 2290 50  0000 C CNN
-F 2 "" V 7660 2290 50  0001 C CNN
-F 3 "" H 7730 2290 50  0001 C CNN
-	1    7730 2290
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR011
-U 1 1 59EB105E
-P 7730 2440
-F 0 "#PWR011" H 7730 2190 50  0001 C CNN
-F 1 "GND" H 7730 2290 50  0000 C CNN
-F 2 "" H 7730 2440 50  0001 C CNN
-F 3 "" H 7730 2440 50  0001 C CNN
-	1    7730 2440
-	1    0    0    -1  
-$EndComp
-Text GLabel 7650 2140 0    60   Input ~ 0
-SOUND
-$Comp
 L Conn_02x05_Odd_Even J7
 U 1 1 59EB13A5
 P 6350 1390
@@ -362,8 +273,6 @@ F 3 "" H 6350 1390 50  0001 C CNN
 $EndComp
 Text GLabel 6150 1190 0    60   Input ~ 0
 MOSI
-Text Notes 7450 2830 0    60   Italic 0
-TODO: Capacitor value\nfor the low-pass filter
 NoConn ~ 6150 1290
 $Comp
 L VCC #PWR012
@@ -812,18 +721,7 @@ Text GLabel 1420 1480 0    60   Input ~ 0
 RESET
 Text GLabel 4140 1580 2    60   Input ~ 0
 SCK
-$Comp
-L Jumper JP1
-U 1 1 59EB71E9
-P 4550 1460
-F 0 "JP1" H 4550 1610 50  0000 C CNN
-F 1 "Jumper" H 4550 1380 50  0000 C CNN
-F 2 "" H 4550 1460 50  0001 C CNN
-F 3 "" H 4550 1460 50  0001 C CNN
-	1    4550 1460
-	1    0    0    -1  
-$EndComp
-Text GLabel 4850 1460 2    60   Output ~ 0
+Text GLabel 3730 4080 2    60   Output ~ 0
 SOUND
 $Comp
 L C C3
@@ -1021,19 +919,6 @@ Wire Wire Line
 Wire Wire Line
 	9320 3830 9400 3830
 Wire Wire Line
-	7780 1410 8280 1410
-Wire Wire Line
-	8280 1410 8280 1580
-Wire Wire Line
-	7780 1540 7780 1410
-Wire Wire Line
-	8030 1840 8030 1940
-Wire Wire Line
-	8030 1540 8030 1410
-Connection ~ 8030 1410
-Wire Wire Line
-	7650 2140 7730 2140
-Wire Wire Line
 	6650 1290 6650 1590
 Connection ~ 6650 1390
 Connection ~ 6650 1490
@@ -1045,13 +930,6 @@ Wire Wire Line
 	10220 2050 10160 2030
 Wire Wire Line
 	10210 1910 10160 1930
-Wire Wire Line
-	7780 1840 7780 1900
-Wire Wire Line
-	7780 1900 8280 1900
-Connection ~ 8030 1900
-Wire Wire Line
-	8280 1900 8280 1680
 Wire Wire Line
 	1600 7050 1750 7050
 Wire Wire Line
@@ -1132,11 +1010,6 @@ Wire Wire Line
 	4150 3580 3730 3580
 Wire Wire Line
 	3730 1580 4140 1580
-Wire Wire Line
-	4250 1460 4070 1460
-Wire Wire Line
-	4070 1460 4070 1580
-Connection ~ 4070 1580
 Wire Wire Line
 	9450 3630 9960 3630
 Connection ~ 9620 3630
@@ -1337,7 +1210,6 @@ Text GLabel 4170 3980 2    60   Output ~ 0
 LCD_RST
 Wire Wire Line
 	4170 3980 3730 3980
-NoConn ~ 3730 4080
 NoConn ~ 3730 4180
 NoConn ~ 3730 4280
 NoConn ~ 3730 4380
@@ -1404,10 +1276,10 @@ F 3 "" H 6120 5180 50  0001 C CNN
 	1    6120 5180
 	1    0    0    -1  
 $EndComp
-Text Notes 4120 1250 0    60   Italic 0
-Disconnect speaker\nwhen programmimg\nto avoid interference
 Wire Wire Line
 	10940 1730 10760 1730
 Text Notes 10820 1520 2    60   Italic 0
 Break for current\nmeasurement
+Text Notes 7140 2320 0    118  Italic 0
+TODO: Boost converter\nand piezospeaker
 $EndSCHEMATC
