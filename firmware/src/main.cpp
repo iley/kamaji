@@ -176,7 +176,7 @@ bool isControlPressed(int buttonId) {
 }
 
 void playResetSound() {
-  tone(kSpeakerPin, NOTE_D6, 300/*ms*/);
+  tone(kSpeakerPin, NOTE_D6, 1000/*ms*/);
 }
 
 void playPlayerSound() {
@@ -200,7 +200,11 @@ void playStartSound() {
 }
 
 void playAttentionSound() {
-  tone(kSpeakerPin, NOTE_A7, 300/*ms*/);
+  tone(kSpeakerPin, NOTE_F6, 300/*ms*/);
+}
+
+void playTimerSound() {
+  tone(kSpeakerPin, NOTE_F6, 100/*ms*/);
 }
 
 void setMode(Mode *newMode) {

@@ -11,6 +11,7 @@ const int TIME = 60;
 const int TIME_SUPPLEMENT = 20;
 const int NUM_PLAYERS = 2;
 const int DELAY = 3;
+const int BUZZ_SEC = 5;
 
 enum State {
     QUESTION,
@@ -33,9 +34,15 @@ State state = QUESTION;
 unsigned long startDelay;
 unsigned long stateEnterd = millis();
 bool blocked[NUM_PLAYERS];
+bool last10Sec = false;
+int lastSignal = BUZZ_SEC;
 
 int timeInSeconds() {
     return (millis() - stateEnterd) / 1000;
+}
+
+int timeInTenths() {
+    return (millis() - stateEnterd) / 100;
 }
 
 void reset() {
@@ -45,6 +52,8 @@ void reset() {
     for (int i = 0; i < NUM_PLAYERS; i++) {
         blocked[i] = false;
     }
+    last10Sec = false;
+    lastSignal = BUZZ_SEC;
 }
 
 }  // namespace
@@ -60,8 +69,8 @@ bool BrainMode::getLedState(int playerId) {
 }
 
 bool BrainMode::getLampState() {
-    return ((state == MAIN || state == SUPPLEMENT) && timeInSeconds() < 2) ||
-      state == FALSE_START;
+    return ((state == MAIN || state == SUPPLEMENT) && timeInSeconds() < 3) ||
+      (state == FALSE_START && timeInTenths() % 10 < 5);
 }
 
 void BrainMode::getCaption(char* buffer, size_t bufferSize) {
@@ -183,6 +192,8 @@ void BrainMode::update() {
             state = SUPPLEMENT;
             stateEnterd = millis();
             playTimeSound();
+            last10Sec = false;
+            lastSignal = BUZZ_SEC;
             return;
         }
         if (state == MAIN && timeInSeconds() >= TIME) {
@@ -194,6 +205,17 @@ void BrainMode::update() {
             reset();
             playResetSound();
             return;
+        }
+        if (state == MAIN || state == SUPPLEMENT) {
+            int baseSeconds = state == MAIN ? TIME : TIME_SUPPLEMENT;
+            int remaining = baseSeconds - timeInSeconds();
+            if (remaining <= 10 && !last10Sec) {
+                last10Sec = true;
+                playAttentionSound();
+            } else if (remaining <= lastSignal) {
+                lastSignal--;
+                playTimerSound();
+            }
         }
     }
 }
