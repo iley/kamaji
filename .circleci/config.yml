@@ -15,6 +15,4 @@ jobs:
           name: Build
           command: |
             cd firmware
-            pio run -e v0 -t size
-            pio run -e v1 -t size
-            pio run -e v1_4players -t size
+            pio run -e v0 -e v1 -e v1_4players -t size
