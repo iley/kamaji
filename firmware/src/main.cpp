@@ -188,7 +188,7 @@ void playCorrectSound() {
 }
 
 void playFalseStartSound() {
-  tone(kSpeakerPin, NOTE_F7, 1000/*ms*/);
+  tone(kSpeakerPin, NOTE_F7, 500/*ms*/);
 }
 
 void playTimeSound() {

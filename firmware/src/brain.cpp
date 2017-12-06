@@ -12,6 +12,7 @@ const int TIME_SUPPLEMENT = 20;
 const int NUM_PLAYERS = 2;
 const int DELAY = 3;
 const int BUZZ_SEC = 5;
+const int ATTENTION_DELAY = 5;
 
 enum State {
     QUESTION,
@@ -36,6 +37,7 @@ unsigned long stateEnterd = millis();
 bool blocked[NUM_PLAYERS];
 bool last10Sec = false;
 int lastSignal = BUZZ_SEC;
+int lastAttentionSoundPlayed = 3;
 
 int timeInSeconds() {
     return (millis() - stateEnterd) / 1000;
@@ -70,7 +72,8 @@ bool BrainMode::getLedState(int playerId) {
 
 bool BrainMode::getLampState() {
     return ((state == MAIN || state == SUPPLEMENT) && timeInSeconds() < 3) ||
-      (state == FALSE_START && timeInTenths() % 10 < 5);
+      (state == FALSE_START && timeInTenths() % 10 < 5) ||
+      ((state == ANSWER_MAIN || state == ANSWER_SUPPLEMENT) && timeInTenths() >= 100);
 }
 
 void BrainMode::getCaption(char* buffer, size_t bufferSize) {
@@ -129,6 +132,10 @@ const char* BrainMode::getLabel(int buttonId) {
 
 void BrainMode::update() {
     if (state == ANSWER_MAIN || state == ANSWER_SUPPLEMENT) {
+        if (timeInSeconds() - lastAttentionSoundPlayed >= ATTENTION_DELAY) {
+            playAttentionSound();
+            lastAttentionSoundPlayed = timeInSeconds();
+        }
         if (timeInSeconds() == 0) {
             return;
         }
@@ -153,6 +160,7 @@ void BrainMode::update() {
                 if (isPlayerPressed(i) && !blocked[i] && state != FALSE_START) {
                     blocked[i] = true;
                     currentPlayer = i;
+                    lastAttentionSoundPlayed = 3;
                     if (state == MAIN) {
                         state = ANSWER_MAIN;
                         playPlayerSound();
