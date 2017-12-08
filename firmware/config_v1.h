@@ -61,5 +61,7 @@ enum {
   const int kLampPin = 8
 
 #define USE_LAMP 1
+#define SHOW_SCORES 1
+#define MIDDLE_BUTTON 1
 
 #endif  // CONFIG_V1_H
