@@ -49,7 +49,7 @@ const char* num3Label = "3";
 const char* num4Label = "4";
 const char* num5Label = "5";
 
-const char* mainMenu[] = {resetLabel, undoLabel, numPlayersLabel, cancelLabel};
+const char* mainMenu[] = {cancelLabel, resetLabel, undoLabel, numPlayersLabel};
 const char* numPlayerMenu[] = {num2Label, num3Label, num4Label, num5Label};
 
 int currentPlayer = -1;
