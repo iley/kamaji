@@ -83,11 +83,7 @@ void setup() {
 #endif
 
   mode->init();
-/*  for (int i = 100; i <= 5000; i += 100) {
-    tone(kSpeakerPin, i, 300);
-    delay(500);
-  }*/
-    tone(kSpeakerPin, NOTE_A7, 300/*ms*/);
+  tone(kSpeakerPin, NOTE_A7, 300/*ms*/);
 }
 
 void updateScreenAndLeds() {
@@ -124,7 +120,7 @@ void updateScreenAndLeds() {
       for (int i = 0; i < (spaces + 1) / 2; ++i) {
         lcd.print(' ');
       }
-      lcd.print(right);      
+      lcd.print(right);
       strcpy(lastMiddle, middle);
     }
     strcpy(lastLeft, left);
