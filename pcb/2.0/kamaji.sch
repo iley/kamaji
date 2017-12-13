@@ -563,36 +563,6 @@ Text GLabel 9780 5590 0    60   Input ~ 0
 LAMP
 Text Notes 9080 5440 0    60   Italic 0
 USB type A (host)\nfor the signal lamp
-$Comp
-L Conn_01x04_Female J6
-U 1 1 59EBC81D
-P 9720 1520
-F 0 "J6" H 9720 1720 50  0000 C CNN
-F 1 "Daughter board" V 9800 1490 50  0000 C CNN
-F 2 "" H 9720 1520 50  0001 C CNN
-F 3 "" H 9720 1520 50  0001 C CNN
-	1    9720 1520
-	1    0    0    -1  
-$EndComp
-Text GLabel 9480 1620 0    60   Input ~ 0
-I2C_SCL
-Text GLabel 9480 1770 0    60   Input ~ 0
-I2C_SDA
-$Comp
-L GND #PWR34
-U 1 1 59EB4146
-P 8920 1520
-F 0 "#PWR34" H 8920 1270 50  0001 C CNN
-F 1 "GND" H 8920 1370 50  0000 C CNN
-F 2 "" H 8920 1520 50  0001 C CNN
-F 3 "" H 8920 1520 50  0001 C CNN
-	1    8920 1520
-	1    0    0    -1  
-$EndComp
-Text GLabel 3730 2680 2    60   Output ~ 0
-I2C_SCL
-Text GLabel 4200 2780 2    60   Output ~ 0
-I2C_SDA
 Text GLabel 3730 1680 2    60   Output ~ 0
 MOSI
 Text GLabel 3730 4080 2    60   Output ~ 0
@@ -784,17 +754,6 @@ $EndComp
 NoConn ~ 3730 4180
 NoConn ~ 3730 4280
 NoConn ~ 3730 4380
-$Comp
-L VCC #PWR35
-U 1 1 59FA9B58
-P 9520 1420
-F 0 "#PWR35" H 9520 1270 50  0001 C CNN
-F 1 "VCC" H 9520 1570 50  0000 C CNN
-F 2 "" H 9520 1420 50  0001 C CNN
-F 3 "" H 9520 1420 50  0001 C CNN
-	1    9520 1420
-	1    0    0    -1  
-$EndComp
 $Comp
 L VCC #PWR6
 U 1 1 59FAA095
@@ -990,16 +949,6 @@ Wire Wire Line
 Wire Wire Line
 	9780 5590 9870 5590
 Wire Wire Line
-	9480 1770 9520 1770
-Wire Wire Line
-	9520 1770 9520 1720
-Wire Wire Line
-	9520 1620 9480 1620
-Wire Wire Line
-	9520 1520 8920 1520
-Wire Wire Line
-	3730 2780 4200 2780
-Wire Wire Line
 	4140 2980 3730 2980
 Wire Wire Line
 	4150 3380 3730 3380
@@ -1028,8 +977,6 @@ Wire Wire Line
 	6500 3770 6410 3770
 Wire Wire Line
 	6510 4110 6410 4110
-Wire Wire Line
-	3730 2180 5170 2180
 Wire Wire Line
 	1480 1480 1280 1480
 $Comp
@@ -1132,6 +1079,14 @@ SOUND
 Wire Wire Line
 	7970 2900 8910 2900
 Connection ~ 8370 2900
-Text Notes 9080 3720 0    60   Italic 0
+Text Notes 8040 4100 0    98   Italic 0
 TODO: Pick a transistor
+Text Notes 6510 1490 0    98   Italic 0
+TODO: Signal LED
+NoConn ~ 3730 2680
+NoConn ~ 3730 2780
+Text Notes 4800 3270 0    79   Italic 0
+TODO: Check whether there\nis an internap pull-up on LCD_EN
+Wire Wire Line
+	5170 2180 3730 2180
 $EndSCHEMATC
