@@ -136,23 +136,23 @@ $EndComp
 $Comp
 L R R1
 U 1 1 59E8EF8C
-P 1250 2830
-F 0 "R1" V 1200 3010 50  0000 C CNN
-F 1 "22R" V 1250 2830 50  0000 C CNN
-F 2 "" V 1180 2830 50  0001 C CNN
-F 3 "" H 1250 2830 50  0001 C CNN
-	1    1250 2830
+P 1330 2830
+F 0 "R1" V 1230 2830 50  0000 C CNN
+F 1 "22R" V 1330 2830 50  0000 C CNN
+F 2 "" V 1260 2830 50  0001 C CNN
+F 3 "" H 1330 2830 50  0001 C CNN
+	1    1330 2830
 	0    1    1    0   
 $EndComp
 $Comp
 L R R2
 U 1 1 59E8F0DD
-P 1250 2960
-F 0 "R2" V 1330 2960 50  0000 C CNN
-F 1 "22R" V 1250 2960 50  0000 C CNN
-F 2 "" V 1180 2960 50  0001 C CNN
-F 3 "" H 1250 2960 50  0001 C CNN
-	1    1250 2960
+P 1330 2930
+F 0 "R2" V 1410 2930 50  0000 C CNN
+F 1 "22R" V 1330 2930 50  0000 C CNN
+F 2 "" V 1260 2930 50  0001 C CNN
+F 3 "" H 1330 2930 50  0001 C CNN
+	1    1330 2930
 	0    1    1    0   
 $EndComp
 $Comp
@@ -777,11 +777,11 @@ F 3 "" H 5010 3550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Sheet
-S 5170 1920 690  510 
+S 6010 1750 690  510 
 U 5A3154FA
 F0 "Dummy Load" 60
 F1 "dummy_load.sch" 60
-F2 "DUMMY_EN" I L 5170 2180 60 
+F2 "DUMMY_EN" I L 6010 2010 60 
 $EndSheet
 $Comp
 L Conn_02x03_Odd_Even J6
@@ -866,8 +866,6 @@ F 3 "" H 9730 2530 50  0001 C CNN
 $EndComp
 NoConn ~ 3730 2680
 NoConn ~ 3730 2780
-Text Notes 4800 3270 0    79   Italic 0
-TODO: Check whether there\nis an internap pull-up on LCD_EN
 $Comp
 L Jumper_NO_Small JP3
 U 1 1 5A317296
@@ -1028,9 +1026,9 @@ Text Label 4910 1580 0    60   ~ 0
 MOSI
 Text Label 1280 1480 2    60   ~ 0
 RST
-Text Label 1100 2830 2    60   ~ 0
+Text Label 1180 2830 2    60   ~ 0
 USB_D+
-Text Label 1100 2960 2    60   ~ 0
+Text Label 1180 2930 2    60   ~ 0
 USB_D-
 Text Label 2970 5660 2    60   ~ 0
 CBTN1
@@ -1096,10 +1094,6 @@ Connection ~ 2480 4630
 Connection ~ 2580 4630
 Connection ~ 2680 4630
 Wire Wire Line
-	1400 2830 1480 2830
-Wire Wire Line
-	1400 2960 1480 2930
-Wire Wire Line
 	7560 5700 7460 5700
 Wire Wire Line
 	1750 7050 1750 7010
@@ -1154,8 +1148,6 @@ Wire Wire Line
 Wire Wire Line
 	8700 3490 8770 3490
 Wire Wire Line
-	5170 2180 3730 2180
-Wire Wire Line
 	6410 3770 6500 3770
 Wire Wire Line
 	1280 1480 1480 1480
@@ -1182,4 +1174,10 @@ Text Notes 9470 1250 2    39   Italic 0
 Backup power supply\nfor the speaker
 Text Notes 8010 2980 0    59   Italic 0
 Signal LED
+Wire Wire Line
+	3730 2180 5400 2180
+Wire Wire Line
+	5400 2180 5400 2010
+Wire Wire Line
+	5400 2010 6010 2010
 $EndSCHEMATC
