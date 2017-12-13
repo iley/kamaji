@@ -31,11 +31,12 @@ LIBS:valves
 LIBS:kamaji
 LIBS:switches
 LIBS:kamaji-cache
+LIBS:boost-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 1
+Sheet 1 3
 Title "Kamaji"
 Date ""
 Rev "2.0"
@@ -886,25 +887,43 @@ F 3 "" H 9450 3480 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2180 1230 2880 1230
+	2180 1230 2430 1230
+Wire Wire Line
+	2430 1230 2530 1230
+Wire Wire Line
+	2530 1230 2780 1230
+Wire Wire Line
+	2780 1230 2880 1230
 Connection ~ 2430 1230
 Connection ~ 2530 1230
 Connection ~ 2780 1230
 Wire Wire Line
-	1120 1830 1480 1830
+	1120 1830 1300 1830
+Wire Wire Line
+	1300 1830 1480 1830
 Wire Wire Line
 	1480 1830 1480 1880
 Wire Wire Line
-	1120 2130 1480 2130
+	1120 2130 1300 2130
+Wire Wire Line
+	1300 2130 1480 2130
 Wire Wire Line
 	1480 2130 1480 2080
 Connection ~ 1300 2130
 Connection ~ 1300 1830
 Wire Wire Line
-	820  1830 820  2330
+	820  1830 820  2130
+Wire Wire Line
+	820  2130 820  2330
 Connection ~ 820  2130
 Wire Wire Line
-	2230 4630 2780 4630
+	2230 4630 2480 4630
+Wire Wire Line
+	2480 4630 2580 4630
+Wire Wire Line
+	2580 4630 2680 4630
+Wire Wire Line
+	2680 4630 2780 4630
 Connection ~ 2480 4630
 Connection ~ 2580 4630
 Connection ~ 2680 4630
@@ -919,7 +938,11 @@ Wire Wire Line
 Wire Wire Line
 	9320 3830 9400 3830
 Wire Wire Line
-	6650 1290 6650 1590
+	6650 1290 6650 1390
+Wire Wire Line
+	6650 1390 6650 1490
+Wire Wire Line
+	6650 1490 6650 1590
 Connection ~ 6650 1390
 Connection ~ 6650 1490
 Wire Wire Line
@@ -1011,12 +1034,24 @@ Wire Wire Line
 Wire Wire Line
 	3730 1580 4140 1580
 Wire Wire Line
-	9450 3630 9960 3630
+	9450 3630 9620 3630
+Wire Wire Line
+	9620 3630 9700 3630
+Wire Wire Line
+	9700 3630 9790 3630
+Wire Wire Line
+	9790 3630 9960 3630
 Connection ~ 9620 3630
 Connection ~ 9700 3630
 Connection ~ 9790 3630
 Wire Wire Line
-	9450 3330 9960 3330
+	9450 3330 9620 3330
+Wire Wire Line
+	9620 3330 9700 3330
+Wire Wire Line
+	9700 3330 9790 3330
+Wire Wire Line
+	9790 3330 9960 3330
 Connection ~ 9790 3330
 Connection ~ 9700 3330
 Connection ~ 9620 3330
@@ -1077,170 +1112,9 @@ F 3 "" H 5735 6645 60  0001 C CNN
 	1    5760 6670
 	1    0    0    -1  
 $EndComp
-$Comp
-L LCD12864B DS1
-U 1 1 59FA0B49
-P 6620 4580
-F 0 "DS1" H 6290 5330 50  0000 C CNN
-F 1 "LCD12864B" H 6840 5330 50  0000 C CNN
-F 2 "kamaji:LCD12864B" H 6620 3680 50  0001 C CIN
-F 3 "" H 6820 4380 50  0001 C CNN
-	1    6620 4580
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR039
-U 1 1 59FA0CDC
-P 6620 5380
-F 0 "#PWR039" H 6620 5130 50  0001 C CNN
-F 1 "GND" H 6620 5230 50  0000 C CNN
-F 2 "" H 6620 5380 50  0001 C CNN
-F 3 "" H 6620 5380 50  0001 C CNN
-	1    6620 5380
-	1    0    0    -1  
-$EndComp
-$Comp
-L VCC #PWR040
-U 1 1 59FA0DCC
-P 6620 3780
-F 0 "#PWR040" H 6620 3630 50  0001 C CNN
-F 1 "VCC" H 6620 3930 50  0000 C CNN
-F 2 "" H 6620 3780 50  0001 C CNN
-F 3 "" H 6620 3780 50  0001 C CNN
-	1    6620 3780
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	6120 4480 6120 5180
-Connection ~ 6120 4580
-Connection ~ 6120 4680
-Connection ~ 6120 4780
-Connection ~ 6120 4880
-Connection ~ 6120 4980
-Connection ~ 6120 5080
-Text GLabel 5960 4030 0    60   Input ~ 0
-LCD_CS
-Text GLabel 5790 4170 0    60   Input ~ 0
-MOSI
-Text GLabel 6120 4230 0    60   Input ~ 0
-SCK
-NoConn ~ 7120 4030
-$Comp
-L VCC #PWR041
-U 1 1 59FA1D1E
-P 7220 4130
-F 0 "#PWR041" H 7220 3980 50  0001 C CNN
-F 1 "VCC" H 7220 4280 50  0000 C CNN
-F 2 "" H 7220 4130 50  0001 C CNN
-F 3 "" H 7220 4130 50  0001 C CNN
-	1    7220 4130
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7120 4130 7220 4130
-$Comp
-L GND #PWR042
-U 1 1 59FA1E3D
-P 7120 4230
-F 0 "#PWR042" H 7120 3980 50  0001 C CNN
-F 1 "GND" H 7120 4080 50  0000 C CNN
-F 2 "" H 7120 4230 50  0001 C CNN
-F 3 "" H 7120 4230 50  0001 C CNN
-	1    7120 4230
-	1    0    0    -1  
-$EndComp
-$Comp
-L VCC #PWR043
-U 1 1 59FA20D6
-P 7330 4280
-F 0 "#PWR043" H 7330 4130 50  0001 C CNN
-F 1 "VCC" H 7330 4430 50  0000 C CNN
-F 2 "" H 7330 4280 50  0001 C CNN
-F 3 "" H 7330 4280 50  0001 C CNN
-	1    7330 4280
-	1    0    0    -1  
-$EndComp
-$Comp
-L R R17
-U 1 1 59FA2621
-P 7330 4430
-F 0 "R17" V 7250 4430 50  0000 C CNN
-F 1 "10K" V 7330 4430 50  0000 C CNN
-F 2 "" V 7260 4430 50  0001 C CNN
-F 3 "" H 7330 4430 50  0001 C CNN
-	1    7330 4430
-	-1   0    0    1   
-$EndComp
-Text GLabel 7430 4580 2    60   Input ~ 0
-LCD_RST
-$Comp
-L R R9
-U 1 1 59FA4693
-P 6070 3880
-F 0 "R9" V 5990 3880 50  0000 C CNN
-F 1 "10K" V 6070 3880 50  0000 C CNN
-F 2 "" V 6000 3880 50  0001 C CNN
-F 3 "" H 6070 3880 50  0001 C CNN
-	1    6070 3880
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	5960 4030 6120 4030
-Connection ~ 6070 4030
-$Comp
-L VCC #PWR044
-U 1 1 59FA48E4
-P 6070 3730
-F 0 "#PWR044" H 6070 3580 50  0001 C CNN
-F 1 "VCC" H 6070 3880 50  0000 C CNN
-F 2 "" H 6070 3730 50  0001 C CNN
-F 3 "" H 6070 3730 50  0001 C CNN
-	1    6070 3730
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	6120 4130 5840 4130
-Wire Wire Line
-	5840 4130 5840 4170
-Wire Wire Line
-	5840 4170 5790 4170
-Text GLabel 3730 3880 2    60   Output ~ 0
-LCD_CS
-Text GLabel 4170 3980 2    60   Output ~ 0
-LCD_RST
-Wire Wire Line
-	4170 3980 3730 3980
 NoConn ~ 3730 4180
 NoConn ~ 3730 4280
 NoConn ~ 3730 4380
-NoConn ~ 7120 5030
-$Comp
-L R R18
-U 1 1 59FA8893
-P 7270 5080
-F 0 "R18" V 7190 5080 50  0000 C CNN
-F 1 "10K" V 7270 5080 50  0000 C CNN
-F 2 "" V 7200 5080 50  0001 C CNN
-F 3 "" H 7270 5080 50  0001 C CNN
-	1    7270 5080
-	-1   0    0    1   
-$EndComp
-$Comp
-L GND #PWR045
-U 1 1 59FA8954
-P 7270 5230
-F 0 "#PWR045" H 7270 4980 50  0001 C CNN
-F 1 "GND" H 7270 5080 50  0000 C CNN
-F 2 "" H 7270 5230 50  0001 C CNN
-F 3 "" H 7270 5230 50  0001 C CNN
-	1    7270 5230
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7120 4580 7430 4580
-Connection ~ 7330 4580
-Wire Wire Line
-	7120 4930 7270 4930
 $Comp
 L VCC #PWR046
 U 1 1 59FA9B58
@@ -1263,25 +1137,10 @@ F 3 "" H 1480 1180 50  0001 C CNN
 	1    1480 1180
 	1    0    0    -1  
 $EndComp
-Text Notes 5000 4900 0    60   Italic 0
-ST7920-based LCD\ndisplay in serial mode
-$Comp
-L GND #PWR?
-U 1 1 59FAAD89
-P 6120 5180
-F 0 "#PWR?" H 6120 4930 50  0001 C CNN
-F 1 "GND" H 6120 5030 50  0000 C CNN
-F 2 "" H 6120 5180 50  0001 C CNN
-F 3 "" H 6120 5180 50  0001 C CNN
-	1    6120 5180
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	10940 1730 10760 1730
 Text Notes 10820 1520 2    60   Italic 0
 Break for current\nmeasurement
-Text Notes 7140 2320 0    118  Italic 0
-TODO: Boost converter\nand piezospeaker
 $Comp
 L C C?
 U 1 1 5A15E885
@@ -1315,4 +1174,77 @@ F 3 "" H 1620 4860 50  0001 C CNN
 	1    1620 4860
 	1    0    0    -1  
 $EndComp
+$Sheet
+S 7660 1800 900  720 
+U 5A30C66D
+F0 "Boost Converter" 60
+F1 "boost_converter.sch" 60
+F2 "BOOST_VOUT" O R 8560 2140 60 
+$EndSheet
+$Comp
+L +28V #PWR?
+U 1 1 5A30EB28
+P 8670 2140
+F 0 "#PWR?" H 8670 1990 50  0001 C CNN
+F 1 "+28V" H 8670 2290 50  0000 C CNN
+F 2 "" H 8920 2190 50  0001 C CNN
+F 3 "" H 8920 2190 50  0001 C CNN
+	1    8670 2140
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	8670 2140 8560 2140
+$Sheet
+S 5190 3490 1220 960 
+U 5A311024
+F0 "Display" 60
+F1 "display.sch" 60
+F2 "LCD_SCK" I R 6410 3770 60 
+F3 "LCD_MOSI" I R 6410 4110 60 
+F4 "LCD_RST" I L 5190 4220 60 
+F5 "LCD_CS" I L 5190 3880 60 
+$EndSheet
+$Comp
+L R R?
+U 1 1 5A312BDF
+P 5010 3700
+F 0 "R?" V 5090 3700 50  0000 C CNN
+F 1 "10K" V 5010 3700 50  0000 C CNN
+F 2 "" V 4940 3700 50  0001 C CNN
+F 3 "" H 5010 3700 50  0001 C CNN
+	1    5010 3700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3730 3880 5010 3880
+Wire Wire Line
+	5010 3880 5190 3880
+Wire Wire Line
+	5010 3880 5010 3850
+Connection ~ 5010 3880
+$Comp
+L VCC #PWR?
+U 1 1 5A3130F9
+P 5010 3550
+F 0 "#PWR?" H 5010 3400 50  0001 C CNN
+F 1 "VCC" H 5010 3700 50  0000 C CNN
+F 2 "" H 5010 3550 50  0001 C CNN
+F 3 "" H 5010 3550 50  0001 C CNN
+	1    5010 3550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3730 3980 5010 3980
+Wire Wire Line
+	5010 3980 5010 4220
+Wire Wire Line
+	5010 4220 5190 4220
+Text GLabel 6510 4110 2    60   Input ~ 0
+MOSI
+Text GLabel 6500 3770 2    60   Input ~ 0
+SCK
+Wire Wire Line
+	6500 3770 6410 3770
+Wire Wire Line
+	6510 4110 6410 4110
 $EndSCHEMATC
