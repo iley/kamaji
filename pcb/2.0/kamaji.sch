@@ -36,7 +36,7 @@ EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 3
+Sheet 1 4
 Title "Kamaji"
 Date ""
 Rev "2.0"
@@ -55,17 +55,6 @@ F 1 "ATMEGA32U4-AU" H 3330 1530 50  0000 C CNN
 F 2 "Housings_QFP:TQFP-44_10x10mm_Pitch0.8mm" H 2630 3030 50  0001 C CIN
 F 3 "" H 3730 4130 50  0001 C CNN
 	1    2630 3030
-	1    0    0    -1  
-$EndComp
-$Comp
-L R R3
-U 1 1 59E6611C
-P 1480 1330
-F 0 "R3" V 1560 1330 50  0000 C CNN
-F 1 "10K" V 1480 1330 50  0000 C CNN
-F 2 "" V 1410 1330 50  0001 C CNN
-F 3 "" H 1480 1330 50  0001 C CNN
-	1    1480 1330
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -193,116 +182,8 @@ F 3 "" H 1480 3380 50  0001 C CNN
 	1    1480 3380
 	1    0    0    -1  
 $EndComp
-$Comp
-L R R14
-U 1 1 59EB01C4
-P 9790 3480
-F 0 "R14" V 9870 3480 50  0000 C CNN
-F 1 "200R" V 9790 3480 50  0000 C CNN
-F 2 "" V 9720 3480 50  0001 C CNN
-F 3 "" H 9790 3480 50  0001 C CNN
-	1    9790 3480
-	1    0    0    -1  
-$EndComp
-$Comp
-L VCC #PWR06
-U 1 1 59EB02B1
-P 9700 3330
-F 0 "#PWR06" H 9700 3180 50  0001 C CNN
-F 1 "VCC" H 9700 3480 50  0000 C CNN
-F 2 "" H 9700 3330 50  0001 C CNN
-F 3 "" H 9700 3330 50  0001 C CNN
-	1    9700 3330
-	1    0    0    -1  
-$EndComp
-$Comp
-L IRLIZ44N Q2
-U 1 1 59EB0368
-P 9600 3830
-F 0 "Q2" H 9850 3905 50  0000 L CNN
-F 1 "IRL540N" H 9850 3830 50  0000 L CNN
-F 2 "TO_SOT_Packages_THT:TO-220-3_Horizontal" H 9850 3755 50  0001 L CIN
-F 3 "" H 9600 3830 50  0001 L CNN
-	1    9600 3830
-	1    0    0    -1  
-$EndComp
-Text GLabel 9320 3830 0    60   Input ~ 0
-DUMMY
-$Comp
-L R R11
-U 1 1 59EB0444
-P 9400 3980
-F 0 "R11" V 9480 3980 50  0000 C CNN
-F 1 "10K" V 9400 3980 50  0000 C CNN
-F 2 "" V 9330 3980 50  0001 C CNN
-F 3 "" H 9400 3980 50  0001 C CNN
-	1    9400 3980
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR07
-U 1 1 59EB04F8
-P 9400 4130
-F 0 "#PWR07" H 9400 3880 50  0001 C CNN
-F 1 "GND" H 9400 3980 50  0000 C CNN
-F 2 "" H 9400 4130 50  0001 C CNN
-F 3 "" H 9400 4130 50  0001 C CNN
-	1    9400 4130
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR08
-U 1 1 59EB052B
-P 9700 4030
-F 0 "#PWR08" H 9700 3780 50  0001 C CNN
-F 1 "GND" H 9700 3880 50  0000 C CNN
-F 2 "" H 9700 4030 50  0001 C CNN
-F 3 "" H 9700 4030 50  0001 C CNN
-	1    9700 4030
-	1    0    0    -1  
-$EndComp
-$Comp
-L Conn_02x05_Odd_Even J7
-U 1 1 59EB13A5
-P 6350 1390
-F 0 "J7" H 6400 1690 50  0000 C CNN
-F 1 "ICSP" H 6400 1090 50  0000 C CNN
-F 2 "" H 6350 1390 50  0001 C CNN
-F 3 "" H 6350 1390 50  0001 C CNN
-	1    6350 1390
-	1    0    0    -1  
-$EndComp
-Text GLabel 6150 1190 0    60   Input ~ 0
+Text GLabel 4910 1580 2    60   Input ~ 0
 MOSI
-NoConn ~ 6150 1290
-$Comp
-L VCC #PWR012
-U 1 1 59EB2DF7
-P 6650 1190
-F 0 "#PWR012" H 6650 1040 50  0001 C CNN
-F 1 "VCC" H 6650 1340 50  0000 C CNN
-F 2 "" H 6650 1190 50  0001 C CNN
-F 3 "" H 6650 1190 50  0001 C CNN
-	1    6650 1190
-	1    0    0    -1  
-$EndComp
-$Comp
-L GND #PWR013
-U 1 1 59EB2E6D
-P 6650 1590
-F 0 "#PWR013" H 6650 1340 50  0001 C CNN
-F 1 "GND" H 6650 1440 50  0000 C CNN
-F 2 "" H 6650 1590 50  0001 C CNN
-F 3 "" H 6650 1590 50  0001 C CNN
-	1    6650 1590
-	1    0    0    -1  
-$EndComp
-Text GLabel 6150 1390 0    60   Output ~ 0
-RESET
-Text GLabel 5790 1490 0    60   Output ~ 0
-SCK
-Text GLabel 6150 1590 0    60   Output ~ 0
-MISO
 $Comp
 L USB_B J8
 U 1 1 59EB3731
@@ -340,8 +221,6 @@ F 3 "" H 10940 1430 50  0001 C CNN
 	1    10940 1430
 	1    0    0    -1  
 $EndComp
-Text Notes 8140 3690 0    60   Italic 0
-Dummy load to make sure\npowerbanks don't shut off\npower due to low current
 Text Notes 9480 2740 0    60   Italic 0
 USB type B (device) for\npower and programming
 $Comp
@@ -687,27 +566,27 @@ USB type A (host)\nfor the signal lamp
 $Comp
 L Conn_01x04_Female J6
 U 1 1 59EBC81D
-P 6160 2510
-F 0 "J6" H 6160 2710 50  0000 C CNN
-F 1 "Daughter board" V 6240 2480 50  0000 C CNN
-F 2 "" H 6160 2510 50  0001 C CNN
-F 3 "" H 6160 2510 50  0001 C CNN
-	1    6160 2510
+P 6220 5420
+F 0 "J6" H 6220 5620 50  0000 C CNN
+F 1 "Daughter board" V 6300 5390 50  0000 C CNN
+F 2 "" H 6220 5420 50  0001 C CNN
+F 3 "" H 6220 5420 50  0001 C CNN
+	1    6220 5420
 	1    0    0    -1  
 $EndComp
-Text GLabel 5920 2610 0    60   Input ~ 0
+Text GLabel 5980 5520 0    60   Input ~ 0
 I2C_SCL
-Text GLabel 5920 2760 0    60   Input ~ 0
+Text GLabel 5980 5670 0    60   Input ~ 0
 I2C_SDA
 $Comp
 L GND #PWR033
 U 1 1 59EB4146
-P 5360 2510
-F 0 "#PWR033" H 5360 2260 50  0001 C CNN
-F 1 "GND" H 5360 2360 50  0000 C CNN
-F 2 "" H 5360 2510 50  0001 C CNN
-F 3 "" H 5360 2510 50  0001 C CNN
-	1    5360 2510
+P 5420 5420
+F 0 "#PWR033" H 5420 5170 50  0001 C CNN
+F 1 "GND" H 5420 5270 50  0000 C CNN
+F 2 "" H 5420 5420 50  0001 C CNN
+F 3 "" H 5420 5420 50  0001 C CNN
+	1    5420 5420
 	1    0    0    -1  
 $EndComp
 Text GLabel 3730 2680 2    60   Output ~ 0
@@ -716,12 +595,6 @@ Text GLabel 4200 2780 2    60   Output ~ 0
 I2C_SDA
 Text GLabel 3730 1680 2    60   Output ~ 0
 MOSI
-Text GLabel 4140 1780 2    60   Input ~ 0
-MISO
-Text GLabel 1420 1480 0    60   Input ~ 0
-RESET
-Text GLabel 4140 1580 2    60   Input ~ 0
-SCK
 Text GLabel 3730 4080 2    60   Output ~ 0
 SOUND
 $Comp
@@ -820,8 +693,6 @@ Text GLabel 4150 3580 2    60   Input ~ 0
 CBTN2
 Text GLabel 3730 3680 2    60   Input ~ 0
 CBTN3
-Text GLabel 4150 2180 2    60   Input ~ 0
-DUMMY
 Text GLabel 3730 2880 2    60   Input ~ 0
 PBTN1
 Text GLabel 4140 2980 2    60   Output ~ 0
@@ -853,208 +724,6 @@ F 3 "" H 1480 2680 50  0001 C CNN
 	1    1480 2680
 	1    0    0    -1  
 $EndComp
-$Comp
-L R R13
-U 1 1 59ED0CE8
-P 9620 3480
-F 0 "R13" V 9700 3480 50  0000 C CNN
-F 1 "200R" V 9620 3480 50  0000 C CNN
-F 2 "" V 9550 3480 50  0001 C CNN
-F 3 "" H 9620 3480 50  0001 C CNN
-	1    9620 3480
-	1    0    0    -1  
-$EndComp
-$Comp
-L R R15
-U 1 1 59ED0EE2
-P 9960 3480
-F 0 "R15" V 10040 3480 50  0000 C CNN
-F 1 "200R" V 9960 3480 50  0000 C CNN
-F 2 "" V 9890 3480 50  0001 C CNN
-F 3 "" H 9960 3480 50  0001 C CNN
-	1    9960 3480
-	1    0    0    -1  
-$EndComp
-$Comp
-L R R12
-U 1 1 59ED0F8D
-P 9450 3480
-F 0 "R12" V 9530 3480 50  0000 C CNN
-F 1 "200R" V 9450 3480 50  0000 C CNN
-F 2 "" V 9380 3480 50  0001 C CNN
-F 3 "" H 9450 3480 50  0001 C CNN
-	1    9450 3480
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2180 1230 2430 1230
-Wire Wire Line
-	2430 1230 2530 1230
-Wire Wire Line
-	2530 1230 2780 1230
-Wire Wire Line
-	2780 1230 2880 1230
-Connection ~ 2430 1230
-Connection ~ 2530 1230
-Connection ~ 2780 1230
-Wire Wire Line
-	1120 1830 1300 1830
-Wire Wire Line
-	1300 1830 1480 1830
-Wire Wire Line
-	1480 1830 1480 1880
-Wire Wire Line
-	1120 2130 1300 2130
-Wire Wire Line
-	1300 2130 1480 2130
-Wire Wire Line
-	1480 2130 1480 2080
-Connection ~ 1300 2130
-Connection ~ 1300 1830
-Wire Wire Line
-	820  1830 820  2130
-Wire Wire Line
-	820  2130 820  2330
-Connection ~ 820  2130
-Wire Wire Line
-	2230 4630 2480 4630
-Wire Wire Line
-	2480 4630 2580 4630
-Wire Wire Line
-	2580 4630 2680 4630
-Wire Wire Line
-	2680 4630 2780 4630
-Connection ~ 2480 4630
-Connection ~ 2580 4630
-Connection ~ 2680 4630
-Wire Wire Line
-	1400 2830 1480 2830
-Wire Wire Line
-	1020 2830 1100 2830
-Wire Wire Line
-	1020 2960 1100 2960
-Wire Wire Line
-	1400 2960 1480 2930
-Wire Wire Line
-	9320 3830 9400 3830
-Wire Wire Line
-	6650 1290 6650 1390
-Wire Wire Line
-	6650 1390 6650 1490
-Wire Wire Line
-	6650 1490 6650 1590
-Connection ~ 6650 1390
-Connection ~ 6650 1490
-Wire Wire Line
-	6150 1490 5790 1490
-Wire Wire Line
-	9860 2330 9760 2330
-Wire Wire Line
-	10220 2050 10160 2030
-Wire Wire Line
-	10210 1910 10160 1930
-Wire Wire Line
-	1600 7050 1750 7050
-Wire Wire Line
-	1750 7050 1750 7010
-Wire Wire Line
-	1630 7260 1650 7260
-Wire Wire Line
-	1950 7260 1950 7010
-Wire Wire Line
-	2540 7060 2690 7060
-Wire Wire Line
-	2690 7060 2690 7020
-Wire Wire Line
-	2570 7270 2590 7270
-Wire Wire Line
-	2890 7270 2890 7020
-Wire Wire Line
-	3490 7060 3640 7060
-Wire Wire Line
-	3640 7060 3640 7020
-Wire Wire Line
-	3520 7270 3540 7270
-Wire Wire Line
-	3840 7270 3840 7020
-Wire Wire Line
-	4450 7060 4600 7060
-Wire Wire Line
-	4600 7060 4600 7020
-Wire Wire Line
-	4480 7270 4500 7270
-Wire Wire Line
-	4800 7270 4800 7020
-Wire Wire Line
-	5460 7060 5610 7060
-Wire Wire Line
-	5610 7060 5610 7020
-Wire Wire Line
-	5490 7270 5510 7270
-Wire Wire Line
-	5810 7270 5810 7020
-Wire Wire Line
-	1730 5910 1790 5910
-Wire Wire Line
-	2960 5910 3020 5910
-Wire Wire Line
-	4140 5910 4200 5910
-Wire Wire Line
-	10170 5250 10170 5390
-Wire Wire Line
-	9780 5590 9870 5590
-Wire Wire Line
-	5920 2760 5960 2760
-Wire Wire Line
-	5960 2760 5960 2710
-Wire Wire Line
-	5960 2610 5920 2610
-Wire Wire Line
-	5960 2510 5360 2510
-Wire Wire Line
-	3730 2780 4200 2780
-Wire Wire Line
-	4140 1780 3730 1780
-Wire Wire Line
-	1420 1480 1480 1480
-Wire Wire Line
-	4150 2180 3730 2180
-Wire Wire Line
-	4140 2980 3730 2980
-Wire Wire Line
-	4150 3380 3730 3380
-Wire Wire Line
-	4140 1980 3730 1980
-Wire Wire Line
-	4160 2480 3730 2480
-Wire Wire Line
-	4150 3180 3730 3180
-Wire Wire Line
-	4150 3580 3730 3580
-Wire Wire Line
-	3730 1580 4140 1580
-Wire Wire Line
-	9450 3630 9620 3630
-Wire Wire Line
-	9620 3630 9700 3630
-Wire Wire Line
-	9700 3630 9790 3630
-Wire Wire Line
-	9790 3630 9960 3630
-Connection ~ 9620 3630
-Connection ~ 9700 3630
-Connection ~ 9790 3630
-Wire Wire Line
-	9450 3330 9620 3330
-Wire Wire Line
-	9620 3330 9700 3330
-Wire Wire Line
-	9700 3330 9790 3330
-Wire Wire Line
-	9790 3330 9960 3330
-Connection ~ 9790 3330
-Connection ~ 9700 3330
-Connection ~ 9620 3330
 Text Notes 2160 5720 0    60   Italic 0
 Control buttons use the internal pull-ups
 $Comp
@@ -1118,27 +787,25 @@ NoConn ~ 3730 4380
 $Comp
 L VCC #PWR046
 U 1 1 59FA9B58
-P 5960 2410
-F 0 "#PWR046" H 5960 2260 50  0001 C CNN
-F 1 "VCC" H 5960 2560 50  0000 C CNN
-F 2 "" H 5960 2410 50  0001 C CNN
-F 3 "" H 5960 2410 50  0001 C CNN
-	1    5960 2410
+P 6020 5320
+F 0 "#PWR046" H 6020 5170 50  0001 C CNN
+F 1 "VCC" H 6020 5470 50  0000 C CNN
+F 2 "" H 6020 5320 50  0001 C CNN
+F 3 "" H 6020 5320 50  0001 C CNN
+	1    6020 5320
 	1    0    0    -1  
 $EndComp
 $Comp
 L VCC #PWR047
 U 1 1 59FAA095
-P 1480 1180
-F 0 "#PWR047" H 1480 1030 50  0001 C CNN
-F 1 "VCC" H 1480 1330 50  0000 C CNN
-F 2 "" H 1480 1180 50  0001 C CNN
-F 3 "" H 1480 1180 50  0001 C CNN
-	1    1480 1180
+P 1390 1180
+F 0 "#PWR047" H 1390 1030 50  0001 C CNN
+F 1 "VCC" H 1390 1330 50  0000 C CNN
+F 2 "" H 1390 1180 50  0001 C CNN
+F 3 "" H 1390 1180 50  0001 C CNN
+	1    1390 1180
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	10940 1730 10760 1730
 Text Notes 10820 1520 2    60   Italic 0
 Break for current\nmeasurement
 $Comp
@@ -1175,25 +842,23 @@ F 3 "" H 1620 4860 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Sheet
-S 7660 1800 900  720 
+S 7660 1800 740  500 
 U 5A30C66D
 F0 "Boost Converter" 60
 F1 "boost_converter.sch" 60
-F2 "BOOST_VOUT" O R 8560 2140 60 
+F2 "BOOST_VOUT" O R 8400 2060 60 
 $EndSheet
 $Comp
 L +28V #PWR?
 U 1 1 5A30EB28
-P 8670 2140
-F 0 "#PWR?" H 8670 1990 50  0001 C CNN
-F 1 "+28V" H 8670 2290 50  0000 C CNN
-F 2 "" H 8920 2190 50  0001 C CNN
-F 3 "" H 8920 2190 50  0001 C CNN
-	1    8670 2140
+P 8560 2060
+F 0 "#PWR?" H 8560 1910 50  0001 C CNN
+F 1 "+28V" H 8560 2210 50  0000 C CNN
+F 2 "" H 8810 2110 50  0001 C CNN
+F 3 "" H 8810 2110 50  0001 C CNN
+	1    8560 2060
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	8670 2140 8560 2140
 $Sheet
 S 5190 3490 1220 960 
 U 5A311024
@@ -1215,13 +880,6 @@ F 3 "" H 5010 3700 50  0001 C CNN
 	1    5010 3700
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	3730 3880 5010 3880
-Wire Wire Line
-	5010 3880 5190 3880
-Wire Wire Line
-	5010 3880 5010 3850
-Connection ~ 5010 3880
 $Comp
 L VCC #PWR?
 U 1 1 5A3130F9
@@ -1233,18 +891,207 @@ F 3 "" H 5010 3550 50  0001 C CNN
 	1    5010 3550
 	1    0    0    -1  
 $EndComp
+Text GLabel 6510 4110 2    60   Input ~ 0
+MOSI
+Text GLabel 6500 3770 2    60   Input ~ 0
+SCK
+$Sheet
+S 5170 1920 690  510 
+U 5A3154FA
+F0 "Dummy Load" 60
+F1 "dummy_load.sch" 60
+F2 "DUMMY_EN" I L 5170 2180 60 
+$EndSheet
+Wire Wire Line
+	2180 1230 2880 1230
+Connection ~ 2430 1230
+Connection ~ 2530 1230
+Connection ~ 2780 1230
+Wire Wire Line
+	1120 1830 1480 1830
+Wire Wire Line
+	1480 1830 1480 1880
+Wire Wire Line
+	1120 2130 1480 2130
+Wire Wire Line
+	1480 2130 1480 2080
+Connection ~ 1300 2130
+Connection ~ 1300 1830
+Wire Wire Line
+	820  1830 820  2330
+Connection ~ 820  2130
+Wire Wire Line
+	2230 4630 2780 4630
+Connection ~ 2480 4630
+Connection ~ 2580 4630
+Connection ~ 2680 4630
+Wire Wire Line
+	1400 2830 1480 2830
+Wire Wire Line
+	1020 2830 1100 2830
+Wire Wire Line
+	1020 2960 1100 2960
+Wire Wire Line
+	1400 2960 1480 2930
+Wire Wire Line
+	9860 2330 9760 2330
+Wire Wire Line
+	10220 2050 10160 2030
+Wire Wire Line
+	10210 1910 10160 1930
+Wire Wire Line
+	1600 7050 1750 7050
+Wire Wire Line
+	1750 7050 1750 7010
+Wire Wire Line
+	1630 7260 1650 7260
+Wire Wire Line
+	1950 7260 1950 7010
+Wire Wire Line
+	2540 7060 2690 7060
+Wire Wire Line
+	2690 7060 2690 7020
+Wire Wire Line
+	2570 7270 2590 7270
+Wire Wire Line
+	2890 7270 2890 7020
+Wire Wire Line
+	3490 7060 3640 7060
+Wire Wire Line
+	3640 7060 3640 7020
+Wire Wire Line
+	3520 7270 3540 7270
+Wire Wire Line
+	3840 7270 3840 7020
+Wire Wire Line
+	4450 7060 4600 7060
+Wire Wire Line
+	4600 7060 4600 7020
+Wire Wire Line
+	4480 7270 4500 7270
+Wire Wire Line
+	4800 7270 4800 7020
+Wire Wire Line
+	5460 7060 5610 7060
+Wire Wire Line
+	5610 7060 5610 7020
+Wire Wire Line
+	5490 7270 5510 7270
+Wire Wire Line
+	5810 7270 5810 7020
+Wire Wire Line
+	1730 5910 1790 5910
+Wire Wire Line
+	2960 5910 3020 5910
+Wire Wire Line
+	4140 5910 4200 5910
+Wire Wire Line
+	10170 5250 10170 5390
+Wire Wire Line
+	9780 5590 9870 5590
+Wire Wire Line
+	5980 5670 6020 5670
+Wire Wire Line
+	6020 5670 6020 5620
+Wire Wire Line
+	6020 5520 5980 5520
+Wire Wire Line
+	6020 5420 5420 5420
+Wire Wire Line
+	3730 2780 4200 2780
+Wire Wire Line
+	4140 2980 3730 2980
+Wire Wire Line
+	4150 3380 3730 3380
+Wire Wire Line
+	4140 1980 3730 1980
+Wire Wire Line
+	4160 2480 3730 2480
+Wire Wire Line
+	4150 3180 3730 3180
+Wire Wire Line
+	4150 3580 3730 3580
+Wire Wire Line
+	10940 1730 10760 1730
+Wire Wire Line
+	3730 3880 5190 3880
+Wire Wire Line
+	5010 3880 5010 3850
+Connection ~ 5010 3880
 Wire Wire Line
 	3730 3980 5010 3980
 Wire Wire Line
 	5010 3980 5010 4220
 Wire Wire Line
 	5010 4220 5190 4220
-Text GLabel 6510 4110 2    60   Input ~ 0
-MOSI
-Text GLabel 6500 3770 2    60   Input ~ 0
-SCK
 Wire Wire Line
 	6500 3770 6410 3770
 Wire Wire Line
 	6510 4110 6410 4110
+Wire Wire Line
+	8400 2060 8560 2060
+Wire Wire Line
+	3730 2180 5170 2180
+Wire Wire Line
+	1480 1480 1280 1480
+$Comp
+L Conn_02x03_Odd_Even J?
+U 1 1 5A31A7A1
+P 4610 1580
+F 0 "J?" H 4660 1780 50  0000 C CNN
+F 1 "ICSP" H 4660 1380 50  0000 C CNN
+F 2 "" H 4610 1580 50  0001 C CNN
+F 3 "" H 4610 1580 50  0001 C CNN
+	1    4610 1580
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3730 1580 4410 1580
+Text Label 4200 1480 0    60   ~ 0
+MISO
+Text Label 4230 1580 0    60   ~ 0
+SCK
+$Comp
+L R R3
+U 1 1 59E6611C
+P 1390 1330
+F 0 "R3" V 1470 1330 50  0000 C CNN
+F 1 "10K" V 1390 1330 50  0000 C CNN
+F 2 "" V 1320 1330 50  0001 C CNN
+F 3 "" H 1390 1330 50  0001 C CNN
+	1    1390 1330
+	1    0    0    -1  
+$EndComp
+Text GLabel 4410 1680 0    60   Output ~ 0
+RST
+Wire Wire Line
+	3730 1780 4110 1780
+Wire Wire Line
+	4110 1780 4110 1480
+Wire Wire Line
+	4110 1480 4410 1480
+Text GLabel 1280 1480 0    60   Input ~ 0
+RST
+$Comp
+L VCC #PWR?
+U 1 1 5A31C798
+P 4910 1480
+F 0 "#PWR?" H 4910 1330 50  0001 C CNN
+F 1 "VCC" H 4910 1630 50  0000 C CNN
+F 2 "" H 4910 1480 50  0001 C CNN
+F 3 "" H 4910 1480 50  0001 C CNN
+	1    4910 1480
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR?
+U 1 1 5A31CC00
+P 4910 1680
+F 0 "#PWR?" H 4910 1430 50  0001 C CNN
+F 1 "GND" H 4910 1530 50  0000 C CNN
+F 2 "" H 4910 1680 50  0001 C CNN
+F 3 "" H 4910 1680 50  0001 C CNN
+	1    4910 1680
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
