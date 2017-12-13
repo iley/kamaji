@@ -31,7 +31,6 @@ LIBS:valves
 LIBS:kamaji
 LIBS:switches
 LIBS:kamaji-cache
-LIBS:boost-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
@@ -801,21 +800,21 @@ F 3 "" H 1620 4860 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Sheet
-S 7230 2640 740  500 
+S 8130 2380 740  500 
 U 5A30C66D
 F0 "Boost Converter" 60
 F1 "boost_converter.sch" 60
-F2 "BOOST_VOUT" O R 7970 2900 60 
+F2 "BOOST_VOUT" O R 8870 2640 60 
 $EndSheet
 $Comp
 L +28V #PWR31
 U 1 1 5A30EB28
-P 8370 2900
-F 0 "#PWR31" H 8370 2750 50  0001 C CNN
-F 1 "+28V" H 8370 3050 50  0000 C CNN
-F 2 "" H 8620 2950 50  0001 C CNN
-F 3 "" H 8620 2950 50  0001 C CNN
-	1    8370 2900
+P 8980 2640
+F 0 "#PWR31" H 8980 2490 50  0001 C CNN
+F 1 "+28V" H 8980 2790 50  0000 C CNN
+F 2 "" H 9230 2690 50  0001 C CNN
+F 3 "" H 9230 2690 50  0001 C CNN
+	1    8980 2640
 	1    0    0    -1  
 $EndComp
 $Sheet
@@ -1042,45 +1041,40 @@ $EndComp
 $Comp
 L Speaker_Crystal LS1
 U 1 1 5A31E08F
-P 9110 2900
-F 0 "LS1" H 9135 3125 50  0000 R CNN
-F 1 "Speaker_Crystal" H 9135 3050 50  0000 R CNN
-F 2 "" H 9075 2850 50  0001 C CNN
-F 3 "" H 9075 2850 50  0001 C CNN
-	1    9110 2900
+P 10010 2640
+F 0 "LS1" H 10060 2750 50  0000 R CNN
+F 1 "Speaker_Crystal" H 10250 2350 50  0000 R CNN
+F 2 "" H 9975 2590 50  0001 C CNN
+F 3 "" H 9975 2590 50  0001 C CNN
+	1    10010 2640
 	1    0    0    -1  
 $EndComp
 $Comp
 L 2N3904 Q1
 U 1 1 5A31E796
-P 8810 3510
-F 0 "Q1" H 9010 3585 50  0000 L CNN
-F 1 "2N3904" H 9010 3510 50  0000 L CNN
-F 2 "TO_SOT_Packages_THT:TO-92_Molded_Narrow" H 9010 3435 50  0001 L CIN
-F 3 "" H 8810 3510 50  0001 L CNN
-	1    8810 3510
+P 9710 3250
+F 0 "Q1" H 9910 3325 50  0000 L CNN
+F 1 "2N3904" H 9910 3250 50  0000 L CNN
+F 2 "TO_SOT_Packages_THT:TO-92_Molded_Narrow" H 9910 3175 50  0001 L CIN
+F 3 "" H 9710 3250 50  0001 L CNN
+	1    9710 3250
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8910 3310 8910 3000
+	9810 3050 9810 2740
 $Comp
 L GND #PWR33
 U 1 1 5A31EA2B
-P 8910 3710
-F 0 "#PWR33" H 8910 3460 50  0001 C CNN
-F 1 "GND" H 8910 3560 50  0000 C CNN
-F 2 "" H 8910 3710 50  0001 C CNN
-F 3 "" H 8910 3710 50  0001 C CNN
-	1    8910 3710
+P 9810 3450
+F 0 "#PWR33" H 9810 3200 50  0001 C CNN
+F 1 "GND" H 9810 3300 50  0000 C CNN
+F 2 "" H 9810 3450 50  0001 C CNN
+F 3 "" H 9810 3450 50  0001 C CNN
+	1    9810 3450
 	1    0    0    -1  
 $EndComp
-Text GLabel 8610 3510 0    60   Input ~ 0
+Text GLabel 9510 3250 0    60   Input ~ 0
 SOUND
-Wire Wire Line
-	7970 2900 8910 2900
-Connection ~ 8370 2900
-Text Notes 8040 4100 0    98   Italic 0
-TODO: Pick a transistor
 Text Notes 6510 1490 0    98   Italic 0
 TODO: Signal LED
 NoConn ~ 3730 2680
@@ -1089,4 +1083,49 @@ Text Notes 4800 3270 0    79   Italic 0
 TODO: Check whether there\nis an internap pull-up on LCD_EN
 Wire Wire Line
 	5170 2180 3730 2180
+$Comp
+L Jumper_NO_Small JP?
+U 1 1 5A317296
+P 9250 2110
+F 0 "JP?" H 9250 2190 50  0000 C CNN
+F 1 "SoundVcc2" H 9260 2050 50  0001 C CNN
+F 2 "" H 9250 2110 50  0001 C CNN
+F 3 "" H 9250 2110 50  0001 C CNN
+	1    9250 2110
+	0    1    1    0   
+$EndComp
+$Comp
+L VCC #PWR?
+U 1 1 5A317FA1
+P 9250 2010
+F 0 "#PWR?" H 9250 1860 50  0001 C CNN
+F 1 "VCC" H 9250 2160 50  0000 C CNN
+F 2 "" H 9250 2010 50  0001 C CNN
+F 3 "" H 9250 2010 50  0001 C CNN
+	1    9250 2010
+	1    0    0    -1  
+$EndComp
+$Comp
+L R R?
+U 1 1 5A3185A6
+P 9590 2640
+F 0 "R?" V 9670 2640 50  0000 C CNN
+F 1 "0" V 9590 2640 50  0000 C CNN
+F 2 "" V 9520 2640 50  0001 C CNN
+F 3 "" H 9590 2640 50  0001 C CNN
+	1    9590 2640
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	9740 2640 9810 2640
+Wire Wire Line
+	8870 2640 9440 2640
+Connection ~ 8980 2640
+Wire Wire Line
+	9250 2210 9250 2640
+Connection ~ 9250 2640
+Text Notes 10090 2490 2    60   Italic 0
+Optional resistor\nto limit volume
+Text Notes 9170 2020 2    60   Italic 0
+Backup power supply\nfor the speaker
 $EndSCHEMATC

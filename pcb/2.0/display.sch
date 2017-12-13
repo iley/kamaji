@@ -31,7 +31,6 @@ LIBS:valves
 LIBS:kamaji
 LIBS:switches
 LIBS:kamaji-cache
-LIBS:boost-cache
 EELAYER 25 0
 EELAYER END
 $Descr A4 11693 8268
