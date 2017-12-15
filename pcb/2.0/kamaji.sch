@@ -796,7 +796,7 @@ F 3 "" H 4610 1580 50  0001 C CNN
 $EndComp
 Text Label 4200 1480 0    60   ~ 0
 MISO
-Text Label 4230 1580 0    60   ~ 0
+Text Label 3730 1580 0    60   ~ 0
 SCK
 $Comp
 L R R3
@@ -864,8 +864,6 @@ F 3 "" H 9730 2530 50  0001 C CNN
 	1    9730 2530
 	1    0    0    -1  
 $EndComp
-NoConn ~ 3730 2680
-NoConn ~ 3730 2780
 $Comp
 L Jumper_NO_Small JP3
 U 1 1 5A317296
@@ -986,36 +984,34 @@ Text Label 3730 1480 0    60   ~ 0
 LAMP
 Text Label 3730 1680 0    60   ~ 0
 MOSI
-Text Label 3730 1880 0    60   ~ 0
+Text Label 3730 3080 0    60   ~ 0
 PLED3
-Text Label 3730 1980 0    60   ~ 0
+Text Label 3730 1880 0    60   ~ 0
 PBTN4
-Text Label 3730 2080 0    60   ~ 0
+Text Label 3730 3380 0    60   ~ 0
 PLED4
 Text Label 3730 2380 0    60   ~ 0
 PBTN5
-Text Label 3730 2480 0    60   ~ 0
+Text Label 3730 2080 0    60   ~ 0
 PLED5
 Text Label 4410 1680 2    60   ~ 0
 RST
-Text Label 3730 2880 0    60   ~ 0
+Text Label 3730 2680 0    60   ~ 0
 PBTN1
-Text Label 3730 2980 0    60   ~ 0
+Text Label 3730 2780 0    60   ~ 0
 PLED1
-Text Label 3730 3080 0    60   ~ 0
+Text Label 3730 2880 0    60   ~ 0
 PBTN2
-Text Label 3730 3180 0    60   ~ 0
+Text Label 3730 2480 0    60   ~ 0
 CBTN1
-Text Label 3730 3280 0    60   ~ 0
+Text Label 3730 2980 0    60   ~ 0
 PLED2
-Text Label 3730 3380 0    60   ~ 0
+Text Label 3730 3280 0    60   ~ 0
 PBTN3
 Text Label 3730 3580 0    60   ~ 0
 CBTN2
 Text Label 3730 3680 0    60   ~ 0
 CBTN3
-Text Label 3730 4080 0    60   ~ 0
-SOUND
 Text Label 6500 3770 0    60   ~ 0
 SCK
 Text Label 6510 4110 0    60   ~ 0
@@ -1038,8 +1034,6 @@ Text Label 7860 5300 0    60   ~ 0
 USB_D+
 Text Label 7860 5400 0    60   ~ 0
 USB_D-
-Text Label 9130 2330 2    60   ~ 0
-SOUND
 Text Label 9910 5350 2    60   ~ 0
 LAMP
 Text Label 1650 7050 2    60   ~ 0
@@ -1207,4 +1201,10 @@ Wire Wire Line
 	10030 1570 10030 1720
 Wire Wire Line
 	9730 1820 10030 1820
+Text Label 9130 2330 2    60   ~ 0
+SOUND
+Text Label 3730 1980 0    60   ~ 0
+SOUND
+NoConn ~ 3730 4080
+NoConn ~ 3730 3180
 $EndSCHEMATC
