@@ -73,7 +73,7 @@ bool BrainMode::getLedState(int playerId) {
 bool BrainMode::getLampState() {
     return ((state == MAIN || state == SUPPLEMENT) && timeInSeconds() < 3) ||
       (state == FALSE_START && timeInTenths() % 10 < 5) ||
-      ((state == ANSWER_MAIN || state == ANSWER_SUPPLEMENT) && timeInTenths() >= 100);
+      ((state == ANSWER_MAIN || state == ANSWER_SUPPLEMENT) && timeInTenths() >= 1);
 }
 
 void BrainMode::getCaption(char* buffer, size_t bufferSize) {

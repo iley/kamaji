@@ -157,9 +157,7 @@ void loop() {
     if (resetStarted && millis() - resetStartTime > kResetDelay) {
       mode = &selectMode;
       mode->init();
-      return;
-    }
-    if (!resetStarted) {
+    } else if (!resetStarted) {
       resetStarted = true;
       resetStartTime = millis();
     }
