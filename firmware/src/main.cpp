@@ -144,7 +144,12 @@ void loop() {
     // milliseconds ago to account for contact bouncing.
     if (now - lastPressedMs[i] > kDebounceMs) {
       // The buttons pins are active LOW.
-      buttons[i] = (xDigitalRead(kButtonPins[i]) == LOW);
+      if (xDigitalRead(kButtonPins[i]) == LOW) {
+        buttons[i] = true;
+        lastPressedMs[i] = now;
+      } else {
+        buttons[i] = false;
+      }
     }
   }
   if (xDigitalRead(kButtonPins[BUTTON_RESET]) == LOW &&
