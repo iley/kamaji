@@ -133,10 +133,6 @@ F 3 "" H 4470 3710 50  0001 C CNN
 	1    4470 3710
 	1    0    0    -1  
 $EndComp
-Text Label 4570 3310 0    60   ~ 0
-VIN
-Text Label 6510 3160 0    60   ~ 0
-VOUT
 $Comp
 L POT RV1
 U 1 1 5A30CDFB
@@ -151,13 +147,13 @@ $EndComp
 $Comp
 L C C7
 U 1 1 5A30CDFC
-P 6980 3490
-F 0 "C7" V 7110 3450 50  0000 L CNN
-F 1 "4.7uF" V 6850 3380 50  0000 L CNN
-F 2 "Capacitors_SMD:C_1206_HandSoldering" H 7018 3340 50  0001 C CNN
-F 3 "" H 6980 3490 50  0001 C CNN
-	1    6980 3490
-	0    -1   -1   0   
+P 7130 3680
+F 0 "C7" V 7260 3640 50  0000 L CNN
+F 1 "4.7uF" V 7000 3570 50  0000 L CNN
+F 2 "Capacitors_SMD:C_1206_HandSoldering" H 7168 3530 50  0001 C CNN
+F 3 "" H 7130 3680 50  0001 C CNN
+	1    7130 3680
+	1    0    0    -1  
 $EndComp
 $Comp
 L R R19
@@ -170,8 +166,36 @@ F 3 "" H 5720 4060 50  0001 C CNN
 	1    5720 4060
 	1    0    0    -1  
 $EndComp
-Text HLabel 7270 3490 2    60   Output ~ 0
+Text HLabel 7350 3160 2    60   Output ~ 0
 BOOST_VOUT
+$Comp
+L VCC #PWR053
+U 1 1 5A30F671
+P 4340 3310
+F 0 "#PWR053" H 4340 3160 50  0001 C CNN
+F 1 "VCC" H 4340 3460 50  0000 C CNN
+F 2 "" H 4340 3310 50  0001 C CNN
+F 3 "" H 4340 3310 50  0001 C CNN
+	1    4340 3310
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR054
+U 1 1 5A30FE4F
+P 5720 4400
+F 0 "#PWR054" H 5720 4150 50  0001 C CNN
+F 1 "GND" H 5720 4250 50  0000 C CNN
+F 2 "" H 5720 4400 50  0001 C CNN
+F 3 "" H 5720 4400 50  0001 C CNN
+	1    5720 4400
+	1    0    0    -1  
+$EndComp
+Text Label 4380 3310 0    60   ~ 0
+BOOST_VIN
+Text Label 6460 3160 0    60   ~ 0
+BOOST_VOUT
+Text Label 6030 3460 0    60   ~ 0
+BOOST_FB
 Wire Wire Line
 	5630 2990 6030 2990
 Wire Wire Line
@@ -199,8 +223,6 @@ Wire Wire Line
 Wire Wire Line
 	4630 3460 4470 3460
 Wire Wire Line
-	6400 3160 7130 3160
-Wire Wire Line
 	6640 3910 6680 3910
 Wire Wire Line
 	4930 3310 4930 2990
@@ -218,38 +240,18 @@ Wire Wire Line
 	6680 4060 6830 4060
 Wire Wire Line
 	6830 3160 6830 3760
-Connection ~ 6830 3160
 Connection ~ 6830 3490
 Wire Wire Line
-	7130 3160 7130 4400
-Connection ~ 7130 3490
-Wire Wire Line
-	7270 3490 7130 3490
-$Comp
-L VCC #PWR059
-U 1 1 5A30F671
-P 4340 3310
-F 0 "#PWR059" H 4340 3160 50  0001 C CNN
-F 1 "VCC" H 4340 3460 50  0000 C CNN
-F 2 "" H 4340 3310 50  0001 C CNN
-F 3 "" H 4340 3310 50  0001 C CNN
-	1    4340 3310
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	7130 4400 4470 4400
+	4470 4400 7130 4400
 Connection ~ 5480 4400
 Connection ~ 5720 4400
 Connection ~ 6240 4400
-$Comp
-L GND #PWR060
-U 1 1 5A30FE4F
-P 5720 4400
-F 0 "#PWR060" H 5720 4150 50  0001 C CNN
-F 1 "GND" H 5720 4250 50  0000 C CNN
-F 2 "" H 5720 4400 50  0001 C CNN
-F 3 "" H 5720 4400 50  0001 C CNN
-	1    5720 4400
-	1    0    0    -1  
-$EndComp
+Wire Wire Line
+	7130 4400 7130 3830
+Wire Wire Line
+	6400 3160 7350 3160
+Wire Wire Line
+	7130 3160 7130 3530
+Connection ~ 7130 3160
+Connection ~ 6830 3160
 $EndSCHEMATC
