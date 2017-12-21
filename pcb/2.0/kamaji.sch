@@ -136,23 +136,23 @@ $EndComp
 $Comp
 L R R1
 U 1 1 59E8EF8C
-P 1330 2830
-F 0 "R1" V 1230 2830 50  0000 C CNN
-F 1 "22R" V 1330 2830 50  0000 C CNN
-F 2 "Resistors_SMD:R_1206_HandSoldering" V 1260 2830 50  0001 C CNN
-F 3 "" H 1330 2830 50  0001 C CNN
-	1    1330 2830
+P 8360 5300
+F 0 "R1" V 8260 5300 50  0000 C CNN
+F 1 "22R" V 8360 5300 50  0000 C CNN
+F 2 "Resistors_SMD:R_1206_HandSoldering" V 8290 5300 50  0001 C CNN
+F 3 "" H 8360 5300 50  0001 C CNN
+	1    8360 5300
 	0    1    1    0   
 $EndComp
 $Comp
 L R R2
 U 1 1 59E8F0DD
-P 1330 2930
-F 0 "R2" V 1410 2930 50  0000 C CNN
-F 1 "22R" V 1330 2930 50  0000 C CNN
-F 2 "Resistors_SMD:R_1206_HandSoldering" V 1260 2930 50  0001 C CNN
-F 3 "" H 1330 2930 50  0001 C CNN
-	1    1330 2930
+P 8360 5400
+F 0 "R2" V 8440 5400 50  0000 C CNN
+F 1 "22R" V 8360 5400 50  0000 C CNN
+F 2 "Resistors_SMD:R_1206_HandSoldering" V 8290 5400 50  0001 C CNN
+F 3 "" H 8360 5400 50  0001 C CNN
+	1    8360 5400
 	0    1    1    0   
 $EndComp
 $Comp
@@ -525,14 +525,14 @@ $EndComp
 Text Notes 9820 6230 0    59   Italic 0
 USB type A (host)\nfor the signal lamp
 $Comp
-L C C1
+L C C6
 U 1 1 59EB7B64
-P 910 5010
-F 0 "C1" H 800 5110 50  0000 L CNN
-F 1 "0.1uF" H 670 4920 50  0000 L CNN
-F 2 "Capacitors_SMD:C_1206_HandSoldering" H 948 4860 50  0001 C CNN
-F 3 "" H 910 5010 50  0001 C CNN
-	1    910  5010
+P 1620 5010
+F 0 "C6" H 1510 5110 50  0000 L CNN
+F 1 "0.1uF" H 1380 4920 50  0000 L CNN
+F 2 "Capacitors_SMD:C_1206_HandSoldering" H 1658 4860 50  0001 C CNN
+F 3 "" H 1620 5010 50  0001 C CNN
+	1    1620 5010
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -681,14 +681,14 @@ F 3 "" H 1390 1180 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L C C6
+L C C1
 U 1 1 5A15E885
-P 1620 5010
-F 0 "C6" H 1510 5110 50  0000 L CNN
-F 1 "0.1uF" H 1380 4920 50  0000 L CNN
-F 2 "Capacitors_SMD:C_1206_HandSoldering" H 1658 4860 50  0001 C CNN
-F 3 "" H 1620 5010 50  0001 C CNN
-	1    1620 5010
+P 910 5010
+F 0 "C1" H 800 5110 50  0000 L CNN
+F 1 "10uF" H 670 4920 50  0000 L CNN
+F 2 "Capacitors_SMD:C_1206_HandSoldering" H 948 4860 50  0001 C CNN
+F 3 "" H 910 5010 50  0001 C CNN
+	1    910  5010
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -875,33 +875,33 @@ Text Label 3730 1480 0    60   ~ 0
 LAMP
 Text Label 3730 1680 0    60   ~ 0
 MOSI
-Text Label 3730 3080 0    60   ~ 0
+Text Label 3730 2480 0    60   ~ 0
 PLED3
-Text Label 3730 1880 0    60   ~ 0
-PBTN4
-Text Label 3730 3380 0    60   ~ 0
-PLED4
 Text Label 3730 2380 0    60   ~ 0
-PBTN5
+PBTN4
 Text Label 3730 2080 0    60   ~ 0
+PLED4
+Text Label 3730 1880 0    60   ~ 0
+PBTN5
+Text Label 3730 3380 0    60   ~ 0
 PLED5
 Text Label 4410 1680 2    60   ~ 0
 RST
-Text Label 3730 2680 0    60   ~ 0
-PBTN1
-Text Label 3730 2780 0    60   ~ 0
-PLED1
-Text Label 3730 2880 0    60   ~ 0
-PBTN2
-Text Label 3730 2480 0    60   ~ 0
-CBTN1
-Text Label 3730 2980 0    60   ~ 0
-PLED2
-Text Label 3730 3280 0    60   ~ 0
-PBTN3
-Text Label 3730 3580 0    60   ~ 0
-CBTN2
 Text Label 3730 3680 0    60   ~ 0
+PBTN1
+Text Label 3730 4080 0    60   ~ 0
+PLED1
+Text Label 3730 4280 0    60   ~ 0
+PBTN2
+Text Label 3730 2680 0    60   ~ 0
+CBTN1
+Text Label 3730 4380 0    60   ~ 0
+PLED2
+Text Label 3730 3580 0    60   ~ 0
+PBTN3
+Text Label 3730 2780 0    60   ~ 0
+CBTN2
+Text Label 3730 2880 0    60   ~ 0
 CBTN3
 Text Label 5080 4130 2    60   ~ 0
 SCK
@@ -911,9 +911,9 @@ Text Label 4910 1580 0    60   ~ 0
 MOSI
 Text Label 1280 1480 2    60   ~ 0
 RST
-Text Label 1180 2830 2    60   ~ 0
+Text Label 1480 2830 2    60   ~ 0
 USB_D+
-Text Label 1180 2930 2    60   ~ 0
+Text Label 1480 2930 2    60   ~ 0
 USB_D-
 Text Label 1150 5960 2    60   ~ 0
 CBTN1
@@ -921,9 +921,9 @@ Text Label 2380 5960 2    60   ~ 0
 CBTN2
 Text Label 3560 5960 2    60   ~ 0
 CBTN3
-Text Label 7860 5300 0    60   ~ 0
+Text Label 8510 5300 0    60   ~ 0
 USB_D+
-Text Label 7860 5400 0    60   ~ 0
+Text Label 8510 5400 0    60   ~ 0
 USB_D-
 Text Label 9910 5350 2    60   ~ 0
 LAMP
@@ -1222,12 +1222,6 @@ F 3 "" H 4880 4600 50  0001 C CNN
 	1    4880 4600
 	1    0    0    -1  
 $EndComp
-Text Label 3730 4180 0    60   ~ 0
-SIGNAL_R
-Text Label 3730 4280 0    60   ~ 0
-SIGNAL_G
-Text Label 3730 4380 0    60   ~ 0
-SIGNAL_B
 $Comp
 L GND #PWR050
 U 1 1 5A3A8D7F
@@ -1276,10 +1270,52 @@ Text Label 5920 7040 2    60   ~ 0
 PBTN6
 Text Label 5920 7250 2    60   ~ 0
 PLED6
-Text Label 3730 4080 0    60   ~ 0
+Text Label 3730 3280 0    60   ~ 0
 PBTN6
-Text Label 3730 3180 0    60   ~ 0
+Text Label 3730 3080 0    60   ~ 0
 PLED6
+Text Notes 7900 4450 0    60   Italic 0
+Signal LED
+$Sheet
+S 7640 1460 740  500 
+U 5A30C66D
+F0 "Boost Converter" 60
+F1 "boost_converter.sch" 60
+F2 "BOOST_VOUT" O R 8380 1720 60 
+$EndSheet
+$Comp
+L C C11
+U 1 1 5A3B9847
+P 1950 5010
+F 0 "C11" H 1840 5110 50  0000 L CNN
+F 1 "0.1uF" H 1710 4920 50  0000 L CNN
+F 2 "Capacitors_SMD:C_1206_HandSoldering" H 1988 4860 50  0001 C CNN
+F 3 "" H 1950 5010 50  0001 C CNN
+	1    1950 5010
+	1    0    0    -1  
+$EndComp
+$Comp
+L GND #PWR052
+U 1 1 5A3B984D
+P 1950 5160
+F 0 "#PWR052" H 1950 4910 50  0001 C CNN
+F 1 "GND" H 1950 5010 50  0000 C CNN
+F 2 "" H 1950 5160 50  0001 C CNN
+F 3 "" H 1950 5160 50  0001 C CNN
+	1    1950 5160
+	1    0    0    -1  
+$EndComp
+$Comp
+L VCC #PWR053
+U 1 1 5A3B9853
+P 1950 4860
+F 0 "#PWR053" H 1950 4710 50  0001 C CNN
+F 1 "VCC" H 1950 5010 50  0000 C CNN
+F 2 "" H 1950 4860 50  0001 C CNN
+F 3 "" H 1950 4860 50  0001 C CNN
+	1    1950 4860
+	1    0    0    -1  
+$EndComp
 Wire Wire Line
 	2180 1230 2880 1230
 Connection ~ 2430 1230
@@ -1402,43 +1438,42 @@ Wire Wire Line
 	6220 7250 6220 7000
 Wire Wire Line
 	5920 7040 6020 7040
-$Comp
-L LED_CRGB D1
-U 1 1 5A3AC970
-P 8380 3840
-F 0 "D1" H 8380 4210 50  0000 C CNN
-F 1 "LED_CRGB" H 8380 3490 50  0000 C CNN
-F 2 "kamaji:LED_RGB_common_cathode_5mm" H 8380 3790 50  0001 C CNN
-F 3 "" H 8380 3790 50  0001 C CNN
-	1    8380 3840
-	-1   0    0    1   
-$EndComp
-Text Notes 7900 4450 0    60   Italic 0
-Signal LED
-$Comp
-L GND #PWR052
-U 1 1 5A3ACD5F
-P 8580 3840
-F 0 "#PWR052" H 8580 3590 50  0001 C CNN
-F 1 "GND" H 8580 3690 50  0000 C CNN
-F 2 "" H 8580 3840 50  0001 C CNN
-F 3 "" H 8580 3840 50  0001 C CNN
-	1    8580 3840
-	1    0    0    -1  
-$EndComp
-Text Label 8180 4040 2    60   ~ 0
-SIGNAL_R
-Text Label 8180 3840 2    60   ~ 0
-SIGNAL_G
-Text Label 8180 3640 2    60   ~ 0
-SIGNAL_B
-$Sheet
-S 7640 1460 740  500 
-U 5A30C66D
-F0 "Boost Converter" 60
-F1 "boost_converter.sch" 60
-F2 "BOOST_VOUT" O R 8380 1720 60 
-$EndSheet
 Wire Wire Line
 	8380 1720 8970 1720
+Text Label 7860 5300 0    60   ~ 0
+USBBD+
+Text Label 7860 5400 0    60   ~ 0
+USBBD-
+Wire Wire Line
+	7860 5300 8210 5300
+Wire Wire Line
+	7860 5400 8210 5400
+$Comp
+L LED D1
+U 1 1 5A3C1B55
+P 8090 4140
+F 0 "D1" H 8090 4240 50  0000 C CNN
+F 1 "LED" H 8090 4040 50  0000 C CNN
+F 2 "LEDs:LED_D5.0mm" H 8090 4140 50  0001 C CNN
+F 3 "" H 8090 4140 50  0001 C CNN
+	1    8090 4140
+	-1   0    0    1   
+$EndComp
+$Comp
+L GND #PWR054
+U 1 1 5A3C2004
+P 8240 4140
+F 0 "#PWR054" H 8240 3890 50  0001 C CNN
+F 1 "GND" H 8240 3990 50  0000 C CNN
+F 2 "" H 8240 4140 50  0001 C CNN
+F 3 "" H 8240 4140 50  0001 C CNN
+	1    8240 4140
+	1    0    0    -1  
+$EndComp
+Text Label 7940 4140 2    60   ~ 0
+SIGNAL_LED
+Text Label 3730 4180 0    60   ~ 0
+SIGNAL_LED
+NoConn ~ 3730 2980
+NoConn ~ 3730 3180
 $EndSCHEMATC
