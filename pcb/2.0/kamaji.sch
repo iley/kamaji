@@ -871,7 +871,7 @@ F 3 "" H 9070 1720 50  0001 C CNN
 	1    9070 1720
 	1    0    0    -1  
 $EndComp
-Text Label 3730 1480 0    60   ~ 0
+Text Label 3730 3180 0    60   ~ 0
 LAMP
 Text Label 3730 1680 0    60   ~ 0
 MOSI
@@ -893,15 +893,15 @@ Text Label 3730 4080 0    60   ~ 0
 PLED1
 Text Label 3730 4280 0    60   ~ 0
 PBTN2
-Text Label 3730 2680 0    60   ~ 0
+Text Label 3730 1480 0    60   ~ 0
 CBTN1
 Text Label 3730 4380 0    60   ~ 0
 PLED2
 Text Label 3730 3580 0    60   ~ 0
 PBTN3
-Text Label 3730 2780 0    60   ~ 0
-CBTN2
 Text Label 3730 2880 0    60   ~ 0
+CBTN2
+Text Label 3730 2980 0    60   ~ 0
 CBTN3
 Text Label 5080 4130 2    60   ~ 0
 SCK
@@ -1346,8 +1346,6 @@ Text Label 7940 4140 2    60   ~ 0
 SIGNAL_LED
 Text Label 3730 4180 0    60   ~ 0
 SIGNAL_LED
-NoConn ~ 3730 2980
-NoConn ~ 3730 3180
 $Comp
 L Jumper_NO_Small JP1
 U 1 1 5A3CCB19
@@ -1453,7 +1451,7 @@ Connection ~ 5950 2120
 Connection ~ 5860 2120
 Connection ~ 5780 2120
 Wire Wire Line
-	5610 2120 6120 2120
+	5610 2120 6230 2120
 Wire Wire Line
 	3730 2180 4820 2180
 Wire Wire Line
@@ -1494,4 +1492,9 @@ Wire Wire Line
 	9880 2260 9880 2160
 Wire Wire Line
 	9880 1870 9880 2060
+Text Label 6230 2120 0    60   ~ 0
+DUMMY-
+Connection ~ 6120 2120
+NoConn ~ 3730 2680
+NoConn ~ 3730 2780
 $EndSCHEMATC
