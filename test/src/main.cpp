@@ -39,6 +39,7 @@ void setup() {
   lcd.begin(DISPLAY_COLS, DISPLAY_ROWS);
   ENABLE_LCD_BACKLIGHT();
 
+  lcd.print("Hello!");
   tone(kSpeakerPin, kToneHz, kToneMs);
 }
 
