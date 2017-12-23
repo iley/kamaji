@@ -145,6 +145,8 @@ void loop() {
       resetStarted = true;
       resetStartTime = now;
     }
+  } else {
+    resetStarted = false;
   }
   mode->update();
   updateScreenAndLeds();
