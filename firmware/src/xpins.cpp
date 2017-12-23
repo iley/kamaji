@@ -1,5 +1,7 @@
 #include "xpins.h"
 
+#if USE_XPINS_HACK
+
 int xDigitalRead(uint8_t pin) {
   if (pin == kPinPB6) {
     return (PINB & _BV(PINB6)) ? HIGH : LOW;
@@ -47,3 +49,5 @@ void xPinMode(uint8_t pin, uint8_t mode) {
     DDRB |= mask;
   }
 }
+
+#endif  // USE_XPINS_HACK

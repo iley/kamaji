@@ -2,6 +2,10 @@
 #define CONFIG_V0_H
 
 #define USE_I2C_LCD 1
+#define USE_LAMP 0
+#define SHOW_SCORES 1
+#define MIDDLE_BUTTON 1
+#define USE_XPINS_HACK 0
 
 // All available buttons.
 enum {
@@ -40,9 +44,5 @@ enum {
 
 #define DECLARE_KSPEAKER_PIN()  \
   const int kSpeakerPin = 11;
-
-#define USE_LAMP 0
-#define SHOW_SCORES 1
-#define MIDDLE_BUTTON 1
 
 #endif  // CONFIG_V0_H

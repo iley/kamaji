@@ -2,6 +2,10 @@
 #define CONFIG_V1_H
 
 #define USE_I2C_LCD 0
+#define USE_LAMP 1
+#define SHOW_SCORES 1
+#define MIDDLE_BUTTON 1
+#define USE_XPINS_HACK 1
 
 // All available buttons.
 enum {
@@ -59,9 +63,5 @@ enum {
 // Lamp: PB0 - pin 8
 #define DECLARE_KLAMP_PIN()  \
   const int kLampPin = 8
-
-#define USE_LAMP 1
-#define SHOW_SCORES 1
-#define MIDDLE_BUTTON 1
 
 #endif  // CONFIG_V1_H
