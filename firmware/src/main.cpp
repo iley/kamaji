@@ -106,11 +106,11 @@ void updateScreenAndLeds() {
         lcd.print(' ');
       }
       lcd.print(right);
-      strcpy(lastMiddle, middle);
+      strncpy(lastMiddle, middle, sizeof(lastMiddle));
     }
-    strcpy(lastLeft, left);
-    strcpy(lastRight, right);
-    strcpy(lastCaption, caption);
+    strncpy(lastLeft, left, sizeof(lastLeft));
+    strncpy(lastRight, right, sizeof(lastRight));
+    strncpy(lastCaption, caption, sizeof(lastCaption));
   }
   for (int i = BUTTON_PLAYER_1; i <= LAST_PLAYER_BUTTON; i++) {
     xDigitalWrite(kLedPins[i], mode->getLedState(i) ? HIGH : LOW);
