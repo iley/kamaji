@@ -1,5 +1,5 @@
-#ifndef PAKET_MAIN_H
-#define PAKET_MAIN_H
+#ifndef KAMAJI_MAIN_H
+#define KAMAJI_MAIN_H
 
 const int DISPLAY_SIZE = 16;
 
@@ -24,4 +24,4 @@ void playAttentionSound();
 void playTimerSound();
 void setMode(Mode* newMode);
 
-#endif
+#endif  // KAMAJI_MAIN_H

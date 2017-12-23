@@ -1,14 +1,7 @@
+#include <Arduino.h>
 #include <string.h>
 
-#include <Arduino.h>
-
-#if USE_I2C_LCD
-#include <Wire.h>
-#include <LiquidCrystal_I2C.h>
-#else
-#include <LiquidCrystal.h>
-#endif  // USE_I2C_LCD
-
+#include "lcd.h"
 #include "pitches.h"
 #include "mode.h"
 #include "main.h"
@@ -26,13 +19,7 @@ const unsigned long kDebounceMs = 100;
 
 // GLOBAL STATE
 
-#if USE_I2C_LCD
-// An I2C-connected 16x2 character LCD screen.
-LiquidCrystal_I2C lcd(0x3f, 2, 1, 0, 4, 5, 6, 7);
-#else
-LiquidCrystal lcd(/*rs=*/14, /*en=*/15, /*d0=*/16, /*d1=*/17, /*d2=*/18,
-                  /*d3=*/19);
-#endif
+DECLARE_LCD();
 
 #if USE_LAMP
 DECLARE_KLAMP_PIN();
@@ -77,10 +64,7 @@ void setup() {
 
   // Initialize the screen.
   lcd.begin(/*cols=*/16, /*rows=*/2);
-#if USE_I2C_LCD
-  lcd.setBacklightPin(3, POSITIVE);  // TODO: Use a constant.
-  lcd.setBacklight(HIGH);
-#endif
+  ENABLE_LCD_BACKLIGHT();
 
   mode->init();
   tone(kSpeakerPin, NOTE_A7, 300/*ms*/);
@@ -211,6 +195,7 @@ void setMode(Mode *newMode) {
   mode->init();
 }
 
+// TODO: Disable these wrappers with #ifdef-s when the hack is not needed.
 int xDigitalRead(uint8_t pin) {
   if (pin == kPinPB6) {
     return (PINB & _BV(PINB6)) ? HIGH : LOW;
