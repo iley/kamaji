@@ -8,6 +8,9 @@
 #include <LiquidCrystal.h>
 #endif  // USE_I2C_LCD
 
+const int DISPLAY_COLS = 16;
+const int DISPLAY_ROWS = 4;
+
 #if USE_I2C_LCD
 
 // An I2C-connected 16x2 character LCD screen.

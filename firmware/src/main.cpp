@@ -40,11 +40,11 @@ bool buttonsBefore[BUTTON_COUNT] = { false };
 // start.
 unsigned long lastPressedMs[BUTTON_COUNT] = {0};
 
-char caption[DISPLAY_SIZE + 1];
-char lastLeft[DISPLAY_SIZE + 1];
-char lastRight[DISPLAY_SIZE + 1];
-char lastMiddle[DISPLAY_SIZE + 1];
-char lastCaption[DISPLAY_SIZE + 1];
+char caption[DISPLAY_COLS + 1];
+char lastLeft[DISPLAY_COLS + 1];
+char lastRight[DISPLAY_COLS + 1];
+char lastMiddle[DISPLAY_COLS + 1];
+char lastCaption[DISPLAY_COLS + 1];
 bool lastLeds[PLAYER_COUNT];
 bool resetStarted = false;
 unsigned long resetStartTime;
@@ -64,7 +64,7 @@ void setup() {
 #endif
 
   // Initialize the screen.
-  lcd.begin(/*cols=*/16, /*rows=*/2);
+  lcd.begin(DISPLAY_COLS, DISPLAY_ROWS);
   ENABLE_LCD_BACKLIGHT();
 
   mode->init();
@@ -90,14 +90,14 @@ void updateScreenAndLeds() {
     // Print button functions on the lower line of the screen.
     if (SHOW_SCORES == 0) {
       lcd.print(left);
-      const int spaces = DISPLAY_SIZE - strlen(left) - strlen(right);
+      const int spaces = DISPLAY_COLS - strlen(left) - strlen(right);
       for (int i = 0; i < spaces; ++i) {
         lcd.print(' ');
       }
       lcd.print(right);
     } else {
       lcd.print(left);
-      const int spaces = DISPLAY_SIZE - strlen(left) - strlen(right) - strlen(middle);
+      const int spaces = DISPLAY_COLS - strlen(left) - strlen(right) - strlen(middle);
       for (int i = 0; i < spaces / 2; ++i) {
         lcd.print(' ');
       }

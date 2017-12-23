@@ -3,8 +3,6 @@
 
 #include "mode.h"
 
-const int DISPLAY_SIZE = 16;
-
 bool isPlayerPressed(int playerId);
 bool isControlPressed(int buttonId);
 void playResetSound();

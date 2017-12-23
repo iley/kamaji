@@ -1,10 +1,11 @@
-#include <stdio.h>
-
 #include <Arduino.h>
 #include <EEPROM.h>
-#include "mode.h"
+#include <stdio.h>
+
+#include "lcd.h"
 #include "main.h"
 #include "menu.h"
+#include "mode.h"
 
 namespace {
 
@@ -60,7 +61,7 @@ bool firstTime = true;
 int lastAttentionSoundPlayed = 3;
 int question;
 int score[NUM_PLAYERS];
-char cost[DISPLAY_SIZE + 1];
+char cost[DISPLAY_COLS + 1];
 int numPlayers = NUM_PLAYERS;
 
 int historyPlayer[HISTORY];
