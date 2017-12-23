@@ -48,13 +48,4 @@ public:
     virtual const char* getLabel(int buttonId) override;
 };
 
-class DevMode : public Mode {
-public:
-  virtual void init() override;
-  virtual void update() override;
-  virtual bool getLedState(int playerId) override;
-  virtual void getCaption(char* buffer, size_t bufferSize) override;
-  virtual const char* getLabel(int buttonId) override;
-};
-
 #endif
