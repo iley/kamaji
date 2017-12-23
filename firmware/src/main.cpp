@@ -137,14 +137,13 @@ void loop() {
       }
     }
   }
-  if (xDigitalRead(kButtonPins[BUTTON_RESET]) == LOW &&
-      xDigitalRead(kButtonPins[BUTTON_START]) == LOW) {
-    if (resetStarted && millis() - resetStartTime > kResetDelay) {
+  if (buttons[BUTTON_RESET] && buttons[BUTTON_START]) {
+    if (resetStarted && now - resetStartTime > kResetDelay) {
       mode = &selectMode;
       mode->init();
     } else if (!resetStarted) {
       resetStarted = true;
-      resetStartTime = millis();
+      resetStartTime = now;
     }
   }
   mode->update();
