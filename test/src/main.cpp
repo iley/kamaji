@@ -45,7 +45,6 @@ void setup() {
 void loop() {
   uint32_t now = millis();
   for (int i = 0; i < BUTTON_COUNT; ++i) {
-    if (i == 0) continue; // FIXME: skipping the first button since it's stuck on v0.
     buttonsBefore[i] = buttons[i];
     if (now - lastPressedMs[i] > kDebounceMs) {
       if (xDigitalRead(kButtonPins[i]) == LOW) {
