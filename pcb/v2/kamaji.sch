@@ -874,7 +874,7 @@ Text Label 3730 3270 0    60   ~ 0
 PLED5
 Text Label 4410 1570 2    60   ~ 0
 RST
-Text Label 3730 3570 0    60   ~ 0
+Text Label 3740 3640 0    60   ~ 0
 PBTN1
 Text Label 3730 3970 0    60   ~ 0
 PLED1
@@ -884,7 +884,7 @@ Text Label 3730 1370 0    60   ~ 0
 CBTN1
 Text Label 3730 4270 0    60   ~ 0
 PLED2
-Text Label 3730 3470 0    60   ~ 0
+Text Label 3730 2670 0    60   ~ 0
 PBTN3
 Text Label 3730 2770 0    60   ~ 0
 CBTN2
@@ -1354,7 +1354,6 @@ $EndComp
 Text Label 6230 1870 0    60   ~ 0
 DUMMY-
 NoConn ~ 3730 2570
-NoConn ~ 3730 2670
 $Comp
 L GND #PWR055
 U 1 1 5A3D674E
@@ -1558,4 +1557,32 @@ F 3 "" H 5020 3020 50  0001 C CNN
 	1    5020 3020
 	0    1    1    0   
 $EndComp
+$Comp
+L R R12
+U 1 1 5A47814F
+P 3880 3470
+F 0 "R12" V 3960 3470 50  0000 C CNN
+F 1 "10K" V 3880 3470 50  0000 C CNN
+F 2 "Resistors_SMD:R_1206_HandSoldering" V 3810 3470 50  0001 C CNN
+F 3 "" H 3880 3470 50  0001 C CNN
+	1    3880 3470
+	0    -1   -1   0   
+$EndComp
+$Comp
+L GND #PWR056
+U 1 1 5A478637
+P 4100 3470
+F 0 "#PWR056" H 4100 3220 50  0001 C CNN
+F 1 "GND" H 4100 3320 50  0000 C CNN
+F 2 "" H 4100 3470 50  0001 C CNN
+F 3 "" H 4100 3470 50  0001 C CNN
+	1    4100 3470
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4030 3470 4100 3470
+Wire Wire Line
+	3730 3570 3730 3640
+Wire Wire Line
+	3730 3640 3740 3640
 $EndSCHEMATC
