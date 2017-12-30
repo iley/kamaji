@@ -38,7 +38,7 @@ encoding utf-8
 Sheet 1 2
 Title "Kamaji"
 Date ""
-Rev "2.0"
+Rev "2.2"
 Comp ""
 Comment1 "© Ilya Strukov 2017"
 Comment2 ""
