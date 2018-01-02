@@ -40,7 +40,7 @@ const int16_t kMaxScore = 999;
 
 int16_t level = 0;
 const int16_t kMaxLevel = 9;
-const uint32_t kStepMs[kMaxLevel+1] = {1000, 800, 650, 500, 400, 300, 200, 100, 50, 10};
+const uint32_t kStepMs[kMaxLevel+1] = {800, 700, 600, 500, 400, 300, 200, 100, 50, 10};
 const int16_t kLinesPerLevel = 10;
 
 bool field[kFieldRows][kFieldCols] = {0};
