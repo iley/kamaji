@@ -12,6 +12,8 @@ constexpr uint8_t  kPinPB7 = kXpinsBase + 1;
 constexpr uint8_t kPinPE2 = kXpinsBase + 2;  // HWB (enables bootloader).
 constexpr uint8_t kPinPD5 = kXpinsBase + 3;  // Used as LED on Arduino.
 
+#define USE_XPINS_HACK (defined(XPINS_ATMEGA328P) || defined(XPINS_ATMEGA32U4))
+
 #if USE_XPINS_HACK
 
 // Wrappers for Arduino's digitalRead, digitalWrite and pinMode with support for

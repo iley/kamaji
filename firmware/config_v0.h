@@ -6,7 +6,6 @@
 #define USE_LAMP 0
 #define SHOW_SCORES 1
 #define MIDDLE_BUTTON 1
-#define USE_XPINS_HACK 0
 
 // All available buttons.
 enum {

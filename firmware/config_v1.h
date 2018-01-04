@@ -6,7 +6,6 @@
 #define USE_LAMP 1
 #define SHOW_SCORES 1
 #define MIDDLE_BUTTON 1
-#define USE_XPINS_HACK 1
 #define XPINS_ATMEGA328P 1
 
 // All available buttons.
