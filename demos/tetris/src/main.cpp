@@ -64,7 +64,7 @@ int16_t state = STATE_RUNNING;
 bool buttons[BUTTON_COUNT] = {false};
 bool buttonsBefore[BUTTON_COUNT] = {false};
 uint32_t lastPressedMs[BUTTON_COUNT] = {0};
-const int16_t kButtonPins[BUTTON_COUNT] = {4, 5, 6, 7};
+const int16_t kButtonPins[BUTTON_COUNT] = {0, 1, 17, 7};
 
 int16_t nextToneIndex = -1;
 int16_t nextTone = 0;
