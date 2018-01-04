@@ -17,6 +17,7 @@ enum {
   BUTTON_PLAYER_3,
   BUTTON_PLAYER_4,
   BUTTON_PLAYER_5,
+  BUTTON_PLAYER_6,
 
   BUTTON_CONTROL_1,
   BUTTON_CONTROL_2,
@@ -28,15 +29,15 @@ enum {
   BUTTON_START = BUTTON_CONTROL_3,
 
   FIRST_PLAYER_BUTTON = BUTTON_PLAYER_1,
-  LAST_PLAYER_BUTTON = BUTTON_PLAYER_5,
-  PLAYER_COUNT = BUTTON_PLAYER_5 - BUTTON_PLAYER_1 + 1
+  LAST_PLAYER_BUTTON = BUTTON_PLAYER_6,
+  PLAYER_COUNT = LAST_PLAYER_BUTTON - BUTTON_PLAYER_1 + 1
 };
 
 // Pin numbers for each button, indexed by the enum values above.
 // Players:
 // PBTN1: PE6 - pin 7
 // PBTN2: PF6 - pin 19
-// PBTN3: PE2 - pin ??
+// PBTN3: PE2 - xpin 52
 // PBTN4: PC6 - pin 5
 // PBTN5: PB4 - pin 8
 // PBTN6: PD6 - pin 12
@@ -44,10 +45,9 @@ enum {
 // CBTN1: PB0 - pin 17
 // CBTN2: PD2 - pin 0
 // CBTN3: PD3 - pin 1
-// TODO: Socket 3 is skipped for now. Add it back.
 #define DECLARE_KBUTTON_PINS()    \
   const int kButtonPins[] = {     \
-    7, 19, 5, 8, 12, /* players */ \
+    7, 19, 52, 5, 8, 12, /* players */ \
     17, 0, 1,      /* control */ \
   }
 
@@ -61,12 +61,12 @@ enum {
 // PLED5: PD7 - pin 6
 // PLED6: PD4 - pin 4
 #define DECLARE_KLED_PINS() \
-  const int kLedPins[] = {21, 18, 10, 6, 4}
+  const int kLedPins[] = {21, 18, 13, 10, 6, 4}
 
 #define DECLARE_KSPEAKER_PIN()  \
   const int kSpeakerPin = 9
 
-// Lamp: PD5
+// Lamp: PD5 (xpin 53)
 #define DECLARE_KLAMP_PIN()  \
   const int kLampPin = 53
 
