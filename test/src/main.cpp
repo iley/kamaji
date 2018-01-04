@@ -37,9 +37,9 @@ void setup() {
 #endif
 
   lcd.begin(DISPLAY_COLS, DISPLAY_ROWS);
-  ENABLE_LCD_BACKLIGHT();
-
+  LCD_ENABLE_BACKLIGHT();
   lcd.print("Hello!");
+  LCD_FLUSH();
   tone(kSpeakerPin, kToneHz, kToneMs);
 }
 
@@ -60,6 +60,7 @@ void loop() {
       lcd.clear();
       lcd.print("Pressed ");
       lcd.print(i);
+      LCD_FLUSH();
       tone(kSpeakerPin, kToneHz, kToneMs);
 
       if (FIRST_PLAYER_BUTTON <= i && i <= LAST_PLAYER_BUTTON) {

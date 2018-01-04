@@ -5,22 +5,22 @@ void GraphicLcd::begin(uint8_t cols, uint8_t rows) {
   // Ignore cols and rows for now.
   u8g2.begin();
   u8g2.enableUTF8Print();
-  u8g2.setFont(u8g2_font_pressstart2p_8r);
+  u8g2.setFont(u8g2_font_haxrcorp4089_t_cyrillic);
+  clear();
 }
 
 void GraphicLcd::clear() {
   u8g2.clearBuffer();
-  u8g2.sendBuffer();
+  setCursor(0, 0);
 }
 
 void GraphicLcd::setCursor(uint8_t col, uint8_t row) {
-  u8g2.setCursor(kGraphicLcdCharHeight * col, kGraphicLcdCharWidth * row);
+  u8g2.setCursor(kGraphicLcdCharWidth * row, kGraphicLcdCharHeight * (col+1));
 }
 
-size_t GraphicLcd::write(uint8_t ch) {
-  size_t result = u8g2.write(ch);
+void GraphicLcd::flush() {
   u8g2.sendBuffer();
-  return result;
 }
+
 
 #endif  // USE_GRAPHIC_LCD

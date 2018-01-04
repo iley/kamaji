@@ -65,7 +65,7 @@ void setup() {
 
   // Initialize the screen.
   lcd.begin(DISPLAY_COLS, DISPLAY_ROWS);
-  ENABLE_LCD_BACKLIGHT();
+  LCD_ENABLE_BACKLIGHT();
 
   mode->init();
   tone(kSpeakerPin, NOTE_A7, 300/*ms*/);
@@ -108,6 +108,7 @@ void updateScreenAndLeds() {
       lcd.print(right);
       strncpy(lastMiddle, middle, sizeof(lastMiddle));
     }
+    LCD_FLUSH();  // Redraw the screen.
     strncpy(lastLeft, left, sizeof(lastLeft));
     strncpy(lastRight, right, sizeof(lastRight));
     strncpy(lastCaption, caption, sizeof(lastCaption));
