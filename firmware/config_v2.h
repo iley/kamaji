@@ -8,6 +8,8 @@
 #define SHOW_SCORES 1
 #define MIDDLE_BUTTON 1
 #define XPINS_ATMEGA32U4 1
+#define USE_DUMMY_LOAD 1
+#define USE_SIGNAL_LED 1
 
 // All available buttons.
 enum {
@@ -45,7 +47,7 @@ enum {
 // CBTN2: PD2 - pin 0
 // CBTN3: PD3 - pin 1
 #define DECLARE_KBUTTON_PINS()    \
-  const int kButtonPins[] = {     \
+  const uint8_t kButtonPins[] = {     \
     7, 19, 52, 5, 8, 12, /* players */ \
     17, 0, 1,      /* control */ \
   }
@@ -60,13 +62,20 @@ enum {
 // PLED5: PD7 - pin 6
 // PLED6: PD4 - pin 4
 #define DECLARE_KLED_PINS() \
-  const int kLedPins[] = {21, 18, 13, 10, 6, 4}
+  const uint8_t kLedPins[] = {21, 18, 13, 10, 6, 4}
 
 #define DECLARE_KSPEAKER_PIN()  \
-  const int kSpeakerPin = 9
+  const uint8_t kSpeakerPin = 9
 
-// Lamp: PD5 (xpin 53)
+// Lamp: PD5 - xpin 53
 #define DECLARE_KLAMP_PIN()  \
-  const int kLampPin = 53
+  const uint8_t kLampPin = 53
+
+// Dummy load: PB7 - pin 11
+#define DECLARE_KDUMMY_PIN() \
+  const uint8_t kDummyPin = 11
+
+#define DECLARE_KSIGNAL_PIN() \
+  const uint8_t kSignalPin = 20
 
 #endif  // CONFIG_V2_H
