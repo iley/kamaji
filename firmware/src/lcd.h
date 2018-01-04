@@ -4,6 +4,8 @@
 #if USE_I2C_LCD
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
+#elif USE_GRAPHIC_LCD
+#include "graphic_lcd.h"
 #else
 #include <LiquidCrystal.h>
 #endif  // USE_I2C_LCD
@@ -19,6 +21,12 @@ const int DISPLAY_ROWS = 4;
 #define ENABLE_LCD_BACKLIGHT() \
   lcd.setBacklightPin(3, POSITIVE); \
   lcd.setBacklight(HIGH);
+
+#elif USE_GRAPHIC_LCD
+
+#define DECLARE_LCD() \
+GraphicLcd lcd(23, 22);
+#define ENABLE_LCD_BACKLIGHT()
 
 #else
 

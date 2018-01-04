@@ -1,9 +1,10 @@
-#ifndef CONFIG_V1_H
-#define CONFIG_V1_H
+#ifndef CONFIG_V2_H
+#define CONFIG_V2_H
 
 #define USE_I2C_LCD 0
-#define USE_GRAPHIC_LCD 0
-#define USE_LAMP 1
+#define USE_GRAPHIC_LCD 1
+// TODO: Enable the lamp.
+#define USE_LAMP 0
 #define SHOW_SCORES 1
 #define MIDDLE_BUTTON 1
 #define USE_XPINS_HACK 1
@@ -32,37 +33,40 @@ enum {
 
 // Pin numbers for each button, indexed by the enum values above.
 // Players:
-// PBTN1: PD0 - pin 0
-// PBTN2: PD2 - pin 2
-// PBTN3: PD4 - pin 4
-// PBTN4: PB7 - pin 51
-// PBTN5: PD6 - pin 6
+// PBTN1: PE6 - pin 7
+// PBTN2: PF6 - pin 19
+// PBTN3: PE2 - pin ??
+// PBTN4: PC6 - pin 5
+// PBTN5: PB4 - pin 8
+// PBTN6: PD6 - pin 12
 // Controls:
-// CBTN1: PB2 - pin 10
-// CBTN2: PB3 - pin 11
-// CBTN3: PB4 - pin 12
+// CBTN1: PB0 - pin 17
+// CBTN2: PD2 - pin 0
+// CBTN3: PD3 - pin 1
+// TODO: Socket 3 is skipped for now. Add it back.
 #define DECLARE_KBUTTON_PINS()    \
   const int kButtonPins[] = {     \
-    6, 51, 4, 2, 0, /* players */ \
-    10, 11, 12,     /* control */ \
+    7, 19, 5, 8, 12, /* players */ \
+    17, 0, 1,      /* control */ \
   }
 
 // Pin numbers for each player's LED, indexed by the buttons enum.
 // E.g. kLedPins[BUTTON_PLAYER_1] is the first player's LED.
 // Player LEDs:
-// PLED1: PD1 - pin 1
-// PLED2: PD3 - pin 3
-// PLED3: PB6 - pin 50
-// PLED4: PD5 - pin 5
-// PLED5: PD7 - pin 7
+// PLED1: PF4 - pin 21
+// PLED2: PF7 - pin 18
+// PLED3: PC7 - pin 13
+// PLED4: PB6 - pin 10
+// PLED5: PD7 - pin 6
+// PLED6: PD4 - pin 4
 #define DECLARE_KLED_PINS() \
-  const int kLedPins[] = {7, 5, 50, 3, 1}
+  const int kLedPins[] = {21, 18, 10, 6, 4}
 
 #define DECLARE_KSPEAKER_PIN()  \
   const int kSpeakerPin = 9
 
-// Lamp: PB0 - pin 8
+// Lamp: PD5 - pin 8
 #define DECLARE_KLAMP_PIN()  \
   const int kLampPin = 8
 
-#endif  // CONFIG_V1_H
+#endif  // CONFIG_V2_H
