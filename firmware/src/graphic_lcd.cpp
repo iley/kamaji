@@ -1,3 +1,4 @@
+#if USE_GRAPHIC_LCD
 #include "graphic_lcd.h"
 
 void GraphicLcd::begin(uint8_t cols, uint8_t rows) {
@@ -21,3 +22,5 @@ size_t GraphicLcd::write(uint8_t ch) {
   u8g2.sendBuffer();
   return result;
 }
+
+#endif  // USE_GRAPHIC_LCD

@@ -1,6 +1,8 @@
 #ifndef KAMAJI_GRAPHIC_LCD_H
 #define KAMAJI_GRAPHIC_LCD_H
 
+#if USE_GRAPHIC_LCD
+
 #include <Print.h>
 #include <SPI.h>
 #include <U8g2lib.h>
@@ -21,4 +23,5 @@ class GraphicLcd : public Print {
     U8G2_ST7920_128X64_F_HW_SPI u8g2;
 };
 
+#endif  // USE_GRAPHIC_LCD
 #endif  // KAMAJI_GRAPHIC_LCD_H
