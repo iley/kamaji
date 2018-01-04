@@ -8,6 +8,7 @@
 #define SHOW_SCORES 1
 #define MIDDLE_BUTTON 1
 #define USE_XPINS_HACK 1
+#define XPINS_ATMEGA32U4 1
 
 // All available buttons.
 enum {
@@ -65,8 +66,8 @@ enum {
 #define DECLARE_KSPEAKER_PIN()  \
   const int kSpeakerPin = 9
 
-// Lamp: PD5 - pin 8
+// Lamp: PD5
 #define DECLARE_KLAMP_PIN()  \
-  const int kLampPin = 8
+  const int kLampPin = 53
 
 #endif  // CONFIG_V2_H

@@ -3,8 +3,14 @@
 
 #include <Arduino.h>
 
-const int kPinPB6 = 50;
-const int kPinPB7 = 51;
+constexpr uint8_t kXpinsBase = 50;
+
+// ATMega328p XTAL pins.
+constexpr uint8_t kPinPB6 = kXpinsBase + 0;
+constexpr uint8_t  kPinPB7 = kXpinsBase + 1;
+// ATMega32u4 pins.
+constexpr uint8_t kPinPE2 = kXpinsBase + 2;  // HWB (enables bootloader).
+constexpr uint8_t kPinPD5 = kXpinsBase + 3;  // Used as LED on Arduino.
 
 #if USE_XPINS_HACK
 

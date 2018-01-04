@@ -1585,4 +1585,6 @@ Wire Wire Line
 	3730 3570 3730 3640
 Wire Wire Line
 	3730 3640 3740 3640
+Text Notes 4240 2670 0    60   ~ 0
+v2.1 pins\n19: N/C\n33: PBTN3
 $EndSCHEMATC
