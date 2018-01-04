@@ -8,7 +8,7 @@
     (drawings 16)
     (tracks 395)
     (zones 0)
-    (modules 74)
+    (modules 75)
     (nets 57)
   )
 
@@ -224,6 +224,18 @@
     (add_net VCC)
   )
 
+  (module kamaji:Via_0.8mm (layer F.Cu) (tedit 5A4E8DFA) (tstamp 5A4E9424)
+    (at 102.5 82.5)
+    (fp_text reference VIA** (at 0 1.5) (layer F.SilkS) hide
+      (effects (font (size 1 1) (thickness 0.15)))
+    )
+    (fp_text value Via_0.8mm (at 0 -1.5) (layer F.Fab) hide
+      (effects (font (size 1 1) (thickness 0.15)))
+    )
+    (pad 1 thru_hole circle (at 0 0) (size 0.8 0.8) (drill 0.4) (layers *.Cu)
+      (net 47 GND) (zone_connect 2))
+  )
+
   (module kamaji:Via_0.8mm (layer F.Cu) (tedit 5A4E8DFA) (tstamp 5A4E8F49)
     (at 95.55 93.65)
     (fp_text reference VIA** (at 0 1.5) (layer F.SilkS) hide
@@ -249,7 +261,7 @@
   )
 
   (module kamaji:Via_0.8mm (layer F.Cu) (tedit 5A4E8E0E) (tstamp 5A47C239)
-    (at 70 80.5)
+    (at 70 75)
     (fp_text reference VIA** (at 0 1.5) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
@@ -273,7 +285,7 @@
   )
 
   (module kamaji:Via_0.8mm (layer F.Cu) (tedit 5A4E8E1E) (tstamp 5A47C215)
-    (at 121 73.5)
+    (at 121 75)
     (fp_text reference VIA** (at 0 1.5) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
@@ -285,7 +297,7 @@
   )
 
   (module kamaji:Via_0.8mm (layer F.Cu) (tedit 5A4E8E17) (tstamp 5A47C210)
-    (at 99.5 76.5)
+    (at 99.5 75)
     (fp_text reference VIA** (at 0 1.5) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
@@ -3106,6 +3118,8 @@
   (segment (start 106.6 93.9) (end 106.94997 93.55003) (width 0.25) (layer F.Cu) (net 46))
   (segment (start 104.7 93.9) (end 106.6 93.9) (width 0.25) (layer F.Cu) (net 46))
   (segment (start 139.5 63.6) (end 139.5 62.5) (width 0.25) (layer F.Cu) (net 46))
+  (segment (start 102.2 85.8) (end 102.2 82.8) (width 0.25) (layer F.Cu) (net 47))
+  (segment (start 102.2 82.8) (end 102.5 82.5) (width 0.25) (layer F.Cu) (net 47))
   (segment (start 93.3 90.7) (end 94.749985 90.7) (width 0.25) (layer F.Cu) (net 47))
   (via (at 94.75 90.700015) (size 0.6) (drill 0.4) (layers F.Cu B.Cu) (net 47))
   (segment (start 94.749985 90.7) (end 94.75 90.700015) (width 0.25) (layer F.Cu) (net 47))
@@ -3114,8 +3128,6 @@
   (segment (start 91.2 103.8) (end 91.913186 103.8) (width 0.25) (layer F.Cu) (net 47))
   (segment (start 108.4 99.2) (end 106.3 99.2) (width 0.25) (layer F.Cu) (net 47))
   (via (at 106.3 99.2) (size 0.6) (drill 0.4) (layers F.Cu B.Cu) (net 47))
-  (segment (start 102.2 85.8) (end 102.2 87.299998) (width 0.25) (layer F.Cu) (net 47))
-  (via (at 102.2 87.299998) (size 0.6) (drill 0.4) (layers F.Cu B.Cu) (net 47))
   (segment (start 95.8 85.8) (end 95.8 87.3) (width 0.25) (layer F.Cu) (net 47))
   (via (at 95.8 87.3) (size 0.6) (drill 0.4) (layers F.Cu B.Cu) (net 47))
   (segment (start 98.525736 95.5) (end 98.95 95.5) (width 0.25) (layer F.Cu) (net 47))
