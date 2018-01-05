@@ -43,13 +43,13 @@ enum {
 // PBTN5: PB4 - pin 8
 // PBTN6: PD6 - pin 12
 // Controls:
-// CBTN1: PB0 - pin 17
+// CBTN1: PD3 - pin 1
 // CBTN2: PD2 - pin 0
-// CBTN3: PD3 - pin 1
+// CBTN3: PB0 - pin 17
 #define DECLARE_KBUTTON_PINS()    \
   const uint8_t kButtonPins[] = {     \
     7, 19, 52, 5, 8, 12, /* players */ \
-    17, 0, 1,      /* control */ \
+    1, 0, 17,      /* control */ \
   }
 
 // Pin numbers for each player's LED, indexed by the buttons enum.
