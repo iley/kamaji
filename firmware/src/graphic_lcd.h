@@ -10,7 +10,7 @@
 // A wrapper for the ST7920-based 128x64 graphic screen.
 // The interface is modelled after the standard LiquidCrystal class.
 // ATTENTION: You need to call flush() to update the screen after print()-ing.
-template<uint8_t Rows, uint8_t Cols, uint8_t CharHeight=8, uint8_t CharWidth=4>
+template<uint8_t Rows, uint8_t Cols, uint8_t CharHeight, uint8_t CharWidth>
 class GraphicLcd : public Print {
   public:
     GraphicLcd(uint8_t chip_select_pin, uint8_t reset_pin)
@@ -35,7 +35,7 @@ class GraphicLcd : public Print {
     void flush() {
       u8g2_.firstPage();
       do {
-        u8g2_.setFont(u8g2_font_haxrcorp4089_t_cyrillic);
+        u8g2_.setFont(GRAPHIC_LCD_FONT);
         for (int i = 0; i < Rows; ++i) {
           u8g2_.drawStr(0, (i+1) * CharHeight, buffer_[i]);
         }
@@ -58,7 +58,7 @@ class GraphicLcd : public Print {
       }
     }
 
-    U8G2_ST7920_128X64_1_HW_SPI u8g2_;
+    U8G2_ST7920_128X64_2_HW_SPI u8g2_;
     char buffer_[Rows][Cols+1];
     uint8_t row_ = 0;
     uint8_t col_ = 0;
