@@ -36,33 +36,33 @@ enum {
 
 // Pin numbers for each button, indexed by the enum values above.
 // Players:
-// PBTN1: PE6 - pin 7
-// PBTN2: PF6 - pin 19
+// PBTN1: PD6 - pin 12
+// PBTN2: PB4 - pin 8
+// PBTN3: PC6 - pin 5
 // PBTN3: PE2 - xpin 52
-// PBTN4: PC6 - pin 5
-// PBTN5: PB4 - pin 8
-// PBTN6: PD6 - pin 12
+// PBTN5: PF6 - pin 19
+// PBTN6: PE6 - pin 7
 // Controls:
 // CBTN1: PD3 - pin 1
 // CBTN2: PD2 - pin 0
 // CBTN3: PB0 - pin 17
 #define DECLARE_KBUTTON_PINS()    \
   const uint8_t kButtonPins[] = {     \
-    7, 19, 52, 5, 8, 12, /* players */ \
+    12, 8, 5, 52, 19, 7, /* players */ \
     1, 0, 17,      /* control */ \
   }
 
 // Pin numbers for each player's LED, indexed by the buttons enum.
 // E.g. kLedPins[BUTTON_PLAYER_1] is the first player's LED.
 // Player LEDs:
-// PLED1: PF4 - pin 21
-// PLED2: PF7 - pin 18
-// PLED3: PC7 - pin 13
-// PLED4: PB6 - pin 10
-// PLED5: PD7 - pin 6
-// PLED6: PD4 - pin 4
+// PLED1: PD4 - pin 4
+// PLED2: PD7 - pin 6
+// PLED3: PB6 - pin 10
+// PLED4: PC7 - pin 13
+// PLED5: PF7 - pin 18
+// PLED6: PF4 - pin 21
 #define DECLARE_KLED_PINS() \
-  const uint8_t kLedPins[] = {21, 18, 13, 10, 6, 4}
+  const uint8_t kLedPins[] = {4, 6, 10, 13, 18, 21}
 
 #define DECLARE_KSPEAKER_PIN()  \
   const uint8_t kSpeakerPin = 9
