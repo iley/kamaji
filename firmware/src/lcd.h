@@ -25,10 +25,10 @@ inline void flushLcd(LiquidCrystal_I2C* lcd) { /* NOOP */ }
 #define GRAPHIC_LCD_FONT u8g2_font_haxrcorp4089_t_cyrillic
 #include "graphic_lcd.h"
 
-const int DISPLAY_COLS = 32;
+const int DISPLAY_COLS = 25;
 const int DISPLAY_ROWS = 8;
 const int kFontHeight = 8;
-const int kFontWidth = 4;
+const int kFontWidth = 5;
 
 using Lcd = GraphicLcd<DISPLAY_ROWS, DISPLAY_COLS, kFontHeight, kFontWidth>;
 
