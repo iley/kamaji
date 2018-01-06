@@ -11,14 +11,17 @@ const int DISPLAY_ROWS = 4;
 
 #define DECLARE_LCD() \
   LiquidCrystal_I2C lcd(0x3f, 2, 1, 0, 4, 5, 6, 7);
-#define LCD_ENABLE_BACKLIGHT() \
-  lcd.setBacklightPin(3, POSITIVE); \
-  lcd.setBacklight(HIGH);
-#define LCD_FLUSH()
+
+inline void initLcd(LiquidCrystal_I2C* lcd) {
+  lcd->begin(DISPLAY_COLS, DISPLAY_ROWS);
+  lcd->setBacklightPin(3, POSITIVE);
+  lcd->setBacklight(HIGH);
+}
+
+inline void flushLcd(LiquidCrystal_I2C* lcd) { /* NOOP */ }
 
 #elif USE_GRAPHIC_LCD
 // A ST7920-based 128x64 graphic screen.
-
 #define GRAPHIC_LCD_FONT u8g2_font_haxrcorp4089_t_cyrillic
 #include "graphic_lcd.h"
 
@@ -27,10 +30,17 @@ const int DISPLAY_ROWS = 8;
 const int kFontHeight = 8;
 const int kFontWidth = 4;
 
-#define DECLARE_LCD() \
-GraphicLcd<DISPLAY_ROWS, DISPLAY_COLS, kFontHeight, kFontWidth> lcd(A5, A4)
-#define LCD_ENABLE_BACKLIGHT()
-#define LCD_FLUSH() (lcd.flush())
+using Lcd = GraphicLcd<DISPLAY_ROWS, DISPLAY_COLS, kFontHeight, kFontWidth>;
+
+#define DECLARE_LCD() Lcd lcd(A5, A4)
+
+inline void initLcd(Lcd* lcd) {
+  lcd->begin();
+}
+
+inline void flushLcd(Lcd* lcd) {
+  lcd->flush();
+}
 
 #else
 // 16x2 character LCD with parallel interface.
@@ -41,9 +51,13 @@ const int DISPLAY_ROWS = 4;
 
 #define DECLARE_LCD() \
   LiquidCrystal lcd(/*rs=*/14, /*en=*/15, /*d0=*/16, /*d1=*/17, /*d2=*/18, \
-                    /*d3=*/19);
-#define LCD_ENABLE_BACKLIGHT()
-#define LCD_FLUSH()
+                    /*d3=*/19)
+
+inline void initLcd(LiquidCrystal* lcd) {
+  lcd->begin(DISPLAY_COLS, DISPLAY_ROWS);
+}
+
+inline void flushLcd(LiquidCrystal* lcd) { /* NOOP */ }
 
 #endif
 

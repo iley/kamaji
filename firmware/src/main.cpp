@@ -63,10 +63,7 @@ void setup() {
   xPinMode(kLampPin, OUTPUT);
 #endif
 
-  // Initialize the screen.
-  lcd.begin(DISPLAY_COLS, DISPLAY_ROWS);
-  LCD_ENABLE_BACKLIGHT();
-
+  initLcd(&lcd);
   mode->init();
   tone(kSpeakerPin, NOTE_A7, 300/*ms*/);
 }
@@ -108,7 +105,7 @@ void updateScreenAndLeds() {
       lcd.print(right);
       strncpy(lastMiddle, middle, sizeof(lastMiddle));
     }
-    LCD_FLUSH();  // Redraw the screen.
+    flushLcd(&lcd);  // Redraw the screen.
     strncpy(lastLeft, left, sizeof(lastLeft));
     strncpy(lastRight, right, sizeof(lastRight));
     strncpy(lastCaption, caption, sizeof(lastCaption));

@@ -3,6 +3,9 @@
 
 #if USE_GRAPHIC_LCD
 
+// TODO: Try using u8x8 instead of u8g2.
+// TODO: UTF-8 support.
+
 #include <SPI.h>
 #include <Print.h>
 #include <U8g2lib.h>
@@ -16,7 +19,7 @@ class GraphicLcd : public Print {
     GraphicLcd(uint8_t chip_select_pin, uint8_t reset_pin)
       : u8g2_(U8G2_R0, chip_select_pin, reset_pin) {}
 
-    void begin(uint8_t cols, uint8_t rows) {
+    void begin() {
       u8g2_.begin();
       clear();
     }
