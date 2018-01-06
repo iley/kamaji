@@ -36,10 +36,9 @@ void setup() {
   xPinMode(kLampPin, OUTPUT);
 #endif
 
-  lcd.begin(DISPLAY_COLS, DISPLAY_ROWS);
-  LCD_ENABLE_BACKLIGHT();
+  initLcd(&lcd);
   lcd.print("Hello!");
-  LCD_FLUSH();
+  flushLcd(&lcd);
   tone(kSpeakerPin, kToneHz, kToneMs);
 }
 
@@ -60,7 +59,7 @@ void loop() {
       lcd.clear();
       lcd.print("Pressed ");
       lcd.print(i);
-      LCD_FLUSH();
+      flushLcd(&lcd);
       tone(kSpeakerPin, kToneHz, kToneMs);
 
       if (FIRST_PLAYER_BUTTON <= i && i <= LAST_PLAYER_BUTTON) {
