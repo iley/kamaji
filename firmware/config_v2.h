@@ -35,13 +35,13 @@ enum {
 };
 
 // Pin numbers for each button, indexed by the enum values above.
-// Players:
-// PBTN1: PD6 - pin 12
-// PBTN2: PB4 - pin 8
-// PBTN3: PC6 - pin 5
+// Players (reversed):
+// PBTN6: PD6 - pin 12
+// PBTN5: PB4 - pin 8
+// PBTN4: PC6 - pin 5
 // PBTN3: PE2 - xpin 52
-// PBTN5: PF6 - pin 19
-// PBTN6: PE6 - pin 7
+// PBTN2: PF6 - pin 19
+// PBTN1: PE6 - pin 7
 // Controls:
 // CBTN1: PD3 - pin 1
 // CBTN2: PD2 - pin 0
@@ -54,13 +54,13 @@ enum {
 
 // Pin numbers for each player's LED, indexed by the buttons enum.
 // E.g. kLedPins[BUTTON_PLAYER_1] is the first player's LED.
-// Player LEDs:
-// PLED1: PD4 - pin 4
-// PLED2: PD7 - pin 6
-// PLED3: PB6 - pin 10
-// PLED4: PC7 - pin 13
-// PLED5: PF7 - pin 18
-// PLED6: PF4 - pin 21
+// Player LEDs (reversed):
+// PLED6: PD4 - pin 4
+// PLED5: PD7 - pin 6
+// PLED4: PB6 - pin 10
+// PLED3: PC7 - pin 13
+// PLED2: PF7 - pin 18
+// PLED1: PF4 - pin 21
 #define DECLARE_KLED_PINS() \
   const uint8_t kLedPins[] = {4, 6, 10, 13, 18, 21}
 
