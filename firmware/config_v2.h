@@ -1,15 +1,13 @@
 #ifndef CONFIG_V2_H
 #define CONFIG_V2_H
 
-#define USE_I2C_LCD 0
 #define USE_GRAPHIC_LCD 1
-// TODO: Enable the lamp.
-#define USE_LAMP 0
 #define SHOW_SCORES 1
 #define MIDDLE_BUTTON 1
 #define XPINS_ATMEGA32U4 1
 #define USE_DUMMY_LOAD 1
 #define USE_SIGNAL_LED 1
+// TODO: Enable the lamp.
 
 // All available buttons.
 enum {

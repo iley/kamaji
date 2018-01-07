@@ -6,14 +6,14 @@
 #include <Wire.h>
 #include <LiquidCrystal_I2C.h>
 
-const int DISPLAY_COLS = 16;
-const int DISPLAY_ROWS = 4;
+const int kDisplayCols = 16;
+const int kDisplayRows = 4;
 
 #define DECLARE_LCD() \
   LiquidCrystal_I2C lcd(0x3f, 2, 1, 0, 4, 5, 6, 7);
 
 inline void initLcd(LiquidCrystal_I2C* lcd) {
-  lcd->begin(DISPLAY_COLS, DISPLAY_ROWS);
+  lcd->begin(kDisplayCols, kDisplayRows);
   lcd->setBacklightPin(3, POSITIVE);
   lcd->setBacklight(HIGH);
 }
@@ -25,12 +25,12 @@ inline void flushLcd(LiquidCrystal_I2C* lcd) { /* NOOP */ }
 #define GRAPHIC_LCD_FONT u8g2_font_haxrcorp4089_t_cyrillic
 #include "graphic_lcd.h"
 
-const int DISPLAY_COLS = 25;
-const int DISPLAY_ROWS = 8;
+const int kDisplayCols = 25;
+const int kDisplayRows = 8;
 const int kFontHeight = 8;
 const int kFontWidth = 5;
 
-using Lcd = GraphicLcd<DISPLAY_ROWS, DISPLAY_COLS, kFontHeight, kFontWidth>;
+using Lcd = GraphicLcd<kDisplayRows, kDisplayCols, kFontHeight, kFontWidth>;
 
 #define DECLARE_LCD() Lcd lcd(A5, A4)
 
@@ -46,15 +46,15 @@ inline void flushLcd(Lcd* lcd) {
 // 16x2 character LCD with parallel interface.
 #include <LiquidCrystal.h>
 
-const int DISPLAY_COLS = 16;
-const int DISPLAY_ROWS = 4;
+const int kDisplayCols = 16;
+const int kDisplayRows = 4;
 
 #define DECLARE_LCD() \
   LiquidCrystal lcd(/*rs=*/14, /*en=*/15, /*d0=*/16, /*d1=*/17, /*d2=*/18, \
                     /*d3=*/19)
 
 inline void initLcd(LiquidCrystal* lcd) {
-  lcd->begin(DISPLAY_COLS, DISPLAY_ROWS);
+  lcd->begin(kDisplayCols, kDisplayRows);
 }
 
 inline void flushLcd(LiquidCrystal* lcd) { /* NOOP */ }

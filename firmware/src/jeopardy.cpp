@@ -61,7 +61,7 @@ bool firstTime = true;
 int lastAttentionSoundPlayed = 3;
 int question;
 int score[NUM_PLAYERS];
-char cost[DISPLAY_COLS + 1];
+char cost[kDisplayCols + 1];
 int numPlayers = NUM_PLAYERS;
 
 int historyPlayer[HISTORY];

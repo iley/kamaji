@@ -1,30 +1,24 @@
 #include <Arduino.h>
 #include <string.h>
 
+#include "lamp.h"
 #include "lcd.h"
 #include "main.h"
 #include "mode.h"
 #include "pitches.h"
 #include "xpins.h"
 
-const int kResetDelay = 2000;
+// How long the two buttons need to be held for a reset.
+const unsigned long kResetDelayMs = 2000;
+// Button debounce delay in milliseconds.
+const unsigned long kDebounceMs = 100;
 
 // Pin numbers for buttons and LEDs are defined in the corresponding config:
 // config_v[01].h
 DECLARE_KBUTTON_PINS();
 DECLARE_KLED_PINS();
 DECLARE_KSPEAKER_PIN();
-
-// Button debounce delay in milliseconds.
-const unsigned long kDebounceMs = 100;
-
-// GLOBAL STATE
-
 DECLARE_LCD();
-
-#if USE_LAMP
-DECLARE_KLAMP_PIN();
-#endif
 
 SelectMode selectMode;
 
@@ -35,18 +29,18 @@ Mode *mode = &selectMode;
 bool buttons[BUTTON_COUNT] = { false };
 // Button state before the latest update.
 bool buttonsBefore[BUTTON_COUNT] = { false };
-
-// For each button, when it was last time pressed in milliseconds since device
-// start.
+// For each button, time when it was last pressed.
 unsigned long lastPressedMs[BUTTON_COUNT] = {0};
 
-char caption[DISPLAY_COLS + 1];
-char lastLeft[DISPLAY_COLS + 1];
-char lastRight[DISPLAY_COLS + 1];
-char lastMiddle[DISPLAY_COLS + 1];
-char lastCaption[DISPLAY_COLS + 1];
-bool lastLeds[PLAYER_COUNT];
+char caption[kDisplayCols + 1];
+char lastLeft[kDisplayCols + 1];
+char lastRight[kDisplayCols + 1];
+char lastMiddle[kDisplayCols + 1];
+char lastCaption[kDisplayCols + 1];
+
+// Whether the reset buttons are being held.
 bool resetStarted = false;
+// Time when the reset buttons were pushed.
 unsigned long resetStartTime;
 
 void setup() {
@@ -59,10 +53,7 @@ void setup() {
   }
   xPinMode(kSpeakerPin, OUTPUT);
 
-#if USE_LAMP
-  xPinMode(kLampPin, OUTPUT);
-#endif
-
+  initLamp();
   initLcd(&lcd);
   mode->init();
   tone(kSpeakerPin, NOTE_A7, 300/*ms*/);
@@ -87,14 +78,14 @@ void updateScreenAndLeds() {
     // Print button functions on the lower line of the screen.
     if (SHOW_SCORES == 0) {
       lcd.print(left);
-      const int spaces = DISPLAY_COLS - strlen(left) - strlen(right);
+      const int spaces = kDisplayCols - strlen(left) - strlen(right);
       for (int i = 0; i < spaces; ++i) {
         lcd.print(' ');
       }
       lcd.print(right);
     } else {
       lcd.print(left);
-      const int spaces = DISPLAY_COLS - strlen(left) - strlen(right) - strlen(middle);
+      const int spaces = kDisplayCols - strlen(left) - strlen(right) - strlen(middle);
       for (int i = 0; i < spaces / 2; ++i) {
         lcd.print(' ');
       }
@@ -113,9 +104,7 @@ void updateScreenAndLeds() {
   for (int i = BUTTON_PLAYER_1; i <= LAST_PLAYER_BUTTON; i++) {
     xDigitalWrite(kLedPins[i], mode->getLedState(i) ? HIGH : LOW);
   }
-#if USE_LAMP
-  xDigitalWrite(kLampPin, mode->getLampState() ? HIGH : LOW);
-#endif
+  switchLamp(mode->getLampState());
 }
 
 void loop() {
@@ -136,7 +125,7 @@ void loop() {
     }
   }
   if (buttons[BUTTON_RESET] && buttons[BUTTON_START]) {
-    if (resetStarted && now - resetStartTime > kResetDelay) {
+    if (resetStarted && now - resetStartTime > kResetDelayMs) {
       mode = &selectMode;
       mode->init();
     } else if (!resetStarted) {

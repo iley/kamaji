@@ -2,8 +2,6 @@
 #define CONFIG_V0_H
 
 #define USE_I2C_LCD 1
-#define USE_GRAPHIC_LCD 0
-#define USE_LAMP 0
 #define SHOW_SCORES 1
 #define MIDDLE_BUTTON 1
 
@@ -11,7 +9,7 @@
 enum {
   BUTTON_PLAYER_1,
   BUTTON_PLAYER_2,
-  BUTTON_PLAYER_6,
+  BUTTON_PLAYER_3,
   BUTTON_PLAYER_4,
 
   BUTTON_CONTROL_1,
