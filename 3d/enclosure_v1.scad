@@ -224,8 +224,8 @@ speaker_shift = 18;
   }
   // master buttons
   for (i = [0:1:2]) {
-    dx = master_button_x + master_button_int*i;
-    translate([dx, master_button_y, top_box_z - th - eps]) {
+    //dx = master_button_x + master_button_int*i;
+    translate([master_button_x + master_button_int*i, master_button_y, top_box_z - th - eps]) {
       cylinder($fn=fn, r=master_button_r + tol, h=th+2*eps);
     }
   }

@@ -19,7 +19,7 @@ translate([-size_x/2, 0, 0]) {
   cube([width, size_y, size_z]);
   translate([size_x - width, 0, 0]) {
     cube([width, size_y, size_z]);
-  };
+  }
   translate([pin_offset_left, pin_offset_bottom, -pin_length]) {
     cylinder(2*pin_length + size_z, pin_radius);
   }
