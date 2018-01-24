@@ -57,7 +57,7 @@ under_pcb = 13;
 fn = 10;
 gaika_h = 4;
 gaika_w = 5.5;
-stoiki_r = 3;
+stoiki_r = 4;
 stoiki_h = socket_h;
 wide_stoiki_r = stoiki_r + 2;
 
@@ -90,7 +90,7 @@ translate([0,0,-50]) {
       for (dx = [shift_x+shift_bolt_x, shift_x+pcb_x-shift_bolt_x]) {
         translate([dx,dy,th-eps]) {
           cylinder($fn=6, r=stoiki_r, h=stoiki_h + eps);
-          cylinder($fn=6, r=wide_stoiki_r, h=gaika_h);
+          //cylinder($fn=6, r=wide_stoiki_r, h=gaika_h);
         }
       }
     }
@@ -116,7 +116,7 @@ translate([0,0,-50]) {
       translate([dx,dy,-eps]) {
         cylinder($fn=fn, r=bolt_d/2, h=th+stoiki_h+2*eps);
         // gaika
-        cylinder($fn=6, r=gaika_w / 2 / cos(30) + 0.05, h=gaika_h);
+        //cylinder($fn=6, r=gaika_w / 2 / cos(30) + 0.05, h=gaika_h);
       }
     }
   }
