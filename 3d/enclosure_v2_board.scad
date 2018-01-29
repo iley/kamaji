@@ -63,12 +63,12 @@ wide_stoiki_r = stoiki_r + 2;
 
 dynamic_x = shift_x + 19;
 dynamic_y = shift_y + 31;
-dynamic_r = 10;
+dynamic_r = 16;
 
 volume_center_y = shift_y + 50;
-volume_w = 15;
-volume_start_y = shift_y + volume_center_y - volume_w/2;
-volume_h = 5;
+volume_w = 13;
+volume_start_y = volume_center_y - volume_w/2;
+volume_h = 3;
 
 translate([0,0,-50]) {
 
@@ -133,7 +133,7 @@ translate([0,0,-50]) {
 
     // volume
     translate([-eps, volume_start_y, bottom_box_z - pcb_width - volume_h]) {
-        cube(size=[th+2*eps, volume_w, volume_h + th + eps]);
+        cube(size=[th+2*eps, volume_w, volume_h + pcb_width + eps]);
     }
 
 }
