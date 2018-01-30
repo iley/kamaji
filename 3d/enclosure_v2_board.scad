@@ -10,6 +10,9 @@ shift_bolt_y = 7;
 board_w = 1;
 board_h = 1;
 
+m3_bolt_top_r = 2.9;
+m3_bolt_top_h = 1.5;
+
 
 // box thickness
 th = 2;
@@ -21,24 +24,25 @@ shift_y = th;
 box_x = pcb_x + 2*th;
 box_y = pcb_y + 2*th;
 
-pcb_width = 2;
+pcb_width = 1.6;
 
-socket_h = 15;
+socket_h = 14.7;
 socket_w = 10;
 socket_n = 6;
-socket_int = 15.6;
-start_socket_x = 6 + shift_x;
+socket_all_len = 85;
+socket_int = socket_w + (socket_all_len - socket_n*socket_w)/(socket_n - 1);
+start_socket_x = shift_x + (pcb_x - socket_all_len) / 2;
 eps = 1e-1;
 
 bottom_box_z = socket_h + th + pcb_width;
 
-usb_type_b_w = 12;
+usb_type_b_w = 11;
 usb_type_b_h = 11;
 start_type_b_y = shift_y + pcb_y - 36;
 start_type_b_z = bottom_box_z - pcb_width - usb_type_b_h - tol;
 
 usb_type_a_w = 14.4;
-usb_type_a_h = 7.8;
+usb_type_a_h = 6.3;
 start_type_a_y = shift_y + 25;
 start_type_a_z = bottom_box_z - pcb_width - usb_type_a_h - tol;
 
@@ -61,14 +65,14 @@ stoiki_r = 4;
 stoiki_h = socket_h;
 wide_stoiki_r = stoiki_r + 2;
 
-dynamic_x = shift_x + 19;
-dynamic_y = shift_y + 31;
-dynamic_r = 16;
+dynamic_x = shift_x + 20;
+dynamic_y = shift_y + 31.5;
+dynamic_r = 15.2;
 
 volume_center_y = shift_y + 50;
-volume_w = 13;
+volume_w = 15;
 volume_start_y = volume_center_y - volume_w/2;
-volume_h = 3;
+volume_h = 4;
 
 translate([0,0,-50]) {
 
@@ -94,6 +98,9 @@ translate([0,0,-50]) {
         }
       }
     }
+   translate([start_socket_x, th - eps, th - eps]) {
+     cube([socket_all_len, th/2 + eps, stoiki_h + eps]);
+   }
     //translate([box_x/2, box_y/2, th-eps]) {
       //cylinder($fn=6, r=stoiki_r, h=pcb_up);
     //}
@@ -115,8 +122,8 @@ translate([0,0,-50]) {
     for (dy = [shift_y+shift_bolt_y, shift_y+pcb_y-shift_bolt_y]) {
       translate([dx,dy,-eps]) {
         cylinder($fn=fn, r=bolt_d/2, h=th+stoiki_h+2*eps);
-        // gaika
-        //cylinder($fn=6, r=gaika_w / 2 / cos(30) + 0.05, h=gaika_h);
+        // bolt
+        cylinder($fn=12, r=m3_bolt_top_r + 0.05, h=m3_bolt_top_h);
       }
     }
   }
