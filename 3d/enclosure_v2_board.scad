@@ -76,7 +76,7 @@ volume_h = 4;
 
 translate([0,0,-50]) {
 
-!difference() {
+difference() {
   union() {
     difference() {
       union() {
@@ -146,14 +146,14 @@ translate([0,0,-50]) {
 }
 }
 
-top_box_z = 15 + th;
+top_box_z = 10;
 //stoiki_h = top_box_z - th;
 wide_stoiki_h = 4;
 pcb_room = 1;
-screen_start_x = shift_x + 29;
-screen_start_y = shift_y + 38.9;
-screen_length_x = 71.2;
-screen_length_y = 24.2;
+screen_start_x = shift_x + 11;
+screen_start_y = shift_y + 26;
+screen_length_x = 78;
+screen_length_y = 51;
 screen_hold_x = 40;
 screen_hold_y = 4;
 screen_hold_start_z = 12.5;
@@ -161,10 +161,10 @@ screen_hold_y_shift = 2;
 screen_hold_up_x = 15;
 screen_hold_up_x_shift = 5;
 
-master_button_y = shift_y + 10;
-master_button_x = shift_x + 43;
-master_button_int = 21.8;
-master_button_r = 5;
+master_button_y = shift_y + pcb_y - 7.5;
+master_button_x = shift_x + 18.5;
+master_button_int = 31.5;
+master_button_r = 6;
 top_bolt_h = 1.5;
 top_bolt_r = 3.5;
 speaker_shift = 18;
@@ -175,7 +175,7 @@ speaker_hole_int = 3;
 speaker_hole_w = 1.5;
 speaker_shift = 18;
 
-difference() {
+!difference() {
   union() {
     // board
     translate([0, 0, -board_h]) {
@@ -193,10 +193,10 @@ difference() {
       }
     }
     // stoiki
-    for (dx = [shift_x+shift_bolt, shift_x+pcb_x-shift_bolt]) {
-      for (dy = [shift_y+shift_bolt, shift_y+pcb_y-shift_bolt]) {
-        translate([dx,dy,pcb_room]) {
-          cylinder($fn=6, r=stoiki_r, h=top_box_z-th+eps);
+    for (dx = [shift_x+shift_bolt_x, shift_x+pcb_x-shift_bolt_x]) {
+      for (dy = [shift_y+shift_bolt_y, shift_y+pcb_y-shift_bolt_y]) {
+        translate([dx,dy,-eps]) {
+          cylinder($fn=6, r=stoiki_r-0.5, h=top_box_z-th+eps);
         }
         translate([dx,dy,top_box_z-th-wide_stoiki_h+eps]) {
           cylinder($fn=6, r=wide_stoiki_r, h=wide_stoiki_h+th-2*eps);
@@ -204,35 +204,22 @@ difference() {
       }
     }
     // screen_hold
-    translate([screen_start_x + (screen_length_x - screen_hold_x)/2, screen_start_y - screen_hold_y_shift - screen_hold_y, screen_hold_start_z]) {
-	cube([screen_hold_x, screen_hold_y, top_box_z - screen_hold_start_z - th + eps]);
-    }
-    translate([screen_start_x + screen_length_x - screen_hold_up_x - screen_hold_up_x_shift, screen_start_y + screen_length_y + screen_hold_y_shift, screen_hold_start_z]) {
-	cube([screen_hold_up_x, screen_hold_y, top_box_z - screen_hold_start_z - th + eps]);
-    }
+    //translate([screen_start_x + (screen_length_x - screen_hold_x)/2, screen_start_y - screen_hold_y_shift - screen_hold_y, screen_hold_start_z]) {
+        //cube([screen_hold_x, screen_hold_y, top_box_z - screen_hold_start_z - th + eps]);
+    //}
+    //translate([screen_start_x + screen_length_x - screen_hold_up_x - screen_hold_up_x_shift, screen_start_y + screen_length_y + screen_hold_y_shift, screen_hold_start_z]) {
+        //cube([screen_hold_up_x, screen_hold_y, top_box_z - screen_hold_start_z - th + eps]);
+    //}
   }
-  // - speaker na stoikah
-  translate([shift_x + pcb_x - 18, shift_y + 18, 0]) {
-    cylinder(r=speaker_r, h = 15, $fn=20);
-  }
-  // speaker_hole
-  for (dy = [shift_y + speaker_shift - speaker_hole_int - speaker_hole_w*3/2, 
-             shift_y + speaker_shift - speaker_hole_w/2, 
-             shift_y + speaker_shift + speaker_hole_int + speaker_hole_w/2]) { 
-    translate([shift_x + pcb_x - speaker_shift - speaker_hole_d, dy, top_box_z-th-eps]) {
-      cube(size=[speaker_hole_d, speaker_hole_w, th + 2*eps]);
-    }
-  }
-
   // bolts
-  for (dx = [shift_x+shift_bolt, shift_x+pcb_x-shift_bolt]) {
-    for (dy = [shift_y+shift_bolt, shift_y+pcb_y-shift_bolt]) {
-      translate([dx,dy,-eps]) {
+  for (dx = [shift_x+shift_bolt_x, shift_x+pcb_x-shift_bolt_x]) {
+    for (dy = [shift_y+shift_bolt_y, shift_y+pcb_y-shift_bolt_y]) {
+      translate([dx,dy,-2*eps]) {
         cylinder($fn=fn, r=bolt_d/2, h=top_box_z+2*eps);
       }
-      translate([dx, dy, top_box_z - top_bolt_h]) {
-        //cylinder($fn=6, r=gaika_w / 2 / cos(30) + 0.05, h=wide_stoiki_h+eps);
-        cylinder($fn=6, r=top_bolt_r, h=top_bolt_h + eps);
+      translate([dx, dy, top_box_z - wide_stoiki_h]) {
+        cylinder($fn=6, r=gaika_w / 2 / cos(30) + 0.05, h=wide_stoiki_h+eps);
+        //cylinder($fn=6, r=top_bolt_r, h=top_bolt_h + eps);
       }
     }
   }
@@ -240,20 +227,6 @@ difference() {
   // screen
   translate([screen_start_x - screen_tol, screen_start_y - screen_tol, top_box_z - th - eps]) {
       cube([screen_length_x + 2*screen_tol, screen_length_y + 2*screen_tol, th + 2*eps]);
-  }
-  // sockets
-  for (i = [0:1:socket_n-1]) {
-      translate([start_socket_x+i*socket_int - tol, box_y-th-eps, -eps - board_h]) {
-        cube(size=[socket_w + 2*tol, th+2*eps, socket_h + board_h]);
-      }
-  }
-  // type_b
-  translate([box_x - th - eps, start_type_b_y - tol, -tol - board_h]) {
-      cube([th + 2*eps, usb_type_b_w + 2*tol, usb_type_b_h + 2*tol + board_h]);
-  }
-  // type_a
-  translate([-eps, start_type_a_y - tol, -eps - board_h]) {
-      cube([th + 2*eps, usb_type_a_w + 2*tol, usb_type_a_h + 2*eps + board_h]);
   }
   // master buttons
   for (i = [0:1:2]) {
