@@ -18,13 +18,13 @@ m3_bolt_top_h = 1.5;
 th = 2;
 
 // bolts
-shift_x = th;
-shift_y = th;
+shift_x = th + 0.5;
+shift_y = th + 0.5;
 
-box_x = pcb_x + 2*th;
-box_y = pcb_y + 2*th;
+box_x = pcb_x + 2*th + 1;
+box_y = pcb_y + 2*th + 1;
 
-pcb_width = 1.6;
+pcb_width = 2;
 
 socket_h = 14.7;
 socket_w = 10;
@@ -36,9 +36,9 @@ eps = 1e-1;
 
 bottom_box_z = socket_h + th + pcb_width;
 
-usb_type_b_w = 11;
+usb_type_b_w = 12;
 usb_type_b_h = 11;
-start_type_b_y = shift_y + pcb_y - 36;
+start_type_b_y = shift_y + pcb_y - 36.5;
 start_type_b_z = bottom_box_z - pcb_width - usb_type_b_h - tol;
 
 usb_type_a_w = 14.4;
@@ -66,8 +66,8 @@ stoiki_h = socket_h;
 wide_stoiki_r = stoiki_r + 2;
 
 dynamic_x = shift_x + 20;
-dynamic_y = shift_y + 31.5;
-dynamic_r = 15.2;
+dynamic_y = shift_y + 31;
+dynamic_r = 16;
 
 volume_center_y = shift_y + 50;
 volume_w = 15;
@@ -150,9 +150,9 @@ top_box_z = 10;
 //stoiki_h = top_box_z - th;
 wide_stoiki_h = 4;
 pcb_room = 1;
-screen_start_x = shift_x + 11;
-screen_start_y = shift_y + 26;
-screen_length_x = 78;
+screen_start_x = shift_x + 11.5;
+screen_start_y = shift_y + 24.5;
+screen_length_x = 77;
 screen_length_y = 51;
 screen_hold_x = 40;
 screen_hold_y = 4;
@@ -164,18 +164,12 @@ screen_hold_up_x_shift = 5;
 master_button_y = shift_y + pcb_y - 7.5;
 master_button_x = shift_x + 18.5;
 master_button_int = 31.5;
-master_button_r = 6;
+master_button_r = 6.5;
 top_bolt_h = 1.5;
 top_bolt_r = 3.5;
-speaker_shift = 18;
-speaker_r = 15;
-speaker_h = 15;
-speaker_hole_d = 10;
-speaker_hole_int = 3;
-speaker_hole_w = 1.5;
-speaker_shift = 18;
 
-!difference() {
+!rotate(a=[180,0,0]) {
+difference() {
   union() {
     // board
     translate([0, 0, -board_h]) {
@@ -234,6 +228,7 @@ speaker_shift = 18;
       cylinder($fn=fn, r=master_button_r + tol, h=th+2*eps);
     }
   }
+}
 }
 
 
