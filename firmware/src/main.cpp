@@ -33,10 +33,12 @@ bool buttonsBefore[BUTTON_COUNT] = { false };
 unsigned long lastPressedMs[BUTTON_COUNT] = {0};
 
 char caption[kDisplayCols + 1];
+char score[kDisplayCols + 1];
 char lastLeft[kDisplayCols + 1];
 char lastRight[kDisplayCols + 1];
 char lastMiddle[kDisplayCols + 1];
 char lastCaption[kDisplayCols + 1];
+char lastScore[kDisplayCols + 1];
 
 // Whether the reset buttons are being held.
 bool resetStarted = false;
@@ -62,44 +64,42 @@ void setup() {
 void updateScreenAndLeds() {
   caption[0] = '\0';
   mode->getCaption(caption, sizeof(caption));
+  score[0] = '\0';
+  mode->getScore(score, sizeof(score));
   const char* left = mode->getLabel(BUTTON_RESET);
   const char* right = mode->getLabel(BUTTON_START);
-  const char* middle = 0;
-  if (SHOW_SCORES != 0) {
-    middle = mode->getLabel(BUTTON_CONTROL_2);
-  }
+  const char* middle = mode->getLabel(BUTTON_CONTROL_2);
   if (strcmp(lastCaption, caption) != 0 ||
+      strcmp(lastScore, score) != 0 ||
       strcmp(lastLeft, left) != 0 ||
       strcmp(lastRight, right) != 0 ||
-      (SHOW_SCORES != 0 && strcmp(lastMiddle, middle) != 0)) {
+      strcmp(lastMiddle, middle) != 0) {
     lcd.clear();
-    lcd.print(caption);
-    lcd.setCursor(/*row=*/0, /*col=*/1);
-    // Print button functions on the lower line of the screen.
-    if (SHOW_SCORES == 0) {
-      lcd.print(left);
-      const int spaces = kDisplayCols - strlen(left) - strlen(right);
-      for (int i = 0; i < spaces; ++i) {
-        lcd.print(' ');
-      }
-      lcd.print(right);
+    if (kDisplayRows == 2) {
+      lcd.print(mode->preferShowScore() ? score : caption);
     } else {
-      lcd.print(left);
-      const int spaces = kDisplayCols - strlen(left) - strlen(right) - strlen(middle);
-      for (int i = 0; i < spaces / 2; ++i) {
-        lcd.print(' ');
-      }
-      lcd.print(middle);
-      for (int i = 0; i < (spaces + 1) / 2; ++i) {
-        lcd.print(' ');
-      }
-      lcd.print(right);
-      strncpy(lastMiddle, middle, sizeof(lastMiddle));
+      lcd.print(score);
+      lcd.setCursor(0, 2);
+      lcd.print(caption);
     }
+    lcd.setCursor(/*col=*/0, /*row=*/kDisplayRows == 2 ? 1 : 4);
+    // Print button functions on the lower line of the screen.
+    lcd.print(left);
+    const int spaces = kDisplayCols - strlen(left) - strlen(right) - strlen(middle);
+    for (int i = 0; i < spaces / 2; ++i) {
+      lcd.print(' ');
+    }
+    lcd.print(middle);
+    for (int i = 0; i < (spaces + 1) / 2; ++i) {
+      lcd.print(' ');
+    }
+    lcd.print(right);
+    strncpy(lastMiddle, middle, sizeof(lastMiddle));
     flushLcd(&lcd);  // Redraw the screen.
     strncpy(lastLeft, left, sizeof(lastLeft));
     strncpy(lastRight, right, sizeof(lastRight));
     strncpy(lastCaption, caption, sizeof(lastCaption));
+    strncpy(lastScore, score, sizeof(lastScore));
   }
   for (int i = BUTTON_PLAYER_1; i <= LAST_PLAYER_BUTTON; i++) {
     xDigitalWrite(kLedPins[i], mode->getLedState(i) ? HIGH : LOW);

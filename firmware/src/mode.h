@@ -8,6 +8,8 @@ public:
     virtual bool getLedState(int playerId) = 0;
     virtual bool getLampState() { return false; }
     virtual void getCaption(char* buffer, size_t bufferSize) = 0;
+    virtual void getScore(char* buffer, size_t bufferSize) = 0;
+    virtual bool preferShowScore();
     virtual const char* getLabel(int buttonId) = 0;
 };
 
@@ -17,6 +19,8 @@ public:
     virtual void update() override;
     virtual bool getLedState(int playerId) override;
     virtual void getCaption(char* buffer, size_t bufferSize) override;
+    virtual void getScore(char* buffer, size_t bufferSize)  override;
+    virtual bool preferShowScore() override;
     virtual const char* getLabel(int buttonId) override;
 };
 
@@ -27,6 +31,8 @@ public:
     virtual bool getLedState(int playerId) override;
     virtual bool getLampState() override;
     virtual void getCaption(char* buffer, size_t bufferSize) override;
+    virtual void getScore(char* buffer, size_t bufferSize)  override;
+    virtual bool preferShowScore() override;
     virtual const char* getLabel(int buttonId) override;
 };
 
@@ -35,6 +41,8 @@ public:
     virtual void init() override;
     virtual void update() override;
     virtual bool getLedState(int playerId) override;
+    virtual void getScore(char* buffer, size_t bufferSize)  override;
+    virtual bool preferShowScore() override;
     virtual void getCaption(char* buffer, size_t bufferSize) override;
     virtual const char* getLabel(int buttonId) override;
 };
@@ -44,6 +52,8 @@ public:
     virtual void init() override;
     virtual void update() override;
     virtual bool getLedState(int playerId) override;
+    virtual void getScore(char* buffer, size_t bufferSize)  override;
+    virtual bool preferShowScore() override;
     virtual void getCaption(char* buffer, size_t bufferSize) override;
     virtual const char* getLabel(int buttonId) override;
 };

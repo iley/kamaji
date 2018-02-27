@@ -49,9 +49,10 @@ const char* num2Label = "2";
 const char* num3Label = "3";
 const char* num4Label = "4";
 const char* num5Label = "5";
+const char* num6Label = "6";
 
 const char* mainMenu[] = {cancelLabel, resetLabel, undoLabel, numPlayersLabel};
-const char* numPlayerMenu[] = {num2Label, num3Label, num4Label, num5Label};
+const char* numPlayerMenu[] = {num2Label, num3Label, num4Label, num5Label, num6Label};
 
 int currentPlayer = -1;
 State state = QUESTION;
@@ -202,9 +203,7 @@ void JeopardyMode::getCaption(char* buffer, size_t bufferSize) {
                     playersBlocked++;
                 }
             }
-            if (playersBlocked == 0) {
-                printScores(buffer, bufferSize);
-            } else if (SHOW_SCORES == 1) {
+            if (playersBlocked != 0) {
                 snprintf(buffer, bufferSize, "%d blocked", playersBlocked);
             } else {
                 snprintf(buffer, bufferSize, "Read question");
@@ -221,6 +220,20 @@ void JeopardyMode::getCaption(char* buffer, size_t bufferSize) {
             snprintf(buffer, bufferSize, "Player %d (%d s)", currentPlayer + 1, timeInSeconds());
             break;
     }
+}
+
+void JeopardyMode::getScore(char* buffer, size_t bufferSize) {
+    printScores(buffer, bufferSize);
+}
+
+bool JeopardyMode::preferShowScore() {
+    int playersBlocked = 0;
+    for (int i = 0; i < numPlayers; i++) {
+        if (blocked[i]) {
+            playersBlocked++;
+        }
+    }
+    return state == QUESTION && playersBlocked == 0;
 }
 
 const char* JeopardyMode::getLabel(int buttonId) {
@@ -247,7 +260,7 @@ const char* JeopardyMode::getLabel(int buttonId) {
             case MENU:
                 return menu.getRightLabel();
         }
-    } else if (buttonId == BUTTON_CONTROL_2 && SHOW_SCORES != 0) {
+    } else if (buttonId == BUTTON_CONTROL_2) {
         switch (state) {
             case ANSWER_TIME_NOT_STARTED:
             case ANSWER_TIME_STARTED:
@@ -273,7 +286,7 @@ void JeopardyMode::update() {
         } else if (isControlPressed(BUTTON_CONTROL_2)) {
             const char* result = menu.getCurrentOption();
             if (result == numPlayersLabel) {
-                menu.init(4, numPlayerMenu, numPlayers - 2);
+                menu.init(NUM_PLAYERS - 1, numPlayerMenu, numPlayers - 2);
                 return;
             }
             if (result == resetLabel) {
@@ -304,6 +317,12 @@ void JeopardyMode::update() {
             }
             if (result == num5Label) {
                 numPlayers = 5;
+                state = QUESTION;
+                saveState();
+                return;
+            }
+            if (result == num6Label) {
+                numPlayers = 6;
                 state = QUESTION;
                 saveState();
                 return;

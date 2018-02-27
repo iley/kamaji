@@ -65,6 +65,14 @@ bool HamsaMode::getLedState(int playerId) {
     return false;*/
 }
 
+void HamsaMode::getScore(char* buffer, size_t bufferSize) {
+    buffer[0] = 0;
+}
+
+bool HamsaMode::preferShowScore() {
+    return false;
+}
+
 void HamsaMode::getCaption(char* buffer, size_t bufferSize) {
     switch (state) {
         case QUESTION:

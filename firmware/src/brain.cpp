@@ -130,6 +130,14 @@ const char* BrainMode::getLabel(int buttonId) {
     return "";
 }
 
+void BrainMode::getScore(char* buffer, size_t bufferSize) {
+    buffer[0] = 0;
+}
+
+bool BrainMode::preferShowScore() {
+    return false;
+}
+
 void BrainMode::update() {
     if (state == ANSWER_MAIN || state == ANSWER_SUPPLEMENT) {
         if (timeInSeconds() - lastAttentionSoundPlayed >= ATTENTION_DELAY) {

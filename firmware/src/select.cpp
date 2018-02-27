@@ -32,6 +32,14 @@ void SelectMode::getCaption(char* buffer, size_t bufferSize) {
     snprintf(buffer, bufferSize, "Mode: %s", ids[selectedMode]);
 }
 
+void SelectMode::getScore(char* buffer, size_t bufferSize) {
+    buffer[0] = 0;
+}
+
+bool SelectMode::preferShowScore() {
+    return false;
+}
+
 const char* SelectMode::getLabel(int buttonId) {
     if (buttonId == BUTTON_RESET) {
         return left;

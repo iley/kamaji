@@ -2,7 +2,6 @@
 #define CONFIG_V0_H
 
 #define USE_I2C_LCD 1
-#define SHOW_SCORES 1
 #define MIDDLE_BUTTON 1
 
 // All available buttons.

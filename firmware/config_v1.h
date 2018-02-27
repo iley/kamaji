@@ -2,7 +2,6 @@
 #define CONFIG_V1_H
 
 #define USE_LAMP 1
-#define SHOW_SCORES 1
 #define MIDDLE_BUTTON 1
 #define XPINS_ATMEGA328P 1
 

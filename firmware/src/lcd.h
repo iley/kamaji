@@ -7,7 +7,7 @@
 #include <LiquidCrystal_I2C.h>
 
 const int kDisplayCols = 16;
-const int kDisplayRows = 4;
+const int kDisplayRows = 2;
 
 #define DECLARE_LCD() \
   LiquidCrystal_I2C lcd(0x3f, 2, 1, 0, 4, 5, 6, 7);
@@ -22,13 +22,13 @@ inline void flushLcd(LiquidCrystal_I2C* lcd) { /* NOOP */ }
 
 #elif USE_GRAPHIC_LCD
 // A ST7920-based 128x64 graphic screen.
-#define GRAPHIC_LCD_FONT u8g2_font_haxrcorp4089_t_cyrillic
+#define GRAPHIC_LCD_FONT u8g2_font_6x13_t_cyrillic 
 #include "graphic_lcd.h"
 
-const int kDisplayCols = 25;
-const int kDisplayRows = 8;
-const int kFontHeight = 8;
-const int kFontWidth = 5;
+const int kDisplayCols = 21;
+const int kDisplayRows = 5;
+const int kFontHeight = 12;
+const int kFontWidth = 6;
 
 using Lcd = GraphicLcd<kDisplayRows, kDisplayCols, kFontHeight, kFontWidth>;
 
@@ -47,7 +47,7 @@ inline void flushLcd(Lcd* lcd) {
 #include <LiquidCrystal.h>
 
 const int kDisplayCols = 16;
-const int kDisplayRows = 4;
+const int kDisplayRows = 2;
 
 #define DECLARE_LCD() \
   LiquidCrystal lcd(/*rs=*/14, /*en=*/15, /*d0=*/16, /*d1=*/17, /*d2=*/18, \
