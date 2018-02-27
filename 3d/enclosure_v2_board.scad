@@ -1,3 +1,5 @@
+use <cubeX.scad>
+
 tol = 0.25;
 screen_tol = 0.8;
 pcb_x = 100;
@@ -24,7 +26,7 @@ shift_y = th + 0.5;
 box_x = pcb_x + 2*th + 1;
 box_y = pcb_y + 2*th + 1;
 
-pcb_width = 2;
+pcb_width = 1.8;
 
 socket_h = 14.7;
 socket_w = 10;
@@ -73,20 +75,22 @@ volume_center_y = shift_y + 50;
 volume_w = 15;
 volume_start_y = volume_center_y - volume_w/2;
 volume_h = 4;
+round_radius=2;
 
 translate([0,0,-50]) {
 
-difference() {
+// put exclamation mark here to render bottom
+!difference() {
   union() {
     difference() {
       union() {
-        cube([box_x, box_y, bottom_box_z-board_h], false);
+        cubeBottomX([box_x, box_y, bottom_box_z-board_h], radius=round_radius);
         translate([th - board_w, th - board_w, 0]) {
-          cube([box_x - 2*(th - board_w), box_y - 2*(th - board_w), bottom_box_z], false);
+          cubeBottomX([box_x - 2*(th - board_w), box_y - 2*(th - board_w), bottom_box_z], radius=round_radius);
         }
       }
       translate([th, th, th]) {
-        cube([box_x-2*th+eps, box_y-2*th+eps, bottom_box_z-th+eps], false);
+        cubeBottomX([box_x-2*th+eps, box_y-2*th+eps, bottom_box_z-th+eps], radius=round_radius);
       }
     }
     // under_pcb, stoiki
@@ -168,22 +172,23 @@ master_button_r = 6.5;
 top_bolt_h = 1.5;
 top_bolt_r = 3.5;
 
-!rotate(a=[180,0,0]) {
+// put exclamation mark here to render top
+rotate(a=[180,0,0]) {
 difference() {
   union() {
     // board
     translate([0, 0, -board_h]) {
         difference() {
-            cube([box_x, box_y, board_h + eps], false);
+            cubeSideX(size=[box_x, box_y, board_h + eps], radius=round_radius, center=false);
             translate([board_w, board_w, -eps]) {
-                cube([box_x - 2*board_w, box_y - 2*board_w, board_h + 3*eps], false);
+                cubeSideX(size=[box_x - 2*board_w, box_y - 2*board_w, board_h + 3*eps], radius=round_radius, center=false);
             }
         }
     }
     difference() {
-      cube([box_x,box_y,top_box_z], false);
+      cubeTopX(size=[box_x,box_y,top_box_z], radius=round_radius, center=false);
       translate([th, th, -eps]) {
-        cube([box_x-2*th+eps, box_y-2*th+eps, top_box_z-th+eps], false);
+        cubeTopX(size=[box_x-2*th+eps, box_y-2*th+eps, top_box_z-th+eps], radius=round_radius, center=false);
       }
     }
     // stoiki
@@ -193,17 +198,10 @@ difference() {
           cylinder($fn=6, r=stoiki_r-0.5, h=top_box_z-th+eps);
         }
         translate([dx,dy,top_box_z-th-wide_stoiki_h+eps]) {
-          cylinder($fn=6, r=wide_stoiki_r, h=wide_stoiki_h+th-2*eps);
+          cylinder($fn=6, r=wide_stoiki_r, h=wide_stoiki_h-2*eps);
         }
       }
     }
-    // screen_hold
-    //translate([screen_start_x + (screen_length_x - screen_hold_x)/2, screen_start_y - screen_hold_y_shift - screen_hold_y, screen_hold_start_z]) {
-        //cube([screen_hold_x, screen_hold_y, top_box_z - screen_hold_start_z - th + eps]);
-    //}
-    //translate([screen_start_x + screen_length_x - screen_hold_up_x - screen_hold_up_x_shift, screen_start_y + screen_length_y + screen_hold_y_shift, screen_hold_start_z]) {
-        //cube([screen_hold_up_x, screen_hold_y, top_box_z - screen_hold_start_z - th + eps]);
-    //}
   }
   // bolts
   for (dx = [shift_x+shift_bolt_x, shift_x+pcb_x-shift_bolt_x]) {
@@ -256,3 +254,27 @@ difference() {
 //        }
 //    }
 
+module roundedRect(size, radius)
+{
+    x = size[0];
+    y = size[1];
+    z = size[2];
+    translate([x/2,y/2,0]) {
+    linear_extrude(height=z)
+        hull()
+        {
+            // place 4 circles in the corners, with the given radius
+            translate([(-x/2)+(radius/2), (-y/2)+(radius/2), 0])
+                circle(r=radius);
+
+            translate([(x/2)-(radius/2), (-y/2)+(radius/2), 0])
+                circle(r=radius);
+
+            translate([(-x/2)+(radius/2), (y/2)-(radius/2), 0])
+                circle(r=radius);
+
+            translate([(x/2)-(radius/2), (y/2)-(radius/2), 0])
+                circle(r=radius);
+        }
+    }
+}
