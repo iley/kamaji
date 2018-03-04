@@ -66,6 +66,7 @@ void loop() {
         int playerNumber = i - FIRST_PLAYER_BUTTON;
         int ledPin = kLedPins[playerNumber];
         digitalWrite(ledPin, HIGH);
+        digitalWrite(kLampPin, HIGH);
         flashStartMs[playerNumber] = now;
       }
     }
@@ -74,6 +75,7 @@ void loop() {
   for (int i = 0; i < PLAYER_COUNT; ++i) {
     if (flashStartMs[i] != 0 && now - flashStartMs[i] > kFlashMs) {
       digitalWrite(kLedPins[i], LOW);
+        digitalWrite(kLampPin, LOW);
     }
   }
 }
