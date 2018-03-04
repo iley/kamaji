@@ -21,6 +21,7 @@ class GraphicLcd : public Print {
 
     void begin() {
       u8g2_.begin();
+      u8g2_.enableUTF8Print();
       clear();
     }
 
@@ -40,14 +41,19 @@ class GraphicLcd : public Print {
       do {
         u8g2_.setFont(GRAPHIC_LCD_FONT);
         for (int i = 0; i < Rows; ++i) {
-          u8g2_.drawStr(0, (i+1) * CharHeight, buffer_[i]);
+          u8g2_.drawUTF8(0, (i+1) * CharHeight, buffer_[i]);
         }
       } while (u8g2_.nextPage());
     }
 
     size_t write(uint8_t ch) override {
+      if ((ch >> 6 & 3) == 2) {
+        for (int i = 2 * Cols; i > col_ + 1; i--) {
+          buffer_[row_][i] = buffer_[row_][i - 1];
+        }
+      }
       buffer_[row_][col_] = ch;
-      col_ = (col_ + 1) % Cols;
+      col_++;
       return 1;
     }
 
@@ -62,7 +68,7 @@ class GraphicLcd : public Print {
     }
 
     U8G2_ST7920_128X64_2_HW_SPI u8g2_;
-    char buffer_[Rows][Cols+1];
+    char buffer_[Rows][2 * Cols+1];
     uint8_t row_ = 0;
     uint8_t col_ = 0;
 };

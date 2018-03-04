@@ -6,6 +6,7 @@
 #include "main.h"
 #include "menu.h"
 #include "mode.h"
+#include "jeopardy_res.h"
 
 namespace {
 
@@ -35,16 +36,8 @@ enum State {
     MENU
 };
 
-const char *resetLabel = "Reset";
-const char *startLabel = "Start";
-const char *yesLabel = "Yes";
-const char *noLabel = "No";
-const char *cancel = "Cancel";
 const char *emptyLabel = "";
 
-const char* undoLabel = "Undo";
-const char* numPlayersLabel = "Num players";
-const char* cancelLabel = "Cancel";
 const char* num2Label = "2";
 const char* num3Label = "3";
 const char* num4Label = "4";
@@ -163,8 +156,8 @@ int scoreLength(int score) {
     return length;
 }
 
-void printScores(char* buffer, int bufferSize) {
-    int freeSpaces = bufferSize - 1;
+void printScores(char* buffer, int length) {
+    int freeSpaces = length;
     int numZeroes = 0;
     for (int i = 0; i < numPlayers; i++) {
         freeSpaces -= scoreLength(score[i]);
@@ -181,7 +174,7 @@ void printScores(char* buffer, int bufferSize) {
     }
     int at = 0;
     for (int i = 0; i < numPlayers; i++) {
-        snprintf(buffer + at, bufferSize - at, "%d", score[i] * multiplier);
+        snprintf(buffer + at, length + 1 - at, "%d", score[i] * multiplier);
         at += scoreLength(score[i] * multiplier);
         if (i != numPlayers - 1) {
             int space = freeSpaces / (numPlayers - i - 1);
@@ -204,20 +197,20 @@ void JeopardyMode::getCaption(char* buffer, size_t bufferSize) {
                 }
             }
             if (playersBlocked != 0) {
-                snprintf(buffer, bufferSize, "%d blocked", playersBlocked);
+                snprintf(buffer, bufferSize, blockedLabel, playersBlocked);
             } else {
-                snprintf(buffer, bufferSize, "Read question");
+                snprintf(buffer, bufferSize, readLabel);
             }
             break;
         case MENU:
             snprintf(buffer, bufferSize, menu.getCurrentOption());
             break;
         case COUNTDOWN:
-            snprintf(buffer, bufferSize, "%d s remaining", TIME - timeInSeconds());
+            snprintf(buffer, bufferSize, timeLabel, TIME - timeInSeconds());
             break;
         case ANSWER_TIME_NOT_STARTED:
         case ANSWER_TIME_STARTED:
-            snprintf(buffer, bufferSize, "Player %d (%d s)", currentPlayer + 1, timeInSeconds());
+            snprintf(buffer, bufferSize, playerLabel, currentPlayer + 1, timeInSeconds());
             break;
     }
 }
@@ -264,7 +257,7 @@ const char* JeopardyMode::getLabel(int buttonId) {
         switch (state) {
             case ANSWER_TIME_NOT_STARTED:
             case ANSWER_TIME_STARTED:
-                return cancel;
+                return cancelLabel;
             case QUESTION:
                 snprintf(cost, sizeof(cost), "%d", question * 10);
                 return cost;

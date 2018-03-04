@@ -2,7 +2,11 @@
 
 const char* leftLabel = "<";
 const char* rightLabel = ">";
+#ifdef RUSSIAN
+const char* centerLabel = "Выбрать";
+#else
 const char* centerLabel = "Select";
+#endif
 const char* emptyLabel = "";
 
 void Menu::init(int numOptions_, const char** options_, int initialOption) {

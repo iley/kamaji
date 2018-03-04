@@ -7,6 +7,7 @@
 #include "mode.h"
 #include "pitches.h"
 #include "xpins.h"
+#include "strlen.h"
 
 // How long the two buttons need to be held for a reset.
 const unsigned long kResetDelayMs = 2000;
@@ -32,13 +33,13 @@ bool buttonsBefore[BUTTON_COUNT] = { false };
 // For each button, time when it was last pressed.
 unsigned long lastPressedMs[BUTTON_COUNT] = {0};
 
-char caption[kDisplayCols + 1];
-char score[kDisplayCols + 1];
-char lastLeft[kDisplayCols + 1];
-char lastRight[kDisplayCols + 1];
-char lastMiddle[kDisplayCols + 1];
-char lastCaption[kDisplayCols + 1];
-char lastScore[kDisplayCols + 1];
+char caption[2 * kDisplayCols + 1];
+char score[2 * kDisplayCols + 1];
+char lastLeft[2 * kDisplayCols + 1];
+char lastRight[2 * kDisplayCols + 1];
+char lastMiddle[2 * kDisplayCols + 1];
+char lastCaption[2 * kDisplayCols + 1];
+char lastScore[2 * kDisplayCols + 1];
 
 // Whether the reset buttons are being held.
 bool resetStarted = false;
@@ -65,7 +66,7 @@ void updateScreenAndLeds() {
   caption[0] = '\0';
   mode->getCaption(caption, sizeof(caption));
   score[0] = '\0';
-  mode->getScore(score, sizeof(score));
+  mode->getScore(score, kDisplayCols);
   const char* left = mode->getLabel(BUTTON_RESET);
   const char* right = mode->getLabel(BUTTON_START);
   const char* middle = mode->getLabel(BUTTON_CONTROL_2);
@@ -85,7 +86,7 @@ void updateScreenAndLeds() {
     lcd.setCursor(/*col=*/0, /*row=*/kDisplayRows == 2 ? 1 : 4);
     // Print button functions on the lower line of the screen.
     lcd.print(left);
-    const int spaces = kDisplayCols - strlen(left) - strlen(right) - strlen(middle);
+    const int spaces = kDisplayCols - strlen_utf(left) - strlen_utf(right) - strlen_utf(middle);
     for (int i = 0; i < spaces / 2; ++i) {
       lcd.print(' ');
     }

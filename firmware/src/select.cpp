@@ -3,6 +3,7 @@
 #include <Arduino.h>
 #include "mode.h"
 #include "main.h"
+#include "select_res.h"
 
 namespace {
 
@@ -10,12 +11,12 @@ JeopardyMode jeopardyMode;
 BrainMode brainMode;
 HamsaMode hamsaMode;
 
-const char *left = MIDDLE_BUTTON == 0 ? "Next" : "<";
-const char *right = MIDDLE_BUTTON == 0 ? "Select" : ">";
-const char *middle = MIDDLE_BUTTON == 0 ? "" : "Select";
+const char *left = "<";
+const char *right = ">";
+const char *middle = selectLabel;
 const int MODE_COUNT = 3;
 Mode* modes[] = {&jeopardyMode, &brainMode, &hamsaMode};
-const char* ids[] = {"Jeopardy", "Brain", "Hamsa"};
+const char* ids[] = {jeopardyLabel, brainLabel, hamsaLabel};
 int selectedMode;
 
 }  // namespace
@@ -29,7 +30,7 @@ bool SelectMode::getLedState(int playerId) {
 }
 
 void SelectMode::getCaption(char* buffer, size_t bufferSize) {
-    snprintf(buffer, bufferSize, "Mode: %s", ids[selectedMode]);
+    snprintf(buffer, bufferSize, modeLabel, ids[selectedMode]);
 }
 
 void SelectMode::getScore(char* buffer, size_t bufferSize) {
@@ -52,28 +53,17 @@ const char* SelectMode::getLabel(int buttonId) {
 }
 
 void SelectMode::update() {
-    if (MIDDLE_BUTTON == 0) {
-        if (isControlPressed(BUTTON_RESET)) {
-            selectedMode++;
-            if (selectedMode == MODE_COUNT) {
-                selectedMode = 0;
-            }
-        } else if (isControlPressed(BUTTON_START)) {
-            setMode(modes[selectedMode]);
+    if (isControlPressed(BUTTON_RESET)) {
+        selectedMode--;
+        if (selectedMode == -1) {
+            selectedMode = MODE_COUNT - 1;
         }
-    } else {
-        if (isControlPressed(BUTTON_RESET)) {
-            selectedMode--;
-            if (selectedMode == -1) {
-                selectedMode = MODE_COUNT - 1;
-            }
-        } else if (isControlPressed(BUTTON_CONTROL_2)) {
-            setMode(modes[selectedMode]);
-        } else if (isControlPressed(BUTTON_START)) {
-            selectedMode++;
-            if (selectedMode == MODE_COUNT) {
-                selectedMode = 0;
-            }            
-        }
+    } else if (isControlPressed(BUTTON_CONTROL_2)) {
+        setMode(modes[selectedMode]);
+    } else if (isControlPressed(BUTTON_START)) {
+        selectedMode++;
+        if (selectedMode == MODE_COUNT) {
+            selectedMode = 0;
+        }            
     }
 }
