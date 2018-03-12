@@ -67,8 +67,8 @@ stoiki_r = 4;
 stoiki_h = socket_h;
 wide_stoiki_r = stoiki_r + 2;
 
-dynamic_x = shift_x + 20;
-dynamic_y = shift_y + 31;
+dynamic_x = shift_x + 19;
+dynamic_y = shift_y + 30;
 dynamic_r = 16;
 
 volume_center_y = shift_y + 50;
@@ -80,7 +80,7 @@ round_radius=2;
 translate([0,0,-50]) {
 
 // put exclamation mark here to render bottom
-!difference() {
+difference() {
   union() {
     difference() {
       union() {
@@ -155,9 +155,9 @@ top_box_z = 10;
 wide_stoiki_h = 4;
 pcb_room = 1;
 screen_start_x = shift_x + 11.5;
-screen_start_y = shift_y + 24.5;
+screen_start_y = shift_y + 25;
 screen_length_x = 77;
-screen_length_y = 51;
+screen_length_y = 50.5;
 screen_hold_x = 40;
 screen_hold_y = 4;
 screen_hold_start_z = 12.5;
@@ -166,14 +166,14 @@ screen_hold_up_x = 15;
 screen_hold_up_x_shift = 5;
 
 master_button_y = shift_y + pcb_y - 7.5;
-master_button_x = shift_x + 18.5;
+master_button_x = shift_x + 19;
 master_button_int = 31.5;
-master_button_r = 6.5;
+master_button_r = 6.25;
 top_bolt_h = 1.5;
 top_bolt_r = 3.5;
 
 // put exclamation mark here to render top
-rotate(a=[180,0,0]) {
+!rotate(a=[180,0,0]) {
 difference() {
   union() {
     // board
@@ -223,7 +223,7 @@ difference() {
   // master buttons
   for (i = [0:1:2]) {
     translate([master_button_x + master_button_int*i, master_button_y, top_box_z - th - eps]) {
-      cylinder($fn=fn, r=master_button_r + tol, h=th+2*eps);
+      cylinder($fn=20, r=master_button_r + tol, h=th+2*eps);
     }
   }
 }
