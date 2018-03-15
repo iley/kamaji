@@ -4,6 +4,7 @@
 #include <Arduino.h>
 #include "mode.h"
 #include "main.h"
+#include "brain_res.h"
 
 namespace {
 
@@ -24,10 +25,7 @@ enum State {
     START_DELAY
 };
 
-const char *resetLabel = "Reset";
-const char *startLabel = "Time";
-const char *yesLabel = "Yes";
-const char *noLabel = "No";
+
 const char *emptyLabel = "";
 
 int currentPlayer = -1;
@@ -38,6 +36,8 @@ bool blocked[NUM_PLAYERS];
 bool last10Sec = false;
 int lastSignal = BUZZ_SEC;
 int lastAttentionSoundPlayed = 3;
+int score[2];
+int round;
 
 int timeInSeconds() {
     return (millis() - stateEnterd) / 1000;
@@ -56,6 +56,7 @@ void reset() {
     }
     last10Sec = false;
     lastSignal = BUZZ_SEC;
+    round++;
 }
 
 }  // namespace
@@ -63,7 +64,9 @@ void reset() {
 void BrainMode::init() {
     // TODO: seed random based on an unconnected analog input
     srand(millis());
+    score[0] = score[1] = 0;
     reset();
+    round = 1;
 }
 
 bool BrainMode::getLedState(int playerId) {
@@ -79,23 +82,23 @@ bool BrainMode::getLampState() {
 void BrainMode::getCaption(char* buffer, size_t bufferSize) {
     switch (state) {
         case QUESTION:
-            snprintf(buffer, bufferSize, "Read question");
+            snprintf(buffer, bufferSize, readLabel, round);
             break;
         case MAIN:
-            snprintf(buffer, bufferSize, "%d s remaining", TIME - timeInSeconds());
+            snprintf(buffer, bufferSize, timeLabel, TIME - timeInSeconds());
             break;
         case SUPPLEMENT:
-            snprintf(buffer, bufferSize, "%d s remaining", TIME_SUPPLEMENT - timeInSeconds());
+            snprintf(buffer, bufferSize, timeLabel, TIME_SUPPLEMENT - timeInSeconds());
             break;
         case ANSWER_MAIN:
         case ANSWER_SUPPLEMENT:
-            snprintf(buffer, bufferSize, "Team %d (%d s)", currentPlayer + 1, timeInSeconds());
+            snprintf(buffer, bufferSize, playerLabel, currentPlayer + 1, timeInSeconds());
             break;
         case FALSE_START:
-            snprintf(buffer, bufferSize, "Team %d f-start", currentPlayer + 1);
+            snprintf(buffer, bufferSize, falsestartLabel, currentPlayer + 1);
             break;
         case START_DELAY:
-            snprintf(buffer, bufferSize, "Pending %d", currentPlayer + 1);
+            snprintf(buffer, bufferSize, pendingLabel);
             break;
     }
 }
@@ -131,11 +134,11 @@ const char* BrainMode::getLabel(int buttonId) {
 }
 
 void BrainMode::getScore(char* buffer, size_t bufferSize) {
-    buffer[0] = 0;
+    snprintf(buffer, bufferSize, scoreLabel, score[0], score[1]);
 }
 
 bool BrainMode::preferShowScore() {
-    return false;
+    return state == QUESTION;
 }
 
 void BrainMode::update() {
@@ -148,6 +151,7 @@ void BrainMode::update() {
             return;
         }
         if (isControlPressed(BUTTON_RESET)) {
+            score[currentPlayer]++;
             reset();
             playCorrectSound();
         } else if (isControlPressed(BUTTON_START)) {

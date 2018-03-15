@@ -12,9 +12,10 @@ const char* undoLabel = "Откат";
 const char* numPlayersLabel = "Число игроков";
 const char* cancelLabel = "Отмена";
 const char* blockedLabel = "%d заблокировано";
-const char* readLabel = "Чтение вопроса";
+const char* readLabel = "Тема %d. Вопрос %d";
 const char* timeLabel = "%d с осталось";
 const char* playerLabel = "Игрок %d (%d s)";
+const char* menuLabel = "Меню";
 
 #else
 
@@ -26,9 +27,10 @@ const char* undoLabel = "Undo";
 const char* numPlayersLabel = "Num players";
 const char* cancelLabel = "Cancel";
 const char* blockedLabel = "%d blocked";
-const char* readLabel = "Read question";
+const char* readLabel = "Round %d. Q %d";
 const char* timeLabel = "%d s remaining";
 const char* playerLabel = "Player %d (%d s)";
+const char* menuLabel = "Menu";
 
 #endif
 

@@ -7,6 +7,7 @@
 #include "menu.h"
 #include "mode.h"
 #include "jeopardy_res.h"
+#include "memory_map.h"
 
 namespace {
 
@@ -14,19 +15,9 @@ const int TIME = 7;
 const int DELAY = 3;
 const int HISTORY = 10;
 
-#ifdef JEOPARDY_NUM_PLAYERS
-const int NUM_PLAYERS = JEOPARDY_NUM_PLAYERS;
-#else
 const int NUM_PLAYERS = PLAYER_COUNT;
-#endif
 const int ATTENTION_DELAY = 5;
 
-const int JEOPARDY_MEMORY_START = 10;
-const int MEMORY_INIT_FLAG = JEOPARDY_MEMORY_START;
-const int MEMORY_NUM_PLAYERS = MEMORY_INIT_FLAG + 1;
-const int MEMORY_CURRENT_QUESTION = MEMORY_NUM_PLAYERS + sizeof(short);
-const int MEMORY_SCORES = MEMORY_CURRENT_QUESTION + sizeof(short);
-const int JEOPARDY_MEMORY_END = MEMORY_SCORES + NUM_PLAYERS * sizeof(short);
 
 enum State {
     QUESTION,
@@ -54,12 +45,14 @@ bool blocked[NUM_PLAYERS];
 bool firstTime = true;
 int lastAttentionSoundPlayed = 3;
 int question;
+int roundID;
 int score[NUM_PLAYERS];
-char cost[kDisplayCols + 1];
+bool falseStart[NUM_PLAYERS];
 int numPlayers = NUM_PLAYERS;
 
 int historyPlayer[HISTORY];
 int historyScore[HISTORY];
+int historyRound[HISTORY];
 
 int historyAt;
 
@@ -68,12 +61,13 @@ bool restoreFromMemory = true;
 Menu menu;
 
 void saveState() {
-    EEPROM.put(MEMORY_NUM_PLAYERS, (short)numPlayers);
-    EEPROM.put(MEMORY_CURRENT_QUESTION, (short)question);
+    EEPROM.put(JEOPARDY_MEMORY_NUM_PLAYERS, (short)numPlayers);
+    EEPROM.put(JEOPARDY_MEMORY_CURRENT_QUESTION, (short)question);
     for (int i = 0; i < NUM_PLAYERS; i++) {
-        EEPROM.put(MEMORY_SCORES + i * sizeof(short), (short)score[i]);
+        EEPROM.put(JEOPARDY_MEMORY_SCORES + i * sizeof(short), (short)score[i]);
     }
-    EEPROM.update(MEMORY_INIT_FLAG, 1);
+    EEPROM.put(JEOPARDY_MEMORY_ROUND, (short)roundID);
+    EEPROM.update(JEOPARDY_MEMORY_INIT_FLAG, 1);
 }
 
 void addHistory(int player, int score) {
@@ -81,9 +75,11 @@ void addHistory(int player, int score) {
         for (int i = 0; i < HISTORY - 1; i++) {
             historyPlayer[i] = historyPlayer[i + 1];
             historyScore[i] = historyScore[i + 1];
+            historyRound[i] = historyRound[i + 1];
         }
         historyAt--;
     }
+    historyRound[historyAt] = roundID;
     historyPlayer[historyAt] = player;
     historyScore[historyAt++] = score;
 }
@@ -92,6 +88,7 @@ void nextQuestion() {
     question++;
     if (question == 6) {
         question = 1;
+        roundID++;
     }
 }
 
@@ -105,6 +102,7 @@ void reset() {
     stateEnterd = millis();
     for (int i = 0; i < NUM_PLAYERS; i++) {
         blocked[i] = false;
+        falseStart[i] = false;
     }
     firstTime = true;
     nextQuestion();
@@ -115,22 +113,24 @@ void reset() {
 
 void JeopardyMode::init() {
     historyAt = 0;
-    if (restoreFromMemory && EEPROM.read(MEMORY_INIT_FLAG) == 1) {
+    if (restoreFromMemory && EEPROM.read(JEOPARDY_MEMORY_INIT_FLAG) == 1) {
         short value;
-        EEPROM.get(MEMORY_NUM_PLAYERS, value);
+        EEPROM.get(JEOPARDY_MEMORY_NUM_PLAYERS, value);
         numPlayers = value;
-        EEPROM.get(MEMORY_CURRENT_QUESTION, value);
+        EEPROM.get(JEOPARDY_MEMORY_CURRENT_QUESTION, value);
         question = value;
         for (int i = 0; i < NUM_PLAYERS; i++) {
-            EEPROM.get(MEMORY_SCORES + i * sizeof(short), value);
+            EEPROM.get(JEOPARDY_MEMORY_SCORES + i * sizeof(short), value);
             score[i] = value;
         }
+        EEPROM.get(JEOPARDY_MEMORY_ROUND, roundID);
     } else {
         reset();
         question = 1;
         for (int i = 0; i < NUM_PLAYERS; i++) {
             score[i] = 0;
         }
+        roundID = 1;
     }
     restoreFromMemory = false;
     saveState();
@@ -199,7 +199,7 @@ void JeopardyMode::getCaption(char* buffer, size_t bufferSize) {
             if (playersBlocked != 0) {
                 snprintf(buffer, bufferSize, blockedLabel, playersBlocked);
             } else {
-                snprintf(buffer, bufferSize, readLabel);
+                snprintf(buffer, bufferSize, readLabel, roundID, question * 10);
             }
             break;
         case MENU:
@@ -259,8 +259,7 @@ const char* JeopardyMode::getLabel(int buttonId) {
             case ANSWER_TIME_STARTED:
                 return cancelLabel;
             case QUESTION:
-                snprintf(cost, sizeof(cost), "%d", question * 10);
-                return cost;
+                return menuLabel;
             case MENU:
                 return menu.getCenterLabel();
             case COUNTDOWN:
@@ -323,6 +322,7 @@ void JeopardyMode::update() {
             if (result == undoLabel) {
                 if (historyAt != 0) {
                     historyAt--;
+                    roundID = historyRound[historyAt];
                     score[historyPlayer[historyAt]] += historyScore[historyAt];
                     question = historyScore[historyAt] > 0 ? historyScore[historyAt] : -historyScore[historyAt];
                     blocked[historyPlayer[historyAt]] = false;
@@ -341,6 +341,14 @@ void JeopardyMode::update() {
         if (timeInSeconds() - lastAttentionSoundPlayed >= ATTENTION_DELAY) {
             playAttentionSound();
             lastAttentionSoundPlayed = timeInSeconds();
+        }
+        if (timeInSeconds() >= 3) {
+            for (int i = 0; i < numPlayers; i++) {
+                if (i != currentPlayer && isPlayerPressed(i) && !blocked[i]) {
+                    falseStart[i] = true;
+                    playPlayerSound();
+                }
+            }
         }
         if (isControlPressed(BUTTON_RESET)) {
             score[currentPlayer] += question;
@@ -377,6 +385,9 @@ void JeopardyMode::update() {
             } else {
                 state = QUESTION;
             }
+            for (int i = 0; i < numPlayers; i++) {
+                falseStart[i] = false;
+            }
             currentPlayer = -1;
             stateEnterd = millis();
             playStartSound();
@@ -391,7 +402,10 @@ void JeopardyMode::update() {
         }
         if (state != QUESTION || timeInSeconds() >= DELAY || !firstTime) {
             for (int i = 0; i < numPlayers; i++) {
-                if (isPlayerPressed(i) && !blocked[i]) {
+                if (isPlayerPressed(i) && !blocked[i] && (!falseStart[i] || timeInSeconds() > 0)) {
+                    for (int i = 0; i < numPlayers; i++) {
+                        falseStart[i] = false;
+                    }
                     firstTime = false;
                     blocked[i] = true;
                     currentPlayer = i;
