@@ -6,6 +6,8 @@
 #include "main.h"
 #include "brain_res.h"
 
+using namespace PaketBarinRes;
+
 namespace {
 
 const int TIME = 60;
@@ -37,7 +39,7 @@ bool last10Sec = false;
 int lastSignal = BUZZ_SEC;
 int lastAttentionSoundPlayed = 3;
 int score[2];
-int round;
+int roundID;
 
 int timeInSeconds() {
     return (millis() - stateEnterd) / 1000;
@@ -56,7 +58,7 @@ void reset() {
     }
     last10Sec = false;
     lastSignal = BUZZ_SEC;
-    round++;
+    roundID++;
 }
 
 }  // namespace
@@ -66,7 +68,7 @@ void BrainMode::init() {
     srand(millis());
     score[0] = score[1] = 0;
     reset();
-    round = 1;
+    roundID = 1;
 }
 
 bool BrainMode::getLedState(int playerId) {
@@ -82,7 +84,7 @@ bool BrainMode::getLampState() {
 void BrainMode::getCaption(char* buffer, size_t bufferSize) {
     switch (state) {
         case QUESTION:
-            snprintf(buffer, bufferSize, readLabel, round);
+            snprintf(buffer, bufferSize, readLabel, roundID);
             break;
         case MAIN:
             snprintf(buffer, bufferSize, timeLabel, TIME - timeInSeconds());

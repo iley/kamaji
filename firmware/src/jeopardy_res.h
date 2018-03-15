@@ -2,6 +2,8 @@
 
 #define PAKET_JEOPARDY_RES
 
+namespace PaketJeopardyRes {
+
 #ifdef RUSSIAN
 
 const char* resetLabel = "Сброс";
@@ -33,5 +35,7 @@ const char* playerLabel = "Player %d (%d s)";
 const char* menuLabel = "Menu";
 
 #endif
+
+}
 
 #endif

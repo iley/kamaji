@@ -9,6 +9,8 @@
 #include "jeopardy_res.h"
 #include "memory_map.h"
 
+using namespace PaketJeopardyRes;
+
 namespace {
 
 const int TIME = 7;

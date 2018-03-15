@@ -2,6 +2,8 @@
 
 #define PAKET_BRAIN_RES
 
+namespace PaketBarinRes {
+
 #ifdef RUSSIAN
 
 const char* resetLabel = "Сброс";
@@ -29,5 +31,7 @@ const char* pendingLabel = "Pending";
 const char* scoreLabel = "Score %d-%d";
 
 #endif
+
+}
 
 #endif
