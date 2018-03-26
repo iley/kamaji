@@ -4,9 +4,7 @@
 #include <Arduino.h>
 #include "mode.h"
 #include "main.h"
-#include "brain_res.h"
-
-using namespace PaketBarinRes;
+#include "res.h"
 
 namespace {
 
@@ -28,8 +26,6 @@ enum State {
 };
 
 
-const char *emptyLabel = "";
-
 int currentPlayer = -1;
 State state = QUESTION;
 unsigned long startDelay;
@@ -40,6 +36,7 @@ int lastSignal = BUZZ_SEC;
 int lastAttentionSoundPlayed = 3;
 int score[2];
 int roundID;
+int reactionTime;
 
 int timeInSeconds() {
     return (millis() - stateEnterd) / 1000;
@@ -84,7 +81,7 @@ bool BrainMode::getLampState() {
 void BrainMode::getCaption(char* buffer, size_t bufferSize) {
     switch (state) {
         case QUESTION:
-            snprintf(buffer, bufferSize, readLabel, roundID);
+            snprintf(buffer, bufferSize, readBrainLabel, roundID);
             break;
         case MAIN:
             snprintf(buffer, bufferSize, timeLabel, TIME - timeInSeconds());
@@ -94,7 +91,7 @@ void BrainMode::getCaption(char* buffer, size_t bufferSize) {
             break;
         case ANSWER_MAIN:
         case ANSWER_SUPPLEMENT:
-            snprintf(buffer, bufferSize, playerLabel, currentPlayer + 1, timeInSeconds());
+            snprintf(buffer, bufferSize, playerBrainLabel, currentPlayer + 1, timeInSeconds());
             break;
         case FALSE_START:
             snprintf(buffer, bufferSize, falsestartLabel, currentPlayer + 1);
@@ -136,7 +133,7 @@ const char* BrainMode::getLabel(int buttonId) {
 }
 
 void BrainMode::getScore(char* buffer, size_t bufferSize) {
-    snprintf(buffer, bufferSize, scoreLabel, score[0], score[1]);
+    snprintf(buffer, bufferSize, scoreBrainLabel, score[0], score[1]);
 }
 
 bool BrainMode::preferShowScore() {
@@ -176,6 +173,7 @@ void BrainMode::update() {
                     currentPlayer = i;
                     lastAttentionSoundPlayed = 3;
                     if (state == MAIN) {
+                        reactionTime = (millis() - stateEnterd) / 10;
                         state = ANSWER_MAIN;
                         playPlayerSound();
                     } else if (state == SUPPLEMENT) {
@@ -200,6 +198,7 @@ void BrainMode::update() {
         if (state == START_DELAY) {
             if (millis() - stateEnterd >= startDelay) {
                 state = MAIN;
+                stateEnterd = millis();
                 playTimeSound();
             }
             return;
@@ -239,5 +238,14 @@ void BrainMode::update() {
                 playTimerSound();
             }
         }
+    }
+}
+
+void BrainMode::getInfo(char* buffer, size_t bufferSize) {
+    if (state == ANSWER_MAIN) {
+        snprintf(buffer, bufferSize, infoBrainLabel, reactionTime / 100, reactionTime % 100);
+    } else {
+        snprintf(buffer, bufferSize, timeLabel);
+        buffer[0] = 0;
     }
 }

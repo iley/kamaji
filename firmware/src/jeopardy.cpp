@@ -6,10 +6,8 @@
 #include "main.h"
 #include "menu.h"
 #include "mode.h"
-#include "jeopardy_res.h"
+#include "res.h"
 #include "memory_map.h"
-
-using namespace PaketJeopardyRes;
 
 namespace {
 
@@ -28,14 +26,6 @@ enum State {
     ANSWER_TIME_STARTED,
     MENU
 };
-
-const char *emptyLabel = "";
-
-const char* num2Label = "2";
-const char* num3Label = "3";
-const char* num4Label = "4";
-const char* num5Label = "5";
-const char* num6Label = "6";
 
 const char* mainMenu[] = {cancelLabel, resetLabel, undoLabel, numPlayersLabel};
 const char* numPlayerMenu[] = {num2Label, num3Label, num4Label, num5Label, num6Label};
@@ -201,7 +191,7 @@ void JeopardyMode::getCaption(char* buffer, size_t bufferSize) {
             if (playersBlocked != 0) {
                 snprintf(buffer, bufferSize, blockedLabel, playersBlocked);
             } else {
-                snprintf(buffer, bufferSize, readLabel, roundID, question * 10);
+                snprintf(buffer, bufferSize, readJeopardyLabel, roundID, question * 10);
             }
             break;
         case MENU:
@@ -212,7 +202,7 @@ void JeopardyMode::getCaption(char* buffer, size_t bufferSize) {
             break;
         case ANSWER_TIME_NOT_STARTED:
         case ANSWER_TIME_STARTED:
-            snprintf(buffer, bufferSize, playerLabel, currentPlayer + 1, timeInSeconds());
+            snprintf(buffer, bufferSize, playerJeopardyLabel, currentPlayer + 1, timeInSeconds());
             break;
     }
 }
@@ -444,4 +434,8 @@ void JeopardyMode::update() {
         }
     }
 
+}
+
+void JeopardyMode::getInfo(char* buffer, size_t bufferSize) {
+    buffer[0] = 0;
 }

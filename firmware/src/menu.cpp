@@ -1,13 +1,5 @@
 #include "menu.h"
-
-const char* leftLabel = "<";
-const char* rightLabel = ">";
-#ifdef RUSSIAN
-const char* centerLabel = "Выбрать";
-#else
-const char* centerLabel = "Select";
-#endif
-const char* emptyLabel = "";
+#include "res.h"
 
 void Menu::init(int numOptions_, const char** options_, int initialOption) {
     numOptions = numOptions_;
@@ -28,7 +20,7 @@ const char* Menu::getRightLabel() {
 }
 
 const char* Menu::getCenterLabel() {
-    return centerLabel;
+    return selectLabel;
 }
 
 void Menu::toLeft() {

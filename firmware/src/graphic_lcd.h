@@ -47,11 +47,6 @@ class GraphicLcd : public Print {
     }
 
     size_t write(uint8_t ch) override {
-      if ((ch >> 6 & 3) == 2) {
-        for (int i = 2 * Cols; i > col_ + 1; i--) {
-          buffer_[row_][i] = buffer_[row_][i - 1];
-        }
-      }
       buffer_[row_][col_] = ch;
       col_++;
       return 1;
@@ -60,10 +55,10 @@ class GraphicLcd : public Print {
   private:
     void clearBuffer() {
       for (int i = 0; i < Rows; ++i) {
-        for (int j = 0; j < Cols; ++j) {
+        for (int j = 0; j < 2 * Cols; ++j) {
           buffer_[i][j] = ' ';
         }
-        buffer_[i][Cols] = 0;
+        buffer_[i][2 * Cols] = 0;
       }
     }
 

@@ -3,20 +3,16 @@
 #include <Arduino.h>
 #include "mode.h"
 #include "main.h"
-#include "select_res.h"
+#include "res.h"
 
 namespace {
 
 JeopardyMode jeopardyMode;
 BrainMode brainMode;
-HamsaMode hamsaMode;
 
-const char *left = "<";
-const char *right = ">";
-const char *middle = selectLabel;
 const int MODE_COUNT = 3;
-Mode* modes[] = {&jeopardyMode, &brainMode, &hamsaMode};
-const char* ids[] = {jeopardyLabel, brainLabel, hamsaLabel};
+Mode* modes[] = {&jeopardyMode, &brainMode};
+const char* ids[] = {jeopardyLabel, brainLabel};
 int selectedMode;
 
 }  // namespace
@@ -37,17 +33,21 @@ void SelectMode::getScore(char* buffer, size_t bufferSize) {
     buffer[0] = 0;
 }
 
+void SelectMode::getInfo(char* buffer, size_t bufferSize) {
+    buffer[0] = 0;
+}
+
 bool SelectMode::preferShowScore() {
     return false;
 }
 
 const char* SelectMode::getLabel(int buttonId) {
     if (buttonId == BUTTON_RESET) {
-        return left;
+        return leftLabel;
     } else if (buttonId == BUTTON_START)  {
-        return right;
+        return rightLabel;
     } else if (buttonId == BUTTON_CONTROL_2) {
-        return middle;
+        return selectLabel;
     }
     return "";
 }
