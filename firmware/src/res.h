@@ -32,6 +32,7 @@ static const char* playerBrainLabel = "Команда %d (%d s)";
 static const char* falsestartLabel = "Команда %d фальстарт";
 static const char* scoreBrainLabel = "Счет %d-%d";
 static const char* infoBrainLabel = "Скорость реакции %d.%02d";
+static const char* resetScoreLabel = "Сбросить счет?";
 
 //Jeopardy
 static const char* blockedLabel = "%d заблокировано";
@@ -64,6 +65,7 @@ static const char* playerBrainLabel = "Team %d (%d s)";
 static const char* falsestartLabel = "Team %d f-start";
 static const char* scoreBrainLabel = "Score %d-%d";
 static const char* infoBrainLabel = "Speed %d.%02d";
+static const char* resetScoreLabel = "Reset score?";
 
 //Jeopardy
 static const char* blockedLabel = "%d blocked";

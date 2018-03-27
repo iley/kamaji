@@ -10,7 +10,7 @@ namespace {
 
 const int TIME = 60;
 const int TIME_SUPPLEMENT = 20;
-const int NUM_PLAYERS = 2;
+const int NUM_PLAYERS = PLAYER_COUNT;
 const int DELAY = 3;
 const int BUZZ_SEC = 5;
 const int ATTENTION_DELAY = 5;
@@ -22,7 +22,8 @@ enum State {
     ANSWER_MAIN,
     ANSWER_SUPPLEMENT,
     FALSE_START,
-    START_DELAY
+    START_DELAY,
+    RESET
 };
 
 
@@ -99,6 +100,9 @@ void BrainMode::getCaption(char* buffer, size_t bufferSize) {
         case START_DELAY:
             snprintf(buffer, bufferSize, pendingLabel);
             break;
+        case RESET:
+            snprintf(buffer, bufferSize, resetScoreLabel);
+            break;
     }
 }
 
@@ -113,6 +117,7 @@ const char* BrainMode::getLabel(int buttonId) {
                 return resetLabel;
             case ANSWER_MAIN:
             case ANSWER_SUPPLEMENT:
+            case RESET:
                 return yesLabel;
         }
     } else if (buttonId == BUTTON_START)  {
@@ -126,10 +131,18 @@ const char* BrainMode::getLabel(int buttonId) {
                 return emptyLabel;
             case ANSWER_MAIN:
             case ANSWER_SUPPLEMENT:
+            case RESET:
                 return noLabel;
         }
+    } else if (buttonId == BUTTON_CONTROL_2) {
+        switch (state) {
+            case QUESTION:
+                return menuLabel;
+            default:
+                return emptyLabel;
+        }
     }
-    return "";
+    return emptyLabel;
 }
 
 void BrainMode::getScore(char* buffer, size_t bufferSize) {
@@ -141,6 +154,17 @@ bool BrainMode::preferShowScore() {
 }
 
 void BrainMode::update() {
+    if (state == RESET) {
+        if (isControlPressed(BUTTON_RESET)) {
+            init();
+            return;
+        } else if (isControlPressed(BUTTON_START)) {
+            roundID--;
+            reset();
+            return;
+        }
+        return;
+    }
     if (state == ANSWER_MAIN || state == ANSWER_SUPPLEMENT) {
         if (timeInSeconds() - lastAttentionSoundPlayed >= ATTENTION_DELAY) {
             playAttentionSound();
@@ -187,6 +211,11 @@ void BrainMode::update() {
                     return;
                 }
             }
+        }
+        if (state == QUESTION && isControlPressed(BUTTON_CONTROL_2)) {
+            state = RESET;
+            stateEnterd = millis();
+            return;            
         }
         if (timeInSeconds() == 0 && state != START_DELAY) {
             return;
