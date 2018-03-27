@@ -10,7 +10,7 @@ namespace {
 JeopardyMode jeopardyMode;
 BrainMode brainMode;
 
-const int MODE_COUNT = 3;
+const int MODE_COUNT = 2;
 Mode* modes[] = {&jeopardyMode, &brainMode};
 const char* ids[] = {jeopardyLabel, brainLabel};
 int selectedMode;
