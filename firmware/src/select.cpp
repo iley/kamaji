@@ -25,15 +25,19 @@ bool SelectMode::getLedState(int playerId) {
     return false;
 }
 
-void SelectMode::getCaption(char* buffer, size_t bufferSize) {
+bool SelectMode::isEssential() {
+    return false;
+}
+
+void SelectMode::getCaption(char* buffer, size_t bufferSize, size_t width) {
     snprintf(buffer, bufferSize, modeLabel, ids[selectedMode]);
 }
 
-void SelectMode::getScore(char* buffer, size_t bufferSize) {
+void SelectMode::getScore(char* buffer, size_t bufferSize, size_t width) {
     buffer[0] = 0;
 }
 
-void SelectMode::getInfo(char* buffer, size_t bufferSize) {
+void SelectMode::getInfo(char* buffer, size_t bufferSize, size_t width) {
     buffer[0] = 0;
 }
 

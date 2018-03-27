@@ -179,7 +179,7 @@ void printScores(char* buffer, int length) {
     }
 }
 
-void JeopardyMode::getCaption(char* buffer, size_t bufferSize) {
+void JeopardyMode::getCaption(char* buffer, size_t bufferSize, size_t width) {
     int playersBlocked = 0;
     switch (state) {
         case QUESTION:
@@ -207,8 +207,8 @@ void JeopardyMode::getCaption(char* buffer, size_t bufferSize) {
     }
 }
 
-void JeopardyMode::getScore(char* buffer, size_t bufferSize) {
-    printScores(buffer, bufferSize);
+void JeopardyMode::getScore(char* buffer, size_t bufferSize, size_t width) {
+    printScores(buffer, width);
 }
 
 bool JeopardyMode::preferShowScore() {
@@ -219,6 +219,10 @@ bool JeopardyMode::preferShowScore() {
         }
     }
     return state == QUESTION && playersBlocked == 0;
+}
+
+bool JeopardyMode::isEssential() {
+    return false;
 }
 
 const char* JeopardyMode::getLabel(int buttonId) {
@@ -436,6 +440,6 @@ void JeopardyMode::update() {
 
 }
 
-void JeopardyMode::getInfo(char* buffer, size_t bufferSize) {
+void JeopardyMode::getInfo(char* buffer, size_t bufferSize, size_t width) {
     buffer[0] = 0;
 }

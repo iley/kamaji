@@ -65,11 +65,19 @@ void setup() {
 }
 
 void updateScreenAndLeds() {
+  switchLamp(mode->getLampState());
+  for (int i = BUTTON_PLAYER_1; i <= LAST_PLAYER_BUTTON; i++) {
+    xDigitalWrite(kLedPins[i], mode->getLedState(i) ? HIGH : LOW);
+  }
+  if (mode->isEssential()) {
+    return;
+  }
   caption[0] = '\0';
-  mode->getCaption(caption, sizeof(caption));
+  mode->getCaption(caption, sizeof(caption), kDisplayCols);
   score[0] = '\0';
-  mode->getScore(score, sizeof(score));
-  mode->getInfo(info, sizeof(info));
+  mode->getScore(score, sizeof(score), kDisplayCols);
+  info[0] = '\0';
+  mode->getInfo(info, sizeof(info), kDisplayCols);
   const char* left = mode->getLabel(BUTTON_RESET);
   const char* right = mode->getLabel(BUTTON_START);
   const char* middle = mode->getLabel(BUTTON_CONTROL_2);
@@ -109,10 +117,6 @@ void updateScreenAndLeds() {
     strncpy(lastScore, score, sizeof(lastScore));
     strncpy(lastInfo, info, sizeof(lastInfo));
   }
-  for (int i = BUTTON_PLAYER_1; i <= LAST_PLAYER_BUTTON; i++) {
-    xDigitalWrite(kLedPins[i], mode->getLedState(i) ? HIGH : LOW);
-  }
-  switchLamp(mode->getLampState());
 }
 
 void loop() {

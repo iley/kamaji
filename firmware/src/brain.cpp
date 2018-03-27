@@ -73,13 +73,17 @@ bool BrainMode::getLedState(int playerId) {
     return (state == ANSWER_MAIN || state == ANSWER_SUPPLEMENT || state == FALSE_START) && currentPlayer == playerId;
 }
 
+bool BrainMode::isEssential() {
+    return state == MAIN && timeInSeconds() < 1;
+}
+
 bool BrainMode::getLampState() {
     return ((state == MAIN || state == SUPPLEMENT) && timeInSeconds() < 3) ||
       (state == FALSE_START && timeInTenths() % 10 < 5) ||
       ((state == ANSWER_MAIN || state == ANSWER_SUPPLEMENT) && timeInTenths() >= 1);
 }
 
-void BrainMode::getCaption(char* buffer, size_t bufferSize) {
+void BrainMode::getCaption(char* buffer, size_t bufferSize, size_t width) {
     switch (state) {
         case QUESTION:
             snprintf(buffer, bufferSize, readBrainLabel, roundID);
@@ -145,7 +149,7 @@ const char* BrainMode::getLabel(int buttonId) {
     return emptyLabel;
 }
 
-void BrainMode::getScore(char* buffer, size_t bufferSize) {
+void BrainMode::getScore(char* buffer, size_t bufferSize, size_t width) {
     snprintf(buffer, bufferSize, scoreBrainLabel, score[0], score[1]);
 }
 
@@ -270,7 +274,7 @@ void BrainMode::update() {
     }
 }
 
-void BrainMode::getInfo(char* buffer, size_t bufferSize) {
+void BrainMode::getInfo(char* buffer, size_t bufferSize, size_t width) {
     if (state == ANSWER_MAIN) {
         snprintf(buffer, bufferSize, infoBrainLabel, reactionTime / 100, reactionTime % 100);
     } else {
