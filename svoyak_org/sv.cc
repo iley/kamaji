@@ -66,9 +66,13 @@ class table {
   std::unordered_map<std::pair<int, int>, std::string, my_hash<int>> tbl;
 };
 
+constexpr char room[8][30] = {"Лес", "Малый зал", "6 кабинет", "7 кабинет", "8 кабинет", "10 кабинет", "11 кабинет", "12 кабинет"};
+constexpr char start_time[6][10] = {"11:15", "11:45", "12:15", "12:45", "13:15", "13:45"};
+
 std::string GetBoy(int i, int j) {
   char res[100];
-  sprintf(res, "Бой %d_%d", i + 1, j + 1);
+  //return start_time[i];
+  sprintf(res, "Бой %d %s %s", i + 1, room[j], start_time[i]);
   return res;
 }
 
@@ -85,7 +89,7 @@ void GenerateRandomScores(table& otbor) {
     for (int j = 0; j < otbor.m; ++j)
       if (otbor.get(i,j).find("Бой ") != std::string::npos) {
         for (int t = 1; IsValidName(otbor.get(i+t,j)); ++t)
-          otbor.set(i+t, j+1, std::to_string(std::rand()%10));
+          otbor.set(i+t, j+1, std::to_string(std::rand()%100));
       }
 }
 
@@ -119,7 +123,7 @@ std::map<std::string, Player> stats;
 constexpr int scores[] = {10, 6, 3, 1, 0, 0};
 
 int getpts(int place, int cnt) {
-  ASSERT(place + cnt <= 4);
+  ASSERT(place + cnt <= 6);
   int sum = 0;
   for (int i = place; i - place < cnt; ++i)
     sum += scores[i];
@@ -229,17 +233,18 @@ int GetNumberMeets(const std::vector<std::string>& boy) {
 }
 
 table GeneratePoints(table& otbor) {
-  int u = 0, v = 0;
   std::map<std::string, std::pair<int, int> > pts[2];
   for (int i = 0; i < otbor.n; ++i)
-    for (int j = 0; j < otbor.m; ++j)
-      if (sscanf(otbor.get(i,j).c_str(),"Бой %d_%d", &u, &v) == 2) {
-        --u;--v;
+    for (int j = 0; j < otbor.m; ++j) {
+      int u;
+      if (sscanf(otbor.get(i,j).c_str(),"Бой %d", &u) == 1) {
+        --u;
         Game game;
         for (int t = 1; IsValidName(otbor.get(i + t, j)); ++t)
           game.AddPlayer(otbor.get(i+t,j), std::stoi(otbor.get(i+t,j+1)));
         game.CalculateOtbor(pts[u%2]);
       }
+    }
   table res_otbor;
   for (int _ = 0; _ < 2; ++_) {
     std::vector<std::pair<int, int> > meat;
@@ -370,7 +375,9 @@ std::vector<std::vector<std::string>> GenRandomOtbor(const std::vector<std::stri
   }
   for (int i = 0; i < MaxBaskets; ++i)
     std::random_shuffle(baskets[i].begin(), baskets[i].end());
+  Eo("start dfs");
   ASSERT(dfs8(baskets, 1, 0, 0));
+  Eo("finish dfs");
   ASSERT(GetNumberMeets(baskets) == 0);
 
   std::vector<std::vector<std::string>> result;
@@ -405,6 +412,31 @@ std::vector<std::vector<std::string>> GenRandomOtbor(const std::vector<std::stri
   */
 }
 
+constexpr size_t cast_w = 200, size_h = 60;
+
+std::string Pad(size_t width, std::string s) {
+  width -= s.size()/2;
+  while (width != 0) {
+    s.push_back(' ');
+    --width;
+  }
+  return s;
+}
+void generate_otbor_cast(table& otbor, std::string file_name) {
+  FILE* file = fopen(file_name.c_str(), "w+");
+  size_t width = cast_w / systems;
+  Eo(width);
+  for (int i = 0; i < otbor.n; ++i) {
+    for (int j = 0; j < otbor.m; ++j) {
+      if (otbor.get(i, j).size() > 0) {
+        fprintf(file, "%s", Pad(width, otbor.get(i, j).substr(0, 2*width)).c_str());
+      }
+    }
+    fprintf(file, "\n");
+  }
+  fclose(file);
+}
+
 int main(int argc, char* argv[]) {
   Eo(systems);
   if (argc < 2) {
@@ -412,24 +444,36 @@ int main(int argc, char* argv[]) {
     return 0;
   }
   int n = -1;
-  std::srand(1);
+  std::srand(2);
   if (std::string("otbor") == argv[1]) {
     std::cerr << "generating otbor" << std::endl;
     table t("parts.csv");
     std::vector<std::string> parts[2];
     n = t.n;
     for (int i = 0; i < t.n; ++i) {
-      std::string name = t.get(i, 1);
+      std::string name = t.get(i, 0);
+      std::string flag = t.get(i, 1).substr(0,6);
+      int where = 0;
+      if (flag == "bottom" || parts[0].size() > parts[1].size())
+        where = 1;
+      if (flag == "bottom") {
+        Eo(name);
+        Eo(where);
+      }
       ASSERT(!name.empty());
-      parts[i%2].push_back(name);
+      parts[where].push_back(name);
     }
+    Eo(parts[0].size());
+    Eo(parts[1].size());
     table out;
     const int height = 7;
     const int width = 3;
     int current_row = 0;
     for (int i = 0; i < 3; ++i)
       for (int j = 0; j < 2; ++j, ++current_row) {
+        Eo("!!");
         std::vector<std::vector<std::string> > otbor_row = GenRandomOtbor(parts[j]);
+        Eo("??");
         for (int game = 0; game < otbor_row.size(); ++game) {
           out.set(current_row*height, game*width, GetBoy(current_row, game));
           for (int player = 0; player < otbor_row[game].size(); ++player) {
@@ -438,15 +482,18 @@ int main(int argc, char* argv[]) {
         }
       }
     out.out("otbor_out.csv");
+    generate_otbor_cast(out, "cast.txt");
     return 0;
   }
 
   table otbor("otbor_out.csv");
+          GenerateRandomScores(otbor);
+          otbor.out("random_scores.csv");
+
   CalcMeets(otbor,1);
   //OutMeets();
-          GenerateRandomScores(otbor);
-          otbor.out("random_otbor.csv");
   table otbor_res = GeneratePoints(otbor);
+  Eo("generated points");
   if (std::string("calc_otbor") == argv[1]) {
     otbor_res.out("otbor_res.csv");
     table f8 = GetFin(8);
