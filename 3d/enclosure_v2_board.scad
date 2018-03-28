@@ -152,7 +152,7 @@ difference() {
 
 top_box_z = 10;
 //stoiki_h = top_box_z - th;
-wide_stoiki_h = 4;
+wide_stoiki_h = 5;
 pcb_room = 1;
 screen_start_x = shift_x + 11.5;
 screen_start_y = shift_y + 25;
@@ -168,7 +168,7 @@ screen_hold_up_x_shift = 5;
 master_button_y = shift_y + pcb_y - 7.5;
 master_button_x = shift_x + 19;
 master_button_int = 31.5;
-master_button_r = 6.25;
+master_button_r = 6.5;
 top_bolt_h = 1.5;
 top_bolt_r = 3.5;
 
