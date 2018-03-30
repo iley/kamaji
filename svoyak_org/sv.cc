@@ -68,11 +68,22 @@ class table {
 
 constexpr char room[8][30] = {"Лес", "Малый зал", "6 кабинет", "7 кабинет", "8 кабинет", "10 кабинет", "11 кабинет", "12 кабинет"};
 constexpr char start_time[6][10] = {"11:15", "11:45", "12:15", "12:45", "13:15", "13:45"};
+constexpr char stage_name[4][50] = {"1/8 финала", "1/4 финала", "Полуфинал", "Финал" };
+constexpr char start_fin_time[] = "TODO";
 
 std::string GetBoy(int i, int j) {
   char res[100];
-  //return start_time[i];
-  sprintf(res, "Бой %d %s %s", i + 1, room[j], start_time[i]);
+  sprintf(res, "Бой %d;%s;%s", i + 1, room[j], start_time[i]);
+  return res;
+}
+
+std::string GetFinBoy(int stage, int j) {
+  if (stage == 8) stage = 0;
+  else if (stage == 4) stage = 1;
+  else if (stage == 2) stage = 2;
+  else if (stage == 1) stage = 3;
+  char res[100];
+  sprintf(res, "Бой %s;%s;%s", stage_name[stage], room[j], start_fin_time);
   return res;
 }
 
@@ -306,6 +317,7 @@ table Generate(const std::vector<std::string>& players) {
     p[2][i] = players[i+games*2];
     p[3][games-1-i] = players[i+games*3];
   }
+
   for (int rem = 0; ; ++rem) {
     moves = 0;
     if (dfs8(p, 1, 0, rem)) {
@@ -313,12 +325,18 @@ table Generate(const std::vector<std::string>& players) {
       Eo(rem);
       Eo(moves);
       table res;
+      std::fstream tg_out("tg.txt", std::fstream::out);
       for (int i = 0; i < games; ++i) {
-        res.set(0, i*4, GetBoy(0, i));
-        res.set(1, i*4, p[0][i]);
-        res.set(2, i*4, p[1][i]);
-        res.set(3, i*4, p[2][i]);
-        res.set(4, i*4, p[3][i]);
+        res.set(0, i*3, GetFinBoy(games, i));
+        res.set(1, i*3, p[0][i]);
+        res.set(2, i*3, p[1][i]);
+        res.set(3, i*3, p[2][i]);
+        res.set(4, i*3, p[3][i]);
+        tg_out << GetFinBoy(games, i) << std::endl
+               << p[0][i] << std::endl
+               << p[1][i] << std::endl
+               << p[2][i] << std::endl
+               << p[3][i] << std::endl << std::endl;
       }
       return res;
     }
@@ -447,6 +465,7 @@ int main(int argc, char* argv[]) {
   std::srand(2);
   if (std::string("otbor") == argv[1]) {
     std::cerr << "generating otbor" << std::endl;
+    std::fstream tg_out("tg.txt", std::fstream::out);
     table t("parts.csv");
     std::vector<std::string> parts[2];
     n = t.n;
@@ -475,14 +494,18 @@ int main(int argc, char* argv[]) {
         std::vector<std::vector<std::string> > otbor_row = GenRandomOtbor(parts[j]);
         Eo("??");
         for (int game = 0; game < otbor_row.size(); ++game) {
-          out.set(current_row*height, game*width, GetBoy(current_row, game));
+          std::string boy_name = GetBoy(current_row, game);
+          out.set(current_row*height, game*width, boy_name);
+          tg_out << boy_name << std::endl;
           for (int player = 0; player < otbor_row[game].size(); ++player) {
-            out.set(current_row*height+player+1, game*width, otbor_row[game][player]);
+            std::string player_name = otbor_row[game][player];
+            out.set(current_row*height+player+1, game*width, player_name);
+            tg_out << player_name << std::endl;
           }
+          tg_out << std::endl;
         }
       }
     out.out("otbor_out.csv");
-    generate_otbor_cast(out, "cast.txt");
     return 0;
   }
 
