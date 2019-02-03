@@ -149,7 +149,7 @@ U 1 1 5C559CDC
 P 3690 2800
 F 0 "R4" H 3760 2846 50  0000 L CNN
 F 1 "10K" H 3760 2755 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 3620 2800 50  0001 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 3620 2800 50  0001 C CNN
 F 3 "~" H 3690 2800 50  0001 C CNN
 	1    3690 2800
 	1    0    0    -1  
@@ -517,7 +517,7 @@ Wire Wire Line
 	5160 7130 5160 7200
 Wire Wire Line
 	5160 7200 5220 7200
-Text Label 3460 1750 0    50   ~ 0
+Text Label 3460 1950 0    50   ~ 0
 CBTN1
 $Comp
 L Device:Crystal Y1
@@ -536,7 +536,7 @@ Wire Wire Line
 	1050 3440 1250 3440
 Text Label 3460 1850 0    50   ~ 0
 CBTN2
-Text Label 3460 1950 0    50   ~ 0
+Text Label 3460 1750 0    50   ~ 0
 CBTN3
 Text Label 3250 2050 0    50   ~ 0
 XTAL1
@@ -900,17 +900,17 @@ Wire Wire Line
 	6170 7220 6230 7220
 Text Label 5860 1730 0    50   ~ 0
 PLED6
-Text Label 3250 3150 0    50   ~ 0
-PBTN1
-Text Label 3250 3250 0    50   ~ 0
-PBTN2
-Text Label 3250 3350 0    50   ~ 0
-PBTN3
-Text Label 3250 3450 0    50   ~ 0
-PBTN4
-Text Label 3250 3550 0    50   ~ 0
-PBTN5
 Text Label 3250 3650 0    50   ~ 0
+PBTN1
+Text Label 3250 3550 0    50   ~ 0
+PBTN2
+Text Label 3250 3450 0    50   ~ 0
+PBTN3
+Text Label 3250 3350 0    50   ~ 0
+PBTN4
+Text Label 3250 3250 0    50   ~ 0
+PBTN5
+Text Label 3250 3150 0    50   ~ 0
 PBTN6
 $Comp
 L Connector_Generic:Conn_01x05 J8
@@ -1538,4 +1538,37 @@ Connection ~ 1460 2410
 Wire Wire Line
 	1460 2410 1460 2310
 NoConn ~ 960  2210
+$Comp
+L Device:C C7
+U 1 1 5C5DFDB3
+P 730 1120
+F 0 "C7" H 845 1166 50  0000 L CNN
+F 1 "0.1uF" H 845 1075 50  0000 L CNN
+F 2 "Capacitor_SMD:C_1206_3216Metric_Pad1.42x1.75mm_HandSolder" H 768 970 50  0001 C CNN
+F 3 "~" H 730 1120 50  0001 C CNN
+	1    730  1120
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR02
+U 1 1 5C5DFDBA
+P 730 1270
+F 0 "#PWR02" H 730 1020 50  0001 C CNN
+F 1 "GND" H 735 1097 50  0000 C CNN
+F 2 "" H 730 1270 50  0001 C CNN
+F 3 "" H 730 1270 50  0001 C CNN
+	1    730  1270
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:VCC #PWR01
+U 1 1 5C5DFDC0
+P 730 970
+F 0 "#PWR01" H 730 820 50  0001 C CNN
+F 1 "VCC" H 747 1143 50  0000 C CNN
+F 2 "" H 730 970 50  0001 C CNN
+F 3 "" H 730 970 50  0001 C CNN
+	1    730  970 
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
