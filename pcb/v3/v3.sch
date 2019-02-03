@@ -517,7 +517,7 @@ Wire Wire Line
 	5160 7130 5160 7200
 Wire Wire Line
 	5160 7200 5220 7200
-Text Label 3460 1950 0    50   ~ 0
+Text Label 3460 1750 0    50   ~ 0
 CBTN1
 $Comp
 L Device:Crystal Y1
@@ -534,9 +534,9 @@ Wire Wire Line
 	1050 3740 1250 3740
 Wire Wire Line
 	1050 3440 1250 3440
-Text Label 3460 1850 0    50   ~ 0
+Text Label 3460 1950 0    50   ~ 0
 CBTN2
-Text Label 3460 1750 0    50   ~ 0
+Text Label 3460 1850 0    50   ~ 0
 CBTN3
 Text Label 3250 2050 0    50   ~ 0
 XTAL1
@@ -1047,7 +1047,7 @@ U 1 1 5C5AA536
 P 8010 3880
 F 0 "Q2" H 8201 3926 50  0000 L CNN
 F 1 "2N3904" H 8201 3835 50  0000 L CNN
-F 2 "Package_TO_SOT_THT:TO-92_Inline" H 8210 3805 50  0001 L CIN
+F 2 "Package_TO_SOT_THT:TO-92_Inline_Wide" H 8210 3805 50  0001 L CIN
 F 3 "https://www.fairchildsemi.com/datasheets/2N/2N3904.pdf" H 8010 3880 50  0001 L CNN
 	1    8010 3880
 	1    0    0    -1  
@@ -1089,9 +1089,9 @@ F 3 "~" H 7660 3880 50  0001 C CNN
 $EndComp
 Text Label 7510 3880 2    50   ~ 0
 SPK
-Text Label 3250 3750 0    50   ~ 0
-LCDRS
 Text Label 3250 3850 0    50   ~ 0
+LCDRS
+Text Label 3250 3750 0    50   ~ 0
 LCDE
 Text Label 3250 1650 0    50   ~ 0
 LOAD
@@ -1182,7 +1182,7 @@ U 1 1 5C5755BD
 P 10070 3810
 F 0 "Q3" H 10275 3856 50  0000 L CNN
 F 1 "BS170" H 10275 3765 50  0000 L CNN
-F 2 "Package_TO_SOT_THT:TO-92_Inline" H 10270 3735 50  0001 L CIN
+F 2 "Package_TO_SOT_THT:TO-92_Inline_Wide" H 10270 3735 50  0001 L CIN
 F 3 "http://www.fairchildsemi.com/ds/BS/BS170.pdf" H 10070 3810 50  0001 L CNN
 	1    10070 3810
 	1    0    0    -1  
@@ -1316,7 +1316,7 @@ U 1 1 5C58B299
 P 7910 5340
 F 0 "Q1" H 8115 5386 50  0000 L CNN
 F 1 "BS170" H 8115 5295 50  0000 L CNN
-F 2 "Package_TO_SOT_THT:TO-92_Inline" H 8110 5265 50  0001 L CIN
+F 2 "Package_TO_SOT_THT:TO-92_Inline_Wide" H 8110 5265 50  0001 L CIN
 F 3 "http://www.fairchildsemi.com/ds/BS/BS170.pdf" H 7910 5340 50  0001 L CNN
 	1    7910 5340
 	1    0    0    -1  
