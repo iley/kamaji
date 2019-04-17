@@ -184,6 +184,8 @@ void BrainMode::update() {
         } else if (isControlPressed(BUTTON_START)) {
             if (state == ANSWER_MAIN) {
                 state = SUPPLEMENT;
+                last10Sec = false;
+                lastSignal = BUZZ_SEC;
                 playTimeSound();
             } else {
                 reset();
