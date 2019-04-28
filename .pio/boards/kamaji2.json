@@ -23,7 +23,7 @@
     ],
     "mcu": "atmega32u4",
     "usb_product": "Arduino Leonardo",
-    "variant": "adafruit32u4"
+    "variant": "leonardo"
   },
   "frameworks": [
     "arduino"
