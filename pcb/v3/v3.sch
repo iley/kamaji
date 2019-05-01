@@ -1,6 +1,6 @@
 EESchema Schematic File Version 4
 LIBS:v3-cache
-EELAYER 26 0
+EELAYER 29 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
@@ -944,7 +944,7 @@ F 1 "VOLUME" H 7560 3365 50  0000 R CNN
 F 2 "kamaji:Potentiometer_Wheel_16mm" H 7630 3410 50  0001 C CNN
 F 3 "~" H 7630 3410 50  0001 C CNN
 	1    7630 3410
-	1    0    0    -1  
+	-1   0    0    1   
 $EndComp
 $Comp
 L Device:Jumper_NO_Small JP2
@@ -1031,38 +1031,34 @@ $EndComp
 $Comp
 L Device:Speaker_Crystal LS1
 U 1 1 5C5A8DB6
-P 8310 3410
-F 0 "LS1" H 8485 3406 50  0000 L CNN
-F 1 "Speaker" H 8485 3315 50  0000 L CNN
-F 2 "kamaji:Buzzer_ARIO_98dB" H 8275 3360 50  0001 C CNN
-F 3 "~" H 8275 3360 50  0001 C CNN
-	1    8310 3410
-	1    0    0    -1  
+P 7280 3510
+F 0 "LS1" H 7455 3506 50  0000 L CNN
+F 1 "Speaker" H 7455 3415 50  0000 L CNN
+F 2 "kamaji:Buzzer_ARIO_98dB" H 7245 3460 50  0001 C CNN
+F 3 "~" H 7245 3460 50  0001 C CNN
+	1    7280 3510
+	-1   0    0    1   
 $EndComp
-Wire Wire Line
-	7780 3410 8110 3410
 $Comp
 L Transistor_BJT:2N3904 Q2
 U 1 1 5C5AA536
-P 8010 3880
-F 0 "Q2" H 8201 3926 50  0000 L CNN
-F 1 "2N3904" H 8201 3835 50  0000 L CNN
-F 2 "Package_TO_SOT_THT:TO-92_Inline_Wide" H 8210 3805 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N3904.pdf" H 8010 3880 50  0001 L CNN
-	1    8010 3880
+P 7380 3940
+F 0 "Q2" H 7571 3986 50  0000 L CNN
+F 1 "2N3904" H 7571 3895 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-92_Inline_Wide" H 7580 3865 50  0001 L CIN
+F 3 "https://www.fairchildsemi.com/datasheets/2N/2N3904.pdf" H 7380 3940 50  0001 L CNN
+	1    7380 3940
 	1    0    0    -1  
 $EndComp
-Wire Wire Line
-	8110 3510 8110 3680
 $Comp
 L power:GND #PWR0145
 U 1 1 5C5ABB73
-P 8110 4080
-F 0 "#PWR0145" H 8110 3830 50  0001 C CNN
-F 1 "GND" H 8110 3910 50  0000 C CNN
-F 2 "" H 8110 4080 50  0001 C CNN
-F 3 "" H 8110 4080 50  0001 C CNN
-	1    8110 4080
+P 7480 4140
+F 0 "#PWR0145" H 7480 3890 50  0001 C CNN
+F 1 "GND" H 7480 3970 50  0000 C CNN
+F 2 "" H 7480 4140 50  0001 C CNN
+F 3 "" H 7480 4140 50  0001 C CNN
+	1    7480 4140
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -1079,22 +1075,20 @@ $EndComp
 $Comp
 L Device:R R12
 U 1 1 5C5ADC70
-P 7660 3880
-F 0 "R12" V 7560 3880 50  0000 C CNN
-F 1 "1K" V 7660 3880 50  0000 C CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 7590 3880 50  0001 C CNN
-F 3 "~" H 7660 3880 50  0001 C CNN
-	1    7660 3880
+P 7030 3940
+F 0 "R12" V 6930 3940 50  0000 C CNN
+F 1 "1K" V 7030 3940 50  0000 C CNN
+F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 6960 3940 50  0001 C CNN
+F 3 "~" H 7030 3940 50  0001 C CNN
+	1    7030 3940
 	0    -1   -1   0   
 $EndComp
-Text Label 7510 3880 2    50   ~ 0
+Text Label 6880 3940 2    50   ~ 0
 SPK
 Text Label 3250 3850 0    50   ~ 0
 LCDRS
 Text Label 3250 3750 0    50   ~ 0
 LCDE
-Text Label 3250 1650 0    50   ~ 0
-LOAD
 $Comp
 L Connector:USB_A J10
 U 1 1 5C56BBEE
@@ -1238,139 +1232,6 @@ F 3 "~" H 9590 3810 50  0001 C CNN
 	1    9590 3810
 	0    1    1    0   
 $EndComp
-$Comp
-L Device:R R14
-U 1 1 5C584646
-P 8010 4990
-F 0 "R14" V 7920 4990 50  0000 C CNN
-F 1 "200R" V 8010 4990 50  0000 C CNN
-F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 7940 4990 50  0001 C CNN
-F 3 "~" H 8010 4990 50  0001 C CNN
-	1    8010 4990
-	-1   0    0    1   
-$EndComp
-$Comp
-L Device:R R15
-U 1 1 5C58600B
-P 8200 4990
-F 0 "R15" V 8110 4990 50  0000 C CNN
-F 1 "200R" V 8200 4990 50  0000 C CNN
-F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 8130 4990 50  0001 C CNN
-F 3 "~" H 8200 4990 50  0001 C CNN
-	1    8200 4990
-	-1   0    0    1   
-$EndComp
-$Comp
-L Device:R R16
-U 1 1 5C5861E8
-P 8410 4990
-F 0 "R16" V 8320 4990 50  0000 C CNN
-F 1 "200R" V 8410 4990 50  0000 C CNN
-F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 8340 4990 50  0001 C CNN
-F 3 "~" H 8410 4990 50  0001 C CNN
-	1    8410 4990
-	-1   0    0    1   
-$EndComp
-$Comp
-L Device:R R17
-U 1 1 5C58647C
-P 8610 4990
-F 0 "R17" V 8520 4990 50  0000 C CNN
-F 1 "200R" V 8610 4990 50  0000 C CNN
-F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 8540 4990 50  0001 C CNN
-F 3 "~" H 8610 4990 50  0001 C CNN
-	1    8610 4990
-	-1   0    0    1   
-$EndComp
-$Comp
-L power:VCC #PWR0153
-U 1 1 5C586CD2
-P 8010 4840
-F 0 "#PWR0153" H 8010 4690 50  0001 C CNN
-F 1 "VCC" H 8010 5010 50  0000 C CNN
-F 2 "" H 8010 4840 50  0001 C CNN
-F 3 "" H 8010 4840 50  0001 C CNN
-	1    8010 4840
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	8010 4840 8200 4840
-Connection ~ 8010 4840
-Wire Wire Line
-	8610 4840 8410 4840
-Wire Wire Line
-	8410 4840 8200 4840
-Connection ~ 8410 4840
-Connection ~ 8200 4840
-Wire Wire Line
-	8610 5140 8410 5140
-Connection ~ 8200 5140
-Wire Wire Line
-	8200 5140 8010 5140
-Connection ~ 8410 5140
-Wire Wire Line
-	8410 5140 8200 5140
-$Comp
-L Transistor_FET:BS170 Q1
-U 1 1 5C58B299
-P 7910 5340
-F 0 "Q1" H 8115 5386 50  0000 L CNN
-F 1 "BS170" H 8115 5295 50  0000 L CNN
-F 2 "Package_TO_SOT_THT:TO-92_Inline_Wide" H 8110 5265 50  0001 L CIN
-F 3 "http://www.fairchildsemi.com/ds/BS/BS170.pdf" H 7910 5340 50  0001 L CNN
-	1    7910 5340
-	1    0    0    -1  
-$EndComp
-Connection ~ 8010 5140
-$Comp
-L power:GND #PWR0154
-U 1 1 5C58BB7F
-P 8010 5540
-F 0 "#PWR0154" H 8010 5290 50  0001 C CNN
-F 1 "GND" H 8010 5370 50  0000 C CNN
-F 2 "" H 8010 5540 50  0001 C CNN
-F 3 "" H 8010 5540 50  0001 C CNN
-	1    8010 5540
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R R13
-U 1 1 5C58D173
-P 7710 5490
-F 0 "R13" H 7540 5480 50  0000 L CNN
-F 1 "10K" V 7710 5410 50  0000 L CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 7640 5490 50  0001 C CNN
-F 3 "~" H 7710 5490 50  0001 C CNN
-	1    7710 5490
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0155
-U 1 1 5C58D67E
-P 7710 5640
-F 0 "#PWR0155" H 7710 5390 50  0001 C CNN
-F 1 "GND" H 7710 5470 50  0000 C CNN
-F 2 "" H 7710 5640 50  0001 C CNN
-F 3 "" H 7710 5640 50  0001 C CNN
-	1    7710 5640
-	1    0    0    -1  
-$EndComp
-$Comp
-L Device:R R11
-U 1 1 5C58DD91
-P 7480 5340
-F 0 "R11" V 7390 5350 50  0000 C CNN
-F 1 "1K" V 7480 5340 50  0000 C CNN
-F 2 "Resistor_SMD:R_1206_3216Metric_Pad1.42x1.75mm_HandSolder" V 7410 5340 50  0001 C CNN
-F 3 "~" H 7480 5340 50  0001 C CNN
-	1    7480 5340
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	7630 5340 7710 5340
-Connection ~ 7710 5340
-Text Label 7330 5340 2    50   ~ 0
-LOAD
 $Comp
 L Device:C C1
 U 1 1 5C59494F
@@ -1571,4 +1432,7 @@ F 3 "" H 730 970 50  0001 C CNN
 	1    730  970 
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	7480 3510 7480 3740
+NoConn ~ 3250 1650
 $EndSCHEMATC

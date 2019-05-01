@@ -1,4 +1,4 @@
-(module Drill_Hole_M3 (layer F.Cu) (tedit 5A461886)
+(module Drill_Hole_M3 (layer F.Cu) (tedit 5CC9E678)
   (descr "module 1 pin (ou trou mecanique de percage)")
   (tags DEV)
   (fp_text reference REF** (at 0 -3.048) (layer F.SilkS) hide
@@ -9,5 +9,6 @@
   )
   (fp_circle (center 0 0) (end 2 0.8) (layer F.Fab) (width 0.1))
   (fp_circle (center 0 0) (end 2.6 0) (layer F.CrtYd) (width 0.05))
-  (pad "" np_thru_hole circle (at 0 0) (size 4 4) (drill 3.2) (layers *.Cu *.Mask))
+  (pad "" np_thru_hole circle (at 0 0) (size 5.5 5.5) (drill 3.2) (layers *.Cu *.Mask)
+    (clearance 1))
 )
