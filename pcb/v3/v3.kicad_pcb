@@ -1,4 +1,4 @@
-(kicad_pcb (version 20171130) (host pcbnew "(5.1.0-0)")
+(kicad_pcb (version 20171130) (host pcbnew 5.1.2-f72e74a~84~ubuntu18.10.1)
 
   (general
     (thickness 1.6)
@@ -2273,7 +2273,7 @@
   (segment (start 126.3 79.74) (end 117.74 88.3) (width 0.25) (layer F.Cu) (net 45))
   (segment (start 126.3 66) (end 126.3 79.74) (width 0.25) (layer F.Cu) (net 45))
 
-  (zone (net 2) (net_name GND) (layer F.Cu) (tstamp 5C7A35D2) (hatch edge 0.508)
+  (zone (net 2) (net_name GND) (layer F.Cu) (tstamp 5CDB6DE4) (hatch edge 0.508)
     (connect_pads (clearance 0.508))
     (min_thickness 0.254)
     (fill yes (arc_segments 16) (thermal_gap 0.508) (thermal_bridge_width 0.508))
@@ -3392,7 +3392,7 @@
       )
     )
   )
-  (zone (net 2) (net_name GND) (layer B.Cu) (tstamp 5C7A35CF) (hatch edge 0.508)
+  (zone (net 2) (net_name GND) (layer B.Cu) (tstamp 5CDB6DE1) (hatch edge 0.508)
     (connect_pads (clearance 0.508))
     (min_thickness 0.254)
     (fill yes (arc_segments 16) (thermal_gap 0.508) (thermal_bridge_width 0.508))
