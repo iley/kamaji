@@ -1,4 +1,4 @@
-(kicad_pcb (version 20171130) (host pcbnew 5.1.2-f72e74a~84~ubuntu18.10.1)
+(kicad_pcb (version 20171130) (host pcbnew "(5.1.0-0)")
 
   (general
     (thickness 1.6)
@@ -1997,10 +1997,10 @@
     (tags "capacitor handsolder")
     (path /5D7523CE)
     (attr smd)
-    (fp_text reference C8 (at 0 -1.82 180) (layer F.SilkS)
+    (fp_text reference C8 (at 0 -1.82 180) (layer F.SilkS) hide
       (effects (font (size 1 1) (thickness 0.15)))
     )
-    (fp_text value 10uF (at 0 1.82 180) (layer F.Fab)
+    (fp_text value 10uF (at 0 1.82 180) (layer F.SilkS)
       (effects (font (size 1 1) (thickness 0.15)))
     )
     (fp_line (start -1.6 0.8) (end -1.6 -0.8) (layer F.Fab) (width 0.1))
@@ -2214,8 +2214,6 @@
   (segment (start 101.21 118.5) (end 101.21 121.49) (width 0.25) (layer F.Cu) (net 23))
   (segment (start 68.5 110) (end 69.8 111.3) (width 0.25) (layer F.Cu) (net 24))
   (segment (start 62 110) (end 68.5 110) (width 0.25) (layer F.Cu) (net 24))
-  (segment (start 89.8 109.98) (end 96.8 102.98) (width 0.25) (layer F.Cu) (net 45))
-  (segment (start 89.8 111.25) (end 89.8 109.98) (width 0.25) (layer F.Cu) (net 45))
   (segment (start 100.9525 100.44) (end 101 100.4875) (width 0.25) (layer F.Cu) (net 25))
   (segment (start 96.8 100.44) (end 100.9525 100.44) (width 0.25) (layer F.Cu) (net 25))
   (segment (start 77.85 90.7375) (end 75.35 90.7375) (width 0.25) (layer F.Cu) (net 26))
@@ -2308,6 +2306,8 @@
   (segment (start 105.98 66) (end 105.98 68.92) (width 0.25) (layer F.Cu) (net 43))
   (segment (start 126.3 79.74) (end 117.74 88.3) (width 0.25) (layer F.Cu) (net 44))
   (segment (start 126.3 66) (end 126.3 79.74) (width 0.25) (layer F.Cu) (net 44))
+  (segment (start 89.8 109.98) (end 96.8 102.98) (width 0.25) (layer F.Cu) (net 45))
+  (segment (start 89.8 111.25) (end 89.8 109.98) (width 0.25) (layer F.Cu) (net 45))
   (segment (start 99.1125 105.2925) (end 96.8 102.98) (width 0.25) (layer F.Cu) (net 45))
   (segment (start 99.1125 110.3) (end 99.1125 105.2925) (width 0.25) (layer F.Cu) (net 45))
 
