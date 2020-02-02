@@ -1,7 +1,5 @@
 # Kamaji quiz game system
 
-Build status: [![CircleCI](https://circleci.com/gh/iley/kamaji.svg?style=svg)](https://circleci.com/gh/iley/kamaji)
-
 Directories:
 
 * `firmware`: main source code;
