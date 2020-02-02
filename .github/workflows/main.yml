@@ -1,0 +1,22 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run a one-line script
+      run: echo Hello, world!
+    - name: Install dependencies
+      run: |
+        apt-get -qq update
+        apt-get install -y build-essential python python-dev python-pip
+        pip install platformio
+    - name: Build firmware
+      run: |
+        cd firmware
+        pio run -e v0 -e v1 -e v2 -t size
