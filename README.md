@@ -1,5 +1,7 @@
 # Kamaji quiz game system
 
+![](https://github.com/iley/kamaji/workflows/CI/badge.svg)
+
 Directories:
 
 * `firmware`: main source code;
