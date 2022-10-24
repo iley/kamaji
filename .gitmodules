@@ -4,3 +4,6 @@
 [submodule "pcb/lib/keyswitch-kicad-library"]
 	path = pcb/lib/keyswitch-kicad-library
 	url = git@github.com:perigoso/keyswitch-kicad-library.git
+[submodule "pcb/lib/ProMicroKiCad"]
+	path = pcb/lib/ProMicroKiCad
+	url = git@github.com:Biacco42/ProMicroKiCad.git
