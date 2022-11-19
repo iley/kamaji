@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name "promicro")(type "Legacy")(uri "${KIPRJMOD}/../lib/ProMicroKiCad/promicro_library/promicro.lib")(options "")(descr ""))
+  (lib (name "kamaji")(type "Legacy")(uri "${KIPRJMOD}/../lib/kamaji.lib")(options "")(descr ""))
+)
