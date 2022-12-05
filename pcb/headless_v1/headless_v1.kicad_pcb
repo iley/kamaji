@@ -354,6 +354,11 @@
       (net 1 "GND") (pintype "input") (tstamp 757abd52-d92c-40ea-94b2-60b42ba31113))
     (pad "4" thru_hole circle locked (at -1.53 -10.54 180) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask)
       (net 15 "/BUT6") (pintype "input") (tstamp b36663eb-ff1e-46d2-9b00-65fb8f96a201))
+    (model "${KIPRJMOD}/../lib/3d_models/rj10_socket.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (layer "F.Cu")
@@ -436,6 +441,11 @@
       (net 1 "GND") (pintype "input") (tstamp 051b9a34-f837-4907-8798-a8b7247e288c))
     (pad "4" thru_hole circle locked (at -1.53 -10.54) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask)
       (net 3 "/BUT0") (pintype "input") (tstamp 264bc236-eab8-4f62-ae3c-d4eb39037ad1))
+    (model "${KIPRJMOD}/../lib/3d_models/rj10_socket.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (footprint "kamaji:RJ10" (layer "F.Cu")
@@ -470,6 +480,11 @@
       (net 1 "GND") (pintype "input") (tstamp ccbc9d94-22b9-44fc-a9e2-80f39e56fe5b))
     (pad "4" thru_hole circle locked (at -1.53 -10.54) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask)
       (net 7 "/BUT2") (pintype "input") (tstamp 0207358e-23de-4bc8-a896-aee2a034439d))
+    (model "${KIPRJMOD}/../lib/3d_models/rj10_socket.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (footprint "MountingHole:MountingHole_2.7mm_M2.5" (layer "F.Cu")
@@ -571,6 +586,11 @@
       (net 1 "GND") (pintype "input") (tstamp 03acfa98-95b5-40c5-925d-4e34a1bbd29d))
     (pad "4" thru_hole circle locked (at -1.53 -10.54 180) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask)
       (net 17 "/BUT7") (pintype "input") (tstamp d11bd73a-97f8-4bb8-b789-859809e4a065))
+    (model "${KIPRJMOD}/../lib/3d_models/rj10_socket.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (footprint "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (layer "F.Cu")
@@ -782,6 +802,11 @@
       (net 1 "GND") (pintype "input") (tstamp 92d836d6-259e-49c8-a115-ca54a4b3cf2f))
     (pad "4" thru_hole circle locked (at -1.53 -10.54) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask)
       (net 9 "/BUT3") (pintype "input") (tstamp 90fa0ddc-9c83-488a-81b8-b2731b9982c6))
+    (model "${KIPRJMOD}/../lib/3d_models/rj10_socket.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (footprint "kamaji:RJ10" (layer "F.Cu")
@@ -816,6 +841,11 @@
       (net 1 "GND") (pintype "input") (tstamp d52baf0e-2d8d-4740-993d-cf7b5ab38d86))
     (pad "4" thru_hole circle locked (at -1.53 -10.54 180) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask)
       (net 11 "/BUT4") (pintype "input") (tstamp 4abef4b3-df34-44d1-a988-da771cfde8ff))
+    (model "${KIPRJMOD}/../lib/3d_models/rj10_socket.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (footprint "MountingHole:MountingHole_2.7mm_M2.5" (layer "F.Cu")
@@ -921,6 +951,11 @@
       (net 1 "GND") (pintype "input") (tstamp 11c46b6b-ee03-4999-9693-67057f71f52d))
     (pad "4" thru_hole circle locked (at -1.53 -10.54 180) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask)
       (net 13 "/BUT5") (pintype "input") (tstamp f19e77e4-90b8-4b76-9290-0ab84fa6706d))
+    (model "${KIPRJMOD}/../lib/3d_models/rj10_socket.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (footprint "kamaji:RJ10" (layer "F.Cu")
@@ -955,6 +990,11 @@
       (net 1 "GND") (pintype "input") (tstamp d020ee27-1475-4df6-8358-65648b214cb5))
     (pad "4" thru_hole circle locked (at -1.53 -10.54) (size 1.6 1.6) (drill 0.9) (layers *.Cu *.Mask)
       (net 5 "/BUT1") (pintype "input") (tstamp f47f6bb9-fc80-4371-ad59-8d723cf8f565))
+    (model "${KIPRJMOD}/../lib/3d_models/rj10_socket.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (footprint "promicro:ProMicro" (layer "F.Cu")
