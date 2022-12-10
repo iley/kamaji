@@ -3,14 +3,74 @@
   <head>
     <title>WebMIDI demo</title>
     <meta charset="utf-8">
+
+    <style>
+table, table td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+    </style>
   </head>
   <body>
-    <div>
+    <p>
       <span>Input devices: </span><span id="input_device_list"></span>
-    </div>
-    <div>
+      <br>
       <span>Output devices: </span><span id="output_device_list"></span>
-    </div>
+    </p>
+
+    <p>
+      <textarea id="log_box" readonly rows="10" cols="40"></textarea>
+    </p>
+
+    <p>
+      <span>LED control:</span>
+      <select id="led_select">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+      </select>
+      <input id="blink_duration_input" type="number" value="500" min="50" max="2000" step="50"></input>
+      <span>ms</span>
+      <button id="blink_led">Blink!</button>
+    </p>
+
+    <p>
+      Sound control:
+      <select id="pitch_select">
+        <option value="48">C3</option>
+        <option value="49">D3b</option>
+        <option value="50">D3</option>
+        <option value="51">E3b</option>
+        <option value="52">E3</option>
+        <option value="53">F3</option>
+        <option value="54">G3b</option>
+        <option value="55">G3</option>
+        <option value="56">A3b</option>
+        <option value="57">A3</option>
+        <option value="58">B3b</option>
+        <option value="59">B3</option>
+        <option value="60" selected>C4</option>
+        <option value="61">D4b</option>
+        <option value="62">D4</option>
+        <option value="63">E4b</option>
+        <option value="64">E4</option>
+        <option value="65">F4</option>
+        <option value="66">G4b</option>
+        <option value="67">G4</option>
+        <option value="68">A4b</option>
+        <option value="69">A4</option>
+        <option value="70">B4b</option>
+        <option value="71">B4</option>
+      </select>
+      <input id="sound_duration_input" type="number" value="100" min="50" max="2000" step="50"></input>
+      <span>ms</span>
+      <button id="play_sound">Play!</button>
+    </p>
 
     <script src="webmidi.js"></script>
   </body>
