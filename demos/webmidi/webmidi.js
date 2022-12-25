@@ -15,6 +15,9 @@ const midiChannelLeds = 0;
 const midiChannelBuzzer = 1;
 const maxVelocity = 127;
 
+let blinkOnPressEnabled = false;
+const blinkOnPressDurationMs = 500;
+
 function initialize() {
   navigator.requestMIDIAccess()
     .then(midi => handleMidiReady(midi), err => handleMidiError(err));
@@ -24,6 +27,12 @@ function initialize() {
 
   const playSoundButton = document.getElementById("play_sound");
   playSoundButton.addEventListener("click", (event) => handleSoundButton());
+
+  const clearLogButton = document.getElementById("clear_log");
+  clearLogButton.addEventListener("click", (event) => handleClearLogButton());
+
+  const blinkOnPressCheckbox = document.getElementById("blink_on_press");
+  blinkOnPressCheckbox.addEventListener("change", (event) => handleBlinkOnPresCheckboxChange(event));
 }
 
 function log(message) {
@@ -60,6 +69,9 @@ function handleNoteOn(channel, pitch, velocity) {
     log(`note on channel=${channel} pitch=${pitch} velocity=${velocity}`);
   } else {
     log(`player ${player+1} button ON`);
+    if (blinkOnPressEnabled) {
+      blinkLed(player, blinkOnPressDurationMs);
+    }
   }
 }
 
@@ -73,19 +85,32 @@ function handleNoteOff(channel, pitch, velocity) {
 }
 
 function handleBlinkButton() {
+  if (!deviceConnected()) {
+    log("blink: no device connected");
+    return;
+  }
   const ledSelect = document.getElementById("led_select");
   const index = ledSelect.value - 1;
-  const pitch = playerToPitch[index];
 
   const durationInput = document.getElementById("blink_duration_input");
-  const duration = durationInput.value;
+  const durationMs = durationInput.value;
 
-  log(`blink led #${ledSelect.value} for ${duration}ms`);
-
-  playNote(midiChannelLeds, pitch, maxVelocity, duration);
+  blinkLed(index, durationMs);
 }
 
-function handleSoundButton() {
+function blinkLed(index, durationMs) {
+  log(`blink led #${index + 1} for ${durationMs}ms`);
+
+  const pitch = playerToPitch[index];
+  playNote(midiChannelLeds, pitch, maxVelocity, durationMs);
+}
+
+function handleSoundButton(event) {
+  if (!deviceConnected()) {
+    log("sound: no device connected");
+    return;
+  }
+
   const pitchSelect = document.getElementById("pitch_select");
   const pitch = pitchSelect.value;
 
@@ -96,7 +121,15 @@ function handleSoundButton() {
   playNote(midiChannelBuzzer, pitch, maxVelocity, duration);
 }
 
+function handleClearLogButton(event) {
+  const textarea = document.getElementById("log_box");
+  textarea.value = "";
+  textarea.scrollTop = textarea.scrollHeight;
+}
+
 function updateDevices(midi) {
+  const previousDevicesNumber = midiInputs.length;
+
   midiInputs = [];
   midiOutputs = [];
 
@@ -107,6 +140,12 @@ function updateDevices(midi) {
   midi.outputs.forEach((key, value) => {
     midiOutputs.push(key);
   });
+
+  const devicesNumber = midiInputs.length;
+  if (previousDevicesNumber != devicesNumber) {
+    log(`${devicesNumber} MIDI device${devicesNumber == 1 ? "" : "s"} connected`);
+  }
+
 
   updateDeviceList();
 }
@@ -140,6 +179,16 @@ function sendNoteOffMessage(channel, pitch, velocity) {
     const message = [0x80 | channel, pitch, velocity];
     device.send(message);
   }
+}
+
+function handleBlinkOnPresCheckboxChange(event) {
+  const checkbox = event.target;
+  blinkOnPressEnabled = checkbox.checked; // global state
+  log(`blink on button press is ${blinkOnPressEnabled ? "ON" : "OFF"}`);
+}
+
+function deviceConnected() {
+  return midiInputs.length > 0;
 }
 
 initialize();

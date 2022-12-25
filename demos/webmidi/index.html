@@ -20,6 +20,8 @@ table, table td {
 
     <p>
       <textarea id="log_box" readonly rows="10" cols="40"></textarea>
+      <br>
+      <button id="clear_log">Clear</button>
     </p>
 
     <p>
@@ -36,7 +38,7 @@ table, table td {
       </select>
       <input id="blink_duration_input" type="number" value="500" min="50" max="2000" step="50"></input>
       <span>ms</span>
-      <button id="blink_led">Blink!</button>
+      <button id="blink_led">Blink</button>
     </p>
 
     <p>
@@ -69,7 +71,12 @@ table, table td {
       </select>
       <input id="sound_duration_input" type="number" value="100" min="50" max="2000" step="50"></input>
       <span>ms</span>
-      <button id="play_sound">Play!</button>
+      <button id="play_sound">Play</button>
+    </p>
+
+    <p>
+      <label for="enable_blink_on_press">Blink on button press</label>
+      <input type="checkbox" name="blink_on_press" id="blink_on_press">
     </p>
 
     <script src="webmidi.js"></script>
