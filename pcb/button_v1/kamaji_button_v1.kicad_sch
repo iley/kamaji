@@ -284,7 +284,7 @@
     (uuid a40da50e-6d7d-4ff7-a5d3-a5cb3c9931e9)
     (property "Reference" "SW2" (id 0) (at 107.315 80.01 0))
     (property "Value" "SW_Push_LED" (id 1) (at 107.315 82.55 0))
-    (property "Footprint" "mx_alps_hybrid:MX-1U" (id 2) (at 107.95 82.55 0)
+    (property "Footprint" "kamaji:SW_Cherry_MX_1.00u_PCB" (id 2) (at 107.95 82.55 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (id 3) (at 107.95 82.55 0)
@@ -367,7 +367,7 @@
       (reference "J1") (unit 1) (value "RJ10") (footprint "kamaji:RJ10")
     )
     (path "/a40da50e-6d7d-4ff7-a5d3-a5cb3c9931e9"
-      (reference "SW2") (unit 1) (value "SW_Push_LED") (footprint "mx_alps_hybrid:MX-1U")
+      (reference "SW2") (unit 1) (value "SW_Push_LED") (footprint "kamaji:SW_Cherry_MX_1.00u_PCB")
     )
   )
 )
