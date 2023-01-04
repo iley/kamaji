@@ -8,7 +8,8 @@
 
 enum {
   MIDI_CHANNEL_BUTTONS = 0,
-  MIDI_CHANNEL_BUZZER = 1,
+  MIDI_CHANNEL_LEDS = 1,
+  MIDI_CHANNEL_BUZZER = 2,
 };
 
 const int kPlayerCount = 8;
@@ -62,7 +63,7 @@ void noteOff(byte channel, byte pitch, byte velocity) {
 }
 
 void handleNoteOn(byte channel, byte pitch, byte velocity) {
-  if (channel == MIDI_CHANNEL_BUTTONS) {
+  if (channel == MIDI_CHANNEL_LEDS) {
     int index = pitchToPlayerIndex(pitch);
     if (index != -1) {
       digitalWrite(kLedPins[index], HIGH);
@@ -73,7 +74,7 @@ void handleNoteOn(byte channel, byte pitch, byte velocity) {
 }
 
 void handleNoteOff(byte channel, byte pitch, byte velocity) {
-  if (channel == MIDI_CHANNEL_BUTTONS) {
+  if (channel == MIDI_CHANNEL_LEDS) {
     int index = pitchToPlayerIndex(pitch);
     if (index != -1) {
       digitalWrite(kLedPins[index], LOW);
@@ -99,10 +100,10 @@ void loop() {
       case PushButton::NO_CHANGE:
         break;
       case PushButton::PUSH_DOWN:
-        noteOn(0, playerIndexToPitch(i), 127);
+        noteOn(MIDI_CHANNEL_BUTTONS, playerIndexToPitch(i), 127);
         break;
       case PushButton::PUSH_UP:
-        noteOff(0, playerIndexToPitch(i), 0);
+        noteOff(MIDI_CHANNEL_BUTTONS, playerIndexToPitch(i), 0);
         break;
     }
   }

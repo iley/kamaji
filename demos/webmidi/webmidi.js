@@ -11,8 +11,9 @@ const playerToPitch = {
   4: 28, 5: 29, 6: 30, 7: 31,
 }
 
-const midiChannelLeds = 0;
-const midiChannelBuzzer = 1;
+const midiChannelButtons = 0;
+const midiChannelLeds = 1;
+const midiChannelBuzzer = 2;
 const maxVelocity = 127;
 
 let blinkOnPressEnabled = false;
@@ -64,23 +65,27 @@ function handleMidiMessage(event) {
 }
 
 function handleNoteOn(channel, pitch, velocity) {
-  const player = pitchToPlayer[pitch];
-  if (player === undefined) {
-    log(`note on channel=${channel} pitch=${pitch} velocity=${velocity}`);
-  } else {
-    log(`player ${player+1} button ON`);
-    if (blinkOnPressEnabled) {
-      blinkLed(player, blinkOnPressDurationMs);
+  if (channel == midiChannelButtons) {
+    const player = pitchToPlayer[pitch];
+    if (player === undefined) {
+      log(`note on channel=${channel} pitch=${pitch} velocity=${velocity}`);
+    } else {
+      log(`player ${player+1} button ON`);
+      if (blinkOnPressEnabled) {
+        blinkLed(player, blinkOnPressDurationMs);
+      }
     }
   }
 }
 
 function handleNoteOff(channel, pitch, velocity) {
-  const player = pitchToPlayer[pitch];
-  if (player === undefined) {
-    log(`note off channel=${channel} pitch=${pitch} velocity=${velocity}`);
-  } else {
-    log(`player ${player+1} button OFF`);
+  if (channel == midiChannelButtons) {
+    const player = pitchToPlayer[pitch];
+    if (player === undefined) {
+      log(`note off channel=${channel} pitch=${pitch} velocity=${velocity}`);
+    } else {
+      log(`player ${player+1} button OFF`);
+    }
   }
 }
 
