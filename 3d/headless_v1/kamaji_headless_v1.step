@@ -10,7 +10,7 @@ FILE_DESCRIPTION(
 
 FILE_NAME(
 /* name */ 'kamaji_headless_v1.step',
-/* time_stamp */ '2023-01-12T18:49:30Z',
+/* time_stamp */ '2023-01-13T16:40:48Z',
 /* author */ (''),
 /* organization */ (''),
 /* preprocessor_version */ 'ST-DEVELOPER v19.2',
@@ -7585,8 +7585,8 @@ POSITIVE_RATIO_MEASURE(7850.),#4692);
 #7435=CARTESIAN_POINT('',(28.,-26.,-4.));
 #7436=CARTESIAN_POINT('',(-17.5,-26.,-4.));
 #7437=CARTESIAN_POINT('',(28.,13.,-4.));
-#7438=CARTESIAN_POINT('',(18.25,0.500000000000001,-4.));
-#7439=CARTESIAN_POINT('Origin',(21.75,0.5,-4.));
+#7438=CARTESIAN_POINT('',(18.25,0.0435977420398141,-4.));
+#7439=CARTESIAN_POINT('Origin',(21.75,0.0435977420398137,-4.));
 #7440=CARTESIAN_POINT('Origin',(-35.,-26.,0.));
 #7441=CARTESIAN_POINT('',(-34.1715728752538,-26.,0.));
 #7442=CARTESIAN_POINT('',(34.1715728752538,-26.,-0.5));
@@ -7604,10 +7604,10 @@ POSITIVE_RATIO_MEASURE(7850.),#4692);
 #7454=CARTESIAN_POINT('',(32.8357864376269,27.3357864376269,-0.5));
 #7455=CARTESIAN_POINT('Origin',(35.5857864376269,24.5857864376269,0.));
 #7456=CARTESIAN_POINT('',(35.,25.1715728752538,0.));
-#7457=CARTESIAN_POINT('Origin',(21.75,0.5,-6.));
-#7458=CARTESIAN_POINT('',(18.25,0.500000000000001,-6.));
-#7459=CARTESIAN_POINT('Origin',(21.75,0.5,-6.));
-#7460=CARTESIAN_POINT('',(18.25,0.5,-6.));
+#7457=CARTESIAN_POINT('Origin',(21.75,0.0435977420398137,-6.));
+#7458=CARTESIAN_POINT('',(18.25,0.0435977420398141,-6.));
+#7459=CARTESIAN_POINT('Origin',(21.75,0.0435977420398137,-6.));
+#7460=CARTESIAN_POINT('',(18.25,0.0435977420398133,-6.));
 #7461=CARTESIAN_POINT('Origin',(37.,26.,0.));
 #7462=CARTESIAN_POINT('',(37.,26.,-6.));
 #7463=CARTESIAN_POINT('',(37.,26.,0.));
@@ -8179,7 +8179,7 @@ SOLID_ANGLE_UNIT()
 #7908=SHAPE_REPRESENTATION('',(#4734),#7849);
 #7909=PRODUCT_DEFINITION_CONTEXT('part definition',#7947,'design');
 #7910=PRODUCT_DEFINITION('kamaji_headless_v1_enclosure',
-'kamaji_headless_v1_enclosure v17',#7922,#7909);
+'kamaji_headless_v1_enclosure v18',#7922,#7909);
 #7911=PRODUCT_DEFINITION('headless_v1 v1','headless_v1 v1',#7923,#7909);
 #7912=PRODUCT_DEFINITION('rj10_socket','rj10_socket',#7924,#7909);
 #7913=PRODUCT_DEFINITION('rj10_socket_1','rj10_socket',#7925,#7909);
@@ -8204,7 +8204,7 @@ SOLID_ANGLE_UNIT()
 #7932=PRODUCT_DEFINITION_FORMATION('',$,#7959);
 #7933=PRODUCT_DEFINITION_FORMATION('',$,#7960);
 #7934=PRODUCT_RELATED_PRODUCT_CATEGORY(
-'kamaji_headless_v1_enclosure v17','kamaji_headless_v1_enclosure v17',(#7949));
+'kamaji_headless_v1_enclosure v18','kamaji_headless_v1_enclosure v18',(#7949));
 #7935=PRODUCT_RELATED_PRODUCT_CATEGORY('headless_v1 v1',
 'headless_v1 v1',(#7950));
 #7936=PRODUCT_RELATED_PRODUCT_CATEGORY('rj10_socket','rj10_socket',(#7951));
@@ -8224,7 +8224,7 @@ SOLID_ANGLE_UNIT()
 'Core Data for Automotive Mechanical Design Process');
 #7948=PRODUCT_CONTEXT('part definition',#7947,'mechanical');
 #7949=PRODUCT('kamaji_headless_v1_enclosure',
-'kamaji_headless_v1_enclosure v17',$,(#7948));
+'kamaji_headless_v1_enclosure v18',$,(#7948));
 #7950=PRODUCT('headless_v1 v1','headless_v1 v1',$,(#7948));
 #7951=PRODUCT('rj10_socket','rj10_socket',$,(#7948));
 #7952=PRODUCT('rj10_socket_1','rj10_socket',$,(#7948));
