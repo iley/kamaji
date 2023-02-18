@@ -373,67 +373,6 @@
         )
       )
     )
-    (symbol "Connector_Generic:Conn_01x04" (pin_names (offset 1.016) hide) (in_bom yes) (on_board yes)
-      (property "Reference" "J" (at 0 5.08 0)
-        (effects (font (size 1.27 1.27)))
-      )
-      (property "Value" "Conn_01x04" (at 0 -7.62 0)
-        (effects (font (size 1.27 1.27)))
-      )
-      (property "Footprint" "" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "Datasheet" "~" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_keywords" "connector" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_description" "Generic connector, single row, 01x04, script generated (kicad-library-utils/schlib/autogen/connector/)" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (property "ki_fp_filters" "Connector*:*_1x??_*" (at 0 0 0)
-        (effects (font (size 1.27 1.27)) hide)
-      )
-      (symbol "Conn_01x04_1_1"
-        (rectangle (start -1.27 -4.953) (end 0 -5.207)
-          (stroke (width 0.1524) (type default))
-          (fill (type none))
-        )
-        (rectangle (start -1.27 -2.413) (end 0 -2.667)
-          (stroke (width 0.1524) (type default))
-          (fill (type none))
-        )
-        (rectangle (start -1.27 0.127) (end 0 -0.127)
-          (stroke (width 0.1524) (type default))
-          (fill (type none))
-        )
-        (rectangle (start -1.27 2.667) (end 0 2.413)
-          (stroke (width 0.1524) (type default))
-          (fill (type none))
-        )
-        (rectangle (start -1.27 3.81) (end 1.27 -6.35)
-          (stroke (width 0.254) (type default))
-          (fill (type background))
-        )
-        (pin passive line (at -5.08 2.54 0) (length 3.81)
-          (name "Pin_1" (effects (font (size 1.27 1.27))))
-          (number "1" (effects (font (size 1.27 1.27))))
-        )
-        (pin passive line (at -5.08 0 0) (length 3.81)
-          (name "Pin_2" (effects (font (size 1.27 1.27))))
-          (number "2" (effects (font (size 1.27 1.27))))
-        )
-        (pin passive line (at -5.08 -2.54 0) (length 3.81)
-          (name "Pin_3" (effects (font (size 1.27 1.27))))
-          (number "3" (effects (font (size 1.27 1.27))))
-        )
-        (pin passive line (at -5.08 -5.08 0) (length 3.81)
-          (name "Pin_4" (effects (font (size 1.27 1.27))))
-          (number "4" (effects (font (size 1.27 1.27))))
-        )
-      )
-    )
     (symbol "Connector_Generic:Conn_02x05_Odd_Even" (pin_names (offset 1.016) hide) (in_bom yes) (on_board yes)
       (property "Reference" "J" (at 1.27 7.62 0)
         (effects (font (size 1.27 1.27)))
@@ -1147,6 +1086,60 @@
         )
       )
     )
+    (symbol "Switch:SW_Push" (pin_numbers hide) (pin_names (offset 1.016) hide) (in_bom yes) (on_board yes)
+      (property "Reference" "SW" (at 1.27 2.54 0)
+        (effects (font (size 1.27 1.27)) (justify left))
+      )
+      (property "Value" "SW_Push" (at 0 -1.524 0)
+        (effects (font (size 1.27 1.27)))
+      )
+      (property "Footprint" "" (at 0 5.08 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "Datasheet" "~" (at 0 5.08 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_keywords" "switch normally-open pushbutton push-button" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (property "ki_description" "Push button switch, generic, two pins" (at 0 0 0)
+        (effects (font (size 1.27 1.27)) hide)
+      )
+      (symbol "SW_Push_0_1"
+        (circle (center -2.032 0) (radius 0.508)
+          (stroke (width 0) (type default))
+          (fill (type none))
+        )
+        (polyline
+          (pts
+            (xy 0 1.27)
+            (xy 0 3.048)
+          )
+          (stroke (width 0) (type default))
+          (fill (type none))
+        )
+        (polyline
+          (pts
+            (xy 2.54 1.27)
+            (xy -2.54 1.27)
+          )
+          (stroke (width 0) (type default))
+          (fill (type none))
+        )
+        (circle (center 2.032 0) (radius 0.508)
+          (stroke (width 0) (type default))
+          (fill (type none))
+        )
+        (pin passive line (at -5.08 0 0) (length 2.54)
+          (name "1" (effects (font (size 1.27 1.27))))
+          (number "1" (effects (font (size 1.27 1.27))))
+        )
+        (pin passive line (at 5.08 0 180) (length 2.54)
+          (name "2" (effects (font (size 1.27 1.27))))
+          (number "2" (effects (font (size 1.27 1.27))))
+        )
+      )
+    )
     (symbol "power:GND" (power) (pin_names (offset 0)) (in_bom yes) (on_board yes)
       (property "Reference" "#PWR" (at 0 -6.35 0)
         (effects (font (size 1.27 1.27)) hide)
@@ -1259,6 +1252,7 @@
 
   (no_connect (at 190.5 48.26) (uuid 1864436e-4c2c-4424-afbf-2bdb9e7fae7b))
   (no_connect (at 109.22 52.07) (uuid 2817c436-43d5-4995-8d87-5938ffdb5f2b))
+  (no_connect (at 194.31 96.52) (uuid 4956ebec-4cca-4ab7-8d8b-1c999ae0564c))
   (no_connect (at 109.22 46.99) (uuid 5e4afff2-7d6b-4f88-bd03-247e4595c77b))
   (no_connect (at 118.11 114.3) (uuid 6e99fa6f-0741-4e69-a572-3ed008c74139))
   (no_connect (at 190.5 45.72) (uuid 85bfb252-b74d-4f81-86fc-b02d19a814da))
@@ -1442,7 +1436,7 @@
     (effects (font (size 2 2)) (justify left bottom))
     (uuid a1edd882-5313-4fb4-854e-e6afb13ee447)
   )
-  (text "Control buttons connector" (at 157.48 101.6 0)
+  (text "Control buttons" (at 157.48 101.6 0)
     (effects (font (size 2 2)) (justify left bottom))
     (uuid ab233929-6050-4a23-9150-bcdf5aa032cc)
   )
@@ -1503,10 +1497,6 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 37cc079a-02de-4052-9479-d87473236570)
   )
-  (label "CBTN1" (at 182.88 110.49 180) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify right bottom))
-    (uuid 383abe01-8e8c-4865-ad85-7412d008d209)
-  )
   (label "LCD_RS" (at 109.22 39.37 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid 3a28779a-339a-4b1a-b928-d5f46b136716)
@@ -1542,10 +1532,6 @@
   (label "PBTN5" (at 132.08 181.61 270) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid 4ffc90e1-c7df-47fb-80b1-16cb807dc111)
-  )
-  (label "CBTN2" (at 182.88 113.03 180) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify right bottom))
-    (uuid 50410eab-f709-40f4-b811-28be64af4492)
   )
   (label "PLED5" (at 60.96 95.25 0) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify left bottom))
@@ -1587,6 +1573,14 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid 91598da4-d134-49a1-b525-4e4af8d268e0)
   )
+  (label "CBTN2" (at 200.66 116.84 180) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify right bottom))
+    (uuid 950bd937-fc22-409b-90a9-411d960492d9)
+  )
+  (label "CBTN1" (at 162.56 116.84 180) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify right bottom))
+    (uuid 998932e3-d367-46de-aa1f-0575bba6612c)
+  )
   (label "SCK" (at 118.11 119.38 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid a5a513e4-8638-49f2-9375-ea206a6472ee)
@@ -1618,10 +1612,6 @@
   (label "LCD_D0" (at 109.22 57.15 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right bottom))
     (uuid d5ac375f-20a7-45b2-940c-652724338ffa)
-  )
-  (label "CBTN3" (at 182.88 115.57 180) (fields_autoplaced)
-    (effects (font (size 1.27 1.27)) (justify right bottom))
-    (uuid d9c2d194-a9e5-4ae3-8549-92577699a534)
   )
   (label "LAMP" (at 232.41 64.77 180) (fields_autoplaced)
     (effects (font (size 1.27 1.27)) (justify right bottom))
@@ -1655,11 +1645,15 @@
     (effects (font (size 1.27 1.27)) (justify left bottom))
     (uuid f8cf004d-0246-4aad-a001-72815ae3f877)
   )
+  (label "CBTN2" (at 181.61 116.84 180) (fields_autoplaced)
+    (effects (font (size 1.27 1.27)) (justify right bottom))
+    (uuid fc207f8d-944d-4957-81e6-740c1230a7fa)
+  )
 
   (symbol (lib_id "power:GND") (at 130.81 121.92 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 07d27810-d2c5-45f5-9db3-ea0475338e6d)
-    (property "Reference" "#PWR014" (at 130.81 128.27 0)
+    (property "Reference" "#PWR026" (at 130.81 128.27 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 130.81 127 0)
@@ -1675,7 +1669,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR014") (unit 1)
+          (reference "#PWR026") (unit 1)
         )
       )
     )
@@ -1684,13 +1678,13 @@
   (symbol (lib_id "Device:R") (at 127 177.8 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 09877ca5-2bcc-47b3-9fe9-896ca7e028f3)
-    (property "Reference" "R6" (at 123.19 177.8 0)
+    (property "Reference" "R8" (at 123.19 177.8 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1K" (at 127 179.07 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 125.222 177.8 90)
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 125.222 177.8 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 127 177.8 0)
@@ -1701,7 +1695,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "R6") (unit 1)
+          (reference "R8") (unit 1)
         )
       )
     )
@@ -1710,13 +1704,13 @@
   (symbol (lib_id "Device:C") (at 140.97 82.55 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 12ff7fb1-f25e-47ee-8262-7364ca724dc2)
-    (property "Reference" "C2" (at 144.78 81.915 0)
+    (property "Reference" "C1" (at 144.78 81.915 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "0.1uF" (at 144.78 84.455 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 141.9352 86.36 0)
+    (property "Footprint" "Capacitor_THT:C_Disc_D3.8mm_W2.6mm_P2.50mm" (at 141.9352 86.36 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 140.97 82.55 0)
@@ -1727,7 +1721,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "C2") (unit 1)
+          (reference "C1") (unit 1)
         )
       )
     )
@@ -1736,7 +1730,7 @@
   (symbol (lib_id "power:GND") (at 27.94 166.37 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 15ad0cf9-b44a-4145-99f5-f78c77aa32b2)
-    (property "Reference" "#PWR015" (at 27.94 172.72 0)
+    (property "Reference" "#PWR029" (at 27.94 172.72 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 27.94 171.45 0)
@@ -1752,7 +1746,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR015") (unit 1)
+          (reference "#PWR029") (unit 1)
         )
       )
     )
@@ -1761,7 +1755,7 @@
   (symbol (lib_id "power:VCC") (at 137.16 41.91 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 1d8f0d44-58a1-43a4-84ca-7230937ed431)
-    (property "Reference" "#PWR036" (at 137.16 45.72 0)
+    (property "Reference" "#PWR010" (at 137.16 45.72 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VCC" (at 137.16 38.1 0)
@@ -1777,7 +1771,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR036") (unit 1)
+          (reference "#PWR010") (unit 1)
         )
       )
     )
@@ -1786,7 +1780,7 @@
   (symbol (lib_id "power:GND") (at 140.97 86.36 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 22955b60-f75e-417f-a4d8-794d94941049)
-    (property "Reference" "#PWR025" (at 140.97 92.71 0)
+    (property "Reference" "#PWR019" (at 140.97 92.71 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 140.97 91.44 0)
@@ -1802,7 +1796,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR025") (unit 1)
+          (reference "#PWR019") (unit 1)
         )
       )
     )
@@ -1811,7 +1805,7 @@
   (symbol (lib_id "power:GND") (at 52.07 166.37 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 2539df45-448b-4c29-888a-529f350c991a)
-    (property "Reference" "#PWR017" (at 52.07 172.72 0)
+    (property "Reference" "#PWR031" (at 52.07 172.72 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 52.07 171.45 0)
@@ -1827,7 +1821,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR017") (unit 1)
+          (reference "#PWR031") (unit 1)
         )
       )
     )
@@ -1836,7 +1830,7 @@
   (symbol (lib_id "power:VCC") (at 82.55 115.57 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 300225b7-a33c-4d59-a045-072943ef0a7d)
-    (property "Reference" "#PWR029" (at 82.55 119.38 0)
+    (property "Reference" "#PWR023" (at 82.55 119.38 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VCC" (at 82.55 111.76 0)
@@ -1852,7 +1846,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR029") (unit 1)
+          (reference "#PWR023") (unit 1)
         )
       )
     )
@@ -1861,13 +1855,13 @@
   (symbol (lib_id "Connector:RJ10") (at 30.48 156.21 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 31b1cd04-69b9-4089-876d-1273600b58a3)
-    (property "Reference" "J4" (at 39.37 155.575 90)
+    (property "Reference" "J5" (at 39.37 155.575 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "RJ10" (at 39.37 158.115 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 31.75 156.21 90)
+    (property "Footprint" "kamaji:RJ10" (at 31.75 156.21 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 31.75 156.21 90)
@@ -1880,7 +1874,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "J4") (unit 1)
+          (reference "J5") (unit 1)
         )
       )
     )
@@ -1889,13 +1883,13 @@
   (symbol (lib_id "Device:R") (at 54.61 177.8 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 327e7984-eabc-495c-86aa-e61113b6fbdb)
-    (property "Reference" "R3" (at 50.8 177.8 0)
+    (property "Reference" "R5" (at 50.8 177.8 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1K" (at 54.61 179.07 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 52.832 177.8 90)
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 52.832 177.8 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 54.61 177.8 0)
@@ -1906,7 +1900,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "R3") (unit 1)
+          (reference "R5") (unit 1)
         )
       )
     )
@@ -1915,7 +1909,7 @@
   (symbol (lib_id "power:GND") (at 45.72 102.87 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 3b9a1a82-e7c0-414e-adb6-dd2b732a0ab4)
-    (property "Reference" "#PWR012" (at 45.72 109.22 0)
+    (property "Reference" "#PWR020" (at 45.72 109.22 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 45.72 107.95 0)
@@ -1931,7 +1925,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR012") (unit 1)
+          (reference "#PWR020") (unit 1)
         )
       )
     )
@@ -1940,7 +1934,7 @@
   (symbol (lib_id "power:GND") (at 182.88 55.88 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 3e4937aa-7578-4242-8afb-3f6ddc782f06)
-    (property "Reference" "#PWR05" (at 182.88 62.23 0)
+    (property "Reference" "#PWR013" (at 182.88 62.23 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 182.88 60.96 0)
@@ -1956,7 +1950,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR05") (unit 1)
+          (reference "#PWR013") (unit 1)
         )
       )
     )
@@ -1968,10 +1962,10 @@
     (property "Reference" "Q1" (at 256.54 64.135 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Value" "NMOS" (at 256.54 66.675 0)
+    (property "Value" "BS170" (at 256.54 66.675 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 255.27 62.23 0)
+    (property "Footprint" "Package_TO_SOT_THT:TO-92_Inline" (at 255.27 62.23 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "https://ngspice.sourceforge.io/docs/ngspice-manual.pdf" (at 250.19 77.47 0)
@@ -2001,7 +1995,7 @@
   (symbol (lib_id "power:GND") (at 129.54 44.45 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4617496b-3af9-4dab-9bb1-4c055dbd792a)
-    (property "Reference" "#PWR037" (at 129.54 50.8 0)
+    (property "Reference" "#PWR011" (at 129.54 50.8 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 129.54 49.53 0)
@@ -2017,35 +2011,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR037") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Connector_Generic:Conn_01x04") (at 187.96 113.03 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 49053fa6-1f3d-4f75-8d2f-6b53b6660ad1)
-    (property "Reference" "J3" (at 190.5 113.665 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "Buttons" (at 190.5 116.205 0)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "" (at 187.96 113.03 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "~" (at 187.96 113.03 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 6690c075-3b30-43e9-b056-47fe8e6dfadd))
-    (pin "2" (uuid 59c10340-aaa5-40d0-857c-c21f08a9d73e))
-    (pin "3" (uuid e4efeee6-8fdc-4cb1-9544-13c53355b95b))
-    (pin "4" (uuid 867b341d-3fef-483e-ba1d-a9c257cff8a6))
-    (instances
-      (project "kamaji_classic_v1"
-        (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "J3") (unit 1)
+          (reference "#PWR011") (unit 1)
         )
       )
     )
@@ -2054,7 +2020,7 @@
   (symbol (lib_id "power:GND") (at 247.65 116.84 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4d17490d-5dc4-4f61-b6b5-57752bc60e79)
-    (property "Reference" "#PWR08" (at 247.65 123.19 0)
+    (property "Reference" "#PWR024" (at 247.65 123.19 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 247.65 121.92 0)
@@ -2070,7 +2036,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR08") (unit 1)
+          (reference "#PWR024") (unit 1)
         )
       )
     )
@@ -2079,7 +2045,7 @@
   (symbol (lib_id "power:GND") (at 124.46 166.37 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 4dee10bf-481e-4c55-b6e1-5b907600561a)
-    (property "Reference" "#PWR023" (at 124.46 172.72 0)
+    (property "Reference" "#PWR037" (at 124.46 172.72 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 124.46 171.45 0)
@@ -2095,7 +2061,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR023") (unit 1)
+          (reference "#PWR037") (unit 1)
         )
       )
     )
@@ -2104,13 +2070,13 @@
   (symbol (lib_id "Device:R") (at 133.35 41.91 90) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 4ec2c50a-9628-42b0-ac6b-f1d705bf43fc)
-    (property "Reference" "R7" (at 133.35 39.37 90)
+    (property "Reference" "R1" (at 133.35 39.37 90)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Value" "220" (at 133.35 41.91 90)
+    (property "Value" "1K" (at 133.35 41.91 90)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "" (at 133.35 43.688 90)
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 133.35 43.688 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 133.35 41.91 0)
@@ -2121,7 +2087,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "R7") (unit 1)
+          (reference "R1") (unit 1)
         )
       )
     )
@@ -2130,7 +2096,7 @@
   (symbol (lib_id "power:VCC") (at 132.08 111.76 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 5566b20f-7f25-482e-9e7f-db53b0b510ad)
-    (property "Reference" "#PWR013" (at 132.08 115.57 0)
+    (property "Reference" "#PWR021" (at 132.08 115.57 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VCC" (at 132.08 107.95 0)
@@ -2146,7 +2112,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR013") (unit 1)
+          (reference "#PWR021") (unit 1)
         )
       )
     )
@@ -2155,13 +2121,13 @@
   (symbol (lib_id "Device:R") (at 240.03 69.85 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 57dd917d-82e0-45aa-bc17-85e8707b0aee)
-    (property "Reference" "R1" (at 242.57 69.215 0)
+    (property "Reference" "R3" (at 242.57 69.215 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10K" (at 242.57 71.755 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 238.252 69.85 90)
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 238.252 69.85 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 240.03 69.85 0)
@@ -2172,7 +2138,33 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "R1") (unit 1)
+          (reference "R3") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Switch:SW_Push") (at 167.64 116.84 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 60e3c09c-82bf-4ffd-b2ca-29984d09e9c2)
+    (property "Reference" "SW1" (at 167.64 110.49 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "SW_Push" (at 167.64 113.03 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "Button_Switch_THT:SW_PUSH-12mm" (at 167.64 111.76 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 167.64 111.76 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid b3daf4bc-4479-4393-aeb0-2d1e93621fb7))
+    (pin "2" (uuid 3228b269-e2e3-4e08-8c3b-3ef4d9970ffe))
+    (instances
+      (project "kamaji_classic_v1"
+        (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
+          (reference "SW1") (unit 1)
         )
       )
     )
@@ -2181,13 +2173,13 @@
   (symbol (lib_id "Device:R") (at 30.48 177.8 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 6644bccb-6d26-41ec-8de0-cde3fe1e2927)
-    (property "Reference" "R2" (at 26.67 177.8 0)
+    (property "Reference" "R4" (at 26.67 177.8 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1K" (at 30.48 179.07 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 28.702 177.8 90)
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 28.702 177.8 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 30.48 177.8 0)
@@ -2198,7 +2190,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "R2") (unit 1)
+          (reference "R4") (unit 1)
         )
       )
     )
@@ -2207,7 +2199,7 @@
   (symbol (lib_id "power:GND") (at 67.31 123.19 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 69aaf03f-65fe-4698-b7c2-6282f6b342d5)
-    (property "Reference" "#PWR028" (at 67.31 129.54 0)
+    (property "Reference" "#PWR027" (at 67.31 129.54 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 67.31 128.27 0)
@@ -2223,7 +2215,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR028") (unit 1)
+          (reference "#PWR027") (unit 1)
         )
       )
     )
@@ -2232,7 +2224,7 @@
   (symbol (lib_id "power:GND") (at 82.55 123.19 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 6fa6bc07-4fa7-462f-a478-c6f37d63f136)
-    (property "Reference" "#PWR030" (at 82.55 129.54 0)
+    (property "Reference" "#PWR028" (at 82.55 129.54 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 82.55 128.27 0)
@@ -2248,7 +2240,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR030") (unit 1)
+          (reference "#PWR028") (unit 1)
         )
       )
     )
@@ -2257,7 +2249,7 @@
   (symbol (lib_id "power:GND") (at 105.41 166.37 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 715e50a5-372d-4793-b738-fe1b92e16dc7)
-    (property "Reference" "#PWR022" (at 105.41 172.72 0)
+    (property "Reference" "#PWR036" (at 105.41 172.72 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 105.41 171.45 0)
@@ -2273,7 +2265,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR022") (unit 1)
+          (reference "#PWR036") (unit 1)
         )
       )
     )
@@ -2282,7 +2274,7 @@
   (symbol (lib_id "power:VCC") (at 142.24 30.48 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 7389e9d5-93d6-469f-8f31-8121952e45e2)
-    (property "Reference" "#PWR034" (at 142.24 34.29 0)
+    (property "Reference" "#PWR04" (at 142.24 34.29 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VCC" (at 142.24 26.67 0)
@@ -2298,7 +2290,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR034") (unit 1)
+          (reference "#PWR04") (unit 1)
         )
       )
     )
@@ -2307,7 +2299,7 @@
   (symbol (lib_id "power:GND") (at 57.15 166.37 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 747fe3f9-888f-4d56-828a-d7c5ed9b5bd2)
-    (property "Reference" "#PWR018" (at 57.15 172.72 0)
+    (property "Reference" "#PWR032" (at 57.15 172.72 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 57.15 171.45 0)
@@ -2323,7 +2315,32 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR018") (unit 1)
+          (reference "#PWR032") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:GND") (at 210.82 116.84 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 76e52888-0e1e-4ee6-8696-3b0878809006)
+    (property "Reference" "#PWR040" (at 210.82 123.19 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 210.82 121.92 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 210.82 116.84 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 210.82 116.84 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 9401b866-cdcc-478c-ae78-7e70b1303b3f))
+    (instances
+      (project "kamaji_classic_v1"
+        (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
+          (reference "#PWR040") (unit 1)
         )
       )
     )
@@ -2332,13 +2349,13 @@
   (symbol (lib_id "Device:C") (at 67.31 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 77214e0f-dc60-4578-9ad1-cd3a61c6ee78)
-    (property "Reference" "C3" (at 71.12 118.745 0)
+    (property "Reference" "C2" (at 71.12 118.745 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "0.1uF" (at 71.12 121.285 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 68.2752 123.19 0)
+    (property "Footprint" "Capacitor_THT:C_Disc_D3.8mm_W2.6mm_P2.50mm" (at 68.2752 123.19 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 67.31 119.38 0)
@@ -2349,7 +2366,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "C3") (unit 1)
+          (reference "C2") (unit 1)
         )
       )
     )
@@ -2358,13 +2375,13 @@
   (symbol (lib_id "Device:R") (at 73.66 67.31 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 7f7b07e7-34fd-4960-a377-1b270d977c81)
-    (property "Reference" "R8" (at 74.93 67.31 0)
+    (property "Reference" "R2" (at 74.93 67.31 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "10K" (at 73.66 69.85 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 71.882 67.31 90)
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 71.882 67.31 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 73.66 67.31 0)
@@ -2375,7 +2392,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "R8") (unit 1)
+          (reference "R2") (unit 1)
         )
       )
     )
@@ -2384,7 +2401,7 @@
   (symbol (lib_id "power:VCC") (at 73.66 63.5 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 82857e66-caf4-412d-80d6-06fb2a4370b4)
-    (property "Reference" "#PWR038" (at 73.66 67.31 0)
+    (property "Reference" "#PWR014" (at 73.66 67.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VCC" (at 73.66 59.69 0)
@@ -2400,7 +2417,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR038") (unit 1)
+          (reference "#PWR014") (unit 1)
         )
       )
     )
@@ -2461,7 +2478,7 @@
   (symbol (lib_id "power:GND") (at 100.33 166.37 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 84a9cb47-459a-47a6-b6c2-efe995abcd17)
-    (property "Reference" "#PWR021" (at 100.33 172.72 0)
+    (property "Reference" "#PWR035" (at 100.33 172.72 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 100.33 171.45 0)
@@ -2477,7 +2494,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR021") (unit 1)
+          (reference "#PWR035") (unit 1)
         )
       )
     )
@@ -2486,7 +2503,7 @@
   (symbol (lib_id "power:VCC") (at 119.38 29.21 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 866b182d-e56c-4d63-94b5-da33aaa823f3)
-    (property "Reference" "#PWR032" (at 119.38 33.02 0)
+    (property "Reference" "#PWR03" (at 119.38 33.02 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VCC" (at 119.38 25.4 0)
@@ -2502,7 +2519,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR032") (unit 1)
+          (reference "#PWR03") (unit 1)
         )
       )
     )
@@ -2511,7 +2528,7 @@
   (symbol (lib_id "power:GND") (at 142.24 38.1 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 88856b82-3970-4e15-9da1-f0a29cacb16e)
-    (property "Reference" "#PWR033" (at 142.24 44.45 0)
+    (property "Reference" "#PWR07" (at 142.24 44.45 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 142.24 43.18 0)
@@ -2527,7 +2544,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR033") (unit 1)
+          (reference "#PWR07") (unit 1)
         )
       )
     )
@@ -2536,7 +2553,7 @@
   (symbol (lib_id "power:GND") (at 240.03 73.66 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 892976d1-df18-4958-85c5-d7638d285009)
-    (property "Reference" "#PWR04" (at 240.03 80.01 0)
+    (property "Reference" "#PWR017" (at 240.03 80.01 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 240.03 78.74 0)
@@ -2552,7 +2569,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR04") (unit 1)
+          (reference "#PWR017") (unit 1)
         )
       )
     )
@@ -2561,13 +2578,13 @@
   (symbol (lib_id "Connector:USB_A") (at 252.73 43.18 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 8bd09cf1-da52-4cd4-95af-599971992935)
-    (property "Reference" "J2" (at 252.73 31.75 0)
+    (property "Reference" "J1" (at 252.73 31.75 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "USB_A" (at 252.73 34.29 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "" (at 256.54 44.45 0)
+    (property "Footprint" "Connector_USB:USB_A_CONNFLY_DS1095-WNR0" (at 256.54 44.45 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" " ~" (at 256.54 44.45 0)
@@ -2581,7 +2598,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "J2") (unit 1)
+          (reference "J1") (unit 1)
         )
       )
     )
@@ -2596,7 +2613,7 @@
     (property "Value" "Contrast" (at 144.78 36.195 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Footprint" "" (at 142.24 34.29 0)
+    (property "Footprint" "Potentiometer_THT:Potentiometer_Vishay_T73YP_Vertical" (at 142.24 34.29 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 142.24 34.29 0)
@@ -2657,7 +2674,7 @@
   (symbol (lib_id "power:VCC") (at 191.77 40.64 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 8f88ba6e-ba70-4d7f-a2e7-3eb5fa18d2d4)
-    (property "Reference" "#PWR06" (at 191.77 44.45 0)
+    (property "Reference" "#PWR09" (at 191.77 44.45 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VCC" (at 191.77 36.83 0)
@@ -2673,7 +2690,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR06") (unit 1)
+          (reference "#PWR09") (unit 1)
         )
       )
     )
@@ -2682,7 +2699,7 @@
   (symbol (lib_id "power:GND") (at 81.28 166.37 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 92cffe6f-3f3a-416c-a231-3a751b2fc5da)
-    (property "Reference" "#PWR020" (at 81.28 172.72 0)
+    (property "Reference" "#PWR034" (at 81.28 172.72 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 81.28 171.45 0)
@@ -2698,7 +2715,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR020") (unit 1)
+          (reference "#PWR034") (unit 1)
         )
       )
     )
@@ -2707,7 +2724,7 @@
   (symbol (lib_id "power:GND") (at 250.19 53.34 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 94b150ac-b783-4e1e-b5ce-89a9eba35016)
-    (property "Reference" "#PWR02" (at 250.19 59.69 0)
+    (property "Reference" "#PWR012" (at 250.19 59.69 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 246.38 55.88 0)
@@ -2723,7 +2740,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR02") (unit 1)
+          (reference "#PWR012") (unit 1)
         )
       )
     )
@@ -2732,7 +2749,7 @@
   (symbol (lib_id "power:VCC") (at 140.97 78.74 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 98c81aaf-6dd7-4882-ba05-f5bcfccf0e6f)
-    (property "Reference" "#PWR026" (at 140.97 82.55 0)
+    (property "Reference" "#PWR018" (at 140.97 82.55 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VCC" (at 140.97 74.93 0)
@@ -2748,7 +2765,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR026") (unit 1)
+          (reference "#PWR018") (unit 1)
         )
       )
     )
@@ -2757,13 +2774,13 @@
   (symbol (lib_id "Connector:RJ10") (at 54.61 156.21 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 9cc661f3-28d9-4069-aded-f4b05fd7cf74)
-    (property "Reference" "J5" (at 63.5 155.575 90)
+    (property "Reference" "J6" (at 63.5 155.575 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "RJ10" (at 63.5 158.115 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 55.88 156.21 90)
+    (property "Footprint" "kamaji:RJ10" (at 55.88 156.21 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 55.88 156.21 90)
@@ -2776,7 +2793,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "J5") (unit 1)
+          (reference "J6") (unit 1)
         )
       )
     )
@@ -2785,13 +2802,13 @@
   (symbol (lib_id "Connector_Generic:Conn_02x05_Odd_Even") (at 123.19 116.84 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid aad8ea8e-865c-484e-b421-b4ccc5e5cc19)
-    (property "Reference" "J9" (at 124.46 106.68 0)
+    (property "Reference" "J4" (at 124.46 106.68 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "ISP" (at 124.46 109.22 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "" (at 123.19 116.84 0)
+    (property "Footprint" "Connector_IDC:IDC-Header_2x05_P2.54mm_Horizontal" (at 123.19 116.84 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 123.19 116.84 0)
@@ -2810,7 +2827,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "J9") (unit 1)
+          (reference "J4") (unit 1)
         )
       )
     )
@@ -2819,7 +2836,7 @@
   (symbol (lib_id "power:VCC") (at 261.62 38.1 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid ae639a86-2609-44bb-bbc2-7054ac5528fd)
-    (property "Reference" "#PWR03" (at 261.62 41.91 0)
+    (property "Reference" "#PWR08" (at 261.62 41.91 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VCC" (at 261.62 34.29 0)
@@ -2835,7 +2852,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR03") (unit 1)
+          (reference "#PWR08") (unit 1)
         )
       )
     )
@@ -2844,13 +2861,13 @@
   (symbol (lib_id "Connector:RJ10") (at 127 156.21 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid b5b91299-cde6-4cb6-a948-d5e8cce89d6b)
-    (property "Reference" "J8" (at 135.89 155.575 90)
+    (property "Reference" "J9" (at 135.89 155.575 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "RJ10" (at 135.89 158.115 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 128.27 156.21 90)
+    (property "Footprint" "kamaji:RJ10" (at 128.27 156.21 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 128.27 156.21 90)
@@ -2863,7 +2880,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "J8") (unit 1)
+          (reference "J9") (unit 1)
         )
       )
     )
@@ -2872,7 +2889,7 @@
   (symbol (lib_id "power:VCC") (at 67.31 115.57 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid bcd57d60-3d0f-41d5-bf07-7822d90d6d88)
-    (property "Reference" "#PWR027" (at 67.31 119.38 0)
+    (property "Reference" "#PWR022" (at 67.31 119.38 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VCC" (at 67.31 111.76 0)
@@ -2888,7 +2905,59 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR027") (unit 1)
+          (reference "#PWR022") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Switch:SW_Push") (at 205.74 116.84 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid c15eb58a-23e8-46c8-8ffa-0b551a00dec3)
+    (property "Reference" "SW3" (at 205.74 110.49 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "SW_Push" (at 205.74 113.03 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "Button_Switch_THT:SW_PUSH-12mm" (at 205.74 111.76 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 205.74 111.76 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid c85111bc-d6ed-463f-9749-064e1622a5b9))
+    (pin "2" (uuid 98ae379a-b7a9-48d6-9ffb-1e96a7a8a4f1))
+    (instances
+      (project "kamaji_classic_v1"
+        (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
+          (reference "SW3") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Switch:SW_Push") (at 186.69 116.84 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid c6b36e9d-2e6d-4a3d-977a-db5b76eb2eaf)
+    (property "Reference" "SW2" (at 186.69 110.49 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Value" "SW_Push" (at 186.69 113.03 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "Button_Switch_THT:SW_PUSH-12mm" (at 186.69 111.76 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 186.69 111.76 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 09380fd7-cf61-4645-ae2a-43dbb26cdb62))
+    (pin "2" (uuid 74f132a7-9745-456b-a469-296e904f4df3))
+    (instances
+      (project "kamaji_classic_v1"
+        (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
+          (reference "SW2") (unit 1)
         )
       )
     )
@@ -2897,7 +2966,7 @@
   (symbol (lib_id "power:GND") (at 129.54 166.37 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid c75cdf2f-9927-4633-a28f-287114f39928)
-    (property "Reference" "#PWR024" (at 129.54 172.72 0)
+    (property "Reference" "#PWR038" (at 129.54 172.72 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 129.54 171.45 0)
@@ -2913,7 +2982,32 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR024") (unit 1)
+          (reference "#PWR038") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:GND") (at 172.72 116.84 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid c80aa854-9925-49ba-9bbc-51a9acc980b2)
+    (property "Reference" "#PWR025" (at 172.72 123.19 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 172.72 121.92 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 172.72 116.84 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 172.72 116.84 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid d1303d1c-818e-4e03-8677-a5a90678a72a))
+    (instances
+      (project "kamaji_classic_v1"
+        (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
+          (reference "#PWR025") (unit 1)
         )
       )
     )
@@ -2922,13 +3016,13 @@
   (symbol (lib_id "Device:C") (at 82.55 119.38 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid c90b8c08-3fa3-4b38-8405-7ef241bf8d28)
-    (property "Reference" "C4" (at 86.36 118.745 0)
+    (property "Reference" "C3" (at 86.36 118.745 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "0.1uF" (at 86.36 121.285 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 83.5152 123.19 0)
+    (property "Footprint" "Capacitor_THT:C_Disc_D3.8mm_W2.6mm_P2.50mm" (at 83.5152 123.19 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 82.55 119.38 0)
@@ -2939,7 +3033,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "C4") (unit 1)
+          (reference "C3") (unit 1)
         )
       )
     )
@@ -2948,7 +3042,7 @@
   (symbol (lib_id "power:VCC") (at 45.72 26.67 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid c93d2373-01de-4691-ad24-b154c29e7ab4)
-    (property "Reference" "#PWR09" (at 45.72 30.48 0)
+    (property "Reference" "#PWR01" (at 45.72 30.48 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VCC" (at 43.18 24.13 0)
@@ -2964,7 +3058,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR09") (unit 1)
+          (reference "#PWR01") (unit 1)
         )
       )
     )
@@ -2973,7 +3067,7 @@
   (symbol (lib_id "power:GND") (at 33.02 166.37 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid caf63207-8607-457e-9502-6f1ed7739949)
-    (property "Reference" "#PWR016" (at 33.02 172.72 0)
+    (property "Reference" "#PWR030" (at 33.02 172.72 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 33.02 171.45 0)
@@ -2989,7 +3083,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR016") (unit 1)
+          (reference "#PWR030") (unit 1)
         )
       )
     )
@@ -2998,7 +3092,7 @@
   (symbol (lib_id "power:GND") (at 76.2 166.37 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid cb585bce-013f-460d-a2ed-4d8a2aa5eaae)
-    (property "Reference" "#PWR019" (at 76.2 172.72 0)
+    (property "Reference" "#PWR033" (at 76.2 172.72 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 76.2 171.45 0)
@@ -3014,32 +3108,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR019") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "power:GND") (at 182.88 118.11 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid cf175c3c-4334-4a5b-b40f-88ab361bc2d8)
-    (property "Reference" "#PWR07" (at 182.88 124.46 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "GND" (at 182.88 123.19 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 182.88 118.11 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 182.88 118.11 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 9f0eb216-409a-482b-83c6-a3c9aa38d8fd))
-    (instances
-      (project "kamaji_classic_v1"
-        (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR07") (unit 1)
+          (reference "#PWR033") (unit 1)
         )
       )
     )
@@ -3054,7 +3123,7 @@
     (property "Value" "Buzzer" (at 254 116.205 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 249.555 111.76 90)
+    (property "Footprint" "Buzzer_Beeper:Buzzer_12x9.5RM7.6" (at 249.555 111.76 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 249.555 111.76 90)
@@ -3074,13 +3143,13 @@
   (symbol (lib_id "Connector:RJ10") (at 78.74 156.21 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid d88dc295-7947-42df-9a2b-5a25afca0316)
-    (property "Reference" "J6" (at 87.63 155.575 90)
+    (property "Reference" "J7" (at 87.63 155.575 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "RJ10" (at 87.63 158.115 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 80.01 156.21 90)
+    (property "Footprint" "kamaji:RJ10" (at 80.01 156.21 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 80.01 156.21 90)
@@ -3093,7 +3162,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "J6") (unit 1)
+          (reference "J7") (unit 1)
         )
       )
     )
@@ -3102,7 +3171,7 @@
   (symbol (lib_id "power:GND") (at 100.33 38.1 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid d99cce79-c754-4b1f-a6c7-3e316541a597)
-    (property "Reference" "#PWR035" (at 100.33 44.45 0)
+    (property "Reference" "#PWR06" (at 100.33 44.45 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 100.33 43.18 0)
@@ -3118,7 +3187,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR035") (unit 1)
+          (reference "#PWR06") (unit 1)
         )
       )
     )
@@ -3127,7 +3196,7 @@
   (symbol (lib_id "power:VCC") (at 27.94 34.29 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid d9f16916-cd92-44de-accb-a5f1263b6924)
-    (property "Reference" "#PWR011" (at 27.94 38.1 0)
+    (property "Reference" "#PWR05" (at 27.94 38.1 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VCC" (at 27.94 30.48 0)
@@ -3143,7 +3212,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR011") (unit 1)
+          (reference "#PWR05") (unit 1)
         )
       )
     )
@@ -3152,7 +3221,7 @@
   (symbol (lib_id "power:GND") (at 119.38 69.85 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid dbd3d157-24b1-47e9-81e2-4dcfaa597323)
-    (property "Reference" "#PWR031" (at 119.38 76.2 0)
+    (property "Reference" "#PWR016" (at 119.38 76.2 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 119.38 74.93 0)
@@ -3168,7 +3237,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR031") (unit 1)
+          (reference "#PWR016") (unit 1)
         )
       )
     )
@@ -3177,13 +3246,13 @@
   (symbol (lib_id "Connector:RJ10") (at 102.87 156.21 270) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid e9f5000f-b534-4fae-ba5b-d57ddeed5f6e)
-    (property "Reference" "J7" (at 111.76 155.575 90)
+    (property "Reference" "J8" (at 111.76 155.575 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "RJ10" (at 111.76 158.115 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 104.14 156.21 90)
+    (property "Footprint" "kamaji:RJ10" (at 104.14 156.21 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 104.14 156.21 90)
@@ -3196,7 +3265,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "J7") (unit 1)
+          (reference "J8") (unit 1)
         )
       )
     )
@@ -3205,7 +3274,7 @@
   (symbol (lib_id "power:GND") (at 252.73 68.58 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid f2014f26-a1e8-429f-bf9a-8d83c3949c55)
-    (property "Reference" "#PWR01" (at 252.73 74.93 0)
+    (property "Reference" "#PWR015" (at 252.73 74.93 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "GND" (at 252.73 73.66 0)
@@ -3221,7 +3290,32 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR01") (unit 1)
+          (reference "#PWR015") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "power:GND") (at 191.77 116.84 0) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid f2e57b21-fbd1-4400-beb5-3ef1a4b93652)
+    (property "Reference" "#PWR039" (at 191.77 123.19 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Value" "GND" (at 191.77 121.92 0)
+      (effects (font (size 1.27 1.27)))
+    )
+    (property "Footprint" "" (at 191.77 116.84 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "" (at 191.77 116.84 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid 95dcb5bd-98d9-4392-a25b-2899d0a23dd6))
+    (instances
+      (project "kamaji_classic_v1"
+        (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
+          (reference "#PWR039") (unit 1)
         )
       )
     )
@@ -3230,13 +3324,13 @@
   (symbol (lib_id "Connector:USB_B") (at 182.88 45.72 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid f31c1f2f-cd58-46a6-a58b-6c5178d6ce6a)
-    (property "Reference" "J1" (at 182.88 34.29 0)
+    (property "Reference" "J2" (at 182.88 34.29 0)
       (effects (font (size 1.27 1.27)))
     )
     (property "Value" "USB_B" (at 182.88 36.83 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "" (at 186.69 46.99 0)
+    (property "Footprint" "Connector_USB:USB_B_Lumberg_2411_02_Horizontal" (at 186.69 46.99 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" " ~" (at 186.69 46.99 0)
@@ -3250,7 +3344,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "J1") (unit 1)
+          (reference "J2") (unit 1)
         )
       )
     )
@@ -3259,7 +3353,7 @@
   (symbol (lib_id "power:VCC") (at 48.26 26.67 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid fb180b18-454c-4dc0-a98d-fb3a3737c9b9)
-    (property "Reference" "#PWR010" (at 48.26 30.48 0)
+    (property "Reference" "#PWR02" (at 48.26 30.48 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Value" "VCC" (at 50.8 24.13 0)
@@ -3275,7 +3369,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "#PWR010") (unit 1)
+          (reference "#PWR02") (unit 1)
         )
       )
     )
@@ -3284,13 +3378,13 @@
   (symbol (lib_id "Device:R") (at 78.74 177.8 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid fb531e75-d8cc-4b5c-8af4-b6d084886bde)
-    (property "Reference" "R4" (at 74.93 177.8 0)
+    (property "Reference" "R6" (at 74.93 177.8 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1K" (at 78.74 179.07 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 76.962 177.8 90)
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 76.962 177.8 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 78.74 177.8 0)
@@ -3301,7 +3395,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "R4") (unit 1)
+          (reference "R6") (unit 1)
         )
       )
     )
@@ -3310,13 +3404,13 @@
   (symbol (lib_id "Device:R") (at 102.87 177.8 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid fcd9a8cd-4f78-4078-a1db-3aff3f131096)
-    (property "Reference" "R5" (at 99.06 177.8 0)
+    (property "Reference" "R7" (at 99.06 177.8 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
     (property "Value" "1K" (at 102.87 179.07 90)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "" (at 101.092 177.8 90)
+    (property "Footprint" "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" (at 101.092 177.8 90)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "~" (at 102.87 177.8 0)
@@ -3327,7 +3421,7 @@
     (instances
       (project "kamaji_classic_v1"
         (path "/c0ae9bf0-eaee-40b8-8b46-60e78ef3dbd6"
-          (reference "R5") (unit 1)
+          (reference "R7") (unit 1)
         )
       )
     )
