@@ -6,7 +6,7 @@
 
   (title_block
     (title "Kamaji Classic")
-    (rev "1.0")
+    (rev "1.1")
   )
 
   (lib_symbols
@@ -1965,7 +1965,7 @@
     (property "Value" "BS170" (at 256.54 66.675 0)
       (effects (font (size 1.27 1.27)) (justify left))
     )
-    (property "Footprint" "Package_TO_SOT_THT:TO-92_Inline" (at 255.27 62.23 0)
+    (property "Footprint" "Package_TO_SOT_THT:TO-92_HandSolder" (at 255.27 62.23 0)
       (effects (font (size 1.27 1.27)) hide)
     )
     (property "Datasheet" "https://ngspice.sourceforge.io/docs/ngspice-manual.pdf" (at 250.19 77.47 0)
