@@ -295,6 +295,11 @@
       (net 2 "GND") (pintype "passive") (tstamp 833b2685-533f-4e1b-b1c9-68aefda49db7))
     (pad "4" thru_hole circle (at -1.53 -10.54 180) (size 1.6 1.6) (drill 0.9) (layers "*.Cu" "*.Mask")
       (net 33 "/PBTN4") (pintype "passive") (tstamp f39bbf46-8fb0-4203-8b52-00e7b929b777))
+    (model "${KIPRJMOD}/../lib/3d_models/rj10_socket.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (footprint "Capacitor_THT:C_Disc_D3.8mm_W2.6mm_P2.50mm" (layer "F.Cu")
@@ -400,6 +405,11 @@
       (net 2 "GND") (pintype "passive") (tstamp 20ef4905-bff6-4301-a031-9f4414452c82))
     (pad "4" thru_hole circle (at -1.53 -10.54 180) (size 1.6 1.6) (drill 0.9) (layers "*.Cu" "*.Mask")
       (net 35 "/PBTN5") (pintype "passive") (tstamp 50972ef3-f307-4e38-84be-fd2d25cfae8d))
+    (model "${KIPRJMOD}/../lib/3d_models/rj10_socket.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (footprint "Potentiometer_THT:Potentiometer_Vishay_T73YP_Vertical" (layer "F.Cu")
@@ -1243,6 +1253,11 @@
       (net 2 "GND") (pintype "passive") (tstamp 1dd21eda-8e41-45d9-b827-577b4d29071e))
     (pad "4" thru_hole circle (at -1.53 -10.54 180) (size 1.6 1.6) (drill 0.9) (layers "*.Cu" "*.Mask")
       (net 27 "/PBTN1") (pintype "passive") (tstamp a3827fda-05dd-4060-8610-5b5c723b49de))
+    (model "${KIPRJMOD}/../lib/3d_models/rj10_socket.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (footprint "MountingHole:MountingHole_3.2mm_M3" (layer "F.Cu")
@@ -1311,6 +1326,11 @@
       (net 2 "GND") (pintype "passive") (tstamp c144ffac-e669-450b-8eaa-5aebd0e06961))
     (pad "4" thru_hole circle (at -1.53 -10.54 180) (size 1.6 1.6) (drill 0.9) (layers "*.Cu" "*.Mask")
       (net 29 "/PBTN2") (pintype "passive") (tstamp 1798747f-9174-4570-996a-a237f31f45b0))
+    (model "${KIPRJMOD}/../lib/3d_models/rj10_socket.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (footprint "Connector_IDC:IDC-Header_2x05_P2.54mm_Horizontal" (layer "F.Cu")
@@ -1917,7 +1937,7 @@
       (stroke (width 0.12) (type solid)) (layer "F.SilkS") (tstamp dbdee515-5a57-4b38-8886-39c8f3e1d530))
     (fp_arc (start 63.7 8) (mid 64.053553 8.146447) (end 64.2 8.5)
       (stroke (width 0.12) (type solid)) (layer "F.SilkS") (tstamp 30704cfd-497f-4806-9252-75b69b0f5fe9))
-    (fp_arc (start 64.20104 22.49932) (mid 64.054473 22.853115) (end 63.70066 22.9997)
+    (fp_arc (start 64.20104 22.49932) (mid 64.054479 22.85315) (end 63.70066 22.9997)
       (stroke (width 0.12) (type solid)) (layer "F.SilkS") (tstamp bf006565-7e01-4433-80f6-9815110744ca))
     (fp_line (start -8.25 -2.75) (end -8.25 33.75)
       (stroke (width 0.05) (type solid)) (layer "F.CrtYd") (tstamp ab071283-e564-4050-8514-c5a16f0c3b38))
@@ -2091,6 +2111,11 @@
       (net 2 "GND") (pintype "passive") (tstamp f3b2419f-6724-45b0-bcbf-784e9363885b))
     (pad "4" thru_hole circle (at -1.53 -10.54 180) (size 1.6 1.6) (drill 0.9) (layers "*.Cu" "*.Mask")
       (net 31 "/PBTN3") (pintype "passive") (tstamp 2674c7bc-d49b-4666-be6b-ae0b654105d8))
+    (model "${KIPRJMOD}/../lib/3d_models/rj10_socket.step"
+      (offset (xyz 0 0 0))
+      (scale (xyz 1 1 1))
+      (rotate (xyz 0 0 0))
+    )
   )
 
   (gr_line (start 150 51) (end 150 149)
