@@ -24,7 +24,8 @@ enum State {
     COUNTDOWN,
     ANSWER_TIME_NOT_STARTED,
     ANSWER_TIME_STARTED,
-    MENU
+    MENU,
+    UNDO,
 };
 
 const char* mainMenu[] = {cancelLabel, resetLabel, undoLabel, numPlayersLabel};
@@ -32,7 +33,7 @@ const char* numPlayerMenu[] = {num2Label, num3Label, num4Label, num5Label, num6L
 
 int currentPlayer = -1;
 State state = QUESTION;
-unsigned long stateEnterd = millis();
+unsigned long stateEntered = millis();
 bool blocked[NUM_PLAYERS];
 bool firstTime = true;
 int lastAttentionSoundPlayed = 3;
@@ -85,13 +86,13 @@ void nextQuestion() {
 }
 
 int timeInSeconds() {
-    return (millis() - stateEnterd) / 1000;
+    return (millis() - stateEntered) / 1000;
 }
 
 void reset() {
     currentPlayer = -1;
     state = QUESTION;
-    stateEnterd = millis();
+    stateEntered = millis();
     for (int i = 0; i < NUM_PLAYERS; i++) {
         blocked[i] = false;
         falseStart[i] = false;
@@ -204,6 +205,10 @@ void JeopardyMode::getCaption(char* buffer, size_t bufferSize, size_t width) {
         case ANSWER_TIME_STARTED:
             snprintf(buffer, bufferSize, playerJeopardyLabel, currentPlayer + 1, timeInSeconds());
             break;
+        case UNDO:
+            snprintf(buffer, bufferSize, playerUndoLabel, historyPlayer[historyAt - 1] + 1,
+                     -historyScore[historyAt - 1] * 10);
+            break;
     }
 }
 
@@ -236,8 +241,10 @@ const char* JeopardyMode::getLabel(int buttonId) {
                 return yesLabel;
             case MENU:
                 return menu.getLeftLabel();
+            case UNDO:
+                return exitLabel;
         }
-    } else if (buttonId == BUTTON_START)  {
+    } else if (buttonId == BUTTON_START) {
         switch (state) {
             case QUESTION:
                 return startLabel;
@@ -248,6 +255,8 @@ const char* JeopardyMode::getLabel(int buttonId) {
                 return noLabel;
             case MENU:
                 return menu.getRightLabel();
+            case UNDO:
+                return revertLavel;
         }
     } else if (buttonId == BUTTON_CONTROL_2) {
         switch (state) {
@@ -260,12 +269,69 @@ const char* JeopardyMode::getLabel(int buttonId) {
                 return menu.getCenterLabel();
             case COUNTDOWN:
                 return emptyLabel;
+            case UNDO:
+                return undoLabel;
         }
     }
     return emptyLabel;
 }
 
+void undoLast(bool revert) {
+    historyAt--;
+    int value = historyScore[historyAt] > 0 ? historyScore[historyAt] : -historyScore[historyAt];
+    if (roundID != historyRound[historyAt] || question != value) {
+        for (int i = 0; i < numPlayers; i++) {
+            blocked[i] = false;
+            falseStart[i] = false;
+        }
+        roundID = historyRound[historyAt];
+        question = value;
+        for (int i = historyAt - 1; i >= 0; i--) {
+            if (roundID == historyRound[i] && question == (historyScore[i] > 0 ? historyScore[i] : -historyScore[i])) {
+                blocked[historyPlayer[i]] = true;
+            } else {
+                break;
+            }
+        }
+    }
+    score[historyPlayer[historyAt]] += historyScore[historyAt];
+    blocked[historyPlayer[historyAt]] = false;
+    if (revert) {
+        score[historyPlayer[historyAt]] += historyScore[historyAt];
+        bool accepted = historyScore[historyAt] > 0;
+        addHistory(historyPlayer[historyAt], -historyScore[historyAt]);
+        if (accepted) {
+            reset();
+        } else {
+            blocked[historyPlayer[historyAt - 1]] = true;
+            state = QUESTION;
+            saveState();
+        }
+    } else {
+        saveState();
+        if (historyAt == 0) {
+            state = QUESTION;
+        } else {
+            state = UNDO;
+        }
+    }
+}
+
 void JeopardyMode::update() {
+    if (state == UNDO) {
+        if (isControlPressed(BUTTON_CONTROL_1)) {
+            state = QUESTION;
+            return;
+        }
+        if (isControlPressed(BUTTON_CONTROL_2)) {
+            undoLast(false);
+            return;
+        }
+        if (isControlPressed(BUTTON_CONTROL_3)) {
+            undoLast(true);
+            return;
+        }
+    }
     if (state == MENU) {
         if (isControlPressed(BUTTON_CONTROL_1)) {
             menu.toLeft();
@@ -316,15 +382,11 @@ void JeopardyMode::update() {
                 return;
             }
             if (result == undoLabel) {
-                if (historyAt != 0) {
-                    historyAt--;
-                    roundID = historyRound[historyAt];
-                    score[historyPlayer[historyAt]] += historyScore[historyAt];
-                    question = historyScore[historyAt] > 0 ? historyScore[historyAt] : -historyScore[historyAt];
-                    blocked[historyPlayer[historyAt]] = false;
+                if (historyAt == 0) {
+                    state = QUESTION;
+                } else {
+                    state = UNDO;
                 }
-                state = QUESTION;
-                saveState();
                 return;
             }
         }
@@ -371,7 +433,7 @@ void JeopardyMode::update() {
                 state = QUESTION;
             }
             currentPlayer = -1;
-            stateEnterd = millis();
+            stateEntered = millis();
             saveState();
             playStartSound();
         } else if (isControlPressed(BUTTON_CONTROL_2)) {
@@ -385,7 +447,7 @@ void JeopardyMode::update() {
                 falseStart[i] = false;
             }
             currentPlayer = -1;
-            stateEnterd = millis();
+            stateEntered = millis();
             playStartSound();
         }
         return;
@@ -393,7 +455,7 @@ void JeopardyMode::update() {
         if (state == QUESTION && isControlPressed(BUTTON_CONTROL_2)) {
             state = MENU;
             menu.init(4, mainMenu, 0);
-            stateEnterd = millis();
+            stateEntered = millis();
             return;
         }
         if (state != QUESTION || timeInSeconds() >= DELAY || !firstTime) {
@@ -410,7 +472,7 @@ void JeopardyMode::update() {
                     } else {
                         state = ANSWER_TIME_STARTED;
                     }
-                    stateEnterd = millis();
+                    stateEntered = millis();
                     playPlayerSound();
                     lastAttentionSoundPlayed = 3;
                     return;
@@ -427,7 +489,7 @@ void JeopardyMode::update() {
         }
         if (isControlPressed(BUTTON_START) && state == QUESTION) {
             state = COUNTDOWN;
-            stateEnterd = millis();
+            stateEntered = millis();
             playStartSound();
             return;
         }
