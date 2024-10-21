@@ -22,7 +22,11 @@ inline void flushLcd(LiquidCrystal_I2C* lcd) { /* NOOP */ }
 
 #elif USE_GRAPHIC_LCD
 // A ST7920-based 128x64 graphic screen.
-#define GRAPHIC_LCD_FONT u8g2_font_6x13_t_cyrillic 
+#ifdef RUSSIAN
+#define GRAPHIC_LCD_FONT u8g2_font_6x13_t_cyrillic
+#else
+#define GRAPHIC_LCD_FONT u8g2_font_6x13B_tr
+#endif
 #include "graphic_lcd.h"
 
 const int kDisplayCols = 21;

@@ -5,7 +5,8 @@
 #define XPINS_ATMEGA32U4 1
 #define USE_DUMMY_LOAD 1
 #define USE_SIGNAL_LED 1
-#define RUSSIAN
+// TODO: we are hitting the maximum firmware size with the Cyrillic UI.
+// #define RUSSIAN
 #define USE_LAMP 1
 // TODO: Enable the lamp.
 

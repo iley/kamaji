@@ -19,9 +19,11 @@ const int ATTENTION_DELAY = 5;
 
 enum State {
     QUESTION,
+    QUESTION_SUPPLEMENT,
     MAIN,
     SUPPLEMENT,
     ANSWER_MAIN,
+    ANSWER_MAIN_QUESTION,
     ANSWER_SUPPLEMENT,
     FALSE_START,
     START_DELAY,
@@ -94,7 +96,7 @@ void BrainMode::init() {
 }
 
 bool BrainMode::getLedState(int playerId) {
-    return (state == ANSWER_MAIN || state == ANSWER_SUPPLEMENT || state == FALSE_START) && currentPlayer == playerId;
+    return (state == ANSWER_MAIN || state == ANSWER_MAIN_QUESTION || state == ANSWER_SUPPLEMENT || state == FALSE_START) && currentPlayer == playerId;
 }
 
 bool BrainMode::isEssential() {
@@ -104,12 +106,13 @@ bool BrainMode::isEssential() {
 bool BrainMode::getLampState() {
     return ((state == MAIN || state == SUPPLEMENT) && timeInSeconds() < 3) ||
       (state == FALSE_START && timeInTenths() % 10 < 5) ||
-      ((state == ANSWER_MAIN || state == ANSWER_SUPPLEMENT) && timeInTenths() >= 1);
+      ((state == ANSWER_MAIN || state == ANSWER_MAIN_QUESTION || state == ANSWER_SUPPLEMENT) && timeInTenths() >= 1);
 }
 
 void BrainMode::getCaption(char* buffer, size_t bufferSize, size_t width) {
     switch (state) {
         case QUESTION:
+        case QUESTION_SUPPLEMENT:
             snprintf(buffer, bufferSize, readBrainLabel, roundID);
             break;
         case MAIN:
@@ -119,6 +122,7 @@ void BrainMode::getCaption(char* buffer, size_t bufferSize, size_t width) {
             snprintf(buffer, bufferSize, timeLabel, remainingTime - timeInSeconds());
             break;
         case ANSWER_MAIN:
+        case ANSWER_MAIN_QUESTION:
         case ANSWER_SUPPLEMENT:
             snprintf(buffer, bufferSize, playerBrainLabel, currentPlayer + 1, timeInSeconds());
             break;
@@ -144,12 +148,14 @@ const char* BrainMode::getLabel(int buttonId) {
     if (buttonId == BUTTON_RESET) {
         switch (state) {
             case QUESTION:
+            case QUESTION_SUPPLEMENT:
             case MAIN:
             case SUPPLEMENT:
             case FALSE_START:
             case START_DELAY:
                 return resetLabel;
             case ANSWER_MAIN:
+            case ANSWER_MAIN_QUESTION:
             case ANSWER_SUPPLEMENT:
             case RESET:
             case FALSESTART_OPTIONS:
@@ -160,6 +166,7 @@ const char* BrainMode::getLabel(int buttonId) {
     } else if (buttonId == BUTTON_START)  {
         switch (state) {
             case QUESTION:
+            case QUESTION_SUPPLEMENT:
             case FALSE_START:
                 return startLabel;
             case MAIN:
@@ -167,6 +174,7 @@ const char* BrainMode::getLabel(int buttonId) {
             case START_DELAY:
                 return emptyLabel;
             case ANSWER_MAIN:
+            case ANSWER_MAIN_QUESTION:
             case ANSWER_SUPPLEMENT:
             case RESET:
             case FALSESTART_OPTIONS:
@@ -177,6 +185,7 @@ const char* BrainMode::getLabel(int buttonId) {
     } else if (buttonId == BUTTON_CONTROL_2) {
         switch (state) {
             case QUESTION:
+            case QUESTION_SUPPLEMENT:
                 return menuLabel;
             case MENU:
                 return menu.getCenterLabel();
@@ -194,7 +203,7 @@ void BrainMode::getScore(char* buffer, size_t bufferSize, size_t width) {
 }
 
 bool BrainMode::preferShowScore() {
-    return state == QUESTION;
+    return state == QUESTION || state == QUESTION_SUPPLEMENT;
 }
 
 void saveState() {
@@ -270,7 +279,7 @@ void BrainMode::update() {
         }
         return;
     }
-    if (state == ANSWER_MAIN || state == ANSWER_SUPPLEMENT) {
+    if (state == ANSWER_MAIN || state == ANSWER_SUPPLEMENT || state == ANSWER_MAIN_QUESTION) {
         if (timeInSeconds() - lastAttentionSoundPlayed >= ATTENTION_DELAY) {
             playAttentionSound();
             lastAttentionSoundPlayed = timeInSeconds();
@@ -283,8 +292,8 @@ void BrainMode::update() {
             reset();
             playCorrectSound();
         } else if (isControlPressed(BUTTON_START)) {
-            if (state == ANSWER_MAIN) {
-                state = SUPPLEMENT;
+            if (state == ANSWER_MAIN || state == ANSWER_MAIN_QUESTION) {
+                state = state == ANSWER_MAIN ? SUPPLEMENT : QUESTION_SUPPLEMENT;
                 last10Sec = false;
                 lastSignal = BUZZ_SEC;
                 playTimeSound();
@@ -303,7 +312,7 @@ void BrainMode::update() {
                     blocked[i] = true;
                     currentPlayer = i;
                     lastAttentionSoundPlayed = 3;
-                    if (state == MAIN || (state != SUPPLEMENT && !enforceFalseStart)) {
+                    if (state == MAIN || (state != SUPPLEMENT && state != QUESTION_SUPPLEMENT && !enforceFalseStart)) {
                         switch (secondPlayerTime) {
                             case TWENTY:
                                 remainingTime = 20;
@@ -316,9 +325,9 @@ void BrainMode::update() {
                                 break;
                         }
                         reactionTime = (millis() - stateEntered) / 10;
-                        state = ANSWER_MAIN;
+                        state = state == MAIN ? ANSWER_MAIN : ANSWER_MAIN_QUESTION;
                         playPlayerSound();
-                    } else if (state == SUPPLEMENT) {
+                    } else if (state == SUPPLEMENT || state == QUESTION_SUPPLEMENT) {
                         state = ANSWER_SUPPLEMENT;
                         playPlayerSound();
                     } else {
@@ -330,7 +339,7 @@ void BrainMode::update() {
                 }
             }
         }
-        if (state == QUESTION && isControlPressed(BUTTON_CONTROL_2)) {
+        if ((state == QUESTION || state == QUESTION_SUPPLEMENT) && isControlPressed(BUTTON_CONTROL_2)) {
             state = MENU;
             menu.init(4, mainMenu, 0);
             stateEntered = millis();
@@ -351,12 +360,12 @@ void BrainMode::update() {
             }
             return;
         }
-        if (isControlPressed(BUTTON_START) && state == QUESTION) {
+        if (isControlPressed(BUTTON_START) && (state == QUESTION || state == QUESTION_SUPPLEMENT)) {
             if (enforceFalseStart) {
                 state = START_DELAY;
                 startDelay = 500 + rand() % 500;
             } else {
-                state = MAIN;
+                state = state == QUESTION_SUPPLEMENT ? SUPPLEMENT : MAIN;
             }
             stateEntered = millis();
             return;
