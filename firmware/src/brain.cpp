@@ -365,7 +365,7 @@ void BrainMode::update() {
                 state = START_DELAY;
                 startDelay = 500 + rand() % 500;
             } else {
-                state = MAIN;
+                state = state == QUESTION_SUPPLEMENT ? SUPPLEMENT : MAIN;
             }
             stateEntered = millis();
             return;
