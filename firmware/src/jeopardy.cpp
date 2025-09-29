@@ -266,7 +266,7 @@ const char* JeopardyMode::getLabel(int buttonId) {
                 return cancelLabel;
             case QUESTION:
             case COUNTDOWN:
-                return scoreLabel[question - 1];
+                return scoreLabels[question - 1];
             case MENU:
                 return menu.getCenterLabel();
             case UNDO:
