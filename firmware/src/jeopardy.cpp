@@ -30,6 +30,7 @@ enum State {
 
 const char* mainMenu[] = {cancelLabel, resetLabel, undoLabel, numPlayersLabel};
 const char* numPlayerMenu[] = {num2Label, num3Label, num4Label, num5Label, num6Label};
+const char* scoreLabels[] = {"10", "20", "30", "40", "50"};
 
 int currentPlayer = -1;
 State state = QUESTION;
@@ -264,11 +265,10 @@ const char* JeopardyMode::getLabel(int buttonId) {
             case ANSWER_TIME_STARTED:
                 return cancelLabel;
             case QUESTION:
-                return menuLabel;
+            case COUNTDOWN:
+                return scoreLabels[question - 1];
             case MENU:
                 return menu.getCenterLabel();
-            case COUNTDOWN:
-                return emptyLabel;
             case UNDO:
                 return undoLabel;
         }
