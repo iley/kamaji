@@ -1,5 +1,7 @@
 # Kamaji quiz game system
 
+See [kamaji.cc](http://kamaji.cc) for assembly instructions and additional information.
+
 ![](https://github.com/iley/kamaji/workflows/CI/badge.svg)
 
 Directories:
@@ -32,12 +34,13 @@ pio run -e v1 -t upload
 
 ## Hardware
 
-V1 uses an ATmega328p running at 8MHz without an external oscillator.
-[USBasp](http://www.fischl.de/usbasp/) can be used for programming.
+**The recommended version for new builds is "Classic V1".**
 
-V2 uses ATmega32u4 and a 128x64 graphics screen.
-
-V3 runs on ATmega328p with a 16MHz oscillator and and utilizes a PCF8574 I/O extender chip.
+* V1 uses an ATmega328p running at 8MHz without an external oscillator. [USBasp](http://www.fischl.de/usbasp/) can be used for programming.
+* V2 uses ATmega32u4 and a 128x64 graphics screen.
+* V3 runs on ATmega328p with a 16MHz oscillator and and utilizes a PCF8574 I/O extender chip.
+* "Classic V1" is an updated revision of V1. Fully compatible from software point of view.
+* "Headless" is a USB MIDI device without a screen or buttons. Built around "Pro Micro" boards (ATMega32U4).
 
 ## Code style
 
