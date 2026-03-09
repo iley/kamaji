@@ -47,6 +47,7 @@ static const char* blockedLabel = "%d заблокировано";
 static const char* readJeopardyLabel = "Тема %d. Вопрос %d";
 static const char* playerJeopardyLabel = "Игрок %d (%d c)";
 static const char* playerUndoLabel = "Игрок %d Очки %d";
+static const char* nextQuestionLabel = "Следующий вопрос?";
 
 //Select
 static const char* jeopardyLabel = "Своя игра";
@@ -89,6 +90,7 @@ static const char* blockedLabel = "%d blocked";
 static const char* readJeopardyLabel = "Round %d. Q %d";
 static const char* playerJeopardyLabel = "Player %d (%d s)";
 static const char* playerUndoLabel = "Pl %d Pts %d";
+static const char* nextQuestionLabel = "Next question?";
 
 //Select
 static const char* jeopardyLabel = "Jeopardy";
