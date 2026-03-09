@@ -26,6 +26,7 @@ enum State {
     ANSWER_TIME_STARTED,
     MENU,
     UNDO,
+    RESET_CONFIRM,
 };
 
 const char* mainMenu[] = {cancelLabel, resetLabel, undoLabel, numPlayersLabel};
@@ -209,6 +210,9 @@ void JeopardyMode::getCaption(char* buffer, size_t bufferSize, size_t width) {
             snprintf(buffer, bufferSize, playerUndoLabel, historyPlayer[historyAt - 1] + 1,
                      -historyScore[historyAt - 1] * 10);
             break;
+        case RESET_CONFIRM:
+            snprintf(buffer, bufferSize, nextQuestionLabel);
+            break;
     }
 }
 
@@ -238,6 +242,7 @@ const char* JeopardyMode::getLabel(int buttonId) {
                 return resetLabel;
             case ANSWER_TIME_NOT_STARTED:
             case ANSWER_TIME_STARTED:
+            case RESET_CONFIRM:
                 return yesLabel;
             case MENU:
                 return menu.getLeftLabel();
@@ -252,6 +257,7 @@ const char* JeopardyMode::getLabel(int buttonId) {
                 return emptyLabel;
             case ANSWER_TIME_NOT_STARTED:
             case ANSWER_TIME_STARTED:
+            case RESET_CONFIRM:
                 return noLabel;
             case MENU:
                 return menu.getRightLabel();
@@ -271,6 +277,8 @@ const char* JeopardyMode::getLabel(int buttonId) {
                 return emptyLabel;
             case UNDO:
                 return undoLabel;
+            case RESET_CONFIRM:
+                return emptyLabel;
         }
     }
     return emptyLabel;
@@ -318,6 +326,17 @@ void undoLast(bool revert) {
 }
 
 void JeopardyMode::update() {
+    if (state == RESET_CONFIRM) {
+        if (isControlPressed(BUTTON_RESET)) {
+            reset();
+            playResetSound();
+            return;
+        } else if (isControlPressed(BUTTON_START)) {
+            state = QUESTION;
+            return;
+        }
+        return;
+    }
     if (state == UNDO) {
         if (isControlPressed(BUTTON_CONTROL_1)) {
             state = QUESTION;
@@ -483,8 +502,7 @@ void JeopardyMode::update() {
             return;
         }
         if (isControlPressed(BUTTON_RESET)) {
-            reset();
-            playResetSound();
+            state = RESET_CONFIRM;
             return;
         }
         if (isControlPressed(BUTTON_START) && state == QUESTION) {
